@@ -83,7 +83,7 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Button 
               onClick={() => handleScrollTo('#testimonials')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-3 rounded-md font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
             >
               BOOK TRIAL NOW
             </Button>
