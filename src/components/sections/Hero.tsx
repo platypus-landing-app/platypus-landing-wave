@@ -21,17 +21,16 @@ const Hero = () => {
           <div className="space-y-10 animate-fade-in">
             <div>
               <h1 className="leading-tight mb-8">
-                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-500 drop-shadow-lg font-rounded tracking-wide">PLATYPUS</span>
-                <span className="text-4xl md:text-5xl lg:text-6xl text-blue-600 font-bold"> - </span>
+                <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 drop-shadow-lg font-rounded tracking-wide">PLATYPUS</span>
+                <span className="text-3xl md:text-4xl lg:text-5xl text-blue-600 font-bold"> - </span>
                 <br />
-                <span className="text-6xl md:text-7xl lg:text-8xl text-black font-bold">INDIA'S DOG</span>
-                <br />
-                <span className="text-6xl md:text-7xl lg:text-8xl text-black font-bold">WALKING EXPERTS</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl text-black font-bold">INDIA'S DOG WALKING EXPERTS</span>
               </h1>
             </div>
             
-            <p className="text-xl md:text-2xl text-black max-w-lg leading-relaxed font-normal">
-              Book a Trial Walk Today: Safe, Joyful, Professionally Trained Walkers.<br />
+            <p className="text-lg md:text-xl text-black max-w-lg leading-relaxed font-normal">
+              Book a Trial Walk Today: Safe, Joyful, Professionally Trained Walkers.
+              <br />
               <span className="text-blue-600">Live GPS tracking</span> and verified Guardians across Mumbai.
             </p>
 
