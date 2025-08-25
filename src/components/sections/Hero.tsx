@@ -20,13 +20,13 @@ const Hero = () => {
           {/* Left Content */}
           <div className="space-y-10 animate-fade-in">
             <div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-tight mb-8">
-                <span className="text-gray-900 font-black tracking-tight">PLATYPUS</span>
-                <span className="text-blue-600"> - </span>
+              <h1 className="leading-tight mb-8">
+                <span className="text-6xl md:text-7xl lg:text-8xl font-black text-yellow-500 drop-shadow-lg font-rounded tracking-wide">PLATYPUS</span>
+                <span className="text-5xl md:text-6xl lg:text-7xl text-blue-600 font-black"> - </span>
                 <br />
-                <span className="text-gray-900">INDIA'S DOG</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl text-gray-900 font-black">INDIA'S DOG</span>
                 <br />
-                <span className="text-gray-900">WALKING EXPERTS</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl text-gray-900 font-black">WALKING EXPERTS</span>
               </h1>
             </div>
             
