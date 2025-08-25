@@ -6,18 +6,19 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Features', href: '#features' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'GUARDIANS', href: '#guardians' },
+    { name: 'WHY PLATYPUS', href: '#why-platypus' },
+    { name: 'AREAS WE SERVE', href: '#areas' },
+    { name: 'PROCESS', href: '#process' },
+    { name: 'TESTIMONIALS', href: '#testimonials' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm transition-all duration-300 hover:bg-background/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <div className="text-2xl font-bold bg-gradient-ocean bg-clip-text text-transparent">
+            <div className="text-2xl font-bold text-black">
               Platypus
             </div>
           </div>
@@ -29,7 +30,7 @@ const Navigation = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   {item.name}
                 </a>
@@ -38,8 +39,8 @@ const Navigation = () => {
           </div>
 
           <div className="hidden md:block">
-            <Button className="bg-gradient-ocean hover:opacity-90 text-white">
-              Get Started
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium">
+              BOOK TRIAL NOW
             </Button>
           </div>
 
@@ -64,15 +65,15 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </a>
             ))}
             <div className="pt-2">
-              <Button className="w-full bg-gradient-ocean hover:opacity-90 text-white">
-                Get Started
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                BOOK TRIAL NOW
               </Button>
             </div>
           </div>
