@@ -60,18 +60,21 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="flex items-center space-x-2">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleScrollTo(item.href)}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 ${
+                  className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-blue-600 ${
                     activeSection === item.href.substring(1) 
-                      ? 'text-blue-600 bg-blue-50' 
+                      ? 'text-blue-600' 
                       : 'text-gray-700'
                   }`}
                 >
                   {item.name}
+                  {activeSection === item.href.substring(1) && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"></div>
+                  )}
                 </button>
               ))}
             </div>
@@ -80,7 +83,7 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Button 
               onClick={() => handleScrollTo('#testimonials')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-3 rounded-md font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
             >
               BOOK TRIAL NOW
             </Button>
