@@ -25,9 +25,9 @@ const Process = () => {
   ];
 
   return (
-    <section id="process" className="py-28 bg-gradient-to-br from-blue-600 to-blue-700 relative overflow-hidden">
+    <section id="process" className="py-28 bg-[#0088ff] relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-blue-600 opacity-90"></div>
+      <div className="absolute inset-0 bg-#[0088ff] opacity-90"></div>
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full"></div>
         <div className="absolute bottom-20 right-16 w-24 h-24 bg-yellow-400/20 rounded-full"></div>
@@ -36,8 +36,8 @@ const Process = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Our <span className="text-yellow-400 drop-shadow-lg">Process</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 drop-shadow-lg font-rounded tracking-wide">
+            Our <span className="text-white drop-shadow-lg">Process</span>
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             From Booking To Happy Returns, We've Made Pet Care As Simple As Four Easy Steps.

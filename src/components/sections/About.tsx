@@ -1,6 +1,5 @@
 import { Calendar, MapPin, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import appPreview from '@/assets/app-preview.jpg';
 
 const About = () => {
   const appFeatures = [
@@ -65,7 +64,7 @@ const About = () => {
           {/* Right Image */}
           <div className="relative">
             <img 
-              src={appPreview} 
+              src={"/Live GPS Tracking.png"} 
               alt="Platypus App Preview" 
               className="w-full h-auto rounded-2xl shadow-2xl"
             />
