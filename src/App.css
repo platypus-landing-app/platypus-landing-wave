@@ -1,42 +1,283 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System Color Tokens - Platypus Brand */
+:root {
+  /* Base Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  
+  /* Gray Scale */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* Brand Colors - Blue */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  
+  /* Secondary Colors - Orange/Yellow */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-yellow-400: #fbbf24;
+  --color-yellow-500: #f59e0b;
+  
+  /* Accent Colors */
+  --color-green-500: #10b981;
+  --color-green-600: #059669;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  
+  /* Background System */
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary: var(--color-gray-50);
+  --color-bg-tertiary: var(--color-gray-100);
+  --color-bg-elevated: var(--color-white);
+  --color-bg-elevated-hover: var(--color-gray-50);
+  
+  /* Brand Background States */
+  --color-bg-brand: var(--color-blue-600);
+  --color-bg-brand-hover: var(--color-blue-700);
+  --color-bg-brand-pressed: var(--color-blue-700);
+  --color-bg-brand-secondary: var(--color-blue-100);
+  --color-bg-brand-tertiary: var(--color-blue-50);
+  
+  /* Secondary Background States */
+  --color-bg-secondary-brand: var(--color-orange-500);
+  --color-bg-secondary-brand-hover: var(--color-orange-600);
+  --color-bg-secondary-brand-pressed: var(--color-orange-600);
+  --color-bg-secondary-brand-secondary: var(--color-orange-100);
+  --color-bg-secondary-brand-tertiary: var(--color-orange-50);
+  
+  /* Success Background States */
+  --color-bg-success: var(--color-green-500);
+  --color-bg-success-hover: var(--color-green-600);
+  --color-bg-success-tertiary: #d1fae5;
+  
+  /* Danger Background States */
+  --color-bg-danger: var(--color-red-500);
+  --color-bg-danger-hover: var(--color-red-600);
+  --color-bg-danger-tertiary: #fee2e2;
+  
+  /* Text Colors */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-tertiary: var(--color-gray-500);
+  --color-text-inverse: var(--color-white);
+  --color-text-brand: var(--color-blue-600);
+  --color-text-secondary-brand: var(--color-orange-600);
+  
+  /* Border Colors */
+  --color-border-primary: var(--color-gray-200);
+  --color-border-secondary: var(--color-gray-100);
+  --color-border-brand: var(--color-blue-600);
+  --color-border-secondary-brand: var(--color-orange-500);
+  
+  /* Interactive States */
+  --color-interactive-hover: var(--color-gray-50);
+  --color-interactive-pressed: var(--color-gray-100);
+  --color-interactive-disabled: var(--color-gray-300);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--color-blue-600) 0%, var(--color-blue-700) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-orange-500) 0%, var(--color-orange-600) 100%);
+  --gradient-hero: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-blue-50) 100%);
+  --gradient-process: linear-gradient(135deg, var(--color-blue-600) 0%, var(--color-blue-700) 100%);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Base styles using design tokens */
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* Component Classes Using Design Tokens */
+.btn-primary {
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-bg-brand);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-bg-brand-hover);
+  border-color: var(--color-bg-brand-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+  background-color: var(--color-bg-brand-pressed);
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-secondary-brand);
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-bg-secondary-brand);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-secondary-brand-hover);
+  border-color: var(--color-bg-secondary-brand-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text-brand);
+  border: 2px solid var(--color-border-brand);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-bg-brand-tertiary);
+  border-color: var(--color-border-brand);
+}
+
+.card-elevated {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-secondary);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.card-elevated:hover {
+  background-color: var(--color-bg-elevated-hover);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+/* Animation Classes */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-stagger > * {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.animate-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.animate-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.animate-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.animate-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.animate-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Hover Effects */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Focus States for Accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-bg-brand);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-brand);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bg-brand-hover);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container-mobile {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
-.card {
-  padding: 2em;
+/* Typography Classes */
+.text-hero {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--color-text-primary);
 }
 
-.read-the-docs {
-  color: #888;
+.text-section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
+
+.text-highlight {
+  color: var(--color-text-secondary-brand);
+}
+
+/* Utility Classes */
+.bg-brand { background-color: var(--color-bg-brand); }
+.bg-brand-hover:hover { background-color: var(--color-bg-brand-hover); }
+.bg-secondary-brand { background-color: var(--color-bg-secondary-brand); }
+.text-brand { color: var(--color-text-brand); }
+.text-secondary-brand { color: var(--color-text-secondary-brand); }
+.border-brand { border-color: var(--color-border-brand); }
