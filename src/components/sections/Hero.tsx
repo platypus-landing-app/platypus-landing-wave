@@ -1,9 +1,20 @@
 import { ArrowRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import heroImage from '@/assets/hero-image.jpg';
 
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroImage} 
+          alt="Platypus Hero" 
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-transparent to-background/70"></div>
+      </div>
+
       {/* Animated wave background */}
       <div className="absolute inset-0">
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-wave opacity-30 animate-wave"></div>
