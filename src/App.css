@@ -2,199 +2,305 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design System Color Tokens - Platypus Brand */
+/* === PLATYPUS DESIGN SYSTEM ===
+ * Following Figma's enterprise token architecture
+ * Tailored for dog walking service brand
+ */
+
+/* === BASE RAMP COLORS === */
 :root {
-  /* Base Colors */
-  --color-white: #ffffff;
-  --color-black: #000000;
+  /* Neutral Ramp */
+  --ramp-white-100: #ffffff0d;
+  --ramp-white-200: #ffffff1a;
+  --ramp-white-300: #ffffff33;
+  --ramp-white-400: #ffffff66;
+  --ramp-white-500: #ffffffb2;
+  --ramp-white-600: #ffffffcc;
+  --ramp-white-1000: #ffffff;
   
-  /* Gray Scale */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  --ramp-black-100: #0000000d;
+  --ramp-black-200: #0000001a;
+  --ramp-black-300: #00000033;
+  --ramp-black-400: #0000004d;
+  --ramp-black-500: #00000080;
+  --ramp-black-600: #000000cc;
+  --ramp-black-800: #000000e5;
+  --ramp-black-1000: #000000;
   
-  /* Brand Colors - Blue */
-  --color-blue-50: #eff6ff;
-  --color-blue-100: #dbeafe;
-  --color-blue-200: #bfdbfe;
-  --color-blue-500: #3b82f6;
-  --color-blue-600: #2563eb;
-  --color-blue-700: #1d4ed8;
+  --ramp-grey-100: #f9fafb;
+  --ramp-grey-200: #f3f4f6;
+  --ramp-grey-300: #e5e7eb;
+  --ramp-grey-400: #9ca3af;
+  --ramp-grey-500: #6b7280;
+  --ramp-grey-600: #4b5563;
+  --ramp-grey-700: #374151;
+  --ramp-grey-800: #1f2937;
+  --ramp-grey-900: #111827;
   
-  /* Secondary Colors - Orange/Yellow */
-  --color-orange-50: #fff7ed;
-  --color-orange-100: #ffedd5;
-  --color-orange-200: #fed7aa;
-  --color-orange-500: #f97316;
-  --color-orange-600: #ea580c;
-  --color-yellow-400: #fbbf24;
-  --color-yellow-500: #f59e0b;
+  /* Brand Blue Ramp - Primary */
+  --ramp-blue-100: #eff6ff;
+  --ramp-blue-200: #dbeafe;
+  --ramp-blue-300: #bfdbfe;
+  --ramp-blue-400: #93c5fd;
+  --ramp-blue-500: #3b82f6;
+  --ramp-blue-600: #2563eb;
+  --ramp-blue-700: #1d4ed8;
+  --ramp-blue-800: #1e40af;
+  --ramp-blue-900: #1e3a8a;
   
-  /* Accent Colors */
-  --color-green-500: #10b981;
-  --color-green-600: #059669;
-  --color-red-500: #ef4444;
-  --color-red-600: #dc2626;
+  /* Secondary Orange Ramp */
+  --ramp-orange-100: #fff7ed;
+  --ramp-orange-200: #ffedd5;
+  --ramp-orange-300: #fed7aa;
+  --ramp-orange-400: #fdba74;
+  --ramp-orange-500: #f97316;
+  --ramp-orange-600: #ea580c;
+  --ramp-orange-700: #c2410c;
+  --ramp-orange-800: #9a3412;
   
-  /* Background System */
-  --color-bg-primary: var(--color-white);
-  --color-bg-secondary: var(--color-gray-50);
-  --color-bg-tertiary: var(--color-gray-100);
-  --color-bg-elevated: var(--color-white);
-  --color-bg-elevated-hover: var(--color-gray-50);
+  /* Yellow Accent Ramp */
+  --ramp-yellow-200: #fef3c7;
+  --ramp-yellow-300: #fcd34d;
+  --ramp-yellow-400: #fbbf24;
+  --ramp-yellow-500: #f59e0b;
+  --ramp-yellow-600: #d97706;
   
-  /* Brand Background States */
-  --color-bg-brand: var(--color-blue-600);
-  --color-bg-brand-hover: var(--color-blue-700);
-  --color-bg-brand-pressed: var(--color-blue-700);
-  --color-bg-brand-secondary: var(--color-blue-100);
-  --color-bg-brand-tertiary: var(--color-blue-50);
+  /* Success Green Ramp */
+  --ramp-green-100: #dcfce7;
+  --ramp-green-200: #bbf7d0;
+  --ramp-green-500: #22c55e;
+  --ramp-green-600: #16a34a;
+  --ramp-green-700: #15803d;
   
-  /* Secondary Background States */
-  --color-bg-secondary-brand: var(--color-orange-500);
-  --color-bg-secondary-brand-hover: var(--color-orange-600);
-  --color-bg-secondary-brand-pressed: var(--color-orange-600);
-  --color-bg-secondary-brand-secondary: var(--color-orange-100);
-  --color-bg-secondary-brand-tertiary: var(--color-orange-50);
+  /* Danger Red Ramp */
+  --ramp-red-200: #fecaca;
+  --ramp-red-500: #ef4444;
+  --ramp-red-600: #dc2626;
+  --ramp-red-700: #b91c1c;
+}
+
+/* === SEMANTIC BACKGROUND TOKENS === */
+:root {
+  --color-bg: var(--ramp-white-1000);
+  --color-bg-secondary: var(--ramp-grey-100);
+  --color-bg-tertiary: var(--ramp-grey-200);
+  --color-bg-elevated: var(--ramp-white-1000);
+  --color-bg-elevated-hover: var(--ramp-grey-100);
   
-  /* Success Background States */
-  --color-bg-success: var(--color-green-500);
-  --color-bg-success-hover: var(--color-green-600);
-  --color-bg-success-tertiary: #d1fae5;
+  /* Brand Backgrounds */
+  --color-bg-brand: var(--ramp-blue-600);
+  --color-bg-brand-hover: var(--ramp-blue-700);
+  --color-bg-brand-pressed: var(--ramp-blue-800);
+  --color-bg-brand-secondary: var(--ramp-blue-100);
+  --color-bg-brand-tertiary: var(--ramp-blue-100);
   
-  /* Danger Background States */
-  --color-bg-danger: var(--color-red-500);
-  --color-bg-danger-hover: var(--color-red-600);
-  --color-bg-danger-tertiary: #fee2e2;
-  
-  /* Text Colors */
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-700);
-  --color-text-tertiary: var(--color-gray-500);
-  --color-text-inverse: var(--color-white);
-  --color-text-brand: var(--color-blue-600);
-  --color-text-secondary-brand: var(--color-orange-600);
-  
-  /* Border Colors */
-  --color-border-primary: var(--color-gray-200);
-  --color-border-secondary: var(--color-gray-100);
-  --color-border-brand: var(--color-blue-600);
-  --color-border-secondary-brand: var(--color-orange-500);
+  /* Secondary Brand (Orange) */
+  --color-bg-secondary-brand: var(--ramp-orange-500);
+  --color-bg-secondary-brand-hover: var(--ramp-orange-600);
+  --color-bg-secondary-brand-pressed: var(--ramp-orange-700);
+  --color-bg-secondary-brand-secondary: var(--ramp-orange-200);
+  --color-bg-secondary-brand-tertiary: var(--ramp-orange-100);
   
   /* Interactive States */
-  --color-interactive-hover: var(--color-gray-50);
-  --color-interactive-pressed: var(--color-gray-100);
-  --color-interactive-disabled: var(--color-gray-300);
+  --color-bg-hover: var(--ramp-grey-100);
+  --color-bg-pressed: var(--ramp-grey-200);
+  --color-bg-disabled: var(--ramp-grey-300);
   
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  /* Status Colors */
+  --color-bg-success: var(--ramp-green-500);
+  --color-bg-success-hover: var(--ramp-green-600);
+  --color-bg-success-tertiary: var(--ramp-green-100);
   
-  /* Gradients */
-  --gradient-brand: linear-gradient(135deg, var(--color-blue-600) 0%, var(--color-blue-700) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--color-orange-500) 0%, var(--color-orange-600) 100%);
-  --gradient-hero: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-blue-50) 100%);
-  --gradient-process: linear-gradient(135deg, var(--color-blue-600) 0%, var(--color-blue-700) 100%);
+  --color-bg-danger: var(--ramp-red-500);
+  --color-bg-danger-hover: var(--ramp-red-600);
+  --color-bg-danger-tertiary: var(--ramp-red-200);
+  
+  --color-bg-warning: var(--ramp-yellow-500);
+  --color-bg-warning-tertiary: var(--ramp-yellow-200);
 }
 
-/* Smooth scrolling behavior */
-html {
-  scroll-behavior: smooth;
+/* === SEMANTIC TEXT TOKENS === */
+:root {
+  --color-text: var(--ramp-grey-900);
+  --color-text-secondary: var(--ramp-grey-700);
+  --color-text-tertiary: var(--ramp-grey-500);
+  --color-text-disabled: var(--ramp-grey-400);
+  --color-text-inverse: var(--ramp-white-1000);
+  
+  /* Brand Text */
+  --color-text-brand: var(--ramp-blue-600);
+  --color-text-brand-hover: var(--ramp-blue-700);
+  --color-text-secondary-brand: var(--ramp-orange-600);
+  
+  /* On Brand Backgrounds */
+  --color-text-onbrand: var(--ramp-white-1000);
+  --color-text-onbrand-secondary: var(--ramp-white-500);
+  --color-text-onsecondary-brand: var(--ramp-white-1000);
+  
+  /* Status Text */
+  --color-text-success: var(--ramp-green-600);
+  --color-text-danger: var(--ramp-red-600);
+  --color-text-warning: var(--ramp-yellow-600);
 }
 
-/* Base styles using design tokens */
-body {
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
+/* === SEMANTIC BORDER TOKENS === */
+:root {
+  --color-border: var(--ramp-grey-200);
+  --color-border-secondary: var(--ramp-grey-300);
+  --color-border-strong: var(--ramp-grey-400);
+  
+  --color-border-brand: var(--ramp-blue-300);
+  --color-border-brand-strong: var(--ramp-blue-600);
+  --color-border-secondary-brand: var(--ramp-orange-300);
+  --color-border-secondary-brand-strong: var(--ramp-orange-600);
+  
+  --color-border-success: var(--ramp-green-200);
+  --color-border-danger: var(--ramp-red-200);
+  --color-border-warning: var(--ramp-yellow-200);
 }
 
-/* Component Classes Using Design Tokens */
+/* === SEMANTIC ICON TOKENS === */
+:root {
+  --color-icon: var(--ramp-grey-800);
+  --color-icon-secondary: var(--ramp-grey-500);
+  --color-icon-tertiary: var(--ramp-grey-400);
+  --color-icon-brand: var(--ramp-blue-600);
+  --color-icon-secondary-brand: var(--ramp-orange-600);
+  --color-icon-onbrand: var(--ramp-white-1000);
+  --color-icon-success: var(--ramp-green-600);
+  --color-icon-danger: var(--ramp-red-600);
+  --color-icon-warning: var(--ramp-yellow-600);
+}
+
+/* === ELEVATION & SHADOWS === */
+:root {
+  --elevation-100: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --elevation-200: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --elevation-300: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --elevation-400: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --elevation-500: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  
+  --shadow-brand: 0 10px 25px -3px rgb(37 99 235 / 0.2);
+  --shadow-secondary-brand: 0 10px 25px -3px rgb(249 115 22 / 0.2);
+}
+
+/* === COMPONENT CLASSES USING TOKENS === */
+
+/* Button Components */
 .btn-primary {
   background-color: var(--color-bg-brand);
-  color: var(--color-text-inverse);
+  color: var(--color-text-onbrand);
   border: 1px solid var(--color-bg-brand);
-  transition: all 0.2s ease;
+  box-shadow: var(--elevation-100);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary:hover {
   background-color: var(--color-bg-brand-hover);
   border-color: var(--color-bg-brand-hover);
+  box-shadow: var(--shadow-brand);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
 }
 
 .btn-primary:active {
   background-color: var(--color-bg-brand-pressed);
   transform: translateY(0);
+  box-shadow: var(--elevation-100);
 }
 
 .btn-secondary {
   background-color: var(--color-bg-secondary-brand);
-  color: var(--color-text-inverse);
+  color: var(--color-text-onsecondary-brand);
   border: 1px solid var(--color-bg-secondary-brand);
-  transition: all 0.2s ease;
+  box-shadow: var(--elevation-100);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
   background-color: var(--color-bg-secondary-brand-hover);
   border-color: var(--color-bg-secondary-brand-hover);
+  box-shadow: var(--shadow-secondary-brand);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
 }
 
 .btn-outline {
   background-color: transparent;
   color: var(--color-text-brand);
   border: 2px solid var(--color-border-brand);
-  transition: all 0.2s ease;
+  box-shadow: var(--elevation-100);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline:hover {
   background-color: var(--color-bg-brand-tertiary);
-  border-color: var(--color-border-brand);
+  border-color: var(--color-border-brand-strong);
+  color: var(--color-text-brand);
+  box-shadow: var(--elevation-200);
 }
 
+/* Card Components */
 .card-elevated {
   background-color: var(--color-bg-elevated);
-  border: 1px solid var(--color-border-secondary);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--elevation-100);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-elevated:hover {
   background-color: var(--color-bg-elevated-hover);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--elevation-400);
   transform: translateY(-4px);
 }
 
-/* Animation Classes */
+/* Location Button Component */
+.location-btn {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--elevation-100);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.location-btn:hover {
+  background-color: var(--color-bg-brand-tertiary);
+  color: var(--color-text-brand);
+  border-color: var(--color-border-brand);
+  box-shadow: var(--elevation-200);
+  transform: scale(1.02);
+}
+
+/* === UTILITIES === */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base styles */
+body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* Animation keyframes */
 @keyframes fade-in {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+  animation: fade-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Staggered animations */
 .animate-stagger > * {
-  animation: fade-in 0.6s ease-out forwards;
+  animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .animate-stagger > *:nth-child(1) { animation-delay: 0.1s; }
@@ -204,32 +310,14 @@ body {
 .animate-stagger > *:nth-child(5) { animation-delay: 0.5s; }
 .animate-stagger > *:nth-child(6) { animation-delay: 0.6s; }
 
-/* Hover Effects */
-.hover-scale {
-  transition: transform 0.2s ease;
-}
-
-.hover-scale:hover {
-  transform: scale(1.05);
-}
-
-.hover-lift {
-  transition: all 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Focus States for Accessibility */
+/* Focus states for accessibility */
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--color-bg-brand);
+  outline: 2px solid var(--color-border-brand-strong);
   outline-offset: 2px;
 }
 
-/* Custom Scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -247,7 +335,7 @@ a:focus-visible {
   background: var(--color-bg-brand-hover);
 }
 
-/* Responsive Design */
+/* Responsive design */
 @media (max-width: 768px) {
   .container-mobile {
     padding-left: 1rem;
@@ -255,29 +343,34 @@ a:focus-visible {
   }
 }
 
-/* Typography Classes */
+/* Typography utilities */
 .text-hero {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.1;
   font-weight: 800;
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .text-section-title {
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.2;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .text-highlight {
   color: var(--color-text-secondary-brand);
 }
 
-/* Utility Classes */
-.bg-brand { background-color: var(--color-bg-brand); }
-.bg-brand-hover:hover { background-color: var(--color-bg-brand-hover); }
-.bg-secondary-brand { background-color: var(--color-bg-secondary-brand); }
-.text-brand { color: var(--color-text-brand); }
-.text-secondary-brand { color: var(--color-text-secondary-brand); }
-.border-brand { border-color: var(--color-border-brand); }
+/* Gradient utilities */
+.bg-gradient-hero {
+  background: linear-gradient(135deg, var(--ramp-grey-100) 0%, var(--ramp-blue-100) 100%);
+}
+
+.bg-gradient-brand {
+  background: linear-gradient(135deg, var(--ramp-blue-600) 0%, var(--ramp-blue-700) 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, var(--ramp-orange-500) 0%, var(--ramp-orange-600) 100%);
+}
