@@ -1,54 +1,79 @@
-import { CheckCircle } from 'lucide-react';
+import { Calendar, MapPin, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import appPreview from '@/assets/app-preview.jpg';
 
 const About = () => {
-  const benefits = [
-    "Unique hybrid approach combining the best of both worlds",
-    "Adaptive technology that evolves with your needs",
-    "Intuitive design inspired by nature's most versatile creature",
-    "Seamless integration across all platforms and devices"
+  const appFeatures = [
+    {
+      icon: Calendar,
+      title: "Easy Booking",
+      description: "Schedule walks in seconds with your preferred Guardian"
+    },
+    {
+      icon: MapPin,
+      title: "Live Tracking",
+      description: "Watch your pet's walk in real-time with GPS updates"
+    },
+    {
+      icon: Star,
+      title: "Guardian Ratings",
+      description: "Rate and review your Guardian after each walk"
+    }
   ];
 
   return (
-    <section id="about" className="py-24 bg-muted/30">
+    <section id="about" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-              Why Choose
-              <span className="block bg-gradient-ocean bg-clip-text text-transparent">
-                Platypus?
-              </span>
-            </h2>
-            
-            <p className="text-lg text-muted-foreground mb-8">
-              Just like the remarkable platypus that seamlessly navigates both aquatic and terrestrial environments, 
-              our platform bridges the gap between different technologies and user needs, creating a unique and 
-              powerful solution.
-            </p>
+          {/* Left Content */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                <span className="text-orange-500">Coming Soon</span> - Platypus App
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Walking Your Dog Is About To Get Smarter With Our AI-Powered App. Book And Track Walks In Real-Time, Get Rich Updates, And Manage Everything From One Place.
+              </p>
+            </div>
 
-            <div className="space-y-4">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
-                  <p className="text-foreground">{benefit}</p>
+            <div className="space-y-6">
+              {appFeatures.map((feature, index) => (
+                <div key={index} className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
+
+            <Button 
+              size="lg" 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
+            >
+              BOOK TRIAL'S WALK NOW
+            </Button>
           </div>
 
+          {/* Right Image */}
           <div className="relative">
-            {/* Placeholder for illustration */}
-            <div className="aspect-square bg-gradient-wave rounded-2xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-ocean opacity-20"></div>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-32 h-32 bg-primary/30 rounded-full animate-pulse"></div>
-              </div>
-              <div className="absolute bottom-4 right-4">
-                <div className="w-16 h-16 bg-wave-primary/40 rounded-full animate-float"></div>
-              </div>
-              <div className="absolute top-4 left-4">
-                <div className="w-12 h-12 bg-wave-secondary/50 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-              </div>
+            <img 
+              src={appPreview} 
+              alt="Platypus App Preview" 
+              className="w-full h-auto rounded-2xl shadow-2xl"
+            />
+            
+            {/* Guardian Online Indicator */}
+            <div className="absolute bottom-6 right-6 bg-white rounded-full px-4 py-2 shadow-lg flex items-center space-x-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="text-sm font-medium text-gray-700">Guardian Online</span>
             </div>
           </div>
         </div>
