@@ -54,7 +54,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <div className="text-3xl font-bold text-black cursor-pointer" onClick={() => handleScrollTo('#home')}>
-              Platypus
+              <img src="/logo.png" alt="" />
             </div>
           </div>
 
@@ -65,15 +65,15 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => handleScrollTo(item.href)}
-                  className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-blue-600 ${
+                  className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#0088FF] ${
                     activeSection === item.href.substring(1) 
-                      ? 'text-blue-600' 
+                      ? 'text-[#0088FF]' 
                       : 'text-gray-700'
                   }`}
                 >
                   {item.name}
                   {activeSection === item.href.substring(1) && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0088FF]"></div>
                   )}
                 </button>
               ))}
@@ -83,7 +83,7 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Button 
               onClick={() => handleScrollTo('#testimonials')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+              className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
             >
               BOOK TRIAL NOW
             </Button>
@@ -111,7 +111,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => handleScrollTo(item.href)}
-                className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 block px-3 py-3 rounded-md text-base font-medium w-full text-left transition-colors"
+                className="text-gray-700 hover:text-[#0088FF] hover:bg-blue-50 block px-3 py-3 rounded-md text-base font-medium w-full text-left transition-colors"
               >
                 {item.name}
               </button>
@@ -119,7 +119,7 @@ const Navigation = () => {
             <div className="pt-4">
               <Button 
                 onClick={() => handleScrollTo('#testimonials')}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium"
+                className="w-full bg-[#397CEF] hover:bg-[#0088FF] text-white py-3 rounded font-medium"
               >
                 BOOK TRIAL NOW
               </Button>

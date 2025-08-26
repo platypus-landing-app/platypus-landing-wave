@@ -19,7 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'rounded': ['Nunito', 'sans-serif'],
+				funnel: ['"Funnel Sans"', 'sans-serif'], // 👈 Funnel Sans
+				rounded: ['Nunito', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

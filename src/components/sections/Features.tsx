@@ -78,7 +78,7 @@ const Features = () => {
               <p className="text-black text-base leading-relaxed max-w-sm mx-auto">
                 {feature.description}
               </p>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
+              <div className="h-[3px] bg-blue-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 mt-6"></div>
             </div>
           ))}
         </div>
@@ -103,7 +103,7 @@ const Features = () => {
               <p className="text-black text-base leading-relaxed max-w-sm mx-auto">
                 {feature.description}
               </p>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
+                <div className="h-[3px] bg-blue-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 mt-6"></div>
             </div>
           ))}
         </div>

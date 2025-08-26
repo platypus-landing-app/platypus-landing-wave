@@ -21,14 +21,14 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-gray-50">
+    <section id="about" className="py-24 bg-[#eaeff8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                <span className="text-orange-500">Coming Soon</span> - Platypus App
+                <span className="text-[#f97e57]"> <span className="underline decoration-[#f97e57] decoration-[1px] underline-offset-[9px]"> Coming </span> Soon</span> - Platypus App
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Walking Your Dog Is About To Get Smarter With Our AI-Powered App. Book And Track Walks In Real-Time, Get Rich Updates, And Manage Everything From One Place.
