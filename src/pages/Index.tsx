@@ -8,19 +8,21 @@ import Testimonials from '@/components/sections/Testimonials';
 import CallToAction from '@/components/sections/CallToAction';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/layout/Footer';
+import HeroFeatures from '@/components/sections/HeroFeatures';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
       <Hero />
+      <HeroFeatures />
       <Features />
       <About />
       <AreasWeServe />
       <Process />
       <Testimonials />
       <CallToAction />
-      <Contact />
+       {/* <Contact /> */}
       <Footer />
     </div>
   );

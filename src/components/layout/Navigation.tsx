@@ -49,17 +49,32 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+<nav className="fixed h-[100px] top-0 left-0 right-0 z-50 
+  bg-background/95 supports-[backdrop-filter]:bg-background/80 
+  backdrop-blur-md border-b border-border/50 
+  shadow-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <div className="text-3xl font-bold text-black cursor-pointer" onClick={() => handleScrollTo('#home')}>
-              <img src="/logo.png" alt="" />
-            </div>
+            <div 
+            className="cursor-pointer"
+            onClick={() => handleScrollTo('#home')}
+            style={{ 
+              background: 'transparent', 
+              boxShadow: 'none',
+              borderRadius: '0' // Add this if needed
+            }}
+          >
+           <img 
+            src="/logo.png" 
+            alt="Logo" 
+            className="block w-[189px] top-[33px] left-[223px]"
+          />
+          </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+         <div className="hidden md:block">
             <div className="flex items-center space-x-2">
               {navItems.map((item) => (
                 <button
@@ -80,14 +95,15 @@ const Navigation = () => {
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <Button 
-              onClick={() => handleScrollTo('#testimonials')}
-              className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
-            >
-              BOOK TRIAL NOW
-            </Button>
-          </div>
+         <div className="hidden md:block mr-4">
+          <Button 
+            onClick={() => handleScrollTo('#testimonials')}
+            className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105 mr-10"
+          >
+            BOOK TRIAL NOW
+          </Button>
+        </div>
+
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -111,7 +127,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => handleScrollTo(item.href)}
-                className="text-gray-700 hover:text-[#0088FF] hover:bg-blue-50 block px-3 py-3 rounded-md text-base font-medium w-full text-left transition-colors"
+                className="text-gray-700 hover:text-[#000000] font-normal hover:bg-blue-50 block px-3 py-3 rounded-md text-base font-medium w-full text-left transition-colors"
               >
                 {item.name}
               </button>

@@ -8,27 +8,17 @@ const Testimonials = () => {
     {
       name: "Priya Sharma",
       location: "Pet Parent To Simba • Bandra West",
-      image: "https://images.unsplash.com/photo-1494790108755-2616c829e8ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      quote: "Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue."
+      image: "/testimonial1.jpg",
+      quote:
+        "Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue.",
     },
     {
       name: "Raj Patel",
       location: "Pet Parent To Bruno • Andheri East",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      quote: "Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo."
+      image: "/testimonial2.jpg",
+      quote:
+        "Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo.",
     },
-    {
-      name: "Anita Singh",
-      location: "Pet Parent To Max • Powai",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      quote: "Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula."
-    },
-    {
-      name: "Arjun Mehta",
-      location: "Pet Parent To Luna • Juhu",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      quote: "Vivamus Sagittis Velit Quis Dictum Ultrices. Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus."
-    }
   ];
 
   // Group testimonials into chunks of 2
@@ -50,18 +40,21 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-orange-500">Client</span> Testimonials
+          <h2 className="font-[Funnel_Sans] font-bold text-[60px] leading-[19.91px] text-black capitalize mb-6">
+            <span className="underline decoration-[#f97e57] decoration-[1px] underline-offset-[8px] text-[#f97e57]">
+              Client
+            </span>{" "}
+            Testimonials
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros Massa,
-            Gravida Ac Lectus Et, Pharetra Interdum Lectus.
+          <p className="font-[Funnel_Sans] font-normal text-[16.59px] leading-[18.81px] text-black capitalize">
+            Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros
+            Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus.
           </p>
         </div>
 
-        {/* Testimonials - Two per slide with alternating layout */}
+        {/* Testimonials - Two per slide */}
         <div className="relative overflow-hidden">
-          <div 
+          <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
@@ -70,33 +63,52 @@ const Testimonials = () => {
                 {group.map((testimonial, index) => (
                   <div
                     key={index}
-                    className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center`}
+                    className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
                   >
-                    {/* Image - Left for first testimonial (index 0), Right for second (index 1) */}
-                    <div className={`relative rounded-2xl overflow-hidden shadow-xl aspect-[3/2] max-w-sm ${
-                      index % 2 === 1 ? "lg:order-2" : "lg:order-1"
-                    }`}>
+                    {/* Image */}
+                    <div
+                      className={`relative rounded overflow-hidden shadow-xl aspect-[3/2] w-[500px] h-[300px] ${
+                        index % 2 === 1 ? "lg:order-2" : "lg:order-1"
+                      }`}
+                    >
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
                       />
-                      {/* Overlay with name and location */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
-                        <h3 className="text-xl font-bold text-white mb-1">
-                          {testimonial.name}
-                        </h3>
-                        <p className="text-white/90 text-sm font-medium">
-                          {testimonial.location}
-                        </p>
+                      {/* Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0">
+                        {/* Blur grey part for text */}
+                        <div className="backdrop-blur-md bg-gray-500/40 px-4 py-3 flex flex-row items-center justify-center space-x-3">
+                          <h3 className="font-[Montserrat] font-bold text-[22px] leading-[32px] text-white capitalize text-center">
+                            {testimonial.name}
+                          </h3>
+                          <p className="font-[Rubik] font-normal text-[14px] leading-[18px] text-white/90 capitalize text-center">
+                            {testimonial.location}
+                          </p>
+                        </div>
+
+                        {/* Smaller blending black shade - no gap */}
+                        <div className="h-2 bg-gradient-to-b from-black/20 to-black/80 -mt-1"></div>
                       </div>
                     </div>
 
-                    {/* Content - Right for first testimonial, Left for second */}
-                    <div className={`space-y-6 ${
-                      index % 2 === 1 ? "lg:order-1" : "lg:order-2"
-                    }`}>
-                      <blockquote className="text-lg text-black font-medium leading-relaxed">
+                    {/* Content with Background Logo */}
+                    <div
+                      className={`space-y-6 ${
+                        index % 2 === 1 ? "lg:order-1" : "lg:order-2"
+                      } relative z-10`}
+                    >
+                      {/* Background Logo positioned at content start */}
+                      <div className="absolute top-0 left-0 pointer-events-none z-0">
+                        <img
+                          src="/testimonial bg.png"
+                          alt="background logo"
+                          className="w-[120px] opacity-10"
+                        />
+                      </div>
+                      
+                      <blockquote className="font-[Funnel_Sans] font-normal text-[18px] leading-[39.83px] text-black capitalize relative z-10">
                         {testimonial.quote}
                       </blockquote>
                     </div>
@@ -108,20 +120,21 @@ const Testimonials = () => {
         </div>
 
         {/* Dots Navigation */}
-        <div className="flex justify-center mt-12 space-x-3">
-          {groupedTestimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? "bg-orange-500 scale-125" 
-                  : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Go to testimonials page ${index + 1}`}
-            />
-          ))}
-        </div>
+      <div className="flex justify-center mt-12 space-x-3">
+  {groupedTestimonials.map((_, index) => (
+    <button
+      key={index}
+      onClick={() => setCurrentSlide(index)}
+      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+        index === currentSlide
+          ? "bg-[#8993A4] scale-125"
+          : "bg-[#A3A3A361] hover:bg-[#8993A4]/60"
+      }`}
+      aria-label={`Go to testimonials page ${index + 1}`}
+    />
+  ))}
+</div>
+
       </div>
     </section>
   );

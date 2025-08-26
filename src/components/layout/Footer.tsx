@@ -1,26 +1,27 @@
-
 import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
+
+    <>
     <footer className="bg-gray-200 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Company Info */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-3xl font-bold text-black mb-2">
-                Platypus
-              </h3>
-              <p className="text-lg text-gray-700 italic">
-                India's Dog Walking Experts
-              </p>
+          <div className="space-y-6 flex flex-col items-start">
+            <div className="flex flex-col items-center gap-0">
+              <img src="/logo.png" className="w-[186px]" />
+              <img src="/footer1.png" className="w-[120px]" /> {/* width badhaya */}
             </div>
             
-            <p className="text-gray-700 leading-relaxed">
+            <p className="font-['Funnel_Sans'] font-normal text-[16px] leading-[30px] text-gray-700">
               At Platypus, we deliver safe, structured, and joyful walks through our{" "}
-              <span className="font-semibold">Trained & Certified Guardians</span>.{" "}
-              <span className="font-semibold">With live GPS tracking, real-time updates, and strict safety protocols</span>,{" "}
+              <span className="font-['Funnel_Sans'] font-bold text-[16px] leading-[30px]">
+                Trained & Certified Guardians
+              </span>.{" "}
+              <span className="font-['Funnel_Sans'] font-bold text-[16px] leading-[30px]">
+                With live GPS tracking, real-time updates, and strict safety protocols
+              </span>,{" "}
               every walk is designed to give your dog the exercise, care, and love they deserve — while giving you complete peace of mind.
             </p>
           </div>
@@ -31,10 +32,10 @@ const Footer = () => {
               <h4 className="text-xl font-bold text-black mb-4">
                 Service
               </h4>
-              <p className="text-gray-700 mb-2">
+              <p className="font-['Funnel_Sans'] font-normal text-[15.88px] leading-[24px] text-gray-700 mb-2">
                 Dog walking across most areas of Mumbai with verified Guardians.
               </p>
-              <p className="text-blue-600 hover:text-blue-700 cursor-pointer">
+              <p className="text-[#313233] hover:text-blue-500 cursor-pointer">
                 What to Expect →
               </p>
             </div>
@@ -78,17 +79,22 @@ const Footer = () => {
             </div>
           </div>
         </div>
+       </div>
+       </footer>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-300">
-          <div className="text-center">
-            <p className="text-gray-600 text-sm">
-              © This website is owned by Platypus Pvt. Limited
-            </p>
-          </div>
-        </div>
+       {/* Bottom Bar */}
+      <div
+        className="w-full h-[50px] flex items-center justify-center"
+        style={{
+          background:
+            "linear-gradient(98.82deg, #7E650B -13.7%, #F5F5F4 -13.69%, #FFE135 15.19%, #FFE135 40.43%, #FFE135 71.72%)",
+        }}
+      >
+        <p className="text-gray-900 text-sm font-[Funnel_Sans]">
+          © This website is owned by Platypus Pvt. Limited
+        </p>
       </div>
-    </footer>
+</>
   );
 };
 

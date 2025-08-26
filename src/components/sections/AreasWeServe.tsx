@@ -23,13 +23,14 @@ const AreasWeServe = () => {
     <section id="areas" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-16">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-          <span className='underline decoration-[#f97e57] decoration-[1px] underline-offset-[17px]'>Areas</span> <span className="text-[#f97e57]">We Serve</span>
-  </h2>
+        <h2 className="font-funnel font-bold text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
+          <span className="underline decoration-[#f97e57] decoration-[1px] underline-offset-[17px]">Areas</span>{" "}
+          <span className="text-[#f97e57]">We Serve</span>
+        </h2>
 
   {/* Paragraph and Button in flex container */}
   <div className="flex flex-col md:flex-row md:justify-between gap-6">
-    <p className="text-xl text-black leading-relaxed max-w-4xl">
+      <p className="font-funnel font-normal text-[18px] leading-[28px] text-black max-w-4xl capitalize">
       Walking Your Dog Is About To Get Smarter With Our AI-Powered App. Book And Track Walks In Real-Time, Get Rich Updates, And Manage Everything From One Place. Our Petwalking Service In Mumbai Covers Major Localities Across The City. Book Trained Dog Walkers In Bandra, Andheri, Powai, Colaba, Juhu, Worli, Chembur, Malad And More.
     </p>
 
@@ -48,11 +49,13 @@ const AreasWeServe = () => {
           {locations.map((location, index) => (
             <button
               key={index}
-              className="flex items-center justify-center space-x-2 px-6 py-4 bg-[#e5e7eb] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600 transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg border border-gray-100  hover:scale-105"
+              className="flex items-center justify-center space-x-2 px-6 py-4 bg-[#B4B4B466] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600 transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg border border-gray-100  hover:scale-105"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <MapPin className="w-4 h-4 text-blue-600" />
-              <span>{location}</span>
+              <span className="font-segoe text-[16px] leading-[24px] font-normal text-center">
+                {location}
+              </span>
             </button>
           ))}
         </div>

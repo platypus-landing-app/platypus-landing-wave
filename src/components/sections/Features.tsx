@@ -1,11 +1,15 @@
-import certifiedGuardians from '@/assets/certified-guardians.jpg';
-import gpsTracking from '@/assets/gps-tracking.jpg';
-import backupWalkers from '@/assets/backup-walkers.jpg';
-import safetyHygiene from '@/assets/safety-hygiene.jpg';
-import careFamily from '@/assets/care-family.jpg';
-import flexibleScheduling from '@/assets/flexible-scheduling.jpg';
+import { PawPrint, MapPin, ShieldCheck } from "lucide-react";
 
 const Features = () => {
+  // HeroFeatures data
+  const heroFeatures = [
+    { icon: PawPrint, text: "50+ Dogs Walked Daily", type: "icon" },
+    { icon: MapPin, text: "Live GPS Tracking", type: "icon" },
+    { icon: ShieldCheck, text: "Certified Walkers", type: "icon" },
+    { icon: ShieldCheck, text: "Certified Walkers", type: "icon" },
+  ];
+
+  // Features data
   const features = [
     {
       title: "Certified Guardians",
@@ -40,75 +44,69 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text mb-20">
-        <h2
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
-          style={{ textDecorationColor: '#f97e57', color: '#f97e57' }}
+ <section
+  id="features"
+  className="relative w-85 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
+>
+  {/* Background paw design */}
+<div
+  className="absolute top-[-4.5rem] left-[-318px] w-[445px] h-[516px] pointer-events-none"
+  style={{
+    backgroundImage: "url('/paw.png')",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
+  }}
+></div>
+
+  {/* Content wrapper - keep above background */}
+  <div className="relative z-10">
+    {/* Why Choose Platypus Heading */}
+    <div className="text-left mb-12 lg:mb-16 max-w-4xl mx-auto lg:mx-0">
+      <h2 className="font-funnel font-bold text-[60px] leading-[18px] capitalize mb-6">
+        <span className="text-[#f97e57] underline decoration-[#f97e57] decoration-2 underline-offset-[17px]">
+          Why Choose
+        </span>
+        <span className="text-gray-900"> Platypus?</span>
+      </h2>
+
+      <p className="font-rubik mt-9 font-normal text-[16px] leading-[23px] tracking-[0px] capitalize text-black max-w-3xl">
+        We're Not Just Another Walking Service — We're India's First Certified
+        And Tech-Enabled Dog Walking Experts.
+      </p>
+    </div>
+
+    {/* Features Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 justify-items-center">
+      {features.map((feature, index) => (
+        <div
+          key={index}
+          className="group cursor-pointer max-w-sm w-full flex flex-col items-center text-center"
         >
-          <span className="underline decoration-[#f97e57] decoration-[1px] underline-offset-[17px]">
-            Why Choose
-          </span>
-          <span className="text-black"> Platypus?</span>
-        </h2>
+          {/* Image */}
+          <div className="aspect-[4/3] overflow-hidden mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300 w-full">
+            <img
+              src={feature.image}
+              alt={feature.title}
+              className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500"
+            />
+          </div>
 
-          <p className="text-xl text-black font-weight-500 mx-auto leading-relaxed">
-            We're Not Just Another Walking Service — We're India's First Certified And Tech-Enabled Dog Walking Experts.
-          </p>
+          {/* Content */}
+          <div className="px-4 flex flex-col items-center text-center">
+            <h3 className="font-funnel font-bold text-[24px] leading-[33.25px] text-[#397CEF] mb-3">
+              {feature.title}
+            </h3>
+            <p className="font-funnel font-normal text-[16px] leading-[27.06px] text-black">
+              {feature.description}
+            </p>
+            <div className="h-1 bg-blue-600 w-0 group-hover:w-full transition-all duration-300 mt-4 self-start"></div>
+          </div>
         </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
-          {features.slice(0, 3).map((feature, index) => (
-            <div 
-              key={index} 
-              className="text-center group cursor-pointer relative"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl mb-8 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                <img 
-                  src={feature.image} 
-                  alt={feature.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <h3 className="text-2xl font-bold text-blue-600 mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-black text-base leading-relaxed max-w-sm mx-auto">
-                {feature.description}
-              </p>
-              <div className="h-[3px] bg-blue-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 mt-6"></div>
-            </div>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {features.slice(3, 6).map((feature, index) => (
-            <div 
-              key={index} 
-              className="text-center group cursor-pointer relative"
-              style={{ animationDelay: `${(index + 3) * 0.1}s` }}
-            >
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl mb-8 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                <img 
-                  src={feature.image} 
-                  alt={feature.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <h3 className="text-2xl font-bold text-blue-600 mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-black text-base leading-relaxed max-w-sm mx-auto">
-                {feature.description}
-              </p>
-                <div className="h-[3px] bg-blue-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 mt-6"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 };
 
