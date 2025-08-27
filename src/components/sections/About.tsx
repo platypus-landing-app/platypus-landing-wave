@@ -85,11 +85,11 @@ const About = () => {
             <img 
               src={"/aboutus contact.png"} 
               alt="Platypus App Preview" 
-              className="w-[423px] h-[635px] rounded-2xl shadow-2xl top-[40px] left-[170px] relative"
+              className="w-full max-w-md mx-auto h-auto rounded-2xl shadow-2xl lg:w-[423px] lg:h-[635px] lg:relative lg:top-[40px] lg:left-[170px]"
             />
             
             {/* Guardian Online Indicator */}
-              <div className="absolute bottom-[-50px] right-[380px] h-[80px] w-[190px]">
+              <div className="absolute bottom-[-20px] right-4 h-[60px] w-[140px] lg:bottom-[-50px] lg:right-[380px] lg:h-[80px] lg:w-[190px]">
                 <img
                   src="/guardian online.png" // yahan apna image path lagao
                   alt="Guardian Online"

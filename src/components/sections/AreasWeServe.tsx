@@ -23,7 +23,7 @@ const AreasWeServe = () => {
     <section id="areas" className="relative py-24 bg-white">
       {/* Background paw design */}
       <div
-        className="absolute top-[-2rem] right-[-200px] w-[350px] h-[400px] pointer-events-none opacity-30"
+        className="absolute top-[-1rem] right-[-100px] w-[200px] h-[240px] lg:top-[-2rem] lg:right-[-200px] lg:w-[350px] lg:h-[400px] pointer-events-none opacity-30"
         style={{
           backgroundImage: "url('/paw.png')",
           backgroundRepeat: "no-repeat",
@@ -32,7 +32,7 @@ const AreasWeServe = () => {
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-16">
-        <h2 className="font-funnel font-bold text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
+        <h2 className="font-funnel font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
           <span className="relative">
             Areas
             <span className="absolute bottom-[-10px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>

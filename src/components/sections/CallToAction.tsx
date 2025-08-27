@@ -20,7 +20,7 @@ const CallToAction = () => {
   <img
     src={"/3ind.png"}
     alt="Dog walker with golden retriever"
-    className="mx-auto block h-[500px] object-contain"
+    className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
   />
 </div>
 

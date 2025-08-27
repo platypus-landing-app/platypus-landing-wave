@@ -50,7 +50,7 @@ const Features = () => {
 >
   {/* Background paw design */}
 <div
-  className="absolute top-[-4.5rem] left-[-318px] w-[445px] h-[516px] pointer-events-none"
+  className="absolute top-[-2rem] left-[-150px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
   style={{
     backgroundImage: "url('/paw.png')",
     backgroundRepeat: "no-repeat",
@@ -62,7 +62,7 @@ const Features = () => {
   <div className="relative z-10">
     {/* Why Choose Platypus Heading */}
     <div className="text-left mb-12 lg:mb-16 max-w-4xl mx-auto lg:mx-0">
-      <h2 className="font-funnel font-bold text-[60px] leading-[18px] capitalize mb-6">
+      <h2 className="font-funnel font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[18px] capitalize mb-6">
         <span className="text-[#f97e57] relative">
           Why Choose
           <span className="absolute bottom-[-5px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>

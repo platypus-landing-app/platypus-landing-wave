@@ -40,7 +40,7 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
-          <h2 className="font-[Funnel_Sans] font-bold text-[60px] leading-[19.91px] text-black capitalize mb-6">
+          <h2 className="font-[Funnel_Sans] font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[19.91px] text-black capitalize mb-6">
             <span className="relative text-[#f97e57]">
               Client
               <span className="absolute bottom-[-5px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
@@ -68,7 +68,7 @@ const Testimonials = () => {
                   >
                     {/* Image */}
                     <div
-                      className={`relative rounded overflow-hidden shadow-xl aspect-[3/2] w-[500px] h-[300px] ${
+                     className={`relative rounded overflow-hidden shadow-xl aspect-[3/2] w-full max-w-md mx-auto lg:w-[500px] lg:h-[300px] ${
                         index % 2 === 1 ? "lg:order-2" : "lg:order-1"
                       }`}
                     >

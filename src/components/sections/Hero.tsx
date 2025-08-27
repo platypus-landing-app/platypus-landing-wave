@@ -22,10 +22,10 @@ const Hero = () => {
   
   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
     {/* Left Circle: Top Left Semi-circle */}
-    <div className="absolute top-[-173px] left-[-231px] w-[607px] h-[607px] bg-[#FFF8E0BD] rounded-full z-0 opacity-90"></div>
+    <div className="absolute top-[-100px] left-[-150px] w-[300px] h-[300px] lg:top-[-173px] lg:left-[-231px] lg:w-[607px] lg:h-[607px] bg-[#FFF8E0BD] rounded-full z-0 opacity-90"></div>
 
     {/* Right Circle: Centered Vertically, Full Circle */}
-    <div className="absolute top-[233px] left-[1540px] w-[607px] h-[607px] bg-[#E7F0FFAD] rounded-full z-0 opacity-90"></div>
+    <div className="absolute top-[150px] right-[-150px] w-[300px] h-[300px] lg:top-[233px] lg:right-[-400px] lg:w-[607px] lg:h-[607px] bg-[#E7F0FFAD] rounded-full z-0 opacity-90"></div>
 
     <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-gray-200 opacity-20 select-none">
       WALKING EXPERTS
@@ -97,7 +97,7 @@ const Hero = () => {
           <img 
             src={"/hero Img.png"} 
             alt="Professional dog walker with golden retriever" 
-            className="h-[752px] w-[502px] object-contain drop-shadow-2xl rounded-3xl"
+            className="w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-3xl lg:h-[752px] lg:w-[502px]"
           />
           <div className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-3xl -z-10 opacity-30"></div>
         </div>
