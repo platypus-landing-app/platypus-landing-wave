@@ -1,10 +1,9 @@
-import { Calendar, MapPin, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const About = () => {
   const appFeatures = [
     {
-      icon: "/coming soon1.png",
+      icon: "/comming soon2.png",
       title: "Easy Booking",
       description: "Schedule walks in seconds with your preferred Guardian"
     },
@@ -51,7 +50,7 @@ const About = () => {
               >
                 {/* Icon */}
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <img src={feature.icon} className="w-5 h-5 text-blue-600" />
+                  <img src={feature.icon} alt={feature.title} className="w-5 h-5 object-contain" />
                 </div>
 
                 {/* Text */}
