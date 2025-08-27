@@ -1,6 +1,7 @@
 import { MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-dog-walker.jpg';
+import heroImg from '@/assets/hero-img.png';
 
 const Hero = () => {
   const handleScrollTo = (href: string) => {
@@ -95,8 +96,8 @@ const Hero = () => {
       <div className="lg:flex justify-center items-center hidden">
         <div className="relative">
           <img 
-            src={"/hero Img.png"} 
-            alt="Professional dog walker with golden retriever" 
+            src={heroImg} 
+            alt="Professional dog walker with golden retriever"
             className="w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-3xl lg:h-[752px] lg:w-[502px]"
           />
           <div className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-3xl -z-10 opacity-30"></div>

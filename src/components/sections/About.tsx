@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import aboutUsImage from '@/assets/aboutus-contact.png';
 
 const About = () => {
   const appFeatures = [
@@ -83,7 +84,7 @@ const About = () => {
           {/* Right Image */}
           <div className="relative">
             <img 
-              src={"/aboutus contact.png"} 
+              src={aboutUsImage} 
               alt="Platypus App Preview" 
               className="w-full max-w-md mx-auto h-auto rounded-2xl lg:w-[592.px] lg:relative lg:top-[40px] lg:left-[170px]"
             />

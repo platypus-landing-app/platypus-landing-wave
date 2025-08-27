@@ -1,4 +1,5 @@
 import { Phone, Smartphone } from "lucide-react";
+import ctaImage from '@/assets/3ind.png';
 
 const CallToAction = () => {
   const handleScrollTo = (href: string) => {
@@ -18,7 +19,7 @@ const CallToAction = () => {
         {/* Main CTA Image */}
       <div className="text-center">
   <img
-    src={"/3ind.png"}
+    src={ctaImage}
     alt="Dog walker with golden retriever"
     className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
   />
