@@ -1,17 +1,17 @@
 import { PawPrint, MapPin, ShieldCheck } from "lucide-react";
-import  HeartHandshake  from "/feature star.png";
+
 const HeroFeatures = () => {
   const features = [
-    { icon: PawPrint, text: "50+ Dogs Walked Daily", type: "icon" },
-    { icon: MapPin, text: "Live GPS Tracking", type: "icon" },
-    { icon: HeartHandshake, text: "Safety & Hygiene Protocols", type: "img" },
-    { icon: ShieldCheck, text: "Certified Walkers", type: "icon" },
+    { icon: PawPrint, text: "50+ Dogs Walked Daily", type: "icon" as const },
+    { icon: MapPin, text: "Live GPS Tracking", type: "icon" as const },
+    { icon: undefined, image: "/feature star.png", text: "Safety & Hygiene Protocols", type: "img" as const },
+    { icon: ShieldCheck, text: "Certified Walkers", type: "icon" as const },
   ];
 
   return (
     <section
       id="features"
-      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white"
     >
       <div className="flex justify-center">
         {/* Box with scroll support on small devices */}
@@ -21,11 +21,11 @@ const HeroFeatures = () => {
               key={index}
               className="flex items-center gap-3 min-w-[220px] flex-shrink-0"
             >
-              {feature.type === "icon" ? (
+              {feature.type === "icon" && feature.icon ? (
                 <feature.icon className="w-6 h-6 text-[#397CEF]" />
               ) : (
                 <img
-                  src={feature.icon}
+                  src={feature.image}
                   alt={feature.text}
                   className="w-6 h-6"
                 />
