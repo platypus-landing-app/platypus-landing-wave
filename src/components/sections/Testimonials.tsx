@@ -100,12 +100,19 @@ const Testimonials = () => {
                         index % 2 === 1 ? "lg:order-1" : "lg:order-2"
                       } relative z-10`}
                     >
-                      {/* Background Logo positioned at content start */}
+                      {/* Background Logos positioned at content start */}
                       <div className="absolute top-0 left-0 pointer-events-none z-0">
                         <img
                           src="/testimonial bg.png"
                           alt="background logo"
                           className="w-[120px] opacity-10"
+                        />
+                      </div>
+                      <div className="absolute bottom-0 right-0 pointer-events-none z-0">
+                        <img
+                          src="/testimonial bg.png"
+                          alt="background logo secondary"
+                          className="w-[80px] opacity-5 rotate-180"
                         />
                       </div>
                       

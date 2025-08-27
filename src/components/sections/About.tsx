@@ -73,7 +73,7 @@ const About = () => {
             size="lg" 
             className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
                       font-funnel font-bold text-[16.51px] leading-[24.4px] 
-                      tracking-[1.25px] uppercase text-center"
+                      tracking-[1.25px] uppercase text-center rounded-xl"
           >
             BOOK TRIAL'S WALK NOW
           </Button>

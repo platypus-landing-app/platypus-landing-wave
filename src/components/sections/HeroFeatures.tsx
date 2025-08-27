@@ -15,7 +15,7 @@ const HeroFeatures = () => {
     >
       <div className="flex justify-center">
         {/* Box with scroll support on small devices */}
-        <div className="flex items-center gap-12 px-6 py-6 bg-white rounded-2xl shadow-[0px_8px_25px_-5px_rgba(57,124,236,0.15)] overflow-x-auto scrollbar-hide">
+        <div className="flex items-center gap-12 px-6 py-6 bg-white rounded-2xl shadow-[0px_8px_25px_-5px_rgba(57,124,236,0.15)] overflow-x-auto custom-scroller">
           {features.map((feature, index) => (
             <div
               key={index}
