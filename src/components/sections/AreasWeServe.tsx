@@ -26,7 +26,7 @@ const AreasWeServe = () => {
         <h2 className="font-funnel font-bold text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
           <span className="relative">
             Areas
-            <span className="absolute bottom-[-17px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
+            <span className="absolute bottom-[-10px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
           </span>{" "}
           <span className="text-[#f97e57]">We Serve</span>
         </h2>

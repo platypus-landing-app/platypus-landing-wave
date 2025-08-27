@@ -65,7 +65,7 @@ const Features = () => {
       <h2 className="font-funnel font-bold text-[60px] leading-[18px] capitalize mb-6">
         <span className="text-[#f97e57] relative">
           Why Choose
-          <span className="absolute bottom-[-17px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
+          <span className="absolute bottom-[-10px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
         </span>
         <span className="text-gray-900"> Platypus?</span>
       </h2>
