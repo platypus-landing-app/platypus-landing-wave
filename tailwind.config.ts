@@ -66,6 +66,7 @@ export default {
 					primary: 'hsl(var(--wave-primary))',
 					secondary: 'hsl(var(--wave-secondary))'
 				},
+				golden: 'hsl(var(--golden))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

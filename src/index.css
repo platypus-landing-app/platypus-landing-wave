@@ -43,6 +43,8 @@
     --wave-primary: 180 75% 70%;
     --wave-secondary: 195 100% 80%;
 
+    --golden: 48 94% 49%;
+
     --gradient-ocean: linear-gradient(135deg, hsl(200 85% 45%), hsl(210 100% 15%));
     --gradient-wave: linear-gradient(90deg, hsl(180 75% 70%), hsl(195 100% 80%));
     --gradient-hero: linear-gradient(180deg, hsl(195 100% 95%), hsl(200 50% 90%));
