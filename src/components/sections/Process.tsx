@@ -3,22 +3,22 @@ import { Calendar, User, Heart, MapPin } from 'lucide-react';
 const Process = () => {
   const processSteps = [
     {
-      icon: Calendar,
+      image: '/processicon1.png',
       title: "Book In Seconds",
       description: "Register On The App And Schedule Your Dog's Walk With Ease."
     },
     {
-      icon: User,
+      image: '/processicon2.png',
       title: "Guardian Assigned",
       description: "A Trained & Certified Guardian Is Instantly Matched To Your Booking."
     },
     {
-      icon: Heart,
+      image: '/process icon3.png',
       title: "Safe Pick-Up",
       description: "Your Dog Is Collected On Time, Following Hygiene & Safety Checks."
     },
     {
-      icon: MapPin,
+      image: '/processicon4.png',
       title: "Track The Walk",
       description: "Monitor Every Step Live On The App, With Real-Time Updates On Activity And Poop."
     }
@@ -53,12 +53,12 @@ const Process = () => {
                 <div className="hidden lg:block absolute top-16 left-full w-8 h-0.5 border-t-2 border-dotted border-white/40 z-0"></div>
               )}
               
-              {/* Icon container */}
+              {/* image container */}
               <div className="relative mb-12 group-hover:scale-105 transition-transform duration-300">
                 <div className="w-20 h-20 mx-auto bg-white/20 rounded-full border-2 border-white/50
                               flex items-center justify-center relative
                               backdrop-blur-sm shadow-xl group-hover:bg-white/30 transition-all duration-300">
-                  <step.icon className="w-10 h-10 text-white drop-shadow-lg" />
+                  <img  src={step.image} className="w-10 h-10 text-white drop-shadow-lg" />
                 </div>
                 <div className="absolute top-20 left-1/2 transform -translate-x-1/2
                               w-0.5 h-6 bg-white/60"></div>

@@ -41,8 +41,8 @@ const AreasWeServe = () => {
         </h2>
 
   {/* Paragraph and Button in flex container */}
-  <div className="flex flex-col md:flex-row md:justify-between gap-6">
-      <p className="font-funnel font-normal text-[18px] leading-[28px] text-black max-w-4xl capitalize">
+  <div className="flex flex-col md:flex-row md:justify-between gap-6 ">
+      <p className="font-funnel font-normal text-[18px] leading-[28px] text-black mt-4 max-w-4xl capitalize">
       Walking Your Dog Is About To Get Smarter With Our AI-Powered App. Book And Track Walks In Real-Time, Get Rich Updates, And Manage Everything From One Place. Our Petwalking Service In Mumbai Covers Major Localities Across The City. Book Trained Dog Walkers In Bandra, Andheri, Powai, Colaba, Juhu, Worli, Chembur, Malad And More.
     </p>
 
