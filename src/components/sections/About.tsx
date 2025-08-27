@@ -27,9 +27,9 @@ const About = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-             <h2 className="text-[60px] md:text-5xl font-funnel mb-4 capitalize">
+             <h2 className="text-[40px] md:text-[50px] lg:text-[60px] font-funnel mb-4 capitalize whitespace-nowrap">
                 <span className="text-[#f97e57] font-bold">
-                   <span className="underline decoration-golden decoration-[1px] underline-offset-[12px] md:underline-offset-[17px]">
+                   <span className="underline decoration-golden decoration-[1px] underline-offset-[17px]">
                     Coming
                   </span>
                 </span>
