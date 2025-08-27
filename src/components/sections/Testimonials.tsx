@@ -41,8 +41,9 @@ const Testimonials = () => {
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
           <h2 className="font-[Funnel_Sans] font-bold text-[60px] leading-[19.91px] text-black capitalize mb-6">
-            <span className="underline decoration-golden decoration-[1px] underline-offset-[17px] text-[#f97e57]">
+            <span className="relative text-[#f97e57]">
               Client
+              <span className="absolute bottom-[-17px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
             </span>{" "}
             Testimonials
           </h2>
