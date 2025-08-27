@@ -21,11 +21,11 @@ const Hero = () => {
 >
   
   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-    {/* Left Circle: Top Left Semi-circle */}
-    <div className="absolute top-[-100px] left-[-150px] w-[300px] h-[300px] lg:top-[-173px] lg:left-[-231px] lg:w-[607px] lg:h-[607px] bg-[#FFF8E0BD] rounded-full z-0 opacity-90"></div>
+    {/* Left Circle: Top Left Semi-circle - hidden on mobile to prevent horizontal scroll */}
+    <div className="hidden md:block absolute top-[-100px] left-[-150px] w-[300px] h-[300px] lg:top-[-173px] lg:left-[-231px] lg:w-[607px] lg:h-[607px] bg-[#FFF8E0BD] rounded-full z-0 opacity-90"></div>
 
-    {/* Right Circle: Centered Vertically, Full Circle */}
-    <div className="absolute top-[150px] right-[-150px] w-[300px] h-[300px] lg:top-[233px] lg:right-[-400px] lg:w-[607px] lg:h-[607px] bg-[#E7F0FFAD] rounded-full z-0 opacity-90"></div>
+    {/* Right Circle: Centered Vertically - hidden on mobile to prevent horizontal scroll */}
+    <div className="hidden md:block absolute top-[150px] right-[-150px] w-[300px] h-[300px] lg:top-[233px] lg:right-[-400px] lg:w-[607px] lg:h-[607px] bg-[#E7F0FFAD] rounded-full z-0 opacity-90"></div>
 
     <span className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-gray-200 opacity-20 select-none">
       WALKING EXPERTS

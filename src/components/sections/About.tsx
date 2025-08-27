@@ -30,7 +30,7 @@ const About = () => {
                 <span className="text-[#f97e57] font-bold">
                    <span className="relative">
                      Coming
-                     <span className="absolute bottom-[-10px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
+                     <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
                    </span>
                 </span>
                 <span className="text-black font-normal"> Soon</span> – Platypus App

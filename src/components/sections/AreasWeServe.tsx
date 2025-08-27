@@ -21,9 +21,9 @@ const AreasWeServe = () => {
 
   return (
     <section id="areas" className="relative py-24 bg-white">
-      {/* Background paw design */}
+      {/* Background paw design - hidden on small screens */}
       <div
-        className="absolute top-[-1rem] right-[-100px] w-[200px] h-[240px] lg:top-[-2rem] lg:right-[-200px] lg:w-[350px] lg:h-[400px] pointer-events-none opacity-30"
+        className="hidden md:block absolute top-[-1rem] right-[-100px] w-[200px] h-[240px] lg:top-[-2rem] lg:right-[-200px] lg:w-[350px] lg:h-[400px] pointer-events-none opacity-30"
         style={{
           backgroundImage: "url('/paw.png')",
           backgroundRepeat: "no-repeat",
@@ -35,7 +35,7 @@ const AreasWeServe = () => {
         <h2 className="font-funnel font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
           <span className="relative">
             Areas
-            <span className="absolute bottom-[-10px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
+            <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
           </span>{" "}
           <span className="text-[#f97e57]">We Serve</span>
         </h2>

@@ -133,6 +133,7 @@
 
   body {
     @apply font-funnel bg-background text-foreground text-black;
+    overflow-x: hidden;
   }
 }
 

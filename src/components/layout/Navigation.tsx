@@ -68,7 +68,7 @@ const Navigation = () => {
            <img 
             src="/logo.png" 
             alt="Logo" 
-            className="block w-[189px] top-[33px] left-[223px]"
+            className="block w-full max-w-[189px] h-auto"
           />
           </div>
           </div>

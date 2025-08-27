@@ -48,9 +48,9 @@ const Features = () => {
   id="features"
   className="relative w-85 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 bg-white"
 >
-  {/* Background paw design */}
+  {/* Background paw design - hidden on small screens */}
 <div
-  className="absolute top-[-2rem] left-[-150px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
+  className="hidden md:block absolute top-[-2rem] left-[-150px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
   style={{
     backgroundImage: "url('/paw.png')",
     backgroundRepeat: "no-repeat",
@@ -65,7 +65,7 @@ const Features = () => {
       <h2 className="font-funnel font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[18px] capitalize mb-6">
         <span className="text-[#f97e57] relative">
           Why Choose
-          <span className="absolute bottom-[-5px] left-0 w-[220px] h-0 border-b border-golden opacity-100"></span>
+          <span className="absolute bottom-[-5px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
         </span>
         <span className="text-gray-900"> Platypus?</span>
       </h2>
