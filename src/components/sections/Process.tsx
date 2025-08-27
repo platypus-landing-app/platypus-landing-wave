@@ -55,10 +55,8 @@ const Process = () => {
               
               {/* image container */}
               <div className="relative mb-12 group-hover:scale-105 transition-transform duration-300">
-                <div className="w-20 h-20 mx-auto bg-white/20 rounded-full border-2 border-white/50
-                              flex items-center justify-center relative
-                              backdrop-blur-sm shadow-xl group-hover:bg-white/30 transition-all duration-300">
-                  <img  src={step.image} className="w-10 h-10 text-white drop-shadow-lg" />
+                <div className="w-20 h-20 mx-auto flex items-center justify-center relative">
+                  <img src={step.image} className="w-16 h-16 drop-shadow-lg" />
                 </div>
                 <div className="absolute top-20 left-1/2 transform -translate-x-1/2
                               w-0.5 h-6 bg-white/60"></div>
