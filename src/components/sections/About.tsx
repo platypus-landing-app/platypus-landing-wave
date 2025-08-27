@@ -27,11 +27,11 @@ const About = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-             <h2 className="text-[40px] md:text-[50px] lg:text-[60px] font-funnel mb-4 capitalize whitespace-nowrap">
+             <h2 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-funnel mb-4 capitalize break-words">
                 <span className="text-[#f97e57] font-bold">
-                   <span className="relative">
+                   <span className="relative inline-block">
                      Coming
-                     <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
+                     <span className="absolute bottom-[-8px] left-0 w-full max-w-[180px] h-0 border-b border-golden opacity-100"></span>
                    </span>
                 </span>
                 <span className="text-black font-normal"> Soon</span> – Platypus App
@@ -47,7 +47,7 @@ const About = () => {
             {appFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="flex h-[84px] items-start space-x-4 p-4 bg-[#FFFFFF] rounded-lg shadow-sm"
+                className="flex min-h-[84px] items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-[#FFFFFF] rounded-lg shadow-sm overflow-hidden"
               >
                 {/* Icon */}
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -55,14 +55,14 @@ const About = () => {
                 </div>
 
                 {/* Text */}
-                <div>
+                <div className="flex-1 min-w-0">
                   {/* Heading */}
-                  <h3 className="font-funnel font-normal text-[16px] leading-[24px] text-[#363D49] mb-1">
+                  <h3 className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#363D49] mb-1">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="font-funnel font-normal text-[16px] leading-[24px] text-[#7B879D]">
+                  <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#7B879D] break-words">
                     {feature.description}
                   </p>
                 </div>
@@ -82,11 +82,11 @@ const About = () => {
           </div>
 
           {/* Right Image */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             <img 
               src={aboutUsImage} 
               alt="Platypus App Preview" 
-              className="w-full max-w-md mx-auto h-auto rounded-2xl lg:w-[592.px] lg:relative lg:top-[40px] lg:left-[170px]"
+              className="w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
             />
           </div>
         </div>
