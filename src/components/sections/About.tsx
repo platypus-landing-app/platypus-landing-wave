@@ -10,7 +10,7 @@ const About = () => {
     },
     {
       icon: MapPin,
-      title: "Live Tracking", 
+      title: "Live Tracking",
       description: "Watch your pet's walk in real-time with GPS updates"
     },
     {
@@ -27,11 +27,10 @@ const About = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-             <h2 className="text-[40px] md:text-[50px] lg:text-[60px] font-funnel mb-4 capitalize whitespace-nowrap relative">
+             <h2 className="text-[40px] md:text-[50px] lg:text-[60px] font-funnel mb-4 capitalize whitespace-nowrap">
                 <span className="text-[#f97e57] font-bold">
-                   <span className="relative inline-block">
+                   <span className="underline decoration-golden decoration-[1px] underline-offset-[17px]">
                     Coming
-                    <span className="absolute left-0 top-[114px] w-[220px] h-0 border-t border-golden opacity-100"></span>
                   </span>
                 </span>
                 <span className="text-black font-normal"> Soon</span> – Platypus App
