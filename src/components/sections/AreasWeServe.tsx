@@ -24,7 +24,7 @@ const AreasWeServe = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-16">
         <h2 className="font-funnel font-bold text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
-          <span className="underline decoration-[#f97e57] decoration-[1px] underline-offset-[17px]">Areas</span>{" "}
+          <span className="underline decoration-golden decoration-[1px] underline-offset-[17px]">Areas</span>{" "}
           <span className="text-[#f97e57]">We Serve</span>
         </h2>
 

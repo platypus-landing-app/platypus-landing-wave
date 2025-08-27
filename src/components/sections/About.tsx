@@ -29,7 +29,7 @@ const About = () => {
             <div>
              <h2 className="text-[60px] md:text-5xl font-funnel mb-4 capitalize">
                 <span className="text-[#f97e57] font-bold">
-                  <span className="underline decoration-[#f97e57] decoration-[1px] underline-offset-[9px]">
+                   <span className="underline decoration-golden decoration-[1px] underline-offset-[9px]">
                     Coming
                   </span>
                 </span>
