@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 const About = () => {
   const appFeatures = [
     {
-      icon: "/comming soon2.png",
+      icon: "/coming soon1.png",
       title: "Easy Booking",
       description: "Schedule walks in seconds with your preferred Guardian"
     },
@@ -13,7 +13,7 @@ const About = () => {
       description: "Watch your pet's walk in real-time with GPS updates"
     },
     {
-      icon: "/comingsoon3.png",
+      icon: "/coming soon3.png",
       title: "Guardian Ratings",
       description: "Rate and review your Guardian after each walk"
     }
