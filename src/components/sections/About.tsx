@@ -4,17 +4,17 @@ import { Button } from '@/components/ui/button';
 const About = () => {
   const appFeatures = [
     {
-      icon: Calendar,
+      icon: "/coming soon1.png",
       title: "Easy Booking",
       description: "Schedule walks in seconds with your preferred Guardian"
     },
     {
-      icon: MapPin,
+      icon: "/coming soon2.png",
       title: "Live Tracking",
       description: "Watch your pet's walk in real-time with GPS updates"
     },
     {
-      icon: Star,
+      icon: "/comingsoon3.png",
       title: "Guardian Ratings",
       description: "Rate and review your Guardian after each walk"
     }
@@ -51,7 +51,7 @@ const About = () => {
               >
                 {/* Icon */}
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <feature.icon className="w-5 h-5 text-blue-600" />
+                  <img src={feature.icon} className="w-5 h-5 text-blue-600" />
                 </div>
 
                 {/* Text */}
