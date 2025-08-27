@@ -20,10 +20,10 @@ const AreasWeServe = () => {
   };
 
   return (
-    <section id="areas" className="relative py-24 bg-white">
+    <section id="areas" className="relative py-24 bg-white overflow-hidden">
       {/* Background paw design - hidden on small screens */}
       <div
-        className="hidden md:block absolute top-[-1rem] right-[-64px] w-[200px] h-[240px] lg:top-[-2rem] lg:right-[-64px] lg:w-[350px] lg:h-[400px] pointer-events-none"
+        className="hidden md:block absolute top-[-1rem] right-0 w-[200px] h-[240px] lg:top-[-2rem] lg:right-0 lg:w-[350px] lg:h-[400px] pointer-events-none"
         style={{
           backgroundImage: "url('/paw.png')",
           backgroundRepeat: "no-repeat",
