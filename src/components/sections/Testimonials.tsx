@@ -46,7 +46,7 @@ const Testimonials = () => {
             </span>{" "}
             Testimonials
           </h2>
-          <p className="font-[Funnel_Sans] font-normal text-[16.59px] leading-[18.81px] text-black capitalize">
+          <p className="font-[Funnel_Sans] font-normal text-[16.59px] leading-[18.81px] text-black capitalize mt-9">
             Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros
             Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus.
           </p>
