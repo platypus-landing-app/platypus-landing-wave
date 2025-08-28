@@ -1,7 +1,9 @@
 import { MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useBooking } from '@/contexts/BookingContext';
 
 const AreasWeServe = () => {
+  const { openTrialBooking } = useBooking();
   const locations = [
     'Bandra', 'Andheri', 'Powai', 'Worli', 'Lower Parel', 'Colaba',
     'Juhu', 'Versova', 'Malad', 'Borivali', 'Kandivali', 'Santacruz',
@@ -47,7 +49,7 @@ const AreasWeServe = () => {
     </p>
 
     <Button 
-      onClick={() => handleScrollTo('#process')}
+      onClick={openTrialBooking}
       size="lg" 
       className="bg-blue-500 hover:bg-blue-700 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 items-center justify-center"
     >
@@ -75,7 +77,7 @@ const AreasWeServe = () => {
         {/* Mobile Book Now Button */}
         <div className="mt-12 md:hidden text-center">
           <Button 
-            onClick={() => handleScrollTo('#process')}
+            onClick={openTrialBooking}
             size="lg" 
             className="w-full max-w-md bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg font-medium rounded shadow-lg hover:shadow-xl transition-all duration-300"
           >

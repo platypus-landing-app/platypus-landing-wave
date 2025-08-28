@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button';
+import { useBooking } from '@/contexts/BookingContext';
 import aboutUsImage from '@/assets/aboutus-contact.png';
 
 const About = () => {
+  const { openTrialBooking } = useBooking();
   const appFeatures = [
     {
       icon: "/coming soon1.png",
@@ -71,6 +73,7 @@ const About = () => {
           </div>
 
           <Button 
+            onClick={openTrialBooking}
             size="lg" 
             className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
                       font-funnel font-bold text-[16.51px] leading-[24.4px] 

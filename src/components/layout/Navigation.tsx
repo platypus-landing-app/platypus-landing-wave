@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useBooking } from '@/contexts/BookingContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { openTrialBooking } = useBooking();
   const [activeSection, setActiveSection] = useState('home');
 
   const navItems = [
@@ -97,7 +99,7 @@ const Navigation = () => {
 
          <div className="hidden md:block mr-4">
           <Button 
-            onClick={() => handleScrollTo('#testimonials')}
+            onClick={openTrialBooking}
             className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105 mr-10"
           >
             BOOK TRIAL NOW
@@ -134,7 +136,7 @@ const Navigation = () => {
             ))}
             <div className="pt-4">
               <Button 
-                onClick={() => handleScrollTo('#testimonials')}
+                onClick={openTrialBooking}
                 className="w-full bg-[#397CEF] hover:bg-[#0088FF] text-white py-3 rounded font-medium"
               >
                 BOOK TRIAL NOW
