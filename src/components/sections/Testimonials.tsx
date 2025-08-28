@@ -81,10 +81,10 @@ const Testimonials = () => {
                       <div className="absolute bottom-0 left-0 right-0">
                         {/* Blur grey part for text - Mobile responsive */}
                         <div className="backdrop-blur-md bg-gray-500/40 px-2 sm:px-4 py-1.5 sm:py-3 flex flex-col sm:flex-row items-center justify-center space-y-0.5 sm:space-y-0 sm:space-x-3">
-                          <h3 className="font-[Montserrat] font-bold text-[16px] sm:text-[20px] lg:text-[22px] leading-[20px] sm:leading-[28px] lg:leading-[32px] text-white capitalize text-center">
+                          <h3 className="font-[Funnel_Sans] font-bold text-[16px] sm:text-[20px] lg:text-[22px] leading-[20px] sm:leading-[28px] lg:leading-[32px] text-white capitalize text-center">
                             {testimonial.name}
                           </h3>
-                          <p className="font-[Rubik] font-normal text-[11px] sm:text-[13px] lg:text-[14px] leading-[14px] sm:leading-[16px] lg:leading-[18px] text-white/90 capitalize text-center">
+                          <p className="font-[Funnel_Sans] font-normal text-[11px] sm:text-[13px] lg:text-[14px] leading-[14px] sm:leading-[16px] lg:leading-[18px] text-white/90 capitalize text-center">
                             {testimonial.location}
                           </p>
                         </div>
