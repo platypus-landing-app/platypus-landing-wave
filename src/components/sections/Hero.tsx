@@ -51,14 +51,14 @@ const Hero = () => {
     </span>
   </h1>
 
-  {/* Paragraph */}
-  <p className="text-[14px] xs:text-[16px] sm:text-[18px] md:text-[20px] lg:text-[28px] text-[#1A1A1A] max-w-lg font-normal font-segoe leading-[145%] sm:leading-[150%] md:leading-[160%]">
+  {/* Paragraph - Aligned with heading */}
+  <p className="text-[14px] xs:text-[16px] sm:text-[18px] md:text-[20px] lg:text-[28px] text-[#1A1A1A] max-w-lg font-normal font-segoe leading-[145%] sm:leading-[150%] md:leading-[160%] mx-2 xs:mx-3 sm:mx-4 md:mx-5">
     Book a Trial Walk Today: Safe, Joyful, Professionally Trained Walkers.
     Live GPS tracking and verified Guardians across Mumbai.
   </p>
 
-  {/* Buttons */}
-  <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4">
+  {/* Buttons - Aligned with heading */}
+  <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4 mx-2 xs:mx-3 sm:mx-4 md:mx-4">
     <Button 
       onClick={openTrialBooking}
       size="lg" 
