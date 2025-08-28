@@ -88,9 +88,6 @@ const Testimonials = () => {
                             {testimonial.location}
                           </p>
                         </div>
-
-                        {/* Smaller blending black shade - no gap */}
-                        <div className="h-1 sm:h-2 bg-gradient-to-b from-black/70 to-black/80 -mt-1"></div>
                       </div>
                     </div>
 
@@ -129,7 +126,7 @@ const Testimonials = () => {
 
         {/* Dots Navigation */}
       <div className="flex justify-center mt-12 space-x-3">
-  {groupedTestimonials.map((_, index) => (
+  {testimonials.length > 2 && groupedTestimonials.map((_, index) => (
     <button
       key={index}
       onClick={() => setCurrentSlide(index)}

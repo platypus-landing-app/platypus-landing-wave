@@ -46,7 +46,7 @@ const Features = () => {
   return (
  <section
   id="features"
-  className="relative w-85 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 bg-white"
+  className="relative w-85 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 bg-[#f6f7f9]"
 >
   {/* Background paw design - hidden on small screens */}
 <div

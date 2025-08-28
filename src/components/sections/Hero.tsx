@@ -5,17 +5,7 @@ import { useBooking } from '@/contexts/BookingContext';
 
 const Hero = () => {
 
-  const { openTrialBooking } = useBooking();
-  const handleScrollTo = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
+ const { openTrialBooking} = useBooking();
   return (
 <section
   id="home"
@@ -41,22 +31,22 @@ const Hero = () => {
       <div className="space-y-6 md:space-y-8 lg:space-y-10 animate-fade-in z-10 relative">
      <div className="flex flex-col items-start gap-6 md:gap-8 lg:gap-10 animate-fade-in z-10 relative">
   {/* Heading */}
-  <h1 className="leading-[140%] sm:leading-[150%] md:leading-[160%] lg:leading-[160%] tracking-[0.06em] text-left">
-    <span className="text-[48px] xs:text-[56px] sm:text-[68px] md:text-[72px] lg:text-[79.6px] font-light text-[#F3C313] text-blur-shadow inline-block mx-2 xs:mx-3 sm:mx-4 md:mx-2 my-1 xs:my-2 sm:my-3 md:my-2">
+  <h1 className="leading-[160%] sm:leading-[150%] md:leading-[160%] lg:leading-[160%] tracking-[0.06em] text-left">
+    <span className="text-[48px] xs:text-[56px] sm:text-[68px] md:text-[72px] lg:text-[79.6px] font-light text-[#F3C313] text-blur-shadow inline-block mx-2 xs:mx-3 sm:mx-4 md:mx-2 my-3 xs:my-3 sm:my-3 md:my-2">
       PLATYPUS
     </span>
-    <span className="text-[46px] xs:text-[54px] sm:text-[66px] md:text-[70px] lg:text-[76.6px] font-normal text-black text-blur-shadow inline-block mx-2 xs:mx-3 sm:mx-4 md:mx-2 my-1 xs:my-2 sm:my-3 md:my-2">
+    <span className="text-[46px] xs:text-[54px] sm:text-[66px] md:text-[70px] lg:text-[76.6px] font-normal text-black text-blur-shadow inline-block mx-2 xs:mx-3 sm:mx-4 md:mx-2 my-3 xs:my-3 sm:my-3 md:my-2">
       -
     </span>
     <br />
-    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-1 xs:my-2 sm:my-3 md:my-2">
+    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-3 xs:my-3 sm:my-3 md:my-2">
       INDIA'S
     </span>
-    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-1 xs:my-2 sm:my-3 md:my-2">
+    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-3 xs:my-3 sm:my-3 md:my-2">
       DOG
     </span>
     <br />
-    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-1 xs:my-2 sm:my-3 md:my-2">
+    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-3 xs:my-3 sm:my-3 md:my-2">
       WALKING&nbsp;EXPERTS
     </span>
   </h1>

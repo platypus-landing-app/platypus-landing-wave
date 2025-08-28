@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { format } from "date-fns";
-import { CalendarIcon, ChevronLeft, ChevronRight, Plus, Trash2 } from "lucide-react";
+import { CalendarIcon, ChevronLeft, ChevronRight, Plus, Trash2, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
@@ -236,11 +236,10 @@ const TrialBookingDialog: React.FC = () => {
   };
 
 async function onSubmit(values) {
-  console.log(values); // check form data
+  console.log(values) // check form data
 
-  // Insert into Supabase
   const { data, error } = await supabase
-    .from("trial_bookings")
+    .from("dog_booking")
     .insert([
       {
         full_name: values.fullName,
@@ -254,15 +253,35 @@ async function onSubmit(values) {
         vaccinations_up_to_date: values.vaccinationsUpToDate,
         supervise_handover: values.superviseHandover,
       },
-    ]);
+    ])
 
   if (error) {
-    console.error("Supabase insert error:", error);
-    alert("❌ Something went wrong!");
-  } else {
-    console.log("Inserted:", data);
-    alert("✅ Booking submitted successfully!");
+    console.error("Supabase insert error:", error)
+
+    // Unique constraint violation (mobile)
+    if (error.code === "23505") {
+      toast({
+        title: "📱 Duplicate Mobile Number",
+        description: "This mobile number is already registered for a booking.",
+        variant: "destructive",
+      })
+    } else {
+      toast({
+        title: "❌ Booking Failed",
+        description: error.message || "Something went wrong, please try again.",
+        variant: "destructive",
+      })
+    }
+    return
   }
+
+  // Success 🎉
+  toast({
+    title: "✅ Booking Successful",
+    description: "Your trial booking has been submitted successfully!",
+  })
+
+  console.log("Inserted:", data)
 }
 
   const progressValue = (step / 3) * 100;
@@ -283,6 +302,18 @@ async function onSubmit(values) {
             transition: 'height 0.3s ease-in-out'
           }}
         >
+          {/* Close button with a subtle blurry background */}
+<button
+  type="button"
+  onClick={closeTrialBooking}
+  aria-label="Close"
+  className="absolute top-3 right-3 z-50 w-8 h-8 rounded-full flex items-center justify-center
+             bg-white/40 backdrop-blur-[2px] shadow-sm hover:scale-105 transition-transform duration-150
+             ring-1 ring-black/10"
+>
+  <X className="w-4 h-4 text-black" />
+</button>
+
           {/* Header */}
           <div className="shrink-0 bg-background px-6 py-4 border-b">
             <DialogHeader className="p-0">

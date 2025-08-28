@@ -10,8 +10,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6 flex flex-col items-start">
             <div className="flex flex-col items-center gap-0">
-              <img src="/logo.png" className="w-[186px]" />
-              <img src="/footer1.png" className="w-[120px]" /> {/* width badhaya */}
+              <img src="/footer.png" className="w-[120px]" /> {/* width badhaya */}
             </div>
             
             <p className="font-['Funnel_Sans'] font-normal text-[16px] leading-[30px] text-gray-700">

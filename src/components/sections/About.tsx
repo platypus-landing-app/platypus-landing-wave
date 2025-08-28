@@ -29,14 +29,14 @@ const About = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-             <h2 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-funnel mb-4 capitalize break-words">
-                <span className="text-[#f97e57] font-bold">
-                   <span className="relative inline-block">
-                     Coming
-                     <span className="absolute bottom-[-8px] left-0 w-full max-w-[180px] h-0 border-b border-golden opacity-100"></span>
-                   </span>
+              <h2 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-funnel mb-4 capitalize break-words">
+                <span className="relative inline-block">
+                  <span className="text-[#f97e57] font-bold">Coming</span>
+                  <span className="text-black font-normal"> Soon</span>
+                  {/* underline */}
+                  <span className="absolute bottom-[-6px] left-0 w-full border-b-2 border-golden"></span>
                 </span>
-                <span className="text-black font-normal"> Soon</span> – Platypus App
+                <span className="text-black font-normal"> – Platypus App</span>
               </h2>
 
             <p className="font-funnel font-normal text-[18px] leading-[28px] text-black capitalize">
