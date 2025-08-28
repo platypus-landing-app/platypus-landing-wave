@@ -71,7 +71,7 @@ const Process = () => {
               )}
               
               {/* image container */}
-              <div className="relative mb-12 group-hover:scale-105 transition-transform duration-300">
+              <div className="relative mb-12 transition-transform duration-300">
                 <div className="w-20 h-20 mx-auto flex items-center justify-center relative">
                   <img src={step.image} className="w-16 h-16 drop-shadow-lg" alt={step.title} />
                 </div>

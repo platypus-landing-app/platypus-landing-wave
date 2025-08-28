@@ -1,8 +1,11 @@
 import { MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-dog-walker.jpg';
+import { useBooking } from '@/contexts/BookingContext';
 
 const Hero = () => {
+
+  const { openTrialBooking } = useBooking();
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -67,7 +70,7 @@ const Hero = () => {
   {/* Buttons */}
   <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-2 md:pt-4">
     <Button 
-      onClick={() => handleScrollTo('#areas')}
+      onClick={openTrialBooking}
       size="lg" 
       className="bg-[#397CEF] text-[16px] sm:text-[18px] md:text-[20px] hover:bg-blue-500 text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px] shadow-lg hover:shadow-xl transition-all duration-300 hover:opacity-40"
     >
