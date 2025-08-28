@@ -1,4 +1,4 @@
-import { Calendar, User, Heart, MapPin } from 'lucide-react';
+import { Calendar, User, Heart, MapPin, ChevronRight } from 'lucide-react';
 
 const Process = () => {
   const processSteps = [
@@ -48,18 +48,33 @@ const Process = () => {
               key={index}
               className="text-center text-white relative group flex flex-col items-center"
             >
-              {/* Dotted line connector */}
-              {index < processSteps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 left-full w-8 h-0.5 border-t-2 border-dotted border-white/40 z-0"></div>
+              {/* Responsive dotted line connector with arrow */}
+              {index < processSteps.length && (
+                <>
+                  {/* Desktop dotted line */}
+                  <div className="hidden lg:block absolute top-[2rem] left-[68%] w-[135px] h-0.5 border-t-2 border-dotted border-[#FFFFFF] z-0"></div>
+                  
+                  {/* Tablet dotted line */}
+                  <div className="hidden md:block lg:hidden absolute top-[2rem] left-[68%] w-[120px] h-0.5 border-t-2 border-dotted border-[#FFFFFF] z-0"></div>
+                  
+                  {/* Arrow at the end - Desktop */}
+                  <div className="hidden lg:block absolute top-[1.75rem] left-[calc(68%+135px)] z-10">
+                    <ChevronRight className="w-3 h-3 text-white" />
+                  </div>
+                  
+                  {/* Arrow at the end - Tablet */}
+                  <div className="hidden md:block lg:hidden absolute top-[1.75rem] left-[calc(68%+120px)] z-10">
+                    <ChevronRight className="w-3 h-3 text-white" />
+                  </div>
+                  
+                </>
               )}
               
               {/* image container */}
               <div className="relative mb-12 group-hover:scale-105 transition-transform duration-300">
                 <div className="w-20 h-20 mx-auto flex items-center justify-center relative">
-                  <img src={step.image} className="w-16 h-16 drop-shadow-lg" />
+                  <img src={step.image} className="w-16 h-16 drop-shadow-lg" alt={step.title} />
                 </div>
-                <div className="absolute top-20 left-1/2 transform -translate-x-1/2
-                              w-0.5 h-6 bg-white/60"></div>
                 <div className="absolute top-[35px] left-1/2 transform -translate-x-1/2
                               w-[120px] h-[70px] border-[10px] border-white border-t-0 
                               rounded-b-full bg-transparent"></div>
