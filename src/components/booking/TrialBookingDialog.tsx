@@ -1,5 +1,6 @@
 import * as React from "react";
 import { z } from "zod";
+import { supabase } from "@/lib/supabaseClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { format } from "date-fns";
@@ -234,37 +235,35 @@ const TrialBookingDialog: React.FC = () => {
     appendDog({ name: "", breed: "", breedOther: "", age: undefined as any, specialNotes: "" });
   };
 
-  const onSubmit = async (data: TrialBookingFormValues) => {
-    try {
-      // Clear localStorage on successful submission
-      localStorage.removeItem(STORAGE_KEY);
-      
-      // Analytics
-      const dogBreeds = data.dogs.map(d => d.breed === "Other" ? d.breedOther : d.breed).join(", ");
-      (window as any)?.gtag?.('event', 'trial_booking_submit', { 
-        source: 'trial_booking_dialog',
-        dog_count: data.dogs.length,
-        dog_breeds: dogBreeds,
-        time_slot: data.timeSlot 
-      });
-      
-      // Success toast
-      toast({
-        title: "Booking Request Received!",
-        description: "Thank you! Our team will WhatsApp you within 24 hours to confirm the walk slot.",
-        duration: 5000,
-      });
-      
-      // Close dialog
-      closeTrialBooking();
-      
-    } catch (error) {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again or contact us directly.",
-      });
-    }
-  };
+async function onSubmit(values) {
+  console.log(values); // check form data
+
+  // Insert into Supabase
+  const { data, error } = await supabase
+    .from("trial_bookings")
+    .insert([
+      {
+        full_name: values.fullName,
+        mobile: values.mobile,
+        whatsapp_enabled: values.whatsappEnabled,
+        email: values.email || null,
+        dogs: values.dogs, // array, saved as JSON
+        preferred_date: values.preferredDate,
+        time_slot: values.timeSlot,
+        location: values.location,
+        vaccinations_up_to_date: values.vaccinationsUpToDate,
+        supervise_handover: values.superviseHandover,
+      },
+    ]);
+
+  if (error) {
+    console.error("Supabase insert error:", error);
+    alert("❌ Something went wrong!");
+  } else {
+    console.log("Inserted:", data);
+    alert("✅ Booking submitted successfully!");
+  }
+}
 
   const progressValue = (step / 3) * 100;
   
