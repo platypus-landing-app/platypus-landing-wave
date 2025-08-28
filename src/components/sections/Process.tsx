@@ -1,26 +1,30 @@
-import { Calendar, User, Heart, MapPin, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 const Process = () => {
   const processSteps = [
     {
       image: '/processicon1.png',
       title: "Book In Seconds",
-      description: "Register On The App And Schedule Your Dog's Walk With Ease."
+      description: "Register On The App And Schedule Your Dog's Walk With Ease.",
+      imagePosition: "top-0 left-0" // default
     },
     {
       image: '/processicon2.png',
       title: "Guardian Assigned",
-      description: "A Trained & Certified Guardian Is Instantly Matched To Your Booking."
+      description: "A Trained & Certified Guardian Is Instantly Matched To Your Booking.",
+      imagePosition: "bottom-1 left-[9px]"
     },
     {
       image: '/process icon3.png',
       title: "Safe Pick-Up",
-      description: "Your Dog Is Collected On Time, Following Hygiene & Safety Checks."
+      description: "Your Dog Is Collected On Time, Following Hygiene & Safety Checks.",
+      imagePosition: "top-0 left-0"
     },
     {
       image: '/processicon4.png',
       title: "Track The Walk",
-      description: "Monitor Every Step Live On The App, With Real-Time Updates On Activity And Poop."
+      description: "Monitor Every Step Live On The App, With Real-Time Updates On Activity And Poop.",
+      imagePosition: "top-0 left-0"
     }
   ];
 
@@ -49,7 +53,7 @@ const Process = () => {
               className="text-center text-white relative group flex flex-col items-center"
             >
               {/* Responsive dotted line connector with arrow */}
-              {index < processSteps.length && (
+              {index < processSteps.length - 1 && (
                 <>
                   {/* Desktop dotted line */}
                   <div className="hidden lg:block absolute top-[2rem] left-[68%] w-[135px] h-0.5 border-t-2 border-dotted border-[#FFFFFF] z-0"></div>
@@ -66,14 +70,17 @@ const Process = () => {
                   <div className="hidden md:block lg:hidden absolute top-[1.75rem] left-[calc(68%+120px)] z-10">
                     <ChevronRight className="w-3 h-3 text-white" />
                   </div>
-                  
                 </>
               )}
               
               {/* image container */}
               <div className="relative mb-12 transition-transform duration-300">
                 <div className="w-20 h-20 mx-auto flex items-center justify-center relative">
-                  <img src={step.image} className="w-16 h-16 drop-shadow-lg" alt={step.title} />
+                  <img 
+                    src={step.image} 
+                    className={`absolute ${step.imagePosition} max-w-full max-h-full object-contain`} 
+                    alt={step.title} 
+                  />
                 </div>
                 <div className="absolute top-[35px] left-1/2 transform -translate-x-1/2
                               w-[120px] h-[70px] border-[10px] border-white border-t-0 
