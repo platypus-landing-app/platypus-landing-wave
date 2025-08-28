@@ -38,28 +38,28 @@ const Hero = () => {
       <div className="space-y-6 md:space-y-8 lg:space-y-10 animate-fade-in z-10 relative">
      <div className="flex flex-col items-start gap-6 md:gap-8 lg:gap-10 animate-fade-in z-10 relative">
   {/* Heading */}
-  <h1 className="leading-[140%] md:leading-[150%] lg:leading-[160%] tracking-[0.08em] text-left">
-    <span className="text-[48px] sm:text-[56px] md:text-[64px] lg:text-[79.6px] font-light text-[#F3C313] text-blur-shadow inline-block mx-1 md:mx-2 my-1 md:my-2">
+  <h1 className="leading-[140%] sm:leading-[150%] md:leading-[160%] lg:leading-[160%] tracking-[0.06em] text-left">
+    <span className="text-[48px] xs:text-[56px] sm:text-[68px] md:text-[72px] lg:text-[79.6px] font-light text-[#F3C313] text-blur-shadow inline-block mx-2 xs:mx-3 sm:mx-4 md:mx-2 my-1 xs:my-2 sm:my-3 md:my-2">
       PLATYPUS
     </span>
-    <span className="text-[46px] sm:text-[54px] md:text-[62px] lg:text-[76.6px] font-normal text-black text-blur-shadow inline-block mx-1 md:mx-2 my-1 md:my-2">
+    <span className="text-[46px] xs:text-[54px] sm:text-[66px] md:text-[70px] lg:text-[76.6px] font-normal text-black text-blur-shadow inline-block mx-2 xs:mx-3 sm:mx-4 md:mx-2 my-1 xs:my-2 sm:my-3 md:my-2">
       -
     </span>
     <br />
-    <span className="text-[32px] sm:text-[36px] md:text-[44px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 md:mx-3 my-1 md:my-2">
+    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-1 xs:my-2 sm:my-3 md:my-2">
       INDIA'S
     </span>
-    <span className="text-[32px] sm:text-[36px] md:text-[44px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 md:mx-3 my-1 md:my-2">
+    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-1 xs:my-2 sm:my-3 md:my-2">
       DOG
     </span>
     <br />
-    <span className="text-[32px] sm:text-[36px] md:text-[44px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 md:mx-3 my-1 md:my-2">
+    <span className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[56px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-2 xs:mx-4 sm:mx-5 md:mx-3 my-1 xs:my-2 sm:my-3 md:my-2">
       WALKING&nbsp;EXPERTS
     </span>
   </h1>
 
   {/* Paragraph */}
-  <p className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] text-[#1A1A1A] max-w-lg font-normal font-segoe leading-[150%] md:leading-[160%]">
+  <p className="text-[14px] xs:text-[16px] sm:text-[18px] md:text-[20px] lg:text-[28px] text-[#1A1A1A] max-w-lg font-normal font-segoe leading-[145%] sm:leading-[150%] md:leading-[160%]">
     Book a Trial Walk Today: Safe, Joyful, Professionally Trained Walkers.
     Live GPS tracking and verified Guardians across Mumbai.
   </p>
