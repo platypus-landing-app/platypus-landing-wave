@@ -40,14 +40,14 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
-          <h2 className="font-[Funnel_Sans] font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[19.91px] text-black capitalize mb-6">
+          <h2 className="font-[Funnel_Sans] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-black capitalize mb-6">
             <span className="relative text-[#f97e57]">
               Client
-              <span className="absolute bottom-[-5px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
+              <span className="absolute bottom-[-5px] left-0 w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] h-0 border-b border-golden opacity-100"></span>
             </span>{" "}
             Testimonials
           </h2>
-          <p className="font-[Funnel_Sans] font-normal text-[16.59px] leading-[18.81px] text-black capitalize mt-9">
+          <p className="font-[Funnel_Sans] font-normal text-sm sm:text-base leading-relaxed text-black capitalize mt-6">
             Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros
             Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus.
           </p>

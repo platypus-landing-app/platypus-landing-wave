@@ -39,28 +39,28 @@ const Hero = () => {
       <div className="space-y-10 animate-fade-in z-10 relative">
      <div className="flex flex-col items-start gap-10 animate-fade-in z-10 relative">
   {/* Heading */}
-  <h1 className="leading-[160%] tracking-[0.08em] text-left">
-    <span className="text-[79.6px] md:text-4xl lg:text-5xl font-light text-[#F3C313] text-blur-shadow inline-block mx-2 my-2">
+  <h1 className="leading-[120%] tracking-[0.02em] text-left">
+    <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#F3C313] text-blur-shadow inline-block mx-1 my-1">
       PLATYPUS
     </span>
-    <span className="text-[76.6px] md:text-4xl lg:text-5xl font-normal text-black text-blur-shadow inline-block mx-2 my-2">
+    <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black text-blur-shadow inline-block mx-1 my-1">
       -
     </span>
     <br />
-    <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-3 my-2">
+    <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-black text-blur-shadow inline-block mx-1 my-1">
       INDIA'S
     </span>
-    <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-3 my-2">
+    <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-black text-blur-shadow inline-block mx-1 my-1">
       DOG
     </span>
     <br />
-    <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mx-3 my-2">
+    <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-black text-blur-shadow inline-block mx-1 my-1">
       WALKING&nbsp;EXPERTS
     </span>
   </h1>
 
   {/* Paragraph */}
-  <p className="text-[28px] md:text-xl text-[#1A1A1A] max-w-lg font-normal font-segoe leading-[160%]">
+  <p className="text-lg sm:text-xl md:text-2xl text-[#1A1A1A] max-w-lg font-normal font-segoe leading-[140%]">
     Book a Trial Walk Today: Safe, Joyful, Professionally Trained Walkers.
     Live GPS tracking and verified Guardians across Mumbai.
   </p>

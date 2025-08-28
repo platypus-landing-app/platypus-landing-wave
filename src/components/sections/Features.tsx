@@ -62,10 +62,10 @@ const Features = () => {
   <div className="relative z-10">
     {/* Why Choose Platypus Heading */}
     <div className="text-left mb-12 lg:mb-16 max-w-4xl mx-auto lg:mx-0">
-      <h2 className="font-funnel font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[18px] capitalize mb-6">
+      <h2 className="font-funnel font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight capitalize mb-6">
         <span className="text-[#f97e57] relative">
           Why Choose
-          <span className="absolute bottom-[-5px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
+          <span className="absolute bottom-[-5px] left-0 w-full max-w-[180px] sm:max-w-[220px] h-0 border-b border-golden opacity-100"></span>
         </span>
         <span className="text-gray-900"> Platypus?</span>
       </h2>
@@ -77,7 +77,7 @@ const Features = () => {
     </div>
 
     {/* Features Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 justify-items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 justify-items-center">
       {features.map((feature, index) => (
         <div
           key={index}
