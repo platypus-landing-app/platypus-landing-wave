@@ -35,23 +35,25 @@ const Process = () => {
   return (
     <section id="process" className="py-20 bg-[#0088FF] relative overflow-hidden">
       <div className="absolute inset-0 bg-[#0088FF] opacity-90"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
-            Our <span className="text-white">Process</span>
-          </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            From Booking To Happy Returns, We've Made Pet Care As Simple As Four Easy Steps.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-7 relative z-10">
+  <div className="text-center mb-16">
+    <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
+      Our <span className="text-white">Process</span>
+    </h2>
+    <p className="text-lg text-white/90 max-w-2xl mx-auto">
+      From Booking To Happy Returns, We've Made Pet Care As Simple As Four Easy Steps.
+    </p>
+  </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+
+<div className="flex justify-start">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-start">
           {processSteps.map((step, index) => (
             <div
               key={index}
               className="text-center text-white relative group flex flex-col items-center"
             >
-              {index < processSteps.length && (
+              {index < processSteps.length - 1 && (
                 <>
                   <div
                     className="hidden lg:block absolute top-[2rem] left-[68%] w-[130px] h-[3px] z-0"
@@ -90,6 +92,7 @@ const Process = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

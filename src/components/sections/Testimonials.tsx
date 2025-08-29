@@ -1,12 +1,24 @@
 import { useState, useEffect } from "react";
+import { Phone, Smartphone } from "lucide-react";
+import ctaImage from '@/assets/3ind.png';
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const handleScrollTo = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   // Testimonials data
   const testimonials = [
     {
-      name: "Priya Sharma",
+      name: "Sneha Pandey",
       location: "Pet Parent To Simba • Bandra West",
       image: "/testimonial1.jpg",
       quote:
@@ -68,7 +80,7 @@ const Testimonials = () => {
                   >
                     {/* Image */}
                     <div
-                     className={`relative rounded overflow-hidden shadow-xl aspect-[3/2] w-full max-w-md mx-auto lg:w-[500px] lg:h-[300px] ${
+                      className={`relative rounded overflow-hidden shadow-xl w-full lg:w-full lg:h-[300px] ${
                         index % 2 === 1 ? "lg:order-2" : "lg:order-1"
                       }`}
                     >
@@ -77,6 +89,7 @@ const Testimonials = () => {
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
                       />
+
                       {/* Overlay */}
                       <div className="absolute bottom-0 left-0 right-0">
                         {/* Blur grey part for text - Mobile responsive */}
@@ -102,7 +115,7 @@ const Testimonials = () => {
                         <img
                           src="/testimonial bg.png"
                           alt="background logo"
-                          className="w-[120px] opacity-10"
+                          className="w-[120px]"
                         />
                       </div>
                       <div className="absolute bottom-0 right-0 pointer-events-none z-0">
@@ -112,7 +125,7 @@ const Testimonials = () => {
                           className="w-[80px] opacity-5 rotate-180"
                         />
                       </div>
-                      
+
                       <blockquote className="font-[Funnel_Sans] font-normal text-[18px] leading-[39.83px] text-black capitalize relative z-10">
                         {testimonial.quote}
                       </blockquote>
@@ -125,21 +138,76 @@ const Testimonials = () => {
         </div>
 
         {/* Dots Navigation */}
-      <div className="flex justify-center mt-12 space-x-3">
-  {testimonials.length > 2 && groupedTestimonials.map((_, index) => (
-    <button
-      key={index}
-      onClick={() => setCurrentSlide(index)}
-      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-        index === currentSlide
-          ? "bg-[#8993A4] scale-125"
-          : "bg-[#A3A3A361] hover:bg-[#8993A4]/60"
-      }`}
-      aria-label={`Go to testimonials page ${index + 1}`}
-    />
-  ))}
+        <div className="flex justify-center mt-12 space-x-3">
+          {testimonials.length > 2 &&
+            groupedTestimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "bg-[#8993A4] scale-125"
+                    : "bg-[#A3A3A361] hover:bg-[#8993A4]/60"
+                }`}
+                aria-label={`Go to testimonials page ${index + 1}`}
+              />
+            ))}
+        </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Main CTA Image */}
+      <div className="text-center">
+  <img
+    src={ctaImage}
+    alt="Dog walker with golden retriever"
+    className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
+  />
 </div>
 
+{/* Inner White Box */}
+<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#397CEF] shadow-[0px_8px_25px_-5px_#397CEF26] max-w-3xl mx-auto -mt-12 mb-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Ready to Book */}
+            <div className="text-left">
+              <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
+                Ready to Book?
+              </h3>
+              <p className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868] mb-3">
+                Available 7 days a week, 8 AM - 8 PM
+              </p>
+              <a
+                href="tel:+918451880963"
+                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+              >
+                <img src="/phone icon2.png"  className="w-5 h-5 text-blue-600" />
+                <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
+                  Call us: +91 84518 80963
+                </span>
+              </a>
+            </div>
+
+            {/* Get App Early Access */}
+            <div className="text-left">
+              <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
+                Get App Early Access
+              </h3>
+              <p className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868] mb-3">
+                Be first to download in August 2025
+              </p>
+              <button
+                onClick={() => handleScrollTo("#testimonials")}
+                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+              >
+                <img src="/phone icon.png" className="w-6 h-6 text-blue-600" />
+                <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
+                  Join our community today
+                </span>
+              </button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );

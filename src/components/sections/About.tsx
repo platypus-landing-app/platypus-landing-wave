@@ -23,8 +23,11 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-[#eaeff8]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section 
+  id="about" 
+  className="py-24 bg-[#eaeff8] bg-cover bg-center relative"
+  style={{ backgroundImage: "url('/aboutus bg.png')" }}
+>      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
@@ -72,15 +75,17 @@ const About = () => {
             ))}
           </div>
 
-          <Button 
-            onClick={openTrialBooking}
-            size="lg" 
-            className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
-                      font-funnel font-bold text-[16.51px] leading-[24.4px] 
-                      tracking-[1.25px] uppercase text-center rounded-xl"
-          >
-            BOOK TRIAL'S WALK NOW
-          </Button>
+<Button 
+  onClick={openTrialBooking}
+  size="lg"
+  className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
+             font-funnel font-bold text-[16.51px] leading-[24.4px] 
+             tracking-[1.25px] uppercase text-center rounded
+             border-0 shadow-none focus:ring-0"
+>
+  BOOK TRIAL'S WALK NOW
+</Button>
+
 
           </div>
 
