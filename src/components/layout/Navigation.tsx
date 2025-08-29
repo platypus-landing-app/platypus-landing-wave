@@ -100,7 +100,8 @@ const Navigation = () => {
     <div className="hidden md:block">
       <Button 
         onClick={openTrialBooking}
-        className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+        className="text-white px-6 py-3 rounded font-medium 
+        bg-blue-500 hover:bg-blue-400 rounded hover:shadow-xl transition-all duration-300 hover:scale-105"
       >
         BOOK TRIAL NOW
       </Button>

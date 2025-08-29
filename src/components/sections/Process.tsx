@@ -4,8 +4,8 @@ const Process = () => {
   const processSteps = [
     {
       image: '/processicon1.png',
-      title: "Book In Seconds",
-      description: "Register On The App And Schedule Your Dog's Walk With Ease.",
+      title: "Hassle-Free Booking",
+      description: "Complete the Pet Profile Form to book your dog’s walk in just a few clicks.",
       imagePosition: "top-0 left-0", 
       imageSize: "w-[4rem] h-[4rem]"  // 👈 yaha define
     },
@@ -26,7 +26,7 @@ const Process = () => {
     {
       image: '/processicon4.png',
       title: "Track The Walk",
-      description: "Monitor Every Step Live On The App, With Real-Time Updates On Activity And Poop.",
+      description: "Monitor every step with real-time Tracking and updates on activity and poop.",
       imagePosition: "top-0 left-0",
       imageSize: "w-[4rem] h-[4rem]"
     }

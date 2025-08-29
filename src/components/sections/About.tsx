@@ -89,12 +89,13 @@ const About = () => {
             <Button
               onClick={openTrialBooking}
               size="lg"
-              className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
+              className="text-white px-8 py-4 
              font-funnel font-bold text-[16.51px] leading-[24.4px] 
              tracking-[1.25px] uppercase text-center rounded
-             border-0 shadow-none focus:ring-0"
+             border-0 shadow-none focus:ring-0
+              bg-blue-500 hover:bg-blue-400 rounded hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              BOOK TRIAL'S WALK NOW
+              BOOK TRIAL WALK NOW
             </Button>
           </div>
 

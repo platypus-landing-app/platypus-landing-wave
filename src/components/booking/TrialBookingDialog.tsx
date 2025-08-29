@@ -78,9 +78,8 @@ const DOG_BREEDS = [
 ];
 
 const TIME_SLOTS = [
-  { value: "morning", label: "Morning (6 AM - 9 AM)" },
-  { value: "midday", label: "Midday (11 AM - 2 PM)" },
-  { value: "evening", label: "Evening (5 PM - 9 PM)" }
+  { value: "morning", label: "Morning (6 AM - 10 AM)" },
+  { value: "evening", label: "Evening (6 PM - 10 PM)" }
 ];
 
 const DogSchema = z.object({

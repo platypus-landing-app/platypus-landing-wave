@@ -71,7 +71,9 @@ const Hero = () => {
               <Button
                 onClick={openTrialBooking}
                 size="lg"
-                className="bg-[#397CEF] text-[16px] sm:text-[18px] md:text-[20px] hover:bg-blue-500 text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px] transition-all duration-300 hover:opacity-40"
+                className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
+                bg-blue-500 hover:bg-blue-400 hover:shadow-xl transition-all duration-300 hover:scale-105"
+              
               >
                 Book Trial Now
               </Button>
@@ -79,7 +81,11 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 text-[#397CEF26] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px] w-full sm:w-[240px] md:w-[257px] rounded-[16px] py-3 md:py-4 text-sm flex items-center gap-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="text-[#397CEF] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px] 
+           w-full sm:w-[240px] md:w-[257px] rounded-[4px] py-3 md:py-4 
+           text-sm flex items-center gap-3 shadow-md hover:shadow-lg 
+           transition-all duration-300 hover:scale-105"
+
               >
                 <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#397CEF] to-[#709DEB] flex items-center rounded-full justify-center">
                   <img

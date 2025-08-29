@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Phone, Smartphone } from "lucide-react";
 import ctaImage from "@/assets/3ind.png";
+import { useBooking } from "@/contexts/BookingContext";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const { openTrialBooking } = useBooking();
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -22,14 +22,14 @@ const Testimonials = () => {
       location: "Pet Parent To Simba • Bandra West",
       image: "/testimonial1.jpg",
       quote:
-        "Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue.",
+        "I would definitely recommend Platypus. The Guardians provided by your team are well-trained, trustworthy & clearly care about the pet they walk.",
     },
     {
-      name: "Raj Patel",
-      location: "Pet Parent To Bruno • Andheri East",
+      name: "Tanusri Maitra",
+      location: "Pet Parent To Prince • Thane",
       image: "/testimonial2.jpg",
       quote:
-        "Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus. Sed Vel Scelerisque Quam, Id Fringilla Ante. Vivamus Sagittis Velit Quis Dictum Ultrices. Nullam Eleifend Lectus A Tortor Interdum, Non Sodales Ante Vehicula. Proin Consequat, At Commodo.",
+        "So far, I am very happy with the service. Regular, Punctual, Proper handling of the child, and the other best practices are picking up poop. I am so happy with the kind of walk my little one is getting",
     },
   ];
 
@@ -60,8 +60,8 @@ const Testimonials = () => {
             Testimonials
           </h2>
           <p className="font-[Funnel_Sans] font-normal text-sm sm:text-base leading-relaxed text-black capitalize mt-6">
-            Quisque Posuere Rhoncus Erat, Sit Amet Aliquet Augue. Donec Eros
-            Massa, Gravida Ac Lectus Et, Pharetra Interdum Lectus.
+            Because your pets deserve the best.
+            Here’s what our community of owners share.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ const Testimonials = () => {
                 {group.map((testimonial, index) => (
                   <div
                     key={index}
-                    className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+                    className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
                   >
                     {/* Image */}
                     <div
@@ -173,17 +173,17 @@ const Testimonials = () => {
     {/* Ready to Book */}
     <div className="mx-auto max-w-sm text-left">
       <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
-        Ready to Book?
+        Ready To Book?
       </h3>
       <p className="text-[16px] leading-[24px] text-[#686868] mb-3">
-        Available 7 days a week, 8 AM - 8 PM
+        Available 7 days a week, 6 AM - 10 PM
       </p>
       <a
         href="tel:+918451880963"
         className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
       >
         <img src="/phone icon2.png" className="w-5 h-5 text-blue-600" />
-        <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
+        <span className="text-[16px] leading-[24px] text-[#686868]">
           Call us: +91 84518 80963
         </span>
       </a>
@@ -192,17 +192,18 @@ const Testimonials = () => {
     {/* Get App Early Access */}
     <div className="mx-auto max-w-sm text-left">
       <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
-        Get App Early Access
+        Unlock Early Access
       </h3>
-      <p className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868] mb-3">
-        Be first to download in August 2025
+      <p className="font-[Funnel_Sans] text-[16px] leading-[24px] text-[#686868] mb-3">
+        Lead the pack app drops september 2025
       </p>
       <button
-        onClick={() => handleScrollTo("#testimonials")}
-        className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+        onClick={openTrialBooking}
+        className="font-[Funnel_Sans] flex items-center space-x-2 text-gray-600 hover:text-gray-800"
       >
         <img src="/phone icon.png" className="w-6 h-6 text-blue-600" />
-        <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
+        <span className="text-[16px] leading-[24px] text-[#686868]"
+        >
           Join our community today
         </span>
       </button>

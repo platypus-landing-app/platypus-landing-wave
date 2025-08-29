@@ -1,22 +1,42 @@
-import { MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useBooking } from '@/contexts/BookingContext';
+import { MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useBooking } from "@/contexts/BookingContext";
 
 const AreasWeServe = () => {
   const { openTrialBooking } = useBooking();
   const locations = [
-    'Bandra', 'Andheri', 'Powai', 'Worli', 'Lower Parel', 'Colaba',
-    'Juhu', 'Versova', 'Malad', 'Borivali', 'Kandivali', 'Santacruz',
-    'Khar', 'Byculla', 'Dadar', 'Matunga', 'Kurla', 'Chembur',
-    'Ghatkopar', 'Mulund', 'Thane', 'Navi Mumbai', 'Vile Parle', 'Goregaon'
+    "Bandra",
+    "Andheri",
+    "Powai",
+    "Worli",
+    "Lower Parel",
+    "Colaba",
+    "Juhu",
+    "Versova",
+    "Malad",
+    "Borivali",
+    "Kandivali",
+    "Santacruz",
+    "Khar",
+    "Byculla",
+    "Dadar",
+    "Matunga",
+    "Kurla",
+    "Chembur",
+    "Ghatkopar",
+    "Mulund",
+    "Thane",
+    "Navi Mumbai",
+    "Vile Parle",
+    "Goregaon",
   ];
 
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     }
   };
@@ -33,31 +53,33 @@ const AreasWeServe = () => {
         }}
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="mb-16">
-      <h2 className="font-funnel font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight capitalize mb-6">
-          <span className="relative">
-            Areas
-            <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
-          </span>{" "}
-          <span className="text-[#f97e57]">We Serve</span>
-        </h2>
+        <div className="mb-16">
+          <h2 className="font-funnel font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight capitalize mb-6">
+            <span className="relative">
+              Areas
+              <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
+            </span>{" "}
+            <span className="text-[#f97e57]">We Serve</span>
+          </h2>
 
-  {/* Paragraph and Button in flex container */}
-  <div className="flex flex-col md:flex-row md:justify-between gap-6 ">
-      <p className="font-funnel font-normal text-[18px] leading-[28px] text-black mt-4 max-w-4xl capitalize">
-      Walking Your Dog Is About To Get Smarter With Our AI-Powered App. Book And Track Walks In Real-Time, Get Rich Updates, And Manage Everything From One Place. Our Petwalking Service In Mumbai Covers Major Localities Across The City. Book Trained Dog Walkers In Bandra, Andheri, Powai, Colaba, Juhu, Worli, Chembur, Malad And More.
-    </p>
+          {/* Paragraph and Button in flex container */}
+          <div className="flex flex-col md:flex-row md:justify-between gap-6 ">
+            <p className="font-funnel font-normal text-[18px] leading-[28px] text-black mt-4 max-w-4xl capitalize">
+              Our pet walking service in Mumbai covers major localities across
+              the city. Book trained dog walkers in Bandra, Andheri, Powai,
+              Colaba, Juhu, Worli, Chembur, Malad and more updates and manage
+              everything from one place.
+            </p>
 
-    <Button 
-      onClick={openTrialBooking}
-      size="lg" 
-      className="bg-blue-500 hover:bg-blue-700 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 items-center justify-center"
-    >
-      BOOK NOW
-    </Button>
-  </div>
-</div>
-
+            <Button
+              onClick={openTrialBooking}
+              size="lg"
+              className="bg-blue-500 hover:bg-blue-400 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded hover:shadow-xl transition-all duration-300 hover:scale-105 items-center justify-center"
+            >
+              BOOK NOW
+            </Button>
+          </div>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
           {locations.map((location, index) => (
@@ -76,9 +98,9 @@ const AreasWeServe = () => {
 
         {/* Mobile Book Now Button */}
         <div className="mt-12 md:hidden text-center">
-          <Button 
+          <Button
             onClick={openTrialBooking}
-            size="lg" 
+            size="lg"
             className="w-full max-w-md bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg font-medium rounded shadow-lg hover:shadow-xl transition-all duration-300"
           >
             BOOK NOW

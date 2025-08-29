@@ -1,19 +1,33 @@
 import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
+   const handleScrollTo = (href: string) => {
+  const element = document.querySelector(href) as HTMLElement;
+  if (element) {
+    const navbarHeight = 80; // change based on your nav height
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - navbarHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+};
+
   return (
 
     <>
     <footer className="bg-gray-200 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 lg:gap-[200px]">
           {/* Company Info */}
-          <div className="space-y-6 flex flex-col items-start">
+          <div className="space-y-6 flex flex-col items-start relative top-[-15px]">
             <div className="flex flex-col items-center gap-0">
-              <img src="/footer.png" className="w-[120px]" /> {/* width badhaya */}
+              <img src="/footer.png" className="h-[100px]" /> {/* width badhaya */}
             </div>
             
-            <p className="font-['Funnel_Sans'] font-normal text-[16px] leading-[30px] text-gray-700">
+            <p className="font-['Funnel_Sans'] relative font-normal text-[16px] leading-[30px] text-gray-700  w-[300px] top-[-30px]">
               At Platypus, we deliver safe, structured, and joyful walks through our{" "}
               <span className="font-['Funnel_Sans'] font-bold text-[16px] leading-[30px]">
                 Trained & Certified Guardians
@@ -34,7 +48,7 @@ const Footer = () => {
               <p className="font-['Funnel_Sans'] font-normal text-[15.88px] leading-[24px] text-gray-700 mb-2">
                 Dog walking across most areas of Mumbai with verified Guardians.
               </p>
-              <p className="text-[#313233] hover:text-blue-500 cursor-pointer">
+              <p onClick={() => handleScrollTo("#process")} className="text-[#313233] hover:text-blue-500 cursor-pointer">
                 What to Expect →
               </p>
             </div>
@@ -61,20 +75,36 @@ const Footer = () => {
                 </div>
               </div>
               
-              <div className="mt-6">
-                <p className="text-gray-700 mb-3">Follow us:</p>
-                <div className="flex space-x-4">
-                  <a href="#" className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors">
-                    <Facebook className="w-4 h-4 text-white" />
-                  </a>
-                  <a href="#" className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors">
-                    <Linkedin className="w-4 h-4 text-white" />
-                  </a>
-                  <a href="#" className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors">
-                    <Instagram className="w-4 h-4 text-white" />
-                  </a>
-                </div>
-              </div>
+        <div className="mt-6">
+  <p className="text-gray-700 mb-3">Follow us:</p>
+  <div className="flex space-x-4">
+    <a 
+      href="https://www.facebook.com/share/17DXgXPyAf/?mibextid=wwXIfr" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors"
+    >
+      <Facebook className="w-4 h-4 text-white" />
+    </a>
+    <a 
+      href="https://www.linkedin.com/company/platypus-be-their-human/posts/?feedView=all" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors"
+    >
+      <Linkedin className="w-4 h-4 text-white" />
+    </a>
+    <a 
+      href="https://www.instagram.com/platypus_bth/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors"
+    >
+      <Instagram className="w-4 h-4 text-white" />
+    </a>
+  </div>
+</div>
+
             </div>
           </div>
         </div>
@@ -90,7 +120,7 @@ const Footer = () => {
         }}
       >
         <p className="text-gray-900 text-sm font-[Funnel_Sans]">
-          © This website is owned by Platypus Pvt. Limited
+          © Third Planet Solutions Private Limited
         </p>
       </div>
 </>
