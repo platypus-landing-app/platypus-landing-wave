@@ -57,7 +57,7 @@ const Navigation = () => {
   shadow-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center">
+          <div className="flex items-center ml-4">
             <div 
             className="cursor-pointer"
             onClick={() => handleScrollTo('#home')}
@@ -97,10 +97,10 @@ const Navigation = () => {
             </div>
           </div>
 
-         <div className="hidden md:block mr-4">
+         <div className="hidden md:block mr-8">
           <Button 
             onClick={openTrialBooking}
-            className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105 mr-10"
+            className="bg-[#397CEF] hover:bg-[#397CEF] text-white px-6 py-3 rounded font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
           >
             BOOK TRIAL NOW
           </Button>
