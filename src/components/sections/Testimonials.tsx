@@ -60,8 +60,7 @@ const Testimonials = () => {
             Testimonials
           </h2>
           <p className="font-[Funnel_Sans] font-normal text-sm sm:text-base leading-relaxed text-black capitalize mt-6">
-            Because your pets deserve the best.
-            Here’s what our community of owners share.
+            Loved by Dogs, Trusted by Pet Parents.
           </p>
         </div>
 
