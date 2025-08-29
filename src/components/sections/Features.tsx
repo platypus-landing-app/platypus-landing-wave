@@ -44,24 +44,24 @@ const Features = () => {
   ];
 
   return (
- <section
+<section
   id="features"
-  className="relative w-85 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 bg-[#f6f7f9]"
+  className="py-16 lg:py-24 bg-[#f6f7f9] relative overflow-hidden"
 >
   {/* Background paw design - hidden on small screens */}
-<div
-  className="hidden md:block absolute top-[-2rem] left-[-150px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
-  style={{
-    backgroundImage: "url('/paw.png')",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
-  }}
-></div>
+  <div
+    className="hidden md:block absolute top-[-2rem] left-[-150px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
+    style={{
+      backgroundImage: "url('/paw.png')",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "contain",
+    }}
+  ></div>
 
-  {/* Content wrapper - keep above background */}
-  <div className="relative z-10">
+  {/* Content container - aligned with navbar */}
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     {/* Why Choose Platypus Heading */}
-    <div className="text-left mb-12 lg:mb-16 max-w-4xl mx-auto lg:mx-0">
+    <div className="text-left mb-12 lg:mb-16">
       <h2 className="font-funnel font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight capitalize mb-6">
         <span className="text-[#f97e57] relative">
           Why Choose

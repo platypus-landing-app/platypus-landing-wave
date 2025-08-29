@@ -14,7 +14,7 @@ const CallToAction = () => {
 
   return (
     <section className="bg-gradient-to-br from-white to-gray-50 -mt-4 mb-8">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main CTA Image */}
       <div className="text-center">
