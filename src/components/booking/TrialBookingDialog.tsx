@@ -236,8 +236,6 @@ const TrialBookingDialog: React.FC = () => {
   };
 
 async function onSubmit(values) {
-  console.log(values) // check form data
-
   const { data, error } = await supabase
     .from("dog_booking")
     .insert([
@@ -281,7 +279,12 @@ async function onSubmit(values) {
     description: "Your trial booking has been submitted successfully!",
   })
 
-  console.log("Inserted:", data)
+    // Clear form and storage
+  form.reset(defaultValues)
+  localStorage.removeItem(STORAGE_KEY)
+  
+  // close dialog after submission
+  closeTrialBooking()
 }
 
   const progressValue = (step / 3) * 100;

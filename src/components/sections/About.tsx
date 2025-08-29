@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { useBooking } from '@/contexts/BookingContext';
-import aboutUsImage from '@/assets/aboutus-contact.png';
+import { Button } from "@/components/ui/button";
+import { useBooking } from "@/contexts/BookingContext";
+import aboutUsImage from "@/assets/aboutus-contact.png";
 
 const About = () => {
   const { openTrialBooking } = useBooking();
@@ -8,92 +8,102 @@ const About = () => {
     {
       icon: "/coming soon1.png",
       title: "Easy Booking",
-      description: "Schedule walks in seconds with your preferred Guardian"
+      description: "Schedule walks in seconds with your preferred Guardian",
     },
     {
       icon: "/coming soon2.png",
       title: "Live Tracking",
-      description: "Watch your pet's walk in real-time with GPS updates"
+      description: "Watch your pet's walk in real-time with GPS updates",
     },
     {
       icon: "/coming soon3.png",
       title: "Guardian Ratings",
-      description: "Rate and review your Guardian after each walk"
-    }
+      description: "Rate and review your Guardian after each walk",
+    },
   ];
 
   return (
-<section 
-  id="about" 
-  className="py-24 bg-[#eaeff8] bg-cover bg-center relative"
-  style={{ backgroundImage: "url('/aboutus bg.png')" }}
->      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="about"
+      className="py-24 bg-[#eaeff8] bg-cover bg-center relative"
+      style={{ backgroundImage: "url('/aboutus bg.png')" }}
+    >
+      {" "}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-funnel mb-4 capitalize break-words">
-                <span className="relative inline-block">
+              <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4 leading-tight">
+                <span className="relative inline-block mr-2 align-middle">
                   <span className="text-[#f97e57] font-bold">Coming</span>
                   <span className="text-black font-normal"> Soon</span>
                   {/* underline */}
-                  <span className="absolute bottom-[-6px] left-0 w-full border-b-2 border-golden"></span>
+                  <span
+                    className="absolute left-0 w-full border-b border-golden 
+                    -bottom-2 sm:-bottom-3 lg:-bottom-4"
+                  ></span>
                 </span>
-                <span className="text-black font-normal"> – Platypus App</span>
+                <span className="text-black font-normal align-middle break-words leading-[1.6]">
+                  – Platypus App
+                </span>
               </h2>
 
-            <p className="font-funnel font-normal text-[18px] leading-[28px] text-black capitalize">
-              Walking Your Dog Is About To Get Smarter With Our AI-Powered App. Book And Track Walks In Real-Time, Get Rich Updates, And Manage Everything From One Place.
-            </p>
-
+              <p className="font-rubik mt-9 font-normal text-[16px] leading-[23px] tracking-[0px] capitalize text-black max-w-3xl">
+                Walking Your Dog Is About To Get Smarter With Our AI-Powered
+                App. Book And Track Walks In Real-Time, Get Rich Updates, And
+                Manage Everything From One Place.
+              </p>
             </div>
 
-          <div className="space-y-6">
-            {appFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="flex min-h-[84px] items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-[#FFFFFF] rounded-lg shadow-sm overflow-hidden"
-              >
-                {/* Icon */}
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <img src={feature.icon} alt={feature.title} className="w-5 h-5 object-contain" />
+            <div className="space-y-6">
+              {appFeatures.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex min-h-[84px] items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-[#FFFFFF] rounded-lg shadow-sm overflow-hidden"
+                >
+                  {/* Icon */}
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <img
+                      src={feature.icon}
+                      alt={feature.title}
+                      className="w-5 h-5 object-contain"
+                    />
+                  </div>
+
+                  {/* Text */}
+                  <div className="flex-1 min-w-0">
+                    {/* Heading */}
+                    <h3 className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#363D49] mb-1">
+                      {feature.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#7B879D] break-words">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
+              ))}
+            </div>
 
-                {/* Text */}
-                <div className="flex-1 min-w-0">
-                  {/* Heading */}
-                  <h3 className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#363D49] mb-1">
-                    {feature.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#7B879D] break-words">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-<Button 
-  onClick={openTrialBooking}
-  size="lg"
-  className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
+            <Button
+              onClick={openTrialBooking}
+              size="lg"
+              className="bg-[#397CEF] hover:bg-blue-400 text-white px-8 py-4 
              font-funnel font-bold text-[16.51px] leading-[24.4px] 
              tracking-[1.25px] uppercase text-center rounded
              border-0 shadow-none focus:ring-0"
->
-  BOOK TRIAL'S WALK NOW
-</Button>
-
-
+            >
+              BOOK TRIAL'S WALK NOW
+            </Button>
           </div>
 
           {/* Right Image */}
           <div className="relative overflow-hidden">
-            <img 
-              src={aboutUsImage} 
-              alt="Platypus App Preview" 
+            <img
+              src={aboutUsImage}
+              alt="Platypus App Preview"
               className="w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
             />
           </div>

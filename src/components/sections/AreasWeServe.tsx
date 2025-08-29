@@ -34,7 +34,7 @@ const AreasWeServe = () => {
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-16">
-        <h2 className="font-funnel font-bold text-[40px] md:text-[50px] lg:text-[60px] leading-[32.06px] text-gray-900 mb-8 capitalize">
+      <h2 className="font-funnel font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight capitalize mb-6">
           <span className="relative">
             Areas
             <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>

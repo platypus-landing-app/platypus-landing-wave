@@ -7,28 +7,28 @@ const Process = () => {
       title: "Book In Seconds",
       description: "Register On The App And Schedule Your Dog's Walk With Ease.",
       imagePosition: "top-0 left-0", 
-      imageSize: "w-[5rem] h-[5rem]"  // 👈 yaha define
+      imageSize: "w-[4rem] h-[4rem]"  // 👈 yaha define
     },
     {
       image: '/processicon2.png',
       title: "Guardian Assigned",
       description: "A Trained & Certified Guardian Is Instantly Matched To Your Booking.",
       imagePosition: "bottom-1 left-[9px]",
-      imageSize: "w-[5rem] h-[5rem]"
+      imageSize: "w-[4rem] h-[4rem]"
     },
     {
       image: '/process icon3.png',
       title: "Safe Pick-Up",
       description: "Your Dog Is Collected On Time, Following Hygiene & Safety Checks.",
       imagePosition: "top-[9px] left-0",
-      imageSize: "w-[4.5rem] h-[4.5rem]"
+      imageSize: "w-[3.5rem] h-[3.5rem]"
     },
     {
       image: '/processicon4.png',
       title: "Track The Walk",
       description: "Monitor Every Step Live On The App, With Real-Time Updates On Activity And Poop.",
       imagePosition: "top-0 left-0",
-      imageSize: "w-[5rem] h-[5rem]"
+      imageSize: "w-[4rem] h-[4rem]"
     }
   ];
 
@@ -62,7 +62,7 @@ const Process = () => {
                     }}
                   ></div>
                   <div className="hidden md:block absolute top-[1.5rem] left-[calc(59%+115px)] lg:left-[calc(64%+135px)] z-10">
-                    <ChevronRight className="w-5 h-5 text-white" />
+                    <ChevronRight className="w-5 h-5 text-white" strokeWidth={3} />
                   </div>
                 </>
               )}
@@ -77,7 +77,7 @@ const Process = () => {
                   />
                 </div>
                 <div className="absolute top-[35px] left-1/2 transform -translate-x-1/2
-                              w-[120px] h-[70px] border-[10px] border-[#FFF7D9] border-t-0 
+                              w-[120px] h-[70px] border-[13px] border-[#FFF7D9] border-t-0 
                               rounded-b-full bg-transparent"></div>
               </div>
 

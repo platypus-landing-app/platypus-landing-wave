@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Phone, Smartphone } from "lucide-react";
-import ctaImage from '@/assets/3ind.png';
+import ctaImage from "@/assets/3ind.png";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -52,7 +52,7 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
-          <h2 className="font-[Funnel_Sans] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-black capitalize mb-6">
+          <h2 className="font-[Funnel_Sans] font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-black capitalize mb-6">
             <span className="relative text-[#f97e57]">
               Client
               <span className="absolute bottom-[-5px] left-0 w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] h-0 border-b border-golden opacity-100"></span>
@@ -66,7 +66,7 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonials - Two per slide */}
-        <div className="relative overflow-hidden">
+        <div className="relative">
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -85,10 +85,11 @@ const Testimonials = () => {
                       }`}
                     >
                       <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
+  src={testimonial.image}
+  alt={testimonial.name}
+  className="w-full h-[250px] sm:h-[280px] md:h-[300px] lg:h-[300px] object-cover"
+/>
+
 
                       {/* Overlay */}
                       <div className="absolute bottom-0 left-0 right-0">
@@ -111,7 +112,7 @@ const Testimonials = () => {
                       } relative z-10`}
                     >
                       {/* Background Logos positioned at content start */}
-                      <div className="absolute top-0 left-0 pointer-events-none z-0">
+                      <div className="absolute top-0 left-[-20px] pointer-events-none z-0 opacity-30">
                         <img
                           src="/testimonial bg.png"
                           alt="background logo"
@@ -155,59 +156,60 @@ const Testimonials = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Main CTA Image */}
-      <div className="text-center">
-  <img
-    src={ctaImage}
-    alt="Dog walker with golden retriever"
-    className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
-  />
+        <div className="-translate-y-[90px]"> 
+        <div className="text-center">
+          <img
+            src={ctaImage}
+            alt="Dog walker with golden retriever"
+            className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
+          />
+        </div>
+        </div>
+       {/* Inner White Box */}
+<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#397CEF] shadow-[0_15px_30px_-10px_rgba(57,124,239,0.3)] max-w-3xl mx-auto -mt-[200px] mb-4">
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    {/* Ready to Book */}
+    <div className="mx-auto max-w-sm text-left">
+      <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
+        Ready to Book?
+      </h3>
+      <p className="text-[16px] leading-[24px] text-[#686868] mb-3">
+        Available 7 days a week, 8 AM - 8 PM
+      </p>
+      <a
+        href="tel:+918451880963"
+        className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+      >
+        <img src="/phone icon2.png" className="w-5 h-5 text-blue-600" />
+        <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
+          Call us: +91 84518 80963
+        </span>
+      </a>
+    </div>
+
+    {/* Get App Early Access */}
+    <div className="mx-auto max-w-sm text-left">
+      <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
+        Get App Early Access
+      </h3>
+      <p className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868] mb-3">
+        Be first to download in August 2025
+      </p>
+      <button
+        onClick={() => handleScrollTo("#testimonials")}
+        className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+      >
+        <img src="/phone icon.png" className="w-6 h-6 text-blue-600" />
+        <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
+          Join our community today
+        </span>
+      </button>
+    </div>
+  </div>
 </div>
 
-{/* Inner White Box */}
-<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#397CEF] shadow-[0px_8px_25px_-5px_#397CEF26] max-w-3xl mx-auto -mt-12 mb-4">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Ready to Book */}
-            <div className="text-left">
-              <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
-                Ready to Book?
-              </h3>
-              <p className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868] mb-3">
-                Available 7 days a week, 8 AM - 8 PM
-              </p>
-              <a
-                href="tel:+918451880963"
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
-              >
-                <img src="/phone icon2.png"  className="w-5 h-5 text-blue-600" />
-                <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
-                  Call us: +91 84518 80963
-                </span>
-              </a>
-            </div>
-
-            {/* Get App Early Access */}
-            <div className="text-left">
-              <h3 className="font-[Funnel_Sans] font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">
-                Get App Early Access
-              </h3>
-              <p className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868] mb-3">
-                Be first to download in August 2025
-              </p>
-              <button
-                onClick={() => handleScrollTo("#testimonials")}
-                className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
-              >
-                <img src="/phone icon.png" className="w-6 h-6 text-blue-600" />
-                <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
-                  Join our community today
-                </span>
-              </button>
-            </div>
-
-          </div>
-        </div>
       </div>
     </section>
   );
