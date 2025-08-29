@@ -65,25 +65,26 @@ const Features = () => {
       {/* Content container - aligned with navbar */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Why Choose Platypus Heading */}
-        <div className="text-left mb-12 lg:mb-16">
-          <h2 className="font-funnel font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight capitalize mb-6">
-            <span className="text-[#f97e57] relative inline-block mr-2 align-middle">
-              Why Choose
-              <span
-                className="absolute left-0 w-full max-w-[180px] sm:max-w-[220px] h-0 border-b border-golden opacity-100 
-                    -bottom-2 sm:-bottom-3 lg:-bottom-4"
-              ></span>
-            </span>
-            <span className="text-gray-900 align-middle break-words leading-[2]">
-              Platypus?
-            </span>
-          </h2>
+{/* Why Choose Platypus Heading */}
+<div className="text-left mb-12 lg:mb-16">
+  <h2 className="font-funnel font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
+    <span className="text-[#f97e57] relative inline-block mr-2 align-middle">
+      Why Choose
+      <span
+        className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"
+      ></span>
+    </span>
+    <span className="text-gray-900 align-middle break-words leading-tight sm:leading-tight md:leading-[2]">
+      Platypus?
+    </span>
+  </h2>
 
-          <p className="font-rubik mt-9 font-normal text-[16px] leading-[23px] tracking-[0px] capitalize text-black max-w-3xl">
-            We're Not Just Another Walking Service — We're India's First
-            Certified And Tech-Enabled Dog Walking Experts.
-          </p>
-        </div>
+  <p className="font-rubik mt-4 sm:mt-6 font-normal text-[14px] sm:text-[16px] md:text-[16px] leading-[20px] sm:leading-[23px] md:leading-[23px] tracking-[0px] capitalize text-black max-w-full sm:max-w-3xl">
+    We're Not Just Another Walking Service — We're India's First
+    Certified And Tech-Enabled Dog Walking Experts.
+  </p>
+</div>
+
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 justify-items-center">

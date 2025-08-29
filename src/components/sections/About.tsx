@@ -34,8 +34,7 @@ const About = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4 leading-tight">
-                <span className="relative inline-block mr-2 align-middle">
+<h2 className="text-[1.6rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[2.82rem] font-bold text-yellow-400 mb-4 leading-tight">                <span className="relative inline-block mr-2 align-middle">
                   <span className="text-[#f97e57] font-bold">Coming</span>
                   <span className="text-black font-normal"> Soon</span>
                   {/* underline */}
