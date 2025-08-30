@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        VITE_SUPABASE_URL: "https://jhckzuxlkggbkbrtjjdo.supabase.co"
+        VITE_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8"
     container_name: platypus_walk_landing_frontend
     restart: unless-stopped
     environment:

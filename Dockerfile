@@ -11,6 +11,14 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Accept build arguments for environment variables
+ARG VITE_SUPABASE_URL
+ARG VITE_SUPABASE_ANON_KEY
+
+# Set environment variables for build
+ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
+ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
+
 # Build the app (Vite builds to dist/ directory)
 RUN npm run build
 
