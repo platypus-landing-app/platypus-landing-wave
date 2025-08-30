@@ -72,66 +72,78 @@ const Testimonials = () => {
           >
             {groupedTestimonials.map((group, groupIndex) => (
               <div key={groupIndex} className="w-full flex-shrink-0 space-y-16">
-                {group.map((testimonial, index) => (
-                  <div
-                    key={index}
-                    className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
-                  >
-                    {/* Image */}
-                    <div
-                      className={`relative rounded overflow-hidden shadow-xl w-full lg:w-full lg:h-[300px] ${
-                        index % 2 === 1 ? "lg:order-2" : "lg:order-1"
-                      }`}
-                    >
-                      <img
-  src={testimonial.image}
-  alt={testimonial.name}
-  className="w-full h-[250px] sm:h-[280px] md:h-[300px] lg:h-[300px] object-cover"
-/>
+{group.map((testimonial, index) => (
+<div
+  key={index}
+  className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start 
+    ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}
+    
+    /* Mobile & Tablet -> always card style */
+    bg-white rounded-2xl shadow-md border border-gray-200 
+    
+    /* Laptop/Desktop -> remove card look by default */
+    xl:bg-transparent xl:shadow-none xl:border-none xl:rounded-none`}
+>
 
 
-                      {/* Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0">
-                        {/* Blur grey part for text - Mobile responsive */}
-                        <div className="backdrop-blur-md bg-gray-500/40 px-2 sm:px-4 py-1.5 sm:py-3 flex flex-col sm:flex-row items-center justify-center space-y-0.5 sm:space-y-0 sm:space-x-3">
-                          <h3 className="font-[Funnel_Sans] font-bold text-[16px] sm:text-[20px] lg:text-[22px] leading-[20px] sm:leading-[28px] lg:leading-[32px] text-white capitalize text-center">
-                            {testimonial.name}
-                          </h3>
-                          <p className="font-[Funnel_Sans] font-normal text-[11px] sm:text-[13px] lg:text-[14px] leading-[14px] sm:leading-[16px] lg:leading-[18px] text-white/90 capitalize text-center">
-                            {testimonial.location}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+    {/* Image */}
+    <div
+      className={`relative w-full h-[250px] sm:h-[280px] md:h-[300px] lg:h-[300px] 
+        ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}
+    >
+      <img
+        src={testimonial.image}
+        alt={testimonial.name}
+        className="w-full h-full object-cover"
+      />
 
-                    {/* Content with Background Logo */}
-                    <div
-                      className={`space-y-6 ${
-                        index % 2 === 1 ? "lg:order-1" : "lg:order-2"
-                      } relative z-10`}
-                    >
-                      {/* Background Logos positioned at content start */}
-                      <div className="absolute top-0 left-[-20px] pointer-events-none z-0 opacity-30">
-                        <img
-                          src="/testimonial bg.png"
-                          alt="background logo"
-                          className="w-[120px]"
-                        />
-                      </div>
-                      <div className="absolute bottom-0 right-0 pointer-events-none z-0">
-                        <img
-                          src="/testimonial bg.png"
-                          alt="background logo secondary"
-                          className="w-[80px] opacity-5 rotate-180"
-                        />
-                      </div>
+      {/* Overlay */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="backdrop-blur-md bg-gray-500/40 px-3 py-2 sm:px-4 sm:py-3 
+                        flex flex-col sm:flex-row items-center justify-center 
+                        space-y-1 sm:space-y-0 sm:space-x-3">
+          <h3 className="font-[Funnel_Sans] font-bold text-[16px] sm:text-[20px] 
+                         lg:text-[22px] text-white capitalize text-center">
+            {testimonial.name}
+          </h3>
+          <p className="font-[Funnel_Sans] font-normal text-[11px] sm:text-[13px] 
+                        lg:text-[14px] text-white/90 capitalize text-center">
+            {testimonial.location}
+          </p>
+        </div>
+      </div>
+    </div>
 
-                      <blockquote className="font-[Funnel_Sans] font-normal text-[18px] leading-[39.83px] text-black capitalize relative z-10">
-                        {testimonial.quote}
-                      </blockquote>
-                    </div>
-                  </div>
-                ))}
+    {/* Content */}
+    <div
+      className={`p-4 sm:p-6 xl:p-0 relative z-10 
+                  ${index % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}
+    >
+      {/* Background Logos */}
+      <div className="absolute top-[-0.25rem] left-[-2.25rem] pointer-events-none z-0 opacity-20 md:opacity-30">
+        <img
+          src="/testimonial bg.png"
+          alt="background logo"
+          className="w-[80px] md:w-[120px]"
+        />
+      </div>
+      <div className="absolute bottom-2 right-2 pointer-events-none z-0 opacity-5 rotate-180">
+        <img
+          src="/testimonial bg.png"
+          alt="background logo secondary"
+          className="w-[60px] md:w-[80px]"
+        />
+      </div>
+
+      <blockquote className="font-[Funnel_Sans] font-normal text-[16px] sm:text-[18px] 
+                             leading-relaxed sm:leading-[28px] md:leading-[32px] 
+                             text-gray-900 capitalize relative z-10">
+        {testimonial.quote}
+      </blockquote>
+    </div>
+  </div>
+))}
+
               </div>
             ))}
           </div>
@@ -197,15 +209,16 @@ const Testimonials = () => {
         Lead the pack app drops september 2025
       </p>
       <button
-        onClick={openTrialBooking}
-        className="font-[Funnel_Sans] flex items-center space-x-2 text-gray-600 hover:text-gray-800"
-      >
-        <img src="/phone icon.png" className="w-6 h-6 text-blue-600" />
-        <span className="text-[16px] leading-[24px] text-[#686868]"
-        >
-          Join our community today
-        </span>
-      </button>
+  onClick={openTrialBooking}
+  className="font-[Funnel_Sans] flex items-center space-x-2 text-blue-500 
+    hover:text-blue-400 transition-all duration-300 hover:scale-105 hover:drop-shadow-md"
+>
+  <img src="/phone icon.png" className="w-6 h-6" alt="Phone Icon" />
+  <span className="text-[16px] leading-[24px]">
+    Join our community today
+  </span>
+</button>
+
     </div>
   </div>
 </div>

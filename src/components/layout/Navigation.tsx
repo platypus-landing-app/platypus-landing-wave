@@ -122,7 +122,6 @@ const Navigation = () => {
   </div>
 
   {/* Mobile Navigation */}
-  {/* Mobile Navigation */}
 {isOpen && (
   <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg z-40">
     <div className="px-4 pt-4 pb-6 space-y-2">

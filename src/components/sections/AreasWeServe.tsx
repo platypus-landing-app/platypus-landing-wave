@@ -84,15 +84,19 @@ const AreasWeServe = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
           {locations.map((location, index) => (
             <button
-              key={index}
-              className="flex items-center justify-center space-x-2 px-6 py-4 bg-[#B4B4B466] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600 transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg border border-gray-100  hover:scale-105"
-              style={{ animationDelay: `${index * 0.05}s` }}
-            >
-              <MapPin className="w-4 h-4 text-blue-600" />
-              <span className="font-segoe text-[16px] leading-[24px] font-normal text-center">
-                {location}
-              </span>
-            </button>
+  key={index}
+  className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 sm:py-3 
+             bg-[#B4B4B466] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600 
+             transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg 
+             border border-gray-100 hover:scale-105"
+  style={{ animationDelay: `${index * 0.05}s` }}
+>
+  <MapPin className="w-4 h-4 text-blue-600" />
+  <span className="font-segoe text-[16px] leading-[24px] font-normal text-center">
+    {location}
+  </span>
+</button>
+
           ))}
         </div>
 

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
-import aboutUsImage from "@/assets/aboutus-contact.png";
 
 const About = () => {
   const { openTrialBooking } = useBooking();
@@ -86,27 +85,40 @@ const About = () => {
               ))}
             </div>
 
-            <Button
-              onClick={openTrialBooking}
-              size="lg"
-              className="text-white px-8 py-4 
-             font-funnel font-bold text-[16.51px] leading-[24.4px] 
-             tracking-[1.25px] uppercase text-center rounded
-             border-0 shadow-none focus:ring-0
-              bg-blue-500 hover:bg-blue-400 rounded hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              BOOK TRIAL WALK NOW
-            </Button>
+<Button
+  onClick={openTrialBooking}
+  size="lg"
+  className="w-full sm:w-auto text-white px-8 py-4 
+    font-funnel font-bold text-[16.51px] leading-[24.4px] 
+    tracking-[1.25px] uppercase text-center rounded
+    border-0 shadow-none focus:ring-0
+    bg-blue-500 hover:bg-blue-400 rounded hover:shadow-xl 
+    transition-all duration-300 hover:scale-105"
+>
+  BOOK TRIAL WALK NOW
+</Button>
+
           </div>
 
           {/* Right Image */}
-          <div className="relative overflow-hidden">
-            <img
-              src={aboutUsImage}
-              alt="Platypus App Preview"
-              className="w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
-            />
-          </div>
+
+<div className="relative overflow-hidden">
+  {/* Mobile Image */}
+  <img
+    src="/aboutus contact mobile.png"
+    alt="Platypus App Mobile Preview"
+    className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
+  />
+
+  {/* Desktop Image */}
+  <img
+    src={"/aboutus contact.png"}
+    alt="Platypus App Preview"
+    className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
+  />
+</div>
+
+
         </div>
       </div>
     </section>

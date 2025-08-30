@@ -1,5 +1,5 @@
 import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
-
+import '@/App.css'
 const Footer = () => {
    const handleScrollTo = (href: string) => {
   const element = document.querySelector(href) as HTMLElement;
@@ -35,7 +35,7 @@ const Footer = () => {
               <span className="font-['Funnel_Sans'] font-bold text-[16px] leading-[30px]">
                 With live GPS tracking, real-time updates, and strict safety protocols
               </span>,{" "}
-              every walk is designed to give your dog the exercise, care, and love they deserve — while giving you complete peace of mind.
+              every walk is designed to give your dog the exercise, care, and love they deserve while giving you complete peace of mind.
             </p>
           </div>
 
@@ -48,9 +48,19 @@ const Footer = () => {
               <p className="font-['Funnel_Sans'] font-normal text-[15.88px] leading-[24px] text-gray-700 mb-2">
                 Dog walking across most areas of Mumbai with verified Guardians.
               </p>
-              <p onClick={() => handleScrollTo("#process")} className="text-[#313233] hover:text-blue-500 cursor-pointer">
-                What to Expect →
-              </p>
+<p 
+  onClick={() => handleScrollTo("#process")} 
+  className="group inline-flex items-center justify-center text-blue-500 cursor-pointer 
+             transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md"
+>
+  <span className="text-[16px]">What to Expect</span>
+
+  <span className="ml-2 relative top-[-4px] flex items-center justify-center text-[24px] font-extrabold animate-arrow-move">
+    →
+  </span>
+</p>
+
+
             </div>
           </div>
 
@@ -82,7 +92,7 @@ const Footer = () => {
       href="https://www.facebook.com/share/17DXgXPyAf/?mibextid=wwXIfr" 
       target="_blank" 
       rel="noopener noreferrer"
-      className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors"
+      className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Facebook className="w-4 h-4 text-white" />
     </a>
@@ -90,7 +100,7 @@ const Footer = () => {
       href="https://www.linkedin.com/company/platypus-be-their-human/posts/?feedView=all" 
       target="_blank" 
       rel="noopener noreferrer"
-      className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors"
+      className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Linkedin className="w-4 h-4 text-white" />
     </a>
@@ -98,7 +108,7 @@ const Footer = () => {
       href="https://www.instagram.com/platypus_bth/" 
       target="_blank" 
       rel="noopener noreferrer"
-      className="w-8 h-8 bg-black rounded-sm flex items-center justify-center hover:bg-gray-800 transition-colors"
+      className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Instagram className="w-4 h-4 text-white" />
     </a>
