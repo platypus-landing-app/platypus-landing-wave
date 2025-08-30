@@ -61,11 +61,27 @@ ensure_directory() {
 # Function to check Git repository status
 check_git_repo() {
     step "Checking Git repository..."
+
+    # Ensure parent directory exists
+    sudo mkdir -p $(dirname "$PROJECT_DIR")
+
     if [ ! -d "$PROJECT_DIR/.git" ]; then
         log "Git repository not found. Cloning repository..."
+
+        # Remove directory if it exists but isn't a git repo
+        if [ -d "$PROJECT_DIR" ]; then
+            log "Removing existing non-git directory..."
+            sudo rm -rf "$PROJECT_DIR"
+        fi
+
+        # Clone the repository
         cd $(dirname "$PROJECT_DIR")
         git clone "$REPO_URL" $(basename "$PROJECT_DIR")
         cd "$PROJECT_DIR"
+
+        # Set ownership to current user
+        sudo chown -R $(whoami):$(whoami) "$PROJECT_DIR"
+
         git checkout "$BRANCH"
         success "Repository cloned successfully"
     else
@@ -149,13 +165,6 @@ validate_config() {
     log "Validating docker-compose.yml syntax..."
     docker-compose config >/dev/null 2>&1 || {
         error "Invalid docker-compose.yml syntax!"
-        exit 1
-    }
-
-    # Validate package.json
-    log "Validating package.json..."
-    node -e "JSON.parse(require('fs').readFileSync('package.json', 'utf8'))" || {
-        error "Invalid package.json syntax!"
         exit 1
     }
 
@@ -441,7 +450,7 @@ preflight_checks() {
     fi
 
     # Check required commands
-    local commands=("docker" "docker-compose" "git" "curl" "node")
+    local commands=("docker" "docker-compose" "git" "curl")
     for cmd in "${commands[@]}"; do
         if ! command -v "$cmd" >/dev/null 2>&1; then
             error "$cmd is not installed or not in PATH"
