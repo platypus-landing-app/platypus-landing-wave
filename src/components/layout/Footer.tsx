@@ -48,18 +48,18 @@ const Footer = () => {
               <p className="font-['Funnel_Sans'] font-normal text-[15.88px] leading-[24px] text-gray-700 mb-2">
                 Dog walking across most areas of Mumbai with verified Guardians.
               </p>
+
 <p 
   onClick={() => handleScrollTo("#process")} 
-  className="group inline-flex items-center justify-center text-blue-500 cursor-pointer 
+  className="group inline-flex items-center text-blue-500 cursor-pointer 
              transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md"
 >
   <span className="text-[16px]">What to Expect</span>
 
-  <span className="ml-2 relative top-[-4px] flex items-center justify-center text-[24px] font-extrabold animate-arrow-move">
+  <span className="ml-2 text-[16px] font-extrabold animate-arrow-move relative top-[-2px]">
     →
   </span>
 </p>
-
 
             </div>
           </div>
