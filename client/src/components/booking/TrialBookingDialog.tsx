@@ -260,7 +260,7 @@ async function onSubmit(values: TrialBookingFormValues) {
 
   // ✅ Send Email Notification
   try {
-    await fetch("http://localhost:3000/send-booking-email", {
+    await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/send-booking-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
