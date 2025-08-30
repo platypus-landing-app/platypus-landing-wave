@@ -235,50 +235,69 @@ const TrialBookingDialog: React.FC = () => {
   };
 
 async function onSubmit(values: TrialBookingFormValues) {
-  const { data, error } = await supabase
-    .from("dog_booking")
-    .insert([
-      {
-        full_name: values.fullName,
-        mobile: values.mobile,
-        whatsapp_enabled: values.whatsappEnabled,
-        email: values.email || null,
-        dogs: values.dogs, // array saved as JSON
-        preferred_date: values.preferredDate,
-        time_slot: values.timeSlot,
-        location: values.location,
-        vaccinations_up_to_date: values.vaccinationsUpToDate,
-        supervise_handover: values.superviseHandover,
-      },
-    ])
-
-  if (error) {
-    console.error("Supabase insert error:", error)
-    // … existing error handling
-    return
-  }
-
-  // ✅ Send Email Notification
   try {
-    await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/send-booking-email`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    })
-  } catch (err) {
-    console.error("Email send error:", err)
+    const { data, error } = await supabase
+      .from("dog_booking")
+      .insert([
+        {
+          full_name: values.fullName,
+          mobile: values.mobile,
+          whatsapp_enabled: values.whatsappEnabled,
+          email: values.email || null,
+          dogs: values.dogs,
+          preferred_date: values.preferredDate,
+          time_slot: values.timeSlot,
+          location: values.location,
+          vaccinations_up_to_date: values.vaccinationsUpToDate,
+          supervise_handover: values.superviseHandover,
+        },
+      ]);
+
+    if (error) {
+      // Check if the error is a UNIQUE constraint violation
+      if (error.code === "23505") {
+        toast({
+          title: "❌ Duplicate Number Found",
+          description: "A booking with this mobile number already exists.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Other errors
+      throw error;
+    }
+
+    // Send email
+    try {
+      await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/send-booking-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+    } catch (err) {
+      console.error("Email send error:", err);
+    }
+
+    // Success toast
+    toast({
+      title: "✅ Booking Successful",
+      description: "Your trial booking has been submitted successfully!",
+    });
+
+    form.reset(defaultValues);
+    localStorage.removeItem(STORAGE_KEY);
+    closeTrialBooking();
+  } catch (err: any) {
+    console.error(err);
+    toast({
+      title: "❌ Booking Failed",
+      description: err.message || "Something went wrong. Please try again.",
+      variant: "destructive",
+    });
   }
-
-  // Success 🎉
-  toast({
-    title: "✅ Booking Successful",
-    description: "Your trial booking has been submitted successfully!",
-  })
-
-  form.reset(defaultValues)
-  localStorage.removeItem(STORAGE_KEY)
-  closeTrialBooking()
 }
+
 
 
   const progressValue = (step / 3) * 100;
