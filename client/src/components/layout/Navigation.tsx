@@ -75,7 +75,7 @@ const Navigation = () => {
   </div>
 
   {/* Desktop Navigation */}
-  <div className="hidden md:flex items-center space-x-0 ml-[60px]">
+  <div className="hidden ld:flex items-center space-x-0 ml-[60px]">
     {navItems.map((item) => (
       <button
         key={item.name}
@@ -108,7 +108,7 @@ const Navigation = () => {
     </div>
 
     {/* Hamburger - Mobile only */}
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button 
         onClick={() => setIsOpen(!isOpen)} 
         className="p-2 text-gray-700 hover:text-[#0088FF] focus:outline-none"
@@ -123,7 +123,7 @@ const Navigation = () => {
 
   {/* Mobile Navigation */}
 {isOpen && (
-  <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg z-40">
+  <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg z-40">
     <div className="px-4 pt-4 pb-6 space-y-2">
       {navItems.map((item) => (
         <button
