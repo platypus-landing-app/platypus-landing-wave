@@ -75,7 +75,7 @@ const Navigation = () => {
   </div>
 
   {/* Desktop Navigation */}
-  <div className="hidden ld:flex items-center space-x-0 ml-[60px]">
+  <div className="hidden lg:flex items-center space-x-0 ml-[60px]">
     {navItems.map((item) => (
       <button
         key={item.name}
