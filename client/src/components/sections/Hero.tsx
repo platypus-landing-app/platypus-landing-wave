@@ -78,11 +78,11 @@ const Hero = () => {
           {/* Left Content */}
           <motion.div variants={heroVariants} className="z-10 relative">
             {/* Heading */}
-            <div className="w-full max-w-[400px]">
-              <h1 className="flex flex-col text-left tracking-[0.06em]">
+<div className="w-full max-w-[400px]">
+  <h1 className="flex flex-col text-left tracking-[0.06em] mt-8 md:mt-[100px] lg:mt-0">
 <motion.span
   variants={heroVariants}
-  className="text-[36px] xs:text-[42px] sm:text-[46px] md:text-[50px] lg:text-[36px] xl:text-[40px] font-light text-[#F3C313] text-blur-shadow inline-block"
+  className="text-[36px] xs:text-[42px] sm:text-[46px] md:text-[50px] lg:text-[36px] xl:text-[42px] font-light text-[#F3C313] text-blur-shadow inline-block"
 >
   PLATYPUS
 </motion.span>
