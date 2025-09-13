@@ -4,12 +4,15 @@ services:
   # Frontend (React Vite App)
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./client
+      dockerfile: ../Dockerfile.frontend.frontend
       args:
         VITE_SUPABASE_URL: "https://jhckzuxlkggbkbrtjjdo.supabase.co"
         VITE_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8"
-    container_name: platypus_walk_landing_frontend
+        VITE_GOOGLE_MAPS_API_KEY: "AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8"
+        VITE_BACKEND_API_URL: "https://api.theplatypus.in"
+        VITE_GA_MEASUREMENT_ID: "GTM-K69JPQWK"
+    container_name: platypus_frontend
     restart: unless-stopped
     environment:
       # nginx-proxy configuration for domain routing
@@ -21,20 +24,59 @@ services:
       # Supabase configuration
       - VITE_SUPABASE_URL=https://jhckzuxlkggbkbrtjjdo.supabase.co
       - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8
+      - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
+      - VITE_BACKEND_API_URL=https://api.theplatypus.in
+      - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
     expose:
       - "80"
     networks:
-      - platypus_walk_network
+      - platypus_network
       - nginx-proxy_default
+    depends_on:
+      - backend
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
 
+  # Backend (Node.js Express API)
+  backend:
+    build:
+      context: ./server
+      dockerfile: ../Dockerfile.frontend.backend
+    container_name: platypus_backend
+    restart: unless-stopped
+    environment:
+      # nginx-proxy configuration for API subdomain
+      - VIRTUAL_HOST=api.theplatypus.in
+      - VIRTUAL_PORT=3000
+      # Let's Encrypt SSL configuration
+      - LETSENCRYPT_HOST=api.theplatypus.in
+      - LETSENCRYPT_EMAIL=sagar@quantalynk.com
+      # Backend environment variables
+      - NODE_ENV=production
+      - PORT=3000
+      - CORS_ORIGIN=https://theplatypus.in,https://www.theplatypus.in
+    expose:
+      - "3000"
+    networks:
+      - platypus_network
+      - nginx-proxy_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
 networks:
-  platypus_walk_network:
+  platypus_network:
     driver: bridge
   nginx-proxy_default:
     external: true
+
+volumes:
+  platypus_data:
+    driver: local
