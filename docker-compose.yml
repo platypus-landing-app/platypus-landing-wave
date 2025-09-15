@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: platypus
-      MONGO_INITDB_ROOT_PASSWORD: platypus_secure_password_2024
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-platypus_secure_password_2024}
       MONGO_INITDB_DATABASE: platypus
     volumes:
       - mongodb_data:/data/db
@@ -16,7 +16,7 @@ services:
     networks:
       - platypus_network
     ports:
-      - "27017:27017"  # Expose for development access
+      - "27017:27017"
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
@@ -32,23 +32,19 @@ services:
     container_name: platypus_backend
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for API subdomain
       - VIRTUAL_HOST=api.theplatypus.in
       - VIRTUAL_PORT=3000
-      # Let's Encrypt SSL configuration
       - LETSENCRYPT_HOST=api.theplatypus.in
       - LETSENCRYPT_EMAIL=sagar@quantalynk.com
-      # Backend environment variables
       - NODE_ENV=production
       - PORT=3000
       - CORS_ORIGIN=https://theplatypus.in,https://www.theplatypus.in
-      # MongoDB configuration
-      - MONGODB_URI=mongodb://platypus:platypus_secure_password_2024@mongodb:27017
+      # Use environment variable references - NOT hardcoded values
+      - MONGODB_URI=mongodb://platypus:${MONGODB_PASSWORD:-platypus_secure_password_2024}@mongodb:27017
       - DB_NAME=platypus
-      # Email configuration
-      - BREVO_API_KEY=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
-      - BREVO_SENDER_EMAIL=info@theplatypus.in
-      - RECEIVER_EMAIL=info@theplatypus.in
+      - BREVO_API_KEY=${BREVO_API_KEY}
+      - BREVO_SENDER_EMAIL=${BREVO_SENDER_EMAIL:-info@theplatypus.in}
+      - RECEIVER_EMAIL=${RECEIVER_EMAIL:-info@theplatypus.in}
       - CORS_URI=https://theplatypus.in
     expose:
       - "3000"
@@ -69,25 +65,18 @@ services:
   frontend:
     build:
       context: ./client
-      dockerfile: ../Dockerfile.frontend  # Fixed: was ../Dockerfile.frontend.frontend
+      dockerfile: ../Dockerfile.frontend
       args:
-        # Remove Supabase, add your actual environment variables
-        - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
-        - VITE_BACKEND_API_URL=https://api.theplatypus.in
-        - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
+        - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+        - VITE_BACKEND_API_URL=${VITE_BACKEND_API_URL:-https://api.theplatypus.in}
+        - VITE_GA_MEASUREMENT_ID=${VITE_GA_MEASUREMENT_ID}
     container_name: platypus_frontend
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for domain routing
       - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
       - VIRTUAL_PORT=80
-      # Let's Encrypt SSL configuration
       - LETSENCRYPT_HOST=theplatypus.in,www.theplatypus.in
       - LETSENCRYPT_EMAIL=sagar@quantalynk.com
-      # Frontend environment variables (runtime)
-      - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
-      - VITE_BACKEND_API_URL=https://api.theplatypus.in
-      - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
     expose:
       - "80"
     networks:
@@ -111,13 +100,11 @@ networks:
     external: true
 
 volumes:
-  # MongoDB persistent storage
   mongodb_data:
     driver: local
     name: platypus_mongodb_data
   mongodb_config:
     driver: local
     name: platypus_mongodb_config
-  # General app data
   platypus_data:
     driver: local
