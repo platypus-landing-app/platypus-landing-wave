@@ -11,16 +11,12 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Accept build arguments for environment variables
-ARG VITE_SUPABASE_URL
-ARG VITE_SUPABASE_ANON_KEY
+# Accept build arguments for environment variables (removed Supabase)
 ARG VITE_GOOGLE_MAPS_API_KEY
 ARG VITE_BACKEND_API_URL
 ARG VITE_GA_MEASUREMENT_ID
 
 # Set environment variables for build
-ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
-ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
 ENV VITE_GOOGLE_MAPS_API_KEY=$VITE_GOOGLE_MAPS_API_KEY
 ENV VITE_BACKEND_API_URL=$VITE_BACKEND_API_URL
 ENV VITE_GA_MEASUREMENT_ID=$VITE_GA_MEASUREMENT_ID
@@ -31,8 +27,8 @@ RUN npm run build
 # Production stage with nginx
 FROM nginx:alpine
 
-# Install curl for health checks
-RUN apk add --no-cache curl
+# Install curl and wget for health checks
+RUN apk add --no-cache curl wget
 
 # Copy built app to nginx (Vite outputs to dist/, not build/)
 COPY --from=build /app/dist /usr/share/nginx/html

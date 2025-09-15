@@ -1,41 +1,24 @@
 version: '3.8'
 
 services:
-  # Frontend (React Vite App)
-  frontend:
-    build:
-      context: ./client
-      dockerfile: ../Dockerfile.frontend.frontend
-      args:
-        VITE_SUPABASE_URL: "https://jhckzuxlkggbkbrtjjdo.supabase.co"
-        VITE_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8"
-        VITE_GOOGLE_MAPS_API_KEY: "AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8"
-        VITE_BACKEND_API_URL: "https://api.theplatypus.in"
-        VITE_GA_MEASUREMENT_ID: "GTM-K69JPQWK"
-    container_name: platypus_frontend
+  # MongoDB Database
+  mongodb:
+    image: mongo:7-jammy
+    container_name: platypus_mongodb
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for domain routing
-      - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
-      - VIRTUAL_PORT=80
-      # Let's Encrypt SSL configuration
-      - LETSENCRYPT_HOST=theplatypus.in,www.theplatypus.in
-      - LETSENCRYPT_EMAIL=sagar@quantalynk.com
-      # Supabase configuration
-      - VITE_SUPABASE_URL=https://jhckzuxlkggbkbrtjjdo.supabase.co
-      - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8
-      - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
-      - VITE_BACKEND_API_URL=https://api.theplatypus.in
-      - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
-    expose:
-      - "80"
+      MONGO_INITDB_ROOT_USERNAME: platypus
+      MONGO_INITDB_ROOT_PASSWORD: platypus_secure_password_2024
+      MONGO_INITDB_DATABASE: platypus
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
     networks:
       - platypus_network
-      - nginx-proxy_default
-    depends_on:
-      - backend
+    ports:
+      - "27017:27017"  # Expose for development access
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -45,7 +28,7 @@ services:
   backend:
     build:
       context: ./server
-      dockerfile: ../Dockerfile.frontend.backend
+      dockerfile: ../Dockerfile.backend
     container_name: platypus_backend
     restart: unless-stopped
     environment:
@@ -59,24 +42,82 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - CORS_ORIGIN=https://theplatypus.in,https://www.theplatypus.in
+      # MongoDB configuration
+      - MONGODB_URI=mongodb://platypus:platypus_secure_password_2024@mongodb:27017
+      - DB_NAME=platypus
+      # Email configuration
+      - BREVO_API_KEY=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
+      - BREVO_SENDER_EMAIL=info@theplatypus.in
+      - RECEIVER_EMAIL=info@theplatypus.in
+      - CORS_URI=https://theplatypus.in
     expose:
       - "3000"
     networks:
       - platypus_network
       - nginx-proxy_default
+    depends_on:
+      mongodb:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 20s
+      start_period: 30s
+
+  # Frontend (React Vite App)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ../Dockerfile.frontend
+      args:
+        # Remove Supabase, add your actual environment variables
+        - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
+        - VITE_BACKEND_API_URL=https://api.theplatypus.in
+        - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
+    container_name: platypus_frontend
+    restart: unless-stopped
+    environment:
+      # nginx-proxy configuration for domain routing
+      - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
+      - VIRTUAL_PORT=80
+      # Let's Encrypt SSL configuration
+      - LETSENCRYPT_HOST=theplatypus.in,www.theplatypus.in
+      - LETSENCRYPT_EMAIL=sagar@quantalynk.com
+      # Frontend environment variables (runtime)
+      - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
+      - VITE_BACKEND_API_URL=https://api.theplatypus.in
+      - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
+    expose:
+      - "80"
+    networks:
+      - platypus_network
+      - nginx-proxy_default
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 networks:
   platypus_network:
     driver: bridge
+    name: platypus_network
   nginx-proxy_default:
     external: true
 
 volumes:
+  # MongoDB persistent storage
+  mongodb_data:
+    driver: local
+    name: platypus_mongodb_data
+  mongodb_config:
+    driver: local
+    name: platypus_mongodb_config
+  # General app data
   platypus_data:
     driver: local
