@@ -16,7 +16,7 @@ services:
     networks:
       - platypus_walk_network
     ports:
-      - "27017:27017"
+      - "27018:27017"
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
