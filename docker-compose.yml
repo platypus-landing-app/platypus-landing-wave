@@ -69,7 +69,7 @@ services:
   frontend:
     build:
       context: ./client
-      dockerfile: ../Dockerfile.frontend
+      dockerfile: ../Dockerfile.frontend  # Fixed: was ../Dockerfile.frontend.frontend
       args:
         # Remove Supabase, add your actual environment variables
         - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
