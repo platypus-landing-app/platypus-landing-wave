@@ -15,7 +15,7 @@ DOMAIN="theplatypus.in"
 
 # Environment variables for build (from your actual .env files)
 GOOGLE_MAPS_API_KEY="AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8"
-BACKEND_API_URL="https://api.theplatypus.in"
+BACKEND_API_URL="https://api.theplatypus.in/api"
 GA_MEASUREMENT_ID="GTM-K69JPQWK"
 
 # Backend environment variables (for production)
