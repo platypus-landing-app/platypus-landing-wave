@@ -3,23 +3,42 @@ import express from "express";
 import dotenv from "dotenv";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 import cors from "cors";
+import { MongoClient } from "mongodb";
 
 dotenv.config();
+
+// --- MongoDB Connection ---
+let db;
+async function connectDB() {
+  try {
+    console.log('Environment variables loaded:');
+    console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+    console.log('MONGODB_URI (masked):', process.env.MONGODB_URI?.replace(/\/\/.*:.*@/, '//[USER]:[PASS]@'));
+    
+    const client = new MongoClient(process.env.MONGODB_URI);
+    await client.connect();
+    db = client.db(process.env.DB_NAME || "platypus");
+    console.log("✅ MongoDB connected");
+  } catch (err) {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1);
+  }
+}
+
+// --- Express Setup ---
 const app = express();
 app.use(express.json());
-// Allow frontend requests
 app.use(
   cors({
-    origin: process.env.CORS_URI,
+    origin: process.env.CORS_URI || "*",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
 );
 
-app.post("/send-booking-email", async (req, res) => {
+// --- Email Function ---
+async function sendBookingEmail(values) {
   try {
-    const values = req.body; // form data
-
     let defaultClient = SibApiV3Sdk.ApiClient.instance;
     let apiKey = defaultClient.authentications["api-key"];
     apiKey.apiKey = process.env.BREVO_API_KEY;
@@ -81,12 +100,56 @@ app.post("/send-booking-email", async (req, res) => {
     };
 
     await apiInstance.sendTransacEmail(sendSmtpEmail);
-
-    res.status(200).json({ success: true, message: "Email sent" });
+    console.log("✅ Email sent successfully");
+    return true;
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
+    console.error("❌ Email sending error:", error);
+    throw error;
+  }
+}
+
+// --- Combined Booking Route (Save to DB + Send Email) ---
+app.post("/api/bookings/save-send-booking-email", async (req, res) => {
+  try {
+    const booking = req.body;
+
+    // Check duplicate by mobile number
+    const existing = await db.collection("dog_bookings").findOne({ mobile: booking.mobile });
+    if (existing) {
+      return res.status(400).json({
+        success: false,
+        message: "A booking with this mobile number already exists.",
+      });
+    }
+
+    // Add timestamp
+    booking.createdAt = new Date();
+
+    // Insert into MongoDB
+    const result = await db.collection("dog_bookings").insertOne(booking);
+    console.log("✅ Booking saved to database with ID:", result.insertedId);
+
+    // Send email
+    await sendBookingEmail(booking);
+
+    res.status(201).json({
+      success: true,
+      message: "Booking submitted and email sent successfully!",
+      bookingId: result.insertedId,
+    });
+  } catch (err) {
+    console.error("❌ Booking/Email error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong. Please try again.",
+      error: err.message
+    });
   }
 });
 
-app.listen(3000, () => console.log("🚀 Server on http://localhost:3000"));
+
+// --- Start Server ---
+const PORT = process.env.PORT || 3000;
+connectDB().then(() => {
+  app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+});
