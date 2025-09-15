@@ -1,6 +1,5 @@
 import * as React from "react";
 import { z } from "zod";
-import { supabase } from "@/lib/supabaseClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { format } from "date-fns";
@@ -236,47 +235,15 @@ const TrialBookingDialog: React.FC = () => {
 
 async function onSubmit(values: TrialBookingFormValues) {
   try {
-    const { data, error } = await supabase
-      .from("dog_booking")
-      .insert([
-        {
-          full_name: values.fullName,
-          mobile: values.mobile,
-          whatsapp_enabled: values.whatsappEnabled,
-          email: values.email || null,
-          dogs: values.dogs,
-          preferred_date: values.preferredDate,
-          time_slot: values.timeSlot,
-          location: values.location,
-          vaccinations_up_to_date: values.vaccinationsUpToDate,
-          supervise_handover: values.superviseHandover,
-        },
-      ]);
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/bookings/save-send-booking-email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
 
-    if (error) {
-      // Check if the error is a UNIQUE constraint violation
-      if (error.code === "23505") {
-        toast({
-          title: "❌ Duplicate Number Found",
-          description: "A booking with this mobile number already exists.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      // Other errors
-      throw error;
-    }
-
-    // Send email
-    try {
-      await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/send-booking-email`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-    } catch (err) {
-      console.error("Email send error:", err);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Booking failed");
     }
 
     // Success toast
@@ -285,6 +252,7 @@ async function onSubmit(values: TrialBookingFormValues) {
       description: "Your trial booking has been submitted successfully!",
     });
 
+    // Reset form and localStorage
     form.reset(defaultValues);
     localStorage.removeItem(STORAGE_KEY);
     closeTrialBooking();
