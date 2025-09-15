@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Platypus Walk Landing Page (Vite React) Deployment Script
+# Platypus Walk Landing Page (Vite React + MongoDB) Deployment Script
 # Usage: ./redeploy-platypus-walk-landing.sh [options] [branch]
 # Default branch: main
 
@@ -13,9 +13,17 @@ BRANCH="${1:-main}"
 COMPOSE_PROJECT="platypus-walk-landing"
 DOMAIN="theplatypus.in"
 
-# Environment variables for Supabase (ensure these are set)
-SUPABASE_URL="https://jhckzuxlkggbkbrtjjdo.supabase.co"
-SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8"
+# Environment variables for build (from your actual .env files)
+GOOGLE_MAPS_API_KEY="AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8"
+BACKEND_API_URL="https://api.theplatypus.in"
+GA_MEASUREMENT_ID="GTM-K69JPQWK"
+
+# Backend environment variables (for production)
+MONGODB_URI="mongodb://platypus:platypus_secure_password_2024@mongodb:27017"
+DB_NAME="platypus"
+BREVO_API_KEY="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"
+BREVO_SENDER_EMAIL="info@theplatypus.in"
+RECEIVER_EMAIL="info@theplatypus.in"
 
 # Colors for output
 RED='\033[0;31m'
@@ -106,10 +114,12 @@ backup_current_state() {
     fi
 
     # Backup current containers state
-    if docker ps -q -f name="platypus_walk_landing" | grep -q .; then
+    if docker ps -q -f name="platypus_" | grep -q .; then
         log "Backing up container information..."
-        docker ps -f name="platypus_walk_landing" > "$BACKUP_DIR/containers.txt" || true
-        docker logs platypus_walk_landing_frontend > "$BACKUP_DIR/frontend.log" 2>&1 || true
+        docker ps -f name="platypus_" > "$BACKUP_DIR/containers.txt" || true
+        docker logs platypus_frontend > "$BACKUP_DIR/frontend.log" 2>&1 || true
+        docker logs platypus_backend > "$BACKUP_DIR/backend.log" 2>&1 || true
+        docker logs platypus_mongodb > "$BACKUP_DIR/mongodb.log" 2>&1 || true
     fi
 
     success "Backup created at: $BACKUP_DIR"
@@ -154,16 +164,50 @@ validate_config() {
         exit 1
     fi
 
-    # Check if Dockerfile exists
-    if [ ! -f "Dockerfile" ]; then
-        error "Dockerfile not found!"
+    # Check if Dockerfile.frontend exists (based on your actual files)
+    if [ ! -f "Dockerfile.frontend" ]; then
+        error "Dockerfile.frontend not found!"
         exit 1
     fi
 
-    # Check if package.json exists
-    if [ ! -f "package.json" ]; then
-        error "package.json not found!"
+    # Check if Dockerfile.backend exists (based on your actual files)
+    if [ ! -f "Dockerfile.backend" ]; then
+        error "Dockerfile.backend not found!"
         exit 1
+    fi
+
+    # Check if client directory exists (your frontend context)
+    if [ ! -d "client" ]; then
+        error "client directory not found!"
+        exit 1
+    fi
+
+    # Check if server directory exists (your backend context)
+    if [ ! -d "server" ]; then
+        error "server directory not found!"
+        exit 1
+    fi
+
+    # Check if package.json exists in client directory
+    if [ ! -f "client/package.json" ]; then
+        error "client/package.json not found!"
+        exit 1
+    fi
+
+    # Check if package.json exists in server directory
+    if [ ! -f "server/package.json" ]; then
+        error "server/package.json not found!"
+        exit 1
+    fi
+
+    # Check if nginx.frontend.conf exists (based on your Dockerfile)
+    if [ ! -f "client/nginx.frontend.conf" ]; then
+        warning "client/nginx.frontend.conf not found - using default nginx config"
+    fi
+
+    # Check for Vite-specific files in client directory
+    if [ ! -f "client/vite.config.ts" ] && [ ! -f "client/vite.config.js" ]; then
+        warning "No Vite config file found in client directory - this might not be a Vite project"
     fi
 
     # Validate docker-compose.yml syntax
@@ -173,22 +217,32 @@ validate_config() {
         exit 1
     }
 
-    # Check for Vite-specific files
-    if [ ! -f "vite.config.ts" ] && [ ! -f "vite.config.js" ]; then
-        warning "No Vite config file found - this might not be a Vite project"
-    fi
-
     # Validate environment variables are set
-    if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
-        warning "Supabase environment variables might not be set properly"
+    if [ -z "$GOOGLE_MAPS_API_KEY" ]; then
+        warning "Google Maps API key not set - location features may not work"
     fi
 
-    # Check if .env files exist (for reference)
-    if [ -f ".env" ]; then
-        log "Found .env file"
+    if [ -z "$BACKEND_API_URL" ]; then
+        warning "Backend API URL not set - API calls may not work"
     fi
-    if [ -f ".env.local" ]; then
-        log "Found .env.local file"
+
+    if [ -z "$MONGODB_URI" ]; then
+        warning "MongoDB URI not set - database connections may fail"
+    fi
+
+    if [ -z "$BREVO_API_KEY" ]; then
+        warning "Brevo API key not set - email functionality may not work"
+    fi
+
+    # Check if .env files exist in the correct directories (for reference)
+    if [ -f "client/.env" ]; then
+        log "Found client/.env file"
+    fi
+    if [ -f "server/.env" ]; then
+        log "Found server/.env file"
+    fi
+    if [ -f "client/.env.local" ]; then
+        log "Found client/.env.local file"
     fi
 
     success "Configuration validation passed"
@@ -243,9 +297,16 @@ build_containers() {
     cd "$PROJECT_DIR"
 
     if [ -f "docker-compose.yml" ]; then
-        # Set build arguments for Supabase
-        export VITE_SUPABASE_URL="$SUPABASE_URL"
-        export VITE_SUPABASE_ANON_KEY="$SUPABASE_ANON_KEY"
+        # Set build arguments for all environment variables (removed Supabase)
+        export VITE_GOOGLE_MAPS_API_KEY="$GOOGLE_MAPS_API_KEY"
+        export VITE_BACKEND_API_URL="$BACKEND_API_URL"
+        export VITE_GA_MEASUREMENT_ID="$GA_MEASUREMENT_ID"
+
+        # Set backend environment variables
+        export MONGODB_PASSWORD="platypus_secure_password_2024"
+        export BREVO_API_KEY="$BREVO_API_KEY"
+        export BREVO_SENDER_EMAIL="$BREVO_SENDER_EMAIL"
+        export RECEIVER_EMAIL="$RECEIVER_EMAIL"
 
         # Build with no cache and pull latest base images
         log "Building containers without cache (this may take a few minutes)..."
@@ -289,7 +350,7 @@ wait_for_services() {
     step "Waiting for services to become healthy..."
 
     # Initial wait for containers to initialize
-    sleep 10
+    sleep 15
 
     # Check container status
     local max_attempts=60
@@ -298,23 +359,58 @@ wait_for_services() {
     while [ $attempt -le $max_attempts ]; do
         log "Health check attempt $attempt/$max_attempts..."
 
-        # Check if frontend container is running
-        local container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
+        # Check frontend container status (using your actual container name)
+        local frontend_container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
+        local backend_container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q backend 2>/dev/null || echo "")
+        local mongodb_container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q mongodb 2>/dev/null || echo "")
 
-        if [ -n "$container_id" ]; then
-            local frontend_status=$(docker inspect -f '{{.State.Status}}' "$container_id" 2>/dev/null || echo "missing")
-            local health_status=$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-health-check{{end}}' "$container_id" 2>/dev/null || echo "missing")
+        if [ -n "$frontend_container_id" ]; then
+            local frontend_status=$(docker inspect -f '{{.State.Status}}' "$frontend_container_id" 2>/dev/null || echo "missing")
+            local frontend_health=$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-health-check{{end}}' "$frontend_container_id" 2>/dev/null || echo "missing")
 
-            log "Container: $container_id | Status: $frontend_status | Health: $health_status"
+            log "Frontend: $frontend_status | Health: $frontend_health"
 
+            # Check backend if it exists
+            if [ -n "$backend_container_id" ]; then
+                local backend_status=$(docker inspect -f '{{.State.Status}}' "$backend_container_id" 2>/dev/null || echo "missing")
+                local backend_health=$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-health-check{{end}}' "$backend_container_id" 2>/dev/null || echo "missing")
+
+                log "Backend: $backend_status | Health: $backend_health"
+            fi
+
+            # Check MongoDB if it exists
+            if [ -n "$mongodb_container_id" ]; then
+                local mongodb_status=$(docker inspect -f '{{.State.Status}}' "$mongodb_container_id" 2>/dev/null || echo "missing")
+                local mongodb_health=$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-health-check{{end}}' "$mongodb_container_id" 2>/dev/null || echo "missing")
+
+                log "MongoDB: $mongodb_status | Health: $mongodb_health"
+            fi
+
+            # Check if all containers are running and healthy
             if [ "$frontend_status" = "running" ]; then
-                if [ "$health_status" = "healthy" ] || [ "$health_status" = "no-health-check" ]; then
-                    success "Frontend container is running and healthy!"
-                    break
+                if [ "$frontend_health" = "healthy" ] || [ "$frontend_health" = "no-health-check" ]; then
+                    # If backend exists, check it too
+                    if [ -n "$backend_container_id" ]; then
+                        if [ "$backend_status" = "running" ] && ([ "$backend_health" = "healthy" ] || [ "$backend_health" = "no-health-check" ]); then
+                            # If MongoDB exists, check it too
+                            if [ -n "$mongodb_container_id" ]; then
+                                if [ "$mongodb_status" = "running" ] && ([ "$mongodb_health" = "healthy" ] || [ "$mongodb_health" = "no-health-check" ]); then
+                                    success "All containers (frontend, backend, MongoDB) are running and healthy!"
+                                    break
+                                fi
+                            else
+                                success "Frontend and backend containers are running and healthy!"
+                                break
+                            fi
+                        fi
+                    else
+                        success "Frontend container is running and healthy!"
+                        break
+                    fi
                 fi
             fi
         else
-            warning "Container not found or not started yet"
+            warning "Containers not found or not started yet"
         fi
 
         if [ $attempt -eq $max_attempts ]; then
@@ -338,15 +434,44 @@ test_deployment() {
     local test_passed=0
     local test_failed=0
 
-    # Test container health
+    # Test container health (using your actual container names)
     log "Testing container health..."
-    local container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
-    if [ -n "$container_id" ] && docker exec "$container_id" wget --quiet --tries=1 --timeout=5 --spider http://localhost:80/ >/dev/null 2>&1; then
-        success "✅ Container health check passed"
+    local frontend_healthy=false
+    local backend_healthy=false
+    local mongodb_healthy=false
+
+    # Test frontend container health
+    if docker exec platypus_frontend wget --quiet --tries=1 --timeout=5 --spider http://localhost:80/health >/dev/null 2>&1; then
+        success "✅ Frontend container health check passed"
+        frontend_healthy=true
         ((test_passed++))
     else
-        warning "❌ Container health check failed"
+        warning "❌ Frontend container health check failed"
         ((test_failed++))
+    fi
+
+    # Test backend container health (if it exists)
+    if docker ps --format "{{.Names}}" | grep -q "platypus_backend"; then
+        if docker exec platypus_backend curl -f http://localhost:3000/health >/dev/null 2>&1; then
+            success "✅ Backend container health check passed"
+            backend_healthy=true
+            ((test_passed++))
+        else
+            warning "❌ Backend container health check failed"
+            ((test_failed++))
+        fi
+    fi
+
+    # Test MongoDB container health (if it exists)
+    if docker ps --format "{{.Names}}" | grep -q "platypus_mongodb"; then
+        if docker exec platypus_mongodb mongosh --eval "db.adminCommand('ping')" >/dev/null 2>&1; then
+            success "✅ MongoDB container health check passed"
+            mongodb_healthy=true
+            ((test_passed++))
+        else
+            warning "❌ MongoDB container health check failed"
+            ((test_failed++))
+        fi
     fi
 
     # Test external accessibility - Frontend
@@ -368,13 +493,34 @@ test_deployment() {
         ((test_failed++))
     fi
 
-    # Test nginx-proxy integration
+    # Test backend API accessibility
+    log "Testing backend API accessibility..."
+    if timeout 10 curl -f -s -I "https://api.$DOMAIN/health" >/dev/null 2>&1; then
+        success "✅ Backend API accessible: https://api.$DOMAIN"
+        ((test_passed++))
+    else
+        warning "❌ Backend API failed: https://api.$DOMAIN"
+        ((test_failed++))
+    fi
+
+    # Test nginx-proxy integration (using your actual network name)
     if docker network inspect nginx-proxy_default >/dev/null 2>&1; then
-        if docker network inspect nginx-proxy_default | grep -q "platypus_walk_landing_frontend"; then
+        local frontend_connected=$(docker network inspect nginx-proxy_default | grep -q "platypus_frontend" && echo "yes" || echo "no")
+        local backend_connected=$(docker network inspect nginx-proxy_default | grep -q "platypus_backend" && echo "yes" || echo "no")
+
+        if [ "$frontend_connected" = "yes" ]; then
             success "✅ Frontend connected to nginx-proxy network"
             ((test_passed++))
         else
             warning "❌ Frontend not connected to nginx-proxy network"
+            ((test_failed++))
+        fi
+
+        if [ "$backend_connected" = "yes" ]; then
+            success "✅ Backend connected to nginx-proxy network"
+            ((test_passed++))
+        else
+            warning "❌ Backend not connected to nginx-proxy network"
             ((test_failed++))
         fi
     fi
@@ -401,15 +547,25 @@ test_deployment() {
         ((test_failed++))
     fi
 
-    # Test Supabase integration (if applicable)
-    log "Testing for Supabase configuration..."
-    local js_content=$(timeout 10 curl -s "https://$DOMAIN" 2>/dev/null | grep -o "supabase" | head -1)
-    if [ -n "$js_content" ]; then
-        success "✅ Supabase integration detected"
+    # Test Google Maps integration (if applicable)
+    log "Testing for Google Maps configuration..."
+    local maps_content=$(timeout 10 curl -s "https://$DOMAIN" 2>/dev/null | grep -i -E "(maps\.googleapis|google.*maps)" | head -1)
+    if [ -n "$maps_content" ]; then
+        success "✅ Google Maps integration detected"
         ((test_passed++))
     else
-        info "ℹ️  Supabase integration not detected in page source (might be bundled)"
+        info "ℹ️  Google Maps integration not detected in page source (might be bundled)"
         # Don't count as failed since it might be compiled/bundled
+    fi
+
+    # Test MongoDB connection through backend API
+    log "Testing MongoDB connection through backend..."
+    if timeout 10 curl -s "https://api.$DOMAIN/health" | grep -q "database.*ok\|mongo.*ok\|healthy" 2>/dev/null; then
+        success "✅ Backend database connectivity confirmed"
+        ((test_passed++))
+    else
+        info "ℹ️  Backend database connectivity check inconclusive"
+        # Don't count as failed since health endpoint might not return database status
     fi
 
     # Summary
@@ -437,10 +593,21 @@ show_logs() {
     docker-compose -p "$COMPOSE_PROJECT" logs --tail=50 frontend || true
 
     echo ""
+    echo "=== Backend Container Logs ==="
+    docker-compose -p "$COMPOSE_PROJECT" logs --tail=50 backend || true
+
+    echo ""
+    echo "=== MongoDB Container Logs ==="
+    docker-compose -p "$COMPOSE_PROJECT" logs --tail=30 mongodb || true
+
+    echo ""
     echo "=== Container Statistics ==="
-    local container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
-    if [ -n "$container_id" ]; then
-        docker stats --no-stream "$container_id" || true
+    local frontend_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
+    local backend_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q backend 2>/dev/null || echo "")
+    local mongodb_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q mongodb 2>/dev/null || echo "")
+
+    if [ -n "$frontend_id" ] || [ -n "$backend_id" ] || [ -n "$mongodb_id" ]; then
+        docker stats --no-stream $frontend_id $backend_id $mongodb_id 2>/dev/null || true
     fi
 }
 
@@ -464,6 +631,7 @@ show_status() {
     echo "=== Network Information ==="
     echo "Frontend URL: https://$DOMAIN"
     echo "WWW URL: https://www.$DOMAIN"
+    echo "Backend API: https://api.$DOMAIN"
 
     echo ""
     echo "=== Repository Information ==="
@@ -478,8 +646,11 @@ show_status() {
     echo "=== Environment ==="
     echo "Project Directory: $PROJECT_DIR"
     echo "Compose Project: $COMPOSE_PROJECT"
-    echo "Supabase URL: $SUPABASE_URL"
-    echo "Google Maps API: $(echo $GOOGLE_MAPS_API_KEY | cut -c1-20)..." # Show only first 20 chars for security
+    echo "Backend API: ${VITE_BACKEND_API_URL:-'Not set'}"
+    echo "MongoDB Database: ${DB_NAME:-'Not set'}"
+    echo "Google Maps API: ${VITE_GOOGLE_MAPS_API_KEY:0:20}..." # Show only first 20 chars for security
+    echo "GA Measurement ID: ${VITE_GA_MEASUREMENT_ID:-'Not set'}"
+    echo "Environment loaded from: .env files"
     echo "Build Context: $(pwd)"
 
     echo ""
@@ -488,7 +659,10 @@ show_status() {
     echo "Stop containers: docker-compose -p $COMPOSE_PROJECT down"
     echo "Restart: docker-compose -p $COMPOSE_PROJECT restart"
     echo "Rebuild: docker-compose -p $COMPOSE_PROJECT build --no-cache"
-    echo "Shell into frontend: docker exec -it platypus_walk_landing_frontend /bin/sh"
+    echo "Shell into frontend: docker exec -it platypus_frontend /bin/sh"
+    echo "Shell into backend: docker exec -it platypus_backend /bin/sh"
+    echo "Shell into MongoDB: docker exec -it platypus_mongodb mongosh"
+    echo "MongoDB logs: docker logs platypus_mongodb"
 
     echo ""
     echo "=== Recent Backup ==="
@@ -603,17 +777,28 @@ preflight_checks() {
 check_conflicts() {
     step "Checking for conflicts with existing services..."
 
-    # Check if old platypus-landing containers are still running on same domains
-    local conflicting_containers=$(docker ps --filter "label=com.docker.compose.service=frontend" --format "{{.Names}}" | grep -v "platypus_walk_landing" || true)
+    # Check if old containers are still running on same domains (using your actual container names)
+    local existing_frontend=$(docker ps --format "{{.Names}}" | grep -E "(platypus.*frontend|platypus_walk_landing)" || true)
+    local existing_backend=$(docker ps --format "{{.Names}}" | grep -E "(platypus.*backend)" || true)
 
-    if [ -n "$conflicting_containers" ]; then
-        warning "Potential domain conflicts detected with containers:"
-        echo "$conflicting_containers"
-        warning "These may be using the same domains: $DOMAIN"
+    if [ -n "$existing_frontend" ] && [ "$existing_frontend" != "platypus_frontend" ]; then
+        warning "Potential frontend domain conflicts detected with container: $existing_frontend"
+        warning "This may cause domain conflicts on: $DOMAIN"
 
         read -p "Do you want to continue anyway? (y/N): " -r
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            error "Deployment cancelled due to conflicts"
+            error "Deployment cancelled due to frontend conflicts"
+            exit 1
+        fi
+    fi
+
+    if [ -n "$existing_backend" ] && [ "$existing_backend" != "platypus_backend" ]; then
+        warning "Potential backend API conflicts detected with container: $existing_backend"
+        warning "This may cause API conflicts on: api.$DOMAIN"
+
+        read -p "Do you want to continue anyway? (y/N): " -r
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            error "Deployment cancelled due to backend conflicts"
             exit 1
         fi
     fi
@@ -657,6 +842,7 @@ main() {
         info "🌟 Your Platypus Walk Landing Page is now live at:"
         info "   Primary: https://$DOMAIN"
         info "   WWW: https://www.$DOMAIN"
+        info "   API: https://api.$DOMAIN"
         echo ""
         show_status
     else
@@ -675,7 +861,7 @@ show_help() {
     echo "Platypus Walk Landing Page Deployment Script"
     echo "============================================="
     echo ""
-    echo "A comprehensive deployment script for the Vite + React + Supabase landing page."
+    echo "A comprehensive deployment script for the Vite + React + MongoDB landing page."
     echo ""
     echo "Usage: $0 [OPTIONS] [BRANCH]"
     echo ""
@@ -693,17 +879,19 @@ show_help() {
     echo ""
     echo "Examples:"
     echo "  $0                           # Deploy main branch"
+    echo "  $0 SEO-SEPT-2025             # Deploy SEO-SEPT-2025 branch"
     echo "  $0 develop                   # Deploy develop branch"
     echo "  $0 feature/new-ui            # Deploy feature branch"
     echo "  $0 --status                  # Show current status"
     echo "  $0 --logs                    # Deploy and show logs"
     echo "  $0 --test                    # Run tests only"
     echo "  $0 --rollback                # Rollback to previous version"
-    echo "  $0 --force main              # Force deploy main branch"
+    echo "  $0 --force SEO-SEPT-2025     # Force deploy SEO-SEPT-2025 branch"
     echo ""
     echo "Domains:"
     echo "  Frontend: https://$DOMAIN"
     echo "  WWW: https://www.$DOMAIN"
+    echo "  Backend API: https://api.$DOMAIN"
     echo ""
     echo "Environment:"
     echo "  Repository: $REPO_URL"
