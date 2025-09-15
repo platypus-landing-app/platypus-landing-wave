@@ -14,14 +14,14 @@ COMPOSE_PROJECT="platypus-walk-landing"
 DOMAIN="theplatypus.in"
 
 # Environment variables for build (from your actual .env files)
-GOOGLE_MAPS_API_KEY="AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8"
+GOOGLE_MAPS_API_KEY=""
 BACKEND_API_URL="https://api.theplatypus.in/api"
 GA_MEASUREMENT_ID="GTM-K69JPQWK"
 
 # Backend environment variables (for production)
 MONGODB_URI="mongodb://platypus:platypus_secure_password_2024@mongodb:27017"
 DB_NAME="platypus"
-BREVO_API_KEY="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"
+BREVO_API_KEY=""
 BREVO_SENDER_EMAIL="info@theplatypus.in"
 RECEIVER_EMAIL="info@theplatypus.in"
 
