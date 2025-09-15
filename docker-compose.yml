@@ -55,8 +55,7 @@ services:
       - platypus_walk_network
       - nginx-proxy_default
     depends_on:
-      mongodb:
-        condition: service_healthy
+      - mongodb
 
   # Frontend (React Vite App)
   frontend:
@@ -83,8 +82,7 @@ services:
       - platypus_walk_network
       - nginx-proxy_default
     depends_on:
-      backend:
-        condition: service_healthy
+      - backend
 
 networks:
   platypus_walk_network:
