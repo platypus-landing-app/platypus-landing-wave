@@ -10,6 +10,7 @@ import FAQ from "@/components/sections/FAQ";
 import { motion, Variants, easeOut } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
+import HeroFeatures from "@/components/sections/HeroFeatures";
 
 // Location data for SEO optimization
 const locationData: Record<
@@ -291,9 +292,7 @@ const LocationPage = ({ location }: LocationPageProps) => {
                     className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-6 lg:pt-0 mt-8 md:mt-10 lg:mt-12"
                   >
                     <Button
-                      onClick={() => {
-                        /* Add your booking handler */
-                      }}
+                      onClick={openTrialBooking}
                       size="lg"
                       className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
                         bg-blue-500 hover:bg-blue-400 hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -442,6 +441,7 @@ const LocationPage = ({ location }: LocationPageProps) => {
           </section>
 
           {/* Standard Sections */}
+          <HeroFeatures />
           <Features />
           <AreasWeServe />
           <Process />
