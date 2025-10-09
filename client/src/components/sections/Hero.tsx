@@ -80,6 +80,16 @@ const heroVariants: Variants = {
               </h1>
             </div>
 
+            {/* SEO H2 Subheading */}
+            <motion.div 
+              variants={heroVariants}
+              className="mt-4 md:mt-6"
+            >
+              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#397CEF] leading-tight">
+                Mumbai's #1 Certified Dog Walking Service with Live GPS Tracking
+              </h2>
+            </motion.div>
+
             {/* Paragraph */}
             <motion.div 
               variants={heroVariants}
@@ -131,7 +141,7 @@ const heroVariants: Variants = {
           >
             <div className="relative">
               <img
-                src={"/hero Img.png"}
+                src={"/hero-image.png"}
                 alt="Professional dog walker with golden retriever"
                 className="h-[525px] w-[502px] object-contain rounded-3xl"
               />

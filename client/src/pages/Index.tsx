@@ -16,8 +16,8 @@ const Index = () => {
     const websiteStructuredData = {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Platypus - India's #1 Certified Dog Walking Service in Mumbai",
-        "description": "Professional dog walking service with certified Guardians, live GPS tracking, and safety protocols across Mumbai areas including Bandra, Andheri, Powai, and more.",
+        "name": "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",
+        "description": "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols. Book trial walk ₹199. Serving Bandra, Andheri, Powai & more.",
         "url": "https://theplatypus.in",
         "inLanguage": "en-IN",
         "isPartOf": {
@@ -31,31 +31,43 @@ const Index = () => {
         },
         "primaryImageOfPage": {
             "@type": "ImageObject",
-            "url": "https://theplatypus.in/hero Img.png"
+            "url": "https://theplatypus.in/hero-image.png"
         }
     };
 
     return (
         <>
             <Helmet>
-                {/* Primary Meta Tags */}
-                <title>Platypus - India's #1 Certified Dog Walking Service in Mumbai | Professional Pet Care</title>
-                <meta name="title" content="Platypus - India's #1 Certified Dog Walking Service in Mumbai | Professional Pet Care" />
-                <meta name="description" content="Book certified dog walkers in Mumbai with live GPS tracking. Professional pet walking service in Bandra, Andheri, Powai & more. Safe, reliable Guardians for your dog's daily walks. Book trial walk ₹199." />
+                {/* Primary Meta Tags - FIXED LENGTH */}
+                <title>Professional Dog Walking Service in Mumbai | Platypus Certified Guardians</title>
+                <meta name="title" content="Professional Dog Walking Service in Mumbai | Platypus Certified Guardians" />
+                <meta name="description" content="Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols. Book trial walk ₹199. Serving Bandra, Andheri, Powai & more." />
 
-                {/* Open Graph / Facebook */}
+                {/* Enhanced SEO Meta Tags */}
+                <meta name="keywords" content="dog walking Mumbai, certified dog walkers, professional pet care Mumbai, dog walking service Bandra, pet walking Andheri, GPS tracking dog walk, trusted dog walkers Mumbai" />
+                <meta name="geo.region" content="IN-MH" />
+                <meta name="geo.placename" content="Mumbai" />
+                <meta name="geo.position" content="19.0760;72.8777" />
+                <meta name="ICBM" content="19.0760, 72.8777" />
+                <meta name="author" content="Platypus - Third Planet Solutions Private Limited" />
+                <meta name="publisher" content="Platypus" />
+                <meta name="language" content="en-IN" />
+
+                {/* Open Graph / Facebook - FIXED IMAGE REFERENCES */}
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://theplatypus.in/" />
-                <meta property="og:title" content="Platypus - India's #1 Certified Dog Walking Service in Mumbai" />
-                <meta property="og:description" content="Book certified dog walkers with live GPS tracking. Professional pet walking service across Mumbai. Safe, reliable Guardians for your dog's daily walks." />
-                <meta property="og:image" content="https://theplatypus.in/hero Img.png" />
+                <meta property="og:title" content="Professional Dog Walking Service in Mumbai | Platypus Certified Guardians" />
+                <meta property="og:description" content="Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Powai & more areas." />
+                <meta property="og:image" content="https://theplatypus.in/hero-image.png" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
 
-                {/* Twitter */}
+                {/* Twitter - FIXED IMAGE REFERENCES */}
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content="https://theplatypus.in/" />
-                <meta property="twitter:title" content="Platypus - India's #1 Certified Dog Walking Service in Mumbai" />
-                <meta property="twitter:description" content="Book certified dog walkers with live GPS tracking. Professional pet walking service across Mumbai." />
-                <meta property="twitter:image" content="https://theplatypus.in/hero Img.png" />
+                <meta property="twitter:title" content="Professional Dog Walking Service in Mumbai | Platypus Certified Guardians" />
+                <meta property="twitter:description" content="Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Mumbai." />
+                <meta property="twitter:image" content="https://theplatypus.in/hero-image.png" />
 
                 {/* Additional SEO Meta */}
                 <link rel="canonical" href="https://theplatypus.in/" />
