@@ -23,7 +23,7 @@ export const blogPosts: BlogPost[] = [
         date: "2025-10-12",
         readTime: "4 min read",
         category: "Pet Care Tips",
-        image: "/guardian online.png",
+        image: "/why-dog-walking-service.png",
         metaDescription: "Discover why professional dog walking services are essential for busy pet parents in metro cities. Learn how Platypus helps keep your dog healthy, happy, and safe.",
         keywords: [
             "dog walking service",
@@ -67,7 +67,7 @@ Give your pup the care they deserve. With **Platypus**, every step is a step tow
         date: "2025-10-10",
         readTime: "5 min read",
         category: "Pet Health",
-        image: "/hero-image.png",
+        image: "/science-of-dog-walking.png",
         metaDescription: "Discover the science behind dog walking and how it benefits your dog's physical health, mental stimulation, and emotional well-being. Learn from Platypus experts.",
         keywords: [
             "dog walking benefits",
