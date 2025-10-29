@@ -54,6 +54,19 @@ export default defineConfig({
           helmet: ['react-helmet-async'],
           query: ['@tanstack/react-query'],
         },
+        // Optimize asset file names
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name?.split('.');
+          const ext = info?.[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext ?? '')) {
+            return `assets/images/[name]-[hash][extname]`;
+          } else if (/woff2?|ttf|otf|eot/i.test(ext ?? '')) {
+            return `assets/fonts/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     minify: 'terser',
@@ -61,13 +74,29 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+        passes: 2, // Run minification twice for better results
+        unsafe_arrows: true,
+        unsafe_methods: true,
+        dead_code: true,
+        conditionals: true,
+        evaluate: true,
+        booleans: true,
+        loops: true,
+        unused: true,
+        hoist_funs: true,
+        hoist_vars: false,
+        if_return: true,
+        join_vars: true,
+        reduce_vars: true,
       },
       mangle: {
         safari10: true,
+        toplevel: true,
       },
       format: {
         comments: false,
+        ecma: 2020,
       },
     },
     cssCodeSplit: true,
@@ -76,8 +105,28 @@ export default defineConfig({
     chunkSizeWarningLimit: 500,
     assetsInlineLimit: 4096, // Inline assets < 4kb
     reportCompressedSize: false, // Faster builds
+    target: 'es2020',
+    modulePreload: {
+      polyfill: false, // Remove if you need to support older browsers
+    },
   },
   server: {
     cors: true,
+    hmr: {
+      overlay: true,
+    },
+  },
+  preview: {
+    port: 4173,
+    strictPort: true,
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'framer-motion',
+    ],
+    exclude: ['@axe-core/react'],
   },
 });

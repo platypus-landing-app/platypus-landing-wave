@@ -65,6 +65,8 @@ const About = () => {
                     <img
                       src={feature.icon}
                       alt={feature.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-5 h-5 object-contain"
                     />
                   </div>
@@ -107,6 +109,8 @@ const About = () => {
   <img
     src="/aboutus contact mobile.png"
     alt="Platypus App Mobile Preview"
+    loading="lazy"
+    decoding="async"
     className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
   />
 
@@ -114,6 +118,8 @@ const About = () => {
   <img
     src={"/aboutus contact.png"}
     alt="Platypus App Preview"
+    loading="lazy"
+    decoding="async"
     className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
   />
 </div>

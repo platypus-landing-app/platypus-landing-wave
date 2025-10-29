@@ -70,10 +70,12 @@ const Process = () => {
               {/* image container */}
               <div className="relative mb-12 transition-transform duration-300">
                 <div className={`${step.imageSize} mx-auto flex items-center justify-center relative`}>
-                  <img 
-                    src={step.image} 
-                    className={`absolute ${step.imagePosition} max-w-full max-h-full object-contain`} 
-                    alt={step.title} 
+                  <img
+                    src={step.image}
+                    loading="lazy"
+                    decoding="async"
+                    className={`absolute ${step.imagePosition} max-w-full max-h-full object-contain`}
+                    alt={step.title}
                   />
                 </div>
                 <div className="absolute top-[35px] left-1/2 transform -translate-x-1/2

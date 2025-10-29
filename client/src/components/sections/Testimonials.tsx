@@ -88,12 +88,14 @@ const Testimonials = () => {
 
     {/* Image */}
     <div
-      className={`relative w-full h-[250px] sm:h-[280px] md:h-[300px] lg:h-[300px] 
+      className={`relative w-full h-[250px] sm:h-[280px] md:h-[300px] lg:h-[300px]
         ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}
     >
       <img
         src={testimonial.image}
         alt={testimonial.name}
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover"
       />
 
@@ -124,6 +126,8 @@ const Testimonials = () => {
         <img
           src="/testimonial bg.png"
           alt="background logo"
+          loading="lazy"
+          decoding="async"
           className="w-[80px] md:w-[120px]"
         />
       </div>
@@ -131,6 +135,8 @@ const Testimonials = () => {
         <img
           src="/testimonial bg.png"
           alt="background logo secondary"
+          loading="lazy"
+          decoding="async"
           className="w-[60px] md:w-[80px]"
         />
       </div>
@@ -168,11 +174,13 @@ const Testimonials = () => {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main CTA Image */}
-        <div className="-translate-y-[90px]"> 
+        <div className="-translate-y-[90px]">
         <div className="text-center">
           <img
             src={ctaImage}
             alt="Dog walker with golden retriever"
+            loading="lazy"
+            decoding="async"
             className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
           />
         </div>
@@ -193,7 +201,7 @@ const Testimonials = () => {
         href="tel:+918451880963"
         className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
       >
-        <img src="/phone icon2.png" alt="Phone icon" className="w-5 h-5 text-blue-600" />
+        <img src="/phone icon2.png" alt="Phone icon" loading="lazy" decoding="async" className="w-5 h-5 text-blue-600" />
         <span className="text-[16px] leading-[24px] text-[#686868]">
           Call us: +91 84518 80963
         </span>
@@ -210,10 +218,10 @@ const Testimonials = () => {
       </p>
       <button
   onClick={openTrialBooking}
-  className="font-[Funnel_Sans] flex items-center space-x-2 text-blue-500 
+  className="font-[Funnel_Sans] flex items-center space-x-2 text-blue-500
     hover:text-blue-400 transition-all duration-300 hover:scale-105 hover:drop-shadow-md"
 >
-  <img src="/phone icon.png" className="w-6 h-6" alt="Phone Icon" />
+  <img src="/phone icon.png" loading="lazy" decoding="async" className="w-6 h-6" alt="Phone Icon" />
   <span className="text-[16px] leading-[24px]">
     Join our community today
   </span>

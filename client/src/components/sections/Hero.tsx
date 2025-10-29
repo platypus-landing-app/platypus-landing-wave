@@ -124,7 +124,7 @@ const heroVariants: Variants = {
            transition-all duration-300 hover:scale-105"
               >
                 <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#397CEF] to-[#709DEB] flex items-center rounded-full justify-center">
-                  <img src="/Live.png" alt="Live tracking indicator" className="w-4 md:w-5 h-4 md:h-5 text-white" />
+                  <img src="/Live.png" alt="Live tracking indicator" loading="lazy" decoding="async" className="w-4 md:w-5 h-4 md:h-5 text-white" />
                 </div>
                 <div className="text-left">
                   <div className="font-semibold text-xs md:text-sm text-[#000000]">Live Now</div>
@@ -142,7 +142,7 @@ const heroVariants: Variants = {
                 alt="Professional dog walker with golden retriever"
                 width="502"
                 height="525"
-                fetchpriority="high"
+                fetchPriority="high"
                 className="h-[525px] w-[502px] object-contain rounded-3xl"
               />
               <motion.div

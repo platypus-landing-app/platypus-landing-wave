@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Analytics 4 - Optimized single load -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E00405X4KK"></script>
+    <!-- Google Analytics 4 - Deferred loading for better performance -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-E00405X4KK', {
-            page_title: 'Platypus - Dog Walking Service Mumbai',
-            send_page_view: true
+        // Defer GA loading until after page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-E00405X4KK';
+                script.async = true;
+                document.head.appendChild(script);
+
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-E00405X4KK', {
+                    page_title: 'Platypus - Dog Walking Service Mumbai',
+                    send_page_view: true
+                });
+            }, 2000); // Delay by 2 seconds after page load
         });
     </script>
 
@@ -344,36 +353,44 @@
     <meta name="format-detection" content="telephone=yes" />
 
     <!-- Preload critical LCP image with high priority -->
-    <link rel="preload" href="/hero-image.png" as="image" fetchpriority="high" />
-    <link rel="preload" href="/logo.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/hero-image.png" as="image" fetchpriority="high" type="image/png" />
+    <link rel="preload" href="/logo.png" as="image" fetchpriority="high" type="image/png" />
 
-    <!-- Performance: DNS prefetch and preconnect for external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="//maps.googleapis.com" />
+    <!-- Preload critical CSS and JS -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="preload" href="/src/index.css" as="style" />
+
+    <!-- Performance: DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
-
-    <!-- Optimized font loading with font-display swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Performance: HTTP Client Hints -->
     <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" />
 
-    <!-- Performance: Reduce render blocking -->
-    <link rel="modulepreload" href="/src/main.tsx" />
-
-    <!-- Google Maps API - Deferred loading for better performance -->
+    <!-- Google Maps API - Idle loading for better performance -->
     <script>
-      // Load Google Maps after page load
-      window.addEventListener('load', function() {
+      // Load Google Maps when browser is idle or after user interaction
+      function loadGoogleMaps() {
+        if (window.googleMapsLoaded) return;
+        window.googleMapsLoaded = true;
+
         const script = document.createElement('script');
         script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8&libraries=places&region=IN&loading=async';
         script.async = true;
         script.defer = true;
         document.head.appendChild(script);
+      }
+
+      // Load on idle or after 3 seconds
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGoogleMaps, { timeout: 3000 });
+      } else {
+        setTimeout(loadGoogleMaps, 3000);
+      }
+
+      // Also load on first user interaction
+      ['click', 'touchstart', 'scroll'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleMaps, { once: true, passive: true });
       });
     </script>
 </head>
