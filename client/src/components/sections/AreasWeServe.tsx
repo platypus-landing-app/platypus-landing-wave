@@ -1,45 +1,17 @@
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
+import { Link } from "react-router-dom";
+import { locations } from "@/data/locations";
 
 const AreasWeServe = () => {
   const { openTrialBooking } = useBooking();
-  const locations = [
-    "Bandra",
-    "Andheri",
-    "Powai",
-    "Worli",
-    "Lower Parel",
-    "Colaba",
-    "Juhu",
-    "Versova",
-    "Malad",
-    "Borivali",
-    "Kandivali",
-    "Santacruz",
-    "Khar",
-    "Byculla",
-    "Dadar",
-    "Matunga",
-    "Kurla",
-    "Chembur",
-    "Ghatkopar",
-    "Mulund",
-    "Thane",
-    "Navi Mumbai",
-    "Vile Parle",
-    "Goregaon",
-  ];
 
-  const handleScrollTo = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  // Convert locations object to array with slug for routing
+  const locationsList = Object.values(locations).map((loc) => ({
+    name: loc.name,
+    slug: loc.slug,
+  }));
 
   return (
     <section id="areas" className="relative py-24 bg-white overflow-hidden">
@@ -82,21 +54,21 @@ const AreasWeServe = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
-          {locations.map((location, index) => (
-            <button
-  key={index}
-  className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 sm:py-3 
-             bg-[#B4B4B466] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600 
-             transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg 
-             border border-gray-100 hover:scale-105"
-  style={{ animationDelay: `${index * 0.05}s` }}
->
-  <MapPin className="w-4 h-4 text-blue-600" />
-  <span className="font-segoe text-[16px] leading-[24px] font-normal text-center">
-    {location}
-  </span>
-</button>
-
+          {locationsList.map((location, index) => (
+            <Link
+              key={index}
+              to={`/dog-walking-${location.slug}`}
+              className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 sm:py-3
+                         bg-[#B4B4B466] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600
+                         transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg
+                         border border-gray-100 hover:scale-105"
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              <MapPin className="w-4 h-4 text-blue-600" />
+              <span className="font-segoe text-[16px] leading-[24px] font-normal text-center">
+                {location.name}
+              </span>
+            </Link>
           ))}
         </div>
 

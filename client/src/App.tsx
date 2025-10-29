@@ -59,6 +59,22 @@ const App = () => (
                                 <Route path="/dog-walking-thane" element={<LocationPage location="thane" />} />
                                 <Route path="/dog-walking-lower-parel" element={<LocationPage location="lower-parel" />} />
                                 <Route path="/dog-walking-colaba" element={<LocationPage location="colaba" />} />
+                                <Route path="/dog-walking-versova" element={<LocationPage location="versova" />} />
+                                <Route path="/dog-walking-malad" element={<LocationPage location="malad" />} />
+                                <Route path="/dog-walking-borivali" element={<LocationPage location="borivali" />} />
+                                <Route path="/dog-walking-kandivali" element={<LocationPage location="kandivali" />} />
+                                <Route path="/dog-walking-santacruz" element={<LocationPage location="santacruz" />} />
+                                <Route path="/dog-walking-khar" element={<LocationPage location="khar" />} />
+                                <Route path="/dog-walking-byculla" element={<LocationPage location="byculla" />} />
+                                <Route path="/dog-walking-dadar" element={<LocationPage location="dadar" />} />
+                                <Route path="/dog-walking-matunga" element={<LocationPage location="matunga" />} />
+                                <Route path="/dog-walking-kurla" element={<LocationPage location="kurla" />} />
+                                <Route path="/dog-walking-chembur" element={<LocationPage location="chembur" />} />
+                                <Route path="/dog-walking-ghatkopar" element={<LocationPage location="ghatkopar" />} />
+                                <Route path="/dog-walking-mulund" element={<LocationPage location="mulund" />} />
+                                <Route path="/dog-walking-navi-mumbai" element={<LocationPage location="navi-mumbai" />} />
+                                <Route path="/dog-walking-vile-parle" element={<LocationPage location="vile-parle" />} />
+                                <Route path="/dog-walking-goregaon" element={<LocationPage location="goregaon" />} />
 
                                 {/* 404 - MUST BE LAST */}
                                 <Route path="*" element={<NotFound />} />

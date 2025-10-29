@@ -11,83 +11,7 @@ import { motion, Variants, easeOut } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
 import HeroFeatures from "@/components/sections/HeroFeatures";
-
-// Location data for SEO optimization
-const locationData: Record<
-  string,
-  {
-    name: string;
-    displayName: string;
-    description: string;
-    landmarks: string[];
-    neighborhoods: string[];
-  }
-> = {
-  bandra: {
-    name: "Bandra",
-    displayName: "Bandra West & East",
-    description:
-      "professional dog walking service in Bandra with certified Guardians covering Bandra West, Bandra East, and surrounding areas",
-    landmarks: ["Carter Road", "Bandstand", "Linking Road", "Hill Road"],
-    neighborhoods: ["Bandra West", "Bandra East", "Pali Hill", "Khar"],
-  },
-  andheri: {
-    name: "Andheri",
-    displayName: "Andheri West & East",
-    description:
-      "certified dog walking service in Andheri covering Andheri West, Andheri East, and nearby localities",
-    landmarks: ["Lokhandwala", "Versova", "Oshiwara", "Jogeshwari"],
-    neighborhoods: ["Andheri West", "Andheri East", "Versova", "Oshiwara"],
-  },
-  powai: {
-    name: "Powai",
-    displayName: "Powai",
-    description:
-      "professional dog walking service in Powai with trained Guardians for Powai Lake area and surrounding neighborhoods",
-    landmarks: ["Powai Lake", "Hiranandani Gardens", "IIT Bombay Area"],
-    neighborhoods: ["Hiranandani", "Powai Lake Area", "Chandivali"],
-  },
-  worli: {
-    name: "Worli",
-    displayName: "Worli",
-    description:
-      "certified dog walking service in Worli with GPS tracking and trained Guardians",
-    landmarks: ["Worli Sea Face", "Nehru Planetarium", "Phoenix Mills"],
-    neighborhoods: ["Worli", "Lower Parel", "Prabhadevi"],
-  },
-  juhu: {
-    name: "Juhu",
-    displayName: "Juhu",
-    description:
-      "professional dog walking service in Juhu Beach area with certified pet care Guardians",
-    landmarks: ["Juhu Beach", "ISKCON Temple", "Juhu Chowpatty"],
-    neighborhoods: ["Juhu", "Vile Parle", "Santacruz"],
-  },
-  thane: {
-    name: "Thane",
-    displayName: "Thane",
-    description:
-      "certified dog walking service in Thane with professional Guardians and live GPS tracking",
-    landmarks: ["Upvan Lake", "Viviana Mall", "Yeoor Hills"],
-    neighborhoods: ["Ghodbunder Road", "Majiwada", "Kasarvadavali"],
-  },
-  "lower-parel": {
-    name: "Lower Parel",
-    displayName: "Lower Parel",
-    description:
-      "professional dog walking service in Lower Parel with trained certified Guardians",
-    landmarks: ["Phoenix Mills", "High Street Phoenix", "Kamala Mills"],
-    neighborhoods: ["Lower Parel", "Worli", "Prabhadevi"],
-  },
-  colaba: {
-    name: "Colaba",
-    displayName: "Colaba",
-    description:
-      "certified dog walking service in Colaba and South Mumbai with professional pet care",
-    landmarks: ["Gateway of India", "Colaba Causeway", "Regal Cinema"],
-    neighborhoods: ["Colaba", "Cuffe Parade", "Navy Nagar"],
-  },
-};
+import { locations, type LocationData } from "@/data/locations";
 
 interface LocationPageProps {
   location: string;
@@ -95,7 +19,7 @@ interface LocationPageProps {
 
 const LocationPage = ({ location }: LocationPageProps) => {
   const { openTrialBooking } = useBooking();
-  const locationInfo = locationData[location] || locationData["bandra"];
+  const locationInfo = locations[location] || locations["bandra"];
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -129,7 +53,22 @@ const LocationPage = ({ location }: LocationPageProps) => {
         />
         <meta
           name="keywords"
-          content={`dog walking ${location}, dog walker ${locationInfo.name}, pet care ${locationInfo.name}, certified dog walkers ${location}, professional dog walking ${locationInfo.name}`}
+          content={`dog walking ${location}, dog walker ${locationInfo.name}, pet care ${locationInfo.name}, certified dog walkers ${location}, professional dog walking ${locationInfo.name}, dog walker near me ${locationInfo.name}`}
+        />
+
+        {/* Geo Meta Tags */}
+        <meta name="geo.region" content="IN-MH" />
+        <meta
+          name="geo.placename"
+          content={`${locationInfo.name}, Mumbai`}
+        />
+        <meta
+          name="geo.position"
+          content={`${locationInfo.coordinates.lat};${locationInfo.coordinates.lng}`}
+        />
+        <meta
+          name="ICBM"
+          content={`${locationInfo.coordinates.lat}, ${locationInfo.coordinates.lng}`}
         />
 
         {/* Open Graph */}
