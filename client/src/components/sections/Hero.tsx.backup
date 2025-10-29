@@ -13,18 +13,18 @@ const Hero = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.1,
       },
     },
   };
 
 const heroVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.3,
       ease: easeOut,
     },
   },
@@ -39,8 +39,7 @@ const heroVariants: Variants = {
   return (
     <section
       id="home"
-      className="relative bg-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden bg-cover bg-center bg-no-repeat lg:min-h-screen"
-      style={{ backgroundImage: `url("/Ellipse 25.png")` }}
+      className="relative bg-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden lg:min-h-screen"
     >
 
 

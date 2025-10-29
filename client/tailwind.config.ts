@@ -21,8 +21,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				funnel: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-				rounded: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+				funnel: ['"Funnel Sans"', 'sans-serif'],
+				rounded: ['Nunito', 'sans-serif'],
 				segoe: ['"Segoe UI"', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Arial', 'sans-serif'],
 			},
 			colors: {
