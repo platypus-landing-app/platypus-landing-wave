@@ -13,19 +13,19 @@ const Hero = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.1,
       },
     },
   };
 
 const heroVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
-      ease: easeOut, // ✅ correct
+      duration: 0.3,
+      ease: easeOut,
     },
   },
 };
@@ -39,8 +39,7 @@ const heroVariants: Variants = {
   return (
     <section
       id="home"
-      className="relative bg-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden bg-cover bg-center bg-no-repeat lg:min-h-screen"
-      style={{ backgroundImage: `url("/Ellipse 25.png")` }}
+      className="relative bg-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden lg:min-h-screen"
     >
 
 
@@ -124,7 +123,7 @@ const heroVariants: Variants = {
            transition-all duration-300 hover:scale-105"
               >
                 <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#397CEF] to-[#709DEB] flex items-center rounded-full justify-center">
-                  <img src="/Live.png" className="w-4 md:w-5 h-4 md:h-5 text-white" />
+                  <img src="/Live.png" alt="Live tracking indicator" className="w-4 md:w-5 h-4 md:h-5 text-white" />
                 </div>
                 <div className="text-left">
                   <div className="font-semibold text-xs md:text-sm text-[#000000]">Live Now</div>
@@ -134,15 +133,15 @@ const heroVariants: Variants = {
             </motion.div>
           </motion.div>
 
-          {/* Right Image */}
-          <motion.div 
-            variants={heroVariants}
-            className="lg:flex justify-end items-center hidden"
-          >
+          {/* Right Image - Optimized for LCP */}
+          <div className="lg:flex justify-end items-center hidden">
             <div className="relative">
               <img
-                src={"/hero-image.png"}
+                src="/hero-image.png"
                 alt="Professional dog walker with golden retriever"
+                width="502"
+                height="525"
+                fetchpriority="high"
                 className="h-[525px] w-[502px] object-contain rounded-3xl"
               />
               <motion.div
@@ -152,7 +151,7 @@ const heroVariants: Variants = {
                 className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-3xl -z-10"
               ></motion.div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
