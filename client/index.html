@@ -360,9 +360,14 @@
     <link rel="modulepreload" href="/src/main.tsx" />
     <link rel="preload" href="/src/index.css" as="style" />
 
-    <!-- Performance: DNS prefetch for external resources -->
+    <!-- Performance: DNS prefetch and preconnect for external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+    <!-- Optimized font loading with font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Performance: HTTP Client Hints -->
     <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" />

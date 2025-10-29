@@ -21,38 +21,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				funnel: [
-					'system-ui',
-					'-apple-system',
-					'BlinkMacSystemFont',
-					'"Segoe UI"',
-					'Roboto',
-					'Oxygen',
-					'Ubuntu',
-					'Cantarell',
-					'"Helvetica Neue"',
-					'Arial',
-					'sans-serif',
-					'"Apple Color Emoji"',
-					'"Segoe UI Emoji"',
-					'"Segoe UI Symbol"'
-				],
-				rounded: [
-					'system-ui',
-					'-apple-system',
-					'BlinkMacSystemFont',
-					'"Segoe UI"',
-					'Roboto',
-					'sans-serif'
-				],
-				segoe: [
-					'"Segoe UI"',
-					'-apple-system',
-					'BlinkMacSystemFont',
-					'Roboto',
-					'Arial',
-					'sans-serif'
-				],
+				funnel: ['"Funnel Sans"', 'sans-serif'],
+				rounded: ['Nunito', 'sans-serif'],
+				segoe: ['"Segoe UI"', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
