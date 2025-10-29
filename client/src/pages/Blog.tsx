@@ -5,6 +5,7 @@ import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BlogCard from '@/components/blog/BlogCard';
 import { blogPosts } from '@/data/blogPosts';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 const Blog = () => {
     const structuredData = {
@@ -60,6 +61,12 @@ const Blog = () => {
 
             <div className="min-h-screen bg-white">
                 <Navigation />
+
+                <Breadcrumb
+                    items={[
+                        { label: "Blog" },
+                    ]}
+                />
 
                 <main className="pt-[70px] md:pt-[80px]">
                     {/* Hero Section - Matching landing page style */}

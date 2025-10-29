@@ -35,6 +35,68 @@ const Index = () => {
         }
     };
 
+    // LocalBusiness with Reviews and AggregateRating
+    const localBusinessStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Platypus Dog Walking Service",
+        "image": "https://theplatypus.in/hero-image.png",
+        "description": "Professional dog walking service in Mumbai with certified Guardians, live GPS tracking, and comprehensive safety protocols.",
+        "url": "https://theplatypus.in",
+        "telephone": "+918451880963",
+        "email": "info@theplatypus.in",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 19.0760,
+            "longitude": 72.8777
+        },
+        "priceRange": "₹199 - ₹7800",
+        "openingHours": "Mo-Su 06:00-22:00",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "127"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": {
+                    "@type": "Person",
+                    "name": "Sneha Pandey"
+                },
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                },
+                "reviewBody": "I would definitely recommend Platypus. The Guardians provided by your team are well-trained, trustworthy & clearly care about the pet they walk.",
+                "datePublished": "2024-12-15"
+            },
+            {
+                "@type": "Review",
+                "author": {
+                    "@type": "Person",
+                    "name": "Tanusri Maitra"
+                },
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                },
+                "reviewBody": "So far, I am very happy with the service. Regular, Punctual, Proper handling of the child, and the other best practices are picking up poop. I am so happy with the kind of walk my little one is getting",
+                "datePublished": "2025-01-10"
+            }
+        ]
+    };
+
     return (
         <>
             <Helmet>
@@ -76,6 +138,9 @@ const Index = () => {
                 {/* Structured Data */}
                 <script type="application/ld+json">
                     {JSON.stringify(websiteStructuredData)}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify(localBusinessStructuredData)}
                 </script>
 
                 {/* Hreflang for regional targeting */}

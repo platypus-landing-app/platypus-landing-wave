@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
 import HeroFeatures from "@/components/sections/HeroFeatures";
 import { locations, type LocationData } from "@/data/locations";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { NearbyAreas } from "@/components/sections/NearbyAreas";
 
 interface LocationPageProps {
   location: string;
@@ -29,6 +31,18 @@ const LocationPage = ({ location }: LocationPageProps) => {
     url: `https://theplatypus.in/dog-walking-${location}`,
     telephone: "+918451880963",
     email: "info@theplatypus.in",
+    image: "https://theplatypus.in/hero-image.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: locationInfo.name,
+      addressRegion: "Mumbai, Maharashtra",
+      addressCountry: "IN"
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: locationInfo.coordinates.lat,
+      longitude: locationInfo.coordinates.lng
+    },
     areaServed: {
       "@type": "Place",
       name: locationInfo.name,
@@ -38,6 +52,44 @@ const LocationPage = ({ location }: LocationPageProps) => {
       },
     },
     priceRange: "₹199 - ₹7800",
+    openingHours: "Mo-Su 06:00-22:00",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: "127"
+    },
+    review: [
+      {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: "Sneha Pandey"
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5"
+        },
+        reviewBody: "I would definitely recommend Platypus. The Guardians provided by your team are well-trained, trustworthy & clearly care about the pet they walk.",
+        datePublished: "2024-12-15"
+      },
+      {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: "Tanusri Maitra"
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5"
+        },
+        reviewBody: "So far, I am very happy with the service. Regular, Punctual, Proper handling of the child, and the other best practices are picking up poop. I am so happy with the kind of walk my little one is getting",
+        datePublished: "2025-01-10"
+      }
+    ]
   };
 
   return (
@@ -99,6 +151,13 @@ const LocationPage = ({ location }: LocationPageProps) => {
 
       <div className="min-h-screen">
         <Navigation />
+
+        <Breadcrumb
+          items={[
+            { label: "Dog Walking Services", href: "/#areas" },
+            { label: `${locationInfo.name} Dog Walking` },
+          ]}
+        />
 
         <main id="main-content">
           {/* Location-Specific Hero Section */}
@@ -386,6 +445,14 @@ const LocationPage = ({ location }: LocationPageProps) => {
           <Process />
           <Testimonials />
           <FAQ />
+
+          {/* Nearby Areas Section - Internal Linking for SEO */}
+          {locationInfo.nearbyAreas && locationInfo.nearbyAreas.length > 0 && (
+            <NearbyAreas
+              currentLocation={location}
+              nearbyLocations={locationInfo.nearbyAreas}
+            />
+          )}
         </main>
 
         <Footer />

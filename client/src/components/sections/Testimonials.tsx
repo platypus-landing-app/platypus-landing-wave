@@ -193,7 +193,7 @@ const Testimonials = () => {
         href="tel:+918451880963"
         className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
       >
-        <img src="/phone icon2.png" className="w-5 h-5 text-blue-600" />
+        <img src="/phone icon2.png" alt="Phone icon" className="w-5 h-5 text-blue-600" />
         <span className="text-[16px] leading-[24px] text-[#686868]">
           Call us: +91 84518 80963
         </span>

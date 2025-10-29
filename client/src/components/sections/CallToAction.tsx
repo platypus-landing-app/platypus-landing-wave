@@ -40,7 +40,7 @@ const CallToAction = () => {
                 href="tel:+918451880963"
                 className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
               >
-                <img src="/phone icon2.png"  className="w-5 h-5 text-blue-600" />
+                <img src="/phone icon2.png" alt="Phone icon" className="w-5 h-5 text-blue-600" />
                 <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
                   Call us: +91 84518 80963
                 </span>
@@ -59,7 +59,7 @@ const CallToAction = () => {
                 onClick={() => handleScrollTo("#testimonials")}
                 className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
               >
-                <img src="/phone icon.png" className="w-6 h-6 text-blue-600" />
+                <img src="/phone icon.png" alt="Community icon" className="w-6 h-6 text-blue-600" />
                 <span className="font-['Segoe_UI_Symbol'] text-[16px] leading-[24px] text-[#686868]">
                   Join our community today
                 </span>

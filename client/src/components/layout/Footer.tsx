@@ -24,7 +24,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6 flex flex-col items-start relative top-[-15px]">
             <div className="flex flex-col items-center gap-0">
-              <img src="/footer.png" className="h-[100px]" /> {/* width badhaya */}
+              <img src="/footer.png" alt="Platypus - India's Dog Walking Experts" className="h-[100px]" />
             </div>
             
             <p className="font-['Funnel_Sans'] relative font-normal text-[16px] leading-[30px] text-gray-700  w-[300px] top-[-30px]">

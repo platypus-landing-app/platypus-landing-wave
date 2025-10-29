@@ -9,6 +9,7 @@ export interface LocationData {
   landmarks: string[];
   neighborhoods: string[];
   coordinates: { lat: number; lng: number };
+  nearbyAreas: string[]; // Slugs of geographically nearby locations
 }
 
 export const locations: Record<string, LocationData> = {
@@ -21,6 +22,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Carter Road", "Bandstand", "Linking Road", "Hill Road"],
     neighborhoods: ["Bandra West", "Bandra East", "Pali Hill", "Khar"],
     coordinates: { lat: 19.0596, lng: 72.8295 },
+    nearbyAreas: ["khar", "santacruz", "mahim", "worli", "andheri", "juhu"],
   },
   andheri: {
     name: "Andheri",
@@ -31,6 +33,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Lokhandwala", "Versova", "Oshiwara", "Jogeshwari"],
     neighborhoods: ["Andheri West", "Andheri East", "Versova", "Oshiwara"],
     coordinates: { lat: 19.1136, lng: 72.8697 },
+    nearbyAreas: ["versova", "juhu", "vile-parle", "santacruz", "goregaon", "malad"],
   },
   powai: {
     name: "Powai",
@@ -41,6 +44,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Powai Lake", "Hiranandani Gardens", "IIT Bombay Area"],
     neighborhoods: ["Hiranandani", "Powai Lake Area", "Chandivali"],
     coordinates: { lat: 19.1176, lng: 72.9060 },
+    nearbyAreas: ["ghatkopar", "kurla", "mulund", "chembur", "thane"],
   },
   worli: {
     name: "Worli",
@@ -51,6 +55,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Worli Sea Face", "Nehru Planetarium", "Phoenix Mills"],
     neighborhoods: ["Worli", "Lower Parel", "Prabhadevi"],
     coordinates: { lat: 19.0176, lng: 72.8125 },
+    nearbyAreas: ["lower-parel", "bandra", "dadar", "matunga", "byculla", "colaba"],
   },
   juhu: {
     name: "Juhu",
@@ -61,6 +66,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Juhu Beach", "ISKCON Temple", "Juhu Chowpatty"],
     neighborhoods: ["Juhu", "Vile Parle", "Santacruz"],
     coordinates: { lat: 19.0990, lng: 72.8265 },
+    nearbyAreas: ["bandra", "versova", "santacruz", "andheri", "vile-parle", "khar"],
   },
   thane: {
     name: "Thane",
@@ -71,6 +77,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Upvan Lake", "Viviana Mall", "Yeoor Hills"],
     neighborhoods: ["Ghodbunder Road", "Majiwada", "Kasarvadavali"],
     coordinates: { lat: 19.2183, lng: 72.9781 },
+    nearbyAreas: ["mulund", "ghatkopar", "powai", "navi-mumbai"],
   },
   "lower-parel": {
     name: "Lower Parel",
@@ -81,6 +88,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Phoenix Mills", "High Street Phoenix", "Kamala Mills"],
     neighborhoods: ["Lower Parel", "Worli", "Prabhadevi"],
     coordinates: { lat: 19.0008, lng: 72.8300 },
+    nearbyAreas: ["worli", "dadar", "byculla", "matunga", "colaba"],
   },
   colaba: {
     name: "Colaba",
@@ -91,6 +99,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Gateway of India", "Colaba Causeway", "Regal Cinema"],
     neighborhoods: ["Colaba", "Cuffe Parade", "Navy Nagar"],
     coordinates: { lat: 18.9220, lng: 72.8347 },
+    nearbyAreas: ["worli", "lower-parel", "byculla"],
   },
   versova: {
     name: "Versova",
@@ -101,6 +110,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Versova Beach", "Versova Fort", "Seven Bungalows"],
     neighborhoods: ["Versova", "Seven Bungalows", "Yari Road", "D.N. Nagar"],
     coordinates: { lat: 19.1318, lng: 72.8131 },
+    nearbyAreas: ["andheri", "juhu", "goregaon", "malad"],
   },
   malad: {
     name: "Malad",
@@ -111,6 +121,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Inorbit Mall", "Mindspace", "Malad Station", "Infiniti Mall"],
     neighborhoods: ["Malad West", "Malad East", "Mindspace", "Orlem"],
     coordinates: { lat: 19.1864, lng: 72.8493 },
+    nearbyAreas: ["andheri", "goregaon", "kandivali", "borivali", "versova"],
   },
   borivali: {
     name: "Borivali",
@@ -121,6 +132,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Sanjay Gandhi National Park", "Gorai Beach", "EsselWorld"],
     neighborhoods: ["Borivali West", "Borivali East", "IC Colony", "Shimpoli"],
     coordinates: { lat: 19.2305, lng: 72.8567 },
+    nearbyAreas: ["kandivali", "malad", "goregaon"],
   },
   kandivali: {
     name: "Kandivali",
@@ -131,6 +143,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Thakur Mall", "Mahavir Nagar", "Growel's Mall"],
     neighborhoods: ["Kandivali West", "Kandivali East", "Thakur Village", "Poisar"],
     coordinates: { lat: 19.2074, lng: 72.8479 },
+    nearbyAreas: ["borivali", "malad", "goregaon", "andheri"],
   },
   santacruz: {
     name: "Santacruz",
@@ -141,6 +154,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Santacruz Station", "Vakola Market", "VN Road"],
     neighborhoods: ["Santacruz West", "Santacruz East", "Vakola", "Kalina"],
     coordinates: { lat: 19.0896, lng: 72.8423 },
+    nearbyAreas: ["bandra", "khar", "vile-parle", "andheri", "juhu", "kurla"],
   },
   khar: {
     name: "Khar",
@@ -151,6 +165,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Khar Danda", "Khar Station", "Linking Road"],
     neighborhoods: ["Khar West", "Khar East", "Khar Danda", "St. Teresa"],
     coordinates: { lat: 19.0703, lng: 72.8397 },
+    nearbyAreas: ["bandra", "santacruz", "juhu", "andheri", "vile-parle"],
   },
   byculla: {
     name: "Byculla",
@@ -161,6 +176,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Byculla Zoo", "Gloria Church", "Jijamata Udyaan"],
     neighborhoods: ["Byculla", "Mazgaon", "Mandvi", "Clare Road"],
     coordinates: { lat: 18.9793, lng: 72.8326 },
+    nearbyAreas: ["dadar", "lower-parel", "worli", "matunga", "colaba"],
   },
   dadar: {
     name: "Dadar",
@@ -171,6 +187,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Shivaji Park", "Dadar Flower Market", "Siddhivinayak Temple"],
     neighborhoods: ["Dadar West", "Dadar East", "Shivaji Park", "Hindmata"],
     coordinates: { lat: 19.0176, lng: 72.8464 },
+    nearbyAreas: ["matunga", "worli", "lower-parel", "byculla", "kurla"],
   },
   matunga: {
     name: "Matunga",
@@ -181,6 +198,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Ruia College", "Kings Circle", "Matunga Station"],
     neighborhoods: ["Matunga", "Kings Circle", "Sion", "Mahim"],
     coordinates: { lat: 19.0266, lng: 72.8492 },
+    nearbyAreas: ["dadar", "worli", "lower-parel", "kurla", "byculla"],
   },
   kurla: {
     name: "Kurla",
@@ -191,6 +209,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Phoenix Market City", "Kurla Station", "BKC"],
     neighborhoods: ["Kurla West", "Kurla East", "Nehru Nagar", "Kamani"],
     coordinates: { lat: 19.0728, lng: 72.8826 },
+    nearbyAreas: ["ghatkopar", "chembur", "powai", "santacruz", "dadar", "matunga"],
   },
   chembur: {
     name: "Chembur",
@@ -201,6 +220,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["RCF Garden", "Chembur Station", "Diamond Garden"],
     neighborhoods: ["Chembur", "Tilak Nagar", "RCF Colony", "Govandi"],
     coordinates: { lat: 19.0622, lng: 72.8992 },
+    nearbyAreas: ["kurla", "ghatkopar", "powai", "mulund", "navi-mumbai"],
   },
   ghatkopar: {
     name: "Ghatkopar",
@@ -211,6 +231,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["R City Mall", "Ghatkopar Station", "Rajawadi Hospital"],
     neighborhoods: ["Ghatkopar West", "Ghatkopar East", "Asalpha", "Pant Nagar"],
     coordinates: { lat: 19.0864, lng: 72.9081 },
+    nearbyAreas: ["kurla", "chembur", "powai", "mulund", "thane"],
   },
   mulund: {
     name: "Mulund",
@@ -221,6 +242,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Johnson & Johnson Gardens", "Mulund Station", "Fortis Hospital"],
     neighborhoods: ["Mulund West", "Mulund East", "Nahur", "Bhandup"],
     coordinates: { lat: 19.1722, lng: 72.9565 },
+    nearbyAreas: ["thane", "ghatkopar", "powai", "chembur"],
   },
   "navi-mumbai": {
     name: "Navi Mumbai",
@@ -231,6 +253,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Seawoods", "Vashi", "Kharghar", "Palm Beach Road"],
     neighborhoods: ["Vashi", "Nerul", "Kharghar", "CBD Belapur"],
     coordinates: { lat: 19.0330, lng: 73.0297 },
+    nearbyAreas: ["thane", "chembur", "ghatkopar"],
   },
   "vile-parle": {
     name: "Vile Parle",
@@ -241,6 +264,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Parle Point", "Vile Parle Station", "Mumbai Airport"],
     neighborhoods: ["Vile Parle West", "Vile Parle East", "JVPD", "Irla"],
     coordinates: { lat: 19.1076, lng: 72.8263 },
+    nearbyAreas: ["andheri", "santacruz", "juhu", "khar", "bandra"],
   },
   goregaon: {
     name: "Goregaon",
@@ -251,6 +275,7 @@ export const locations: Record<string, LocationData> = {
     landmarks: ["Film City", "Aarey Colony", "Goregaon Station", "Oberoi Mall"],
     neighborhoods: ["Goregaon West", "Goregaon East", "Aarey Colony", "Motilal Nagar"],
     coordinates: { lat: 19.1656, lng: 72.8498 },
+    nearbyAreas: ["andheri", "malad", "kandivali", "borivali", "versova"],
   },
 };
 

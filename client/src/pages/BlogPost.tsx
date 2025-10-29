@@ -10,6 +10,7 @@ import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useBooking } from '@/contexts/BookingContext';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 const BlogPost = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -117,14 +118,13 @@ const BlogPost = () => {
                 <main className="pt-[70px] md:pt-[80px]">
                     {/* Breadcrumbs */}
                     <div className="bg-gray-50 border-b border-gray-200">
-                        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                            <Link
-                                to="/blog"
-                                className="inline-flex items-center gap-2 text-[#0088FF] hover:text-[#0066CC] font-medium transition-colors"
-                            >
-                                <ArrowLeft className="w-4 h-4" />
-                                Back to Blog
-                            </Link>
+                        <div className="max-w-5xl mx-auto">
+                            <Breadcrumb
+                                items={[
+                                    { label: "Blog", href: "/blog" },
+                                    { label: post.title },
+                                ]}
+                            />
                         </div>
                     </div>
 
