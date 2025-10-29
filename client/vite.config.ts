@@ -10,17 +10,19 @@ export default defineConfig({
     react(),
     ViteImageOptimizer({
       png: {
-        quality: 80,
+        quality: 75,
       },
       jpeg: {
-        quality: 80,
+        quality: 75,
       },
       jpg: {
-        quality: 80,
+        quality: 75,
       },
       webp: {
-        quality: 80,
+        quality: 75,
       },
+      cache: true,
+      cacheLocation: '.cache',
     }),
     viteCompression({
       algorithm: 'gzip',
@@ -49,6 +51,8 @@ export default defineConfig({
           vendor: ['react', 'react-dom', 'react-router-dom'],
           motion: ['framer-motion'],
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-accordion'],
+          helmet: ['react-helmet-async'],
+          query: ['@tanstack/react-query'],
         },
       },
     },
@@ -57,11 +61,21 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+      mangle: {
+        safari10: true,
+      },
+      format: {
+        comments: false,
       },
     },
     cssCodeSplit: true,
+    cssMinify: true,
     sourcemap: false,
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
+    assetsInlineLimit: 4096, // Inline assets < 4kb
+    reportCompressedSize: false, // Faster builds
   },
   server: {
     cors: true,
