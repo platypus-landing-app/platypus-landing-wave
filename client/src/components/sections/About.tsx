@@ -106,22 +106,46 @@ const About = () => {
 
 <div className="relative overflow-hidden">
   {/* Mobile Image */}
-  <img
-    src="/aboutus contact mobile.png"
-    alt="Platypus App Mobile Preview"
-    loading="lazy"
-    decoding="async"
-    className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
-  />
+  <picture className="block md:hidden">
+    <source
+      type="image/avif"
+      srcSet="/optimized/aboutus contact mobile-small.avif 400w, /optimized/aboutus contact mobile-medium.avif 800w, /optimized/aboutus contact mobile.avif 853w"
+      sizes="(max-width: 768px) 400px, 800px"
+    />
+    <source
+      type="image/webp"
+      srcSet="/optimized/aboutus contact mobile-small.webp 400w, /optimized/aboutus contact mobile-medium.webp 800w, /optimized/aboutus contact mobile.webp 853w"
+      sizes="(max-width: 768px) 400px, 800px"
+    />
+    <img
+      src="/aboutus contact mobile.png"
+      alt="Platypus App Mobile Preview"
+      loading="lazy"
+      decoding="async"
+      className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
+    />
+  </picture>
 
   {/* Desktop Image */}
-  <img
-    src={"/aboutus contact.png"}
-    alt="Platypus App Preview"
-    loading="lazy"
-    decoding="async"
-    className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
-  />
+  <picture className="hidden md:block">
+    <source
+      type="image/avif"
+      srcSet="/optimized/aboutus contact-small.avif 400w, /optimized/aboutus contact.avif 613w"
+      sizes="(max-width: 1024px) 400px, 613px"
+    />
+    <source
+      type="image/webp"
+      srcSet="/optimized/aboutus contact-small.webp 400w, /optimized/aboutus contact.webp 613w"
+      sizes="(max-width: 1024px) 400px, 613px"
+    />
+    <img
+      src={"/aboutus contact.png"}
+      alt="Platypus App Preview"
+      loading="lazy"
+      decoding="async"
+      className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
+    />
+  </picture>
 </div>
 
 

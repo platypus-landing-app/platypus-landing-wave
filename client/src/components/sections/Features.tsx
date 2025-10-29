@@ -93,13 +93,25 @@ const Features = () => {
 
               {/* Image */}
               <div className="aspect-[4/3] overflow-hidden mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300 w-full">
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcSet={`/optimized/${feature.image.replace(/\.(png|jpe?g)$/i, '')}-small.avif 400w, /optimized/${feature.image.replace(/\.(png|jpe?g)$/i, '')}-medium.avif 800w, /optimized/${feature.image.replace(/\.(png|jpe?g)$/i, '')}.avif 910w`}
+                    sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet={`/optimized/${feature.image.replace(/\.(png|jpe?g)$/i, '')}-small.webp 400w, /optimized/${feature.image.replace(/\.(png|jpe?g)$/i, '')}-medium.webp 800w, /optimized/${feature.image.replace(/\.(png|jpe?g)$/i, '')}.webp 910w`}
+                    sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
+                  />
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </picture>
               </div>
 
               {/* Content */}

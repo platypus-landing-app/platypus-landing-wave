@@ -91,13 +91,25 @@ const Testimonials = () => {
       className={`relative w-full h-[250px] sm:h-[280px] md:h-[300px] lg:h-[300px]
         ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}
     >
-      <img
-        src={testimonial.image}
-        alt={testimonial.name}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-cover"
-      />
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={`/optimized/${testimonial.image.replace(/\.(jpg|jpeg|png)$/i, '')}-small.avif 400w, /optimized/${testimonial.image.replace(/\.(jpg|jpeg|png)$/i, '')}-medium.avif 800w, /optimized/${testimonial.image.replace(/\.(jpg|jpeg|png)$/i, '')}.avif 960w`}
+          sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 960px"
+        />
+        <source
+          type="image/webp"
+          srcSet={`/optimized/${testimonial.image.replace(/\.(jpg|jpeg|png)$/i, '')}-small.webp 400w, /optimized/${testimonial.image.replace(/\.(jpg|jpeg|png)$/i, '')}-medium.webp 800w, /optimized/${testimonial.image.replace(/\.(jpg|jpeg|png)$/i, '')}.webp 960w`}
+          sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 960px"
+        />
+        <img
+          src={testimonial.image}
+          alt={testimonial.name}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+      </picture>
 
       {/* Overlay */}
       <div className="absolute bottom-0 left-0 right-0">
@@ -176,13 +188,25 @@ const Testimonials = () => {
         {/* Main CTA Image */}
         <div className="-translate-y-[90px]">
         <div className="text-center">
-          <img
-            src={ctaImage}
-            alt="Dog walker with golden retriever"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
-          />
+          <picture>
+            <source
+              type="image/avif"
+              srcSet="/optimized/3ind-small.avif 400w, /optimized/3ind-medium.avif 800w, /optimized/3ind-large.avif 1200w, /optimized/3ind.avif 1280w"
+              sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+            />
+            <source
+              type="image/webp"
+              srcSet="/optimized/3ind-small.webp 400w, /optimized/3ind-medium.webp 800w, /optimized/3ind-large.webp 1200w, /optimized/3ind.webp 1280w"
+              sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+            />
+            <img
+              src={ctaImage}
+              alt="Dog walker with golden retriever"
+              loading="lazy"
+              decoding="async"
+              className="mx-auto block w-full max-w-lg h-auto object-contain md:h-[400px] lg:h-[500px]"
+            />
+          </picture>
         </div>
         </div>
        {/* Inner White Box */}

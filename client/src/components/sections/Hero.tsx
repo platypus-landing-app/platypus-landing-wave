@@ -137,14 +137,29 @@ const heroVariants: Variants = {
           {/* Right Image - Optimized for LCP */}
           <div className="lg:flex justify-end items-center hidden">
             <div className="relative">
-              <img
-                src="/hero-image.png"
-                alt="Professional dog walker with golden retriever"
-                width="502"
-                height="525"
-                fetchPriority="high"
-                className="h-[525px] w-[502px] object-contain rounded-3xl"
-              />
+              <picture>
+                {/* AVIF - Modern format, best compression */}
+                <source
+                  type="image/avif"
+                  srcSet="/optimized/hero-image-small.avif 400w, /optimized/hero-image-medium.avif 800w, /optimized/hero-image.avif 853w"
+                  sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 502px"
+                />
+                {/* WebP - Wide browser support, good compression */}
+                <source
+                  type="image/webp"
+                  srcSet="/optimized/hero-image-small.webp 400w, /optimized/hero-image-medium.webp 800w, /optimized/hero-image.webp 853w"
+                  sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 502px"
+                />
+                {/* PNG fallback - Original format */}
+                <img
+                  src="/hero-image.png"
+                  alt="Professional dog walker with golden retriever"
+                  width="502"
+                  height="525"
+                  fetchPriority="high"
+                  className="h-[525px] w-[502px] object-contain rounded-3xl"
+                />
+              </picture>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 0.3, scale: 1 }}
