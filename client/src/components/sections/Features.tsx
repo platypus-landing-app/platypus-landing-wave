@@ -98,12 +98,12 @@ const Features = () => {
                 <picture>
                   <source
                     type="image/avif"
-                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/\.(png|jpe?g)$/i, ''))}-small.avif 400w, /optimized/${encodeURIComponent(feature.image.replace(/\.(png|jpe?g)$/i, ''))}-medium.avif 800w, /optimized/${encodeURIComponent(feature.image.replace(/\.(png|jpe?g)$/i, ''))}.avif 910w`}
+                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.avif 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.avif 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.avif 910w`}
                     sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
                   />
                   <source
                     type="image/webp"
-                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/\.(png|jpe?g)$/i, ''))}-small.webp 400w, /optimized/${encodeURIComponent(feature.image.replace(/\.(png|jpe?g)$/i, ''))}-medium.webp 800w, /optimized/${encodeURIComponent(feature.image.replace(/\.(png|jpe?g)$/i, ''))}.webp 910w`}
+                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.webp 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.webp 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.webp 910w`}
                     sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
                   />
                   <img

@@ -39,10 +39,10 @@ const Process = () => {
       <div className="absolute inset-0 bg-[#0088FF] opacity-90"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-7 relative z-10">
   <div className="text-center mb-16">
-    <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
+    <h2 className="text-4xl md:text-5xl font-bold text-yellow-200 mb-4">
       Our <span className="text-white">Process</span>
     </h2>
-    <p className="text-lg text-white/90 max-w-2xl mx-auto">
+    <p className="text-lg text-white max-w-2xl mx-auto">
       From Booking To Happy Returns, We've Made Pet Care As Simple As Four Easy Steps.
     </p>
   </div>
@@ -86,7 +86,7 @@ const Process = () => {
               </div>
 
               <div className="mt-4 px-3">
-                <h3 className="font-[Funnel_Sans] font-bold text-[20px] leading-[27px] text-white text-center capitalize group-hover:text-yellow-400 transition-colors duration-300">
+                <h3 className="font-[Funnel_Sans] font-bold text-[20px] leading-[27px] text-white text-center capitalize group-hover:text-yellow-200 transition-colors duration-300">
                   {step.title}
                 </h3>
                 <p className="mt-3 font-[Funnel_Sans] font-normal text-[16px] leading-[25px] text-white text-center capitalize">

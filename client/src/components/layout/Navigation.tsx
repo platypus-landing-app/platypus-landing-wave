@@ -179,6 +179,7 @@ const Navigation = () => {
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 className="p-2 text-gray-700 hover:text-[#0088FF] focus:outline-none"
+                                aria-label={isOpen ? "Close menu" : "Open menu"}
                             >
                                 {isOpen ? <X size={28} /> : <Menu size={28} />}
                             </button>
