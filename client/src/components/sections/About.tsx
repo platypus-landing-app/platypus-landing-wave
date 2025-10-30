@@ -26,11 +26,18 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-24 bg-[#eaeff8] bg-cover bg-center relative"
-      style={{ backgroundImage: "url('/aboutus-bg.png')" }}
+      className="py-24 bg-[#eaeff8] relative"
     >
-      {" "}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background image with lazy loading */}
+      <img
+        src="/aboutus-bg.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        aria-hidden="true"
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">

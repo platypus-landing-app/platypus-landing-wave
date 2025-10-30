@@ -54,15 +54,15 @@ const Features = () => {
       id="features"
       className="py-16 lg:py-24 bg-white relative overflow-hidden"
     >
-      {/* Background paw design - hidden on small screens */}
-      <div
-        className="hidden md:block absolute top-[-2rem] left-[-130px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
-        style={{
-          backgroundImage: "url('/paw.png')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-        }}
-      ></div>
+      {/* Background paw design - hidden on small screens, lazy loaded */}
+      <img
+        src="/paw.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="hidden md:block absolute top-[-2rem] left-[-130px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none object-contain"
+        aria-hidden="true"
+      />
 
       {/* Content container - aligned with navbar */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Output standalone for Docker deployment
   output: 'standalone',
+  // Performance optimizations
+  experimental: {
+    optimizeCss: true, // Enable CSS optimization
+    optimizePackageImports: ['lucide-react'], // Tree-shake lucide icons
+  },
+  // Enable SWC minification (default in Next.js 15 but explicit here)
+  swcMinify: true,
   // Redirect old URL format to new format
   async redirects() {
     return [
