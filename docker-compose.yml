@@ -4,7 +4,7 @@ services:
   # MongoDB Database
   mongodb:
     image: mongo:7-jammy
-    container_name: platypus_walk_mongodb
+    container_name: platypus_landing_mongodb
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: platypus
@@ -14,7 +14,7 @@ services:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
     networks:
-      - platypus_walk_network
+      - platypus_landing_network
     ports:
       - "27018:27017"
     healthcheck:
@@ -29,7 +29,7 @@ services:
     build:
       context: ./server
       dockerfile: ../Dockerfile.backend
-    container_name: platypus_walk_backend
+    container_name: platypus_landing_backend
     restart: unless-stopped
     environment:
       # nginx-proxy configuration for API subdomain (TESTING)
@@ -52,7 +52,7 @@ services:
     expose:
       - "3000"
     networks:
-      - platypus_walk_network
+      - platypus_landing_network
       - nginx-proxy_default
     depends_on:
       - mongodb
@@ -67,7 +67,7 @@ services:
         - NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
         - NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
         - NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
-    container_name: platypus_walk_frontend
+    container_name: platypus_landing_frontend
     restart: unless-stopped
     environment:
       # nginx-proxy configuration for domain routing (TESTING)
@@ -81,15 +81,15 @@ services:
     expose:
       - "3000"
     networks:
-      - platypus_walk_network
+      - platypus_landing_network
       - nginx-proxy_default
     depends_on:
       - backend
 
 networks:
-  platypus_walk_network:
+  platypus_landing_network:
     driver: bridge
-    name: platypus_walk_network
+    name: platypus_landing_network
   nginx-proxy_default:
     external: true
 
@@ -97,10 +97,10 @@ volumes:
   # MongoDB persistent storage
   mongodb_data:
     driver: local
-    name: platypus_walk_mongodb_data
+    name: platypus_landing_mongodb_data
   mongodb_config:
     driver: local
-    name: platypus_walk_mongodb_config
+    name: platypus_landing_mongodb_config
   # General app data
-  platypus_walk_data:
+  platypus_landing_data:
     driver: local
