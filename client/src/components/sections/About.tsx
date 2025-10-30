@@ -27,7 +27,7 @@ const About = () => {
     <section
       id="about"
       className="py-24 bg-[#eaeff8] bg-cover bg-center relative"
-      style={{ backgroundImage: "url('/aboutus bg.png')" }}
+      style={{ backgroundImage: "url('/aboutus-bg.png')" }}
     >
       {" "}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
