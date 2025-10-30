@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BookingProvider } from "@/contexts/BookingContext";
 import { HelmetProvider } from 'react-helmet-async';
 import TrialBookingDialog from "@/components/booking/TrialBookingDialog";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 // Lazy load route components for code splitting
 const Index = lazy(() => import("./pages/Index"));
@@ -41,6 +42,7 @@ const App = () => (
                     <Toaster />
                     <Sonner />
                     <BrowserRouter>
+                        <ScrollToTop />
                         <Suspense fallback={<PageLoader />}>
                             <Routes>
                                 {/* Homepage */}

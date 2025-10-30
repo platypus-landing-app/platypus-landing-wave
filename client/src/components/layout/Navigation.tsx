@@ -41,22 +41,25 @@ const Navigation = () => {
             return;
         }
 
-        // If we're not on the homepage, navigate there first
-        if (location.pathname !== "/") {
-            // Navigate to home with hash, then scroll after navigation
+        // Try to scroll to the section on current page first
+        const element = document.querySelector(item.href);
+
+        if (element) {
+            // Section exists on current page, just scroll to it
+            handleScrollTo(item.href);
+        } else {
+            // Section doesn't exist, navigate to homepage with hash
             navigate(`/${item.href}`);
             // Wait for navigation to complete, then scroll
             setTimeout(() => {
-                const element = document.querySelector(item.href);
-                if (element) {
-                    element.scrollIntoView({
+                const homeElement = document.querySelector(item.href);
+                if (homeElement) {
+                    homeElement.scrollIntoView({
                         behavior: "smooth",
                         block: "start",
                     });
                 }
             }, 100);
-        } else {
-            handleScrollTo(item.href);
         }
         setIsOpen(false);
     };
