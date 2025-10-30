@@ -338,7 +338,7 @@ build_containers() {
         log "Building containers from scratch (this may take several minutes)..."
         log "Using --no-cache --pull to ensure absolutely fresh build..."
 
-        if DOCKER_BUILDKIT=1 docker-compose -p "$COMPOSE_PROJECT" build --no-cache --pull --parallel; then
+        if docker-compose -p "$COMPOSE_PROJECT" build --no-cache --pull --parallel; then
             success "Containers built successfully"
         else
             error "Container build failed!"
