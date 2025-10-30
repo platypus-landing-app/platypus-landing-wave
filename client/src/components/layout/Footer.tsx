@@ -90,26 +90,29 @@ const Footer = () => {
         <div className="mt-6">
   <p className="text-gray-700 mb-3">Follow us:</p>
   <div className="flex space-x-4">
-    <a 
-      href="https://www.facebook.com/share/17DXgXPyAf/?mibextid=wwXIfr" 
-      target="_blank" 
+    <a
+      href="https://www.facebook.com/share/17DXgXPyAf/?mibextid=wwXIfr"
+      target="_blank"
       rel="noopener noreferrer"
+      aria-label="Visit Platypus on Facebook"
       className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Facebook className="w-4 h-4 text-white" />
     </a>
-    <a 
-      href="https://www.linkedin.com/company/platypus-be-their-human/posts/?feedView=all" 
-      target="_blank" 
+    <a
+      href="https://www.linkedin.com/company/platypus-be-their-human/posts/?feedView=all"
+      target="_blank"
       rel="noopener noreferrer"
+      aria-label="Visit Platypus on LinkedIn"
       className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Linkedin className="w-4 h-4 text-white" />
     </a>
-    <a 
-      href="https://www.instagram.com/platypus_bth/" 
-      target="_blank" 
+    <a
+      href="https://www.instagram.com/platypus_bth/"
+      target="_blank"
       rel="noopener noreferrer"
+      aria-label="Visit Platypus on Instagram"
       className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Instagram className="w-4 h-4 text-white" />

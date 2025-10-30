@@ -36,7 +36,7 @@ const About = () => {
           <div className="space-y-8">
             <div>
 <h2 className="text-[1.6rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[2.82rem] font-bold text-yellow-400 mb-4 leading-tight">                <span className="relative inline-block mr-2 align-middle">
-                  <span className="text-[#f97e57] font-bold">Coming</span>
+                  <span className="text-[#D94F1F] font-bold">Coming</span>
                   <span className="text-black font-normal"> Soon</span>
                   {/* underline */}
                   <span
@@ -81,7 +81,7 @@ const About = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#7B879D] break-words">
+                    <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#4B5563] break-words">
                       {feature.description}
                     </p>
                   </div>
@@ -96,7 +96,7 @@ const About = () => {
     font-funnel font-bold text-[16.51px] leading-[24.4px] 
     tracking-[1.25px] uppercase text-center rounded
     border-0 shadow-none focus:ring-0
-    bg-blue-500 hover:bg-blue-400 rounded hover:shadow-xl 
+    bg-blue-600 hover:bg-blue-500 rounded hover:shadow-xl 
     transition-all duration-300 hover:scale-105"
 >
   BOOK TRIAL WALK NOW

@@ -70,7 +70,7 @@ const Features = () => {
         {/* Why Choose Platypus Heading */}
         <div className="text-left mb-12 lg:mb-16">
           <h2 className="font-funnel font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
-            <span className="text-[#f97e57] relative inline-block mr-2 align-middle">
+            <span className="text-[#D94F1F] relative inline-block mr-2 align-middle">
               Why Choose
               <span className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"></span>
             </span>

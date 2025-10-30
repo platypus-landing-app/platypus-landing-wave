@@ -55,7 +55,7 @@ const Testimonials = () => {
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
           <h2 className="font-[Funnel_Sans] font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-black capitalize mb-6">
-            <span className="relative text-[#f97e57]">
+            <span className="relative text-[#D94F1F]">
               Client
               <span className="absolute bottom-[-5px] left-0 w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] h-0 border-b border-golden opacity-100"></span>
             </span>{" "}

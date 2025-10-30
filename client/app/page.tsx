@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Navigation from '@/components/layout/Navigation';
 import Hero from '@/components/sections/Hero';
 import Features from '@/components/sections/Features';
@@ -9,6 +10,11 @@ import Footer from '@/components/layout/Footer';
 import HeroFeatures from '@/components/sections/HeroFeatures';
 import FAQ from '@/components/sections/FAQ';
 import Script from 'next/script';
+
+export const metadata: Metadata = {
+  title: "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",
+  description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Powai & more areas.",
+};
 
 export default function Home() {
   // Structured data for the home page

@@ -1,3 +1,5 @@
+'use client';
+
 // src/components/blog/BlogCard.tsx
 
 import Link from "next/link";

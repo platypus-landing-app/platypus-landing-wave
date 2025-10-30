@@ -33,7 +33,7 @@ const AreasWeServe = () => {
               Areas
               <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
             </span>{" "}
-            <span className="text-[#f97e57]">We Serve</span>
+            <span className="text-[#D94F1F]">We Serve</span>
           </h2>
 
           {/* Paragraph and Button in flex container */}
@@ -48,7 +48,7 @@ const AreasWeServe = () => {
             <Button
               onClick={openTrialBooking}
               size="lg"
-              className="bg-blue-500 hover:bg-blue-400 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded hover:shadow-xl transition-all duration-300 hover:scale-105 items-center justify-center"
+              className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded hover:shadow-xl transition-all duration-300 hover:scale-105 items-center justify-center"
             >
               BOOK NOW
             </Button>

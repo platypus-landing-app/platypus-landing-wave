@@ -112,7 +112,7 @@ const heroVariants: Variants = {
                 onClick={openTrialBooking}
                 size="lg"
                 className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
-                bg-blue-500 hover:bg-blue-400 hover:shadow-xl transition-all duration-300 hover:scale-105"
+                bg-blue-600 hover:bg-blue-500 hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 Book Trial Now
               </Button>
@@ -130,7 +130,7 @@ const heroVariants: Variants = {
                 </div>
                 <div className="text-left">
                   <div className="font-semibold text-xs md:text-sm text-[#000000]">Live Now</div>
-                  <div className="text-[11px] md:text-[13.89px] font-medium text-[#6ACB5D]">Walking in your area</div>
+                  <div className="text-[11px] md:text-[13.89px] font-medium text-[#2D6A1F]">Walking in your area</div>
                 </div>
               </Button>
             </motion.div>

@@ -47,7 +47,7 @@ const FAQ = () => {
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h2 className="font-funnel font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-                        Frequently Asked <span className="text-[#f97e57]">Questions</span>
+                        Frequently Asked <span className="text-[#D94F1F]">Questions</span>
                     </h2>
                     <p className="font-rubik text-lg text-gray-600 max-w-2xl mx-auto">
                         Get answers to common questions about our professional dog walking services in Mumbai
