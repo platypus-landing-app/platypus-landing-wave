@@ -304,10 +304,25 @@ cleanup_docker() {
 
 # Function to build containers with better error handling
 build_containers() {
-    step "Building Docker containers..."
+    step "Building Docker containers with fresh cache..."
     cd "$PROJECT_DIR"
 
     if [ -f "docker-compose.yml" ]; then
+        # Clean up any existing build artifacts
+        log "Cleaning .next build directory..."
+        rm -rf "$PROJECT_DIR/client/.next" 2>/dev/null || true
+        rm -rf "$PROJECT_DIR/client/node_modules/.cache" 2>/dev/null || true
+
+        # Remove ALL Docker build cache (nuclear option for clean builds)
+        log "Pruning ALL Docker build cache..."
+        docker builder prune -a -f || true
+
+        # Remove existing project images completely
+        log "Removing existing project images..."
+        docker images | grep "$COMPOSE_PROJECT" | awk '{print $3}' | xargs -r docker rmi -f 2>/dev/null || true
+        docker images | grep "platypus_landing" | awk '{print $3}' | xargs -r docker rmi -f 2>/dev/null || true
+        docker images | grep "platypus-landing" | awk '{print $3}' | xargs -r docker rmi -f 2>/dev/null || true
+
         # Set build arguments for all environment variables (removed Supabase)
         export VITE_GOOGLE_MAPS_API_KEY="$GOOGLE_MAPS_API_KEY"
         export VITE_NEXT_PUBLIC_BACKEND_API_URL="$BACKEND_API_URL"
@@ -320,8 +335,10 @@ build_containers() {
         export RECEIVER_EMAIL="$RECEIVER_EMAIL"
 
         # Build with no cache and pull latest base images
-        log "Building containers without cache (this may take a few minutes)..."
-        if docker-compose -p "$COMPOSE_PROJECT" build --no-cache --pull --parallel; then
+        log "Building containers from scratch (this may take several minutes)..."
+        log "Using --no-cache --pull to ensure absolutely fresh build..."
+
+        if DOCKER_BUILDKIT=1 docker-compose -p "$COMPOSE_PROJECT" build --no-cache --pull --parallel; then
             success "Containers built successfully"
         else
             error "Container build failed!"
@@ -964,8 +981,15 @@ case "${1:-}" in
         shift  # Remove --side-by-side from arguments
         BRANCH="${1:-main}"
         SIDE_BY_SIDE=true
-        info "🔄 Side-by-side deployment mode enabled"
-        info "   Existing containers will keep running"
+        warning "⚠️  Side-by-side mode enabled - old containers will keep running"
+        warning "⚠️  This may cause domain conflicts and outdated code serving"
+        warning "⚠️  For production deployment, run WITHOUT --side-by-side flag"
+        info "   Branch: $BRANCH"
+        read -p "Continue with side-by-side mode? (y/N): " -r
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            error "Deployment cancelled"
+            exit 1
+        fi
         main
         ;;
     *)
