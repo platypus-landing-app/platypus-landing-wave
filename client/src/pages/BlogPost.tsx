@@ -91,19 +91,35 @@ const BlogPost = () => {
                 <meta name="keywords" content={post.keywords.join(', ')} />
                 <meta name="author" content={post.author} />
 
+                {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={`https://theplatypus.in/blog/${post.slug}`} />
                 <meta property="og:title" content={post.title} />
                 <meta property="og:description" content={post.metaDescription} />
                 <meta property="og:image" content={`https://theplatypus.in${post.image}`} />
+                <meta property="og:image:secure_url" content={`https://theplatypus.in${post.image}`} />
+                <meta property="og:image:type" content="image/png" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:image:alt" content={post.title} />
+                <meta property="og:site_name" content="Platypus" />
+                <meta property="og:locale" content="en_IN" />
                 <meta property="article:published_time" content={post.date} />
                 <meta property="article:author" content={post.author} />
+                <meta property="article:section" content={post.category} />
+                {post.keywords.map((keyword) => (
+                    <meta key={keyword} property="article:tag" content={keyword} />
+                ))}
 
-                <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content={`https://theplatypus.in/blog/${post.slug}`} />
-                <meta property="twitter:title" content={post.title} />
-                <meta property="twitter:description" content={post.metaDescription} />
-                <meta property="twitter:image" content={`https://theplatypus.in${post.image}`} />
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:url" content={`https://theplatypus.in/blog/${post.slug}`} />
+                <meta name="twitter:title" content={post.title} />
+                <meta name="twitter:description" content={post.metaDescription} />
+                <meta name="twitter:image" content={`https://theplatypus.in${post.image}`} />
+                <meta name="twitter:image:alt" content={post.title} />
+                <meta name="twitter:site" content="@platypus_bth" />
+                <meta name="twitter:creator" content="@platypus_bth" />
 
                 <link rel="canonical" href={`https://theplatypus.in/blog/${post.slug}`} />
 
