@@ -1,29 +1,14 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
   plugins: [
     react(),
-    ViteImageOptimizer({
-      png: {
-        quality: 75,
-      },
-      jpeg: {
-        quality: 75,
-      },
-      jpg: {
-        quality: 75,
-      },
-      webp: {
-        quality: 75,
-      },
-      cache: true,
-      cacheLocation: '.cache',
-    }),
+    // ViteImageOptimizer disabled - we use pre-optimized images from /public/optimized
+    // Run `npm run optimize-all` manually if you add new images
     viteCompression({
       algorithm: 'gzip',
       ext: '.gz',
@@ -32,12 +17,13 @@ export default defineConfig({
       algorithm: 'brotliCompress',
       ext: '.br',
     }),
-    visualizer({
+    // Visualizer only in development - adds ~1s to build time
+    ...(process.env.ANALYZE ? [visualizer({
       filename: './dist/stats.html',
-      open: false,
+      open: true,
       gzipSize: true,
       brotliSize: true,
-    }),
+    })] : []),
   ],
   resolve: {
     alias: {
