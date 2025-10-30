@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { openTrialBooking } = useBooking();
     const [activeSection, setActiveSection] = useState("home");
     const location = useLocation();
+    const navigate = useNavigate();
 
     const navItems = [
         { name: "GUARDIANS", href: "#home", path: "/" },
@@ -42,10 +43,22 @@ const Navigation = () => {
 
         // If we're not on the homepage, navigate there first
         if (location.pathname !== "/") {
-            window.location.href = `/${item.href}`;
+            // Navigate to home with hash, then scroll after navigation
+            navigate(`/${item.href}`);
+            // Wait for navigation to complete, then scroll
+            setTimeout(() => {
+                const element = document.querySelector(item.href);
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+                }
+            }, 100);
         } else {
             handleScrollTo(item.href);
         }
+        setIsOpen(false);
     };
 
     // Active section detection

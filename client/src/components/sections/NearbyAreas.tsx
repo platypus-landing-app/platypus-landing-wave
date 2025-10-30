@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MapPin } from "lucide-react";
 import { locations } from "@/data/locations";
 
@@ -9,6 +9,20 @@ interface NearbyAreasProps {
 
 export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasProps) {
   const currentLocationInfo = locations[currentLocation];
+  const navigate = useNavigate();
+
+  const handleViewAllAreas = () => {
+    navigate("/#areas");
+    setTimeout(() => {
+      const element = document.querySelector("#areas");
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
+  };
 
   return (
     <section className="py-12 md:py-16 bg-gray-50">
@@ -32,7 +46,7 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
               <Link
                 key={locationSlug}
                 to={`/dog-walking-${locationSlug}`}
-                className="group bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+                className="group bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer block"
               >
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
@@ -51,9 +65,9 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
         </div>
 
         <div className="mt-8 text-center">
-          <Link
-            to="/#areas"
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
+          <button
+            onClick={handleViewAllAreas}
+            className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors cursor-pointer"
           >
             View All Service Areas
             <svg
@@ -69,7 +83,7 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </Link>
+          </button>
         </div>
       </div>
     </section>
