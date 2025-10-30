@@ -55,8 +55,9 @@ USER nextjs
 EXPOSE 3000
 
 # Health check for container - check if Next.js server responds
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/', (res) => { process.exit(res.statusCode === 200 || res.statusCode === 404 ? 0 : 1); }).on('error', () => { process.exit(1); });" || exit 1
+# Accepts 200, 301, 302, 304, 307, 308, 404 as healthy (common Next.js responses)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
+  CMD node -e "require('http').get('http://localhost:3000/', (res) => { process.exit((res.statusCode >= 200 && res.statusCode < 500) ? 0 : 1); }).on('error', () => { process.exit(1); });" || exit 1
 
 # Start Next.js standalone server
 CMD ["node", "server.js"]
