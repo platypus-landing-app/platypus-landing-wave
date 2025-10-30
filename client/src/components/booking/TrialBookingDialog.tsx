@@ -207,7 +207,7 @@ const TrialBookingDialog: React.FC = () => {
         form.reset(parsed);
       }
     } catch (error) {
-      console.error("Failed to restore form data:", error);
+      // Silent fail - form data restoration is not critical
     }
   }, [form]);
 
@@ -257,7 +257,7 @@ async function onSubmit(values: TrialBookingFormValues) {
     localStorage.removeItem(STORAGE_KEY);
     closeTrialBooking();
   } catch (err: any) {
-    console.error(err);
+    // Error already shown to user via toast
     toast({
       title: "❌ Booking Failed",
       description: err.message || "Something went wrong. Please try again.",

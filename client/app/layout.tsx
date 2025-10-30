@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
+import { Funnel_Sans } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
+
+// Self-hosted Funnel Sans - exact same font, zero render-blocking
+const funnelSans = Funnel_Sans({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-funnel',
+});
 
 export const metadata: Metadata = {
   title: "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",
@@ -68,15 +77,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={funnelSans.variable}>
       <head>
-        {/* Google Fonts - Preconnect for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
 
         {/* Performance: Preload critical LCP image */}
         <link rel="preload" href="/optimized/hero-image.avif" as="image" type="image/avif" />

@@ -21,7 +21,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				funnel: ['"Funnel Sans"', 'sans-serif'],
+				funnel: ['var(--font-funnel)', 'sans-serif'],
 				rounded: ['Nunito', 'sans-serif'],
 				segoe: ['"Segoe UI"', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Arial', 'sans-serif'],
 			},
