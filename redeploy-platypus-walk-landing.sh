@@ -12,6 +12,7 @@ REPO_URL="git@github.com:KaVipatel12/platypus-landing-wave.git"
 BRANCH="${1:-main}"
 COMPOSE_PROJECT="platypus-walk-landing"
 DOMAIN="landing.theplatypus.in"  # TESTING subdomain
+SIDE_BY_SIDE=false  # Side-by-side deployment mode (don't stop existing containers)
 
 # Environment variables for Next.js build (from your actual .env files)
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=""
@@ -250,6 +251,11 @@ validate_config() {
 
 # Function to stop containers gracefully
 stop_containers() {
+    if [ "$SIDE_BY_SIDE" = true ]; then
+        info "Side-by-side mode enabled - skipping container stop (keeping existing containers running)"
+        return 0
+    fi
+
     step "Stopping Docker containers..."
     cd "$PROJECT_DIR"
 
@@ -270,6 +276,11 @@ stop_containers() {
 
 # Function to clean Docker resources
 cleanup_docker() {
+    if [ "$SIDE_BY_SIDE" = true ]; then
+        info "Side-by-side mode enabled - skipping Docker cleanup"
+        return 0
+    fi
+
     step "Cleaning up Docker resources..."
 
     # Remove old project images (keep last 2 versions)
@@ -866,13 +877,14 @@ show_help() {
     echo "Usage: $0 [OPTIONS] [BRANCH]"
     echo ""
     echo "Options:"
-    echo "  -h, --help        Show this help message"
-    echo "  -l, --logs        Show logs after deployment"
-    echo "  -s, --status      Show current status without deploying"
-    echo "  -t, --test        Run tests without deploying"
-    echo "  -r, --rollback    Rollback to previous deployment"
-    echo "  -f, --force       Force deployment (skip confirmations)"
-    echo "  -q, --quick       Quick deployment (skip some cleanup steps)"
+    echo "  -h, --help          Show this help message"
+    echo "  -l, --logs          Show logs after deployment"
+    echo "  -s, --status        Show current status without deploying"
+    echo "  -t, --test          Run tests without deploying"
+    echo "  -r, --rollback      Rollback to previous deployment"
+    echo "  -f, --force         Force deployment (skip confirmations)"
+    echo "  -q, --quick         Quick deployment (skip some cleanup steps)"
+    echo "  --side-by-side      Deploy alongside existing containers (testing mode)"
     echo ""
     echo "Arguments:"
     echo "  BRANCH            Git branch to deploy (default: main)"
@@ -887,6 +899,7 @@ show_help() {
     echo "  $0 --test                    # Run tests only"
     echo "  $0 --rollback                # Rollback to previous version"
     echo "  $0 --force SEO-SEPT-2025     # Force deploy SEO-SEPT-2025 branch"
+    echo "  $0 --side-by-side nextjs-migration  # Deploy alongside existing (testing)"
     echo ""
     echo "Domains:"
     echo "  Frontend: https://$DOMAIN"
@@ -945,6 +958,14 @@ case "${1:-}" in
         shift  # Remove -q/--quick from arguments
         BRANCH="${1:-main}"
         export QUICK_DEPLOY=1
+        main
+        ;;
+    --side-by-side)
+        shift  # Remove --side-by-side from arguments
+        BRANCH="${1:-main}"
+        SIDE_BY_SIDE=true
+        info "🔄 Side-by-side deployment mode enabled"
+        info "   Existing containers will keep running"
         main
         ;;
     *)
