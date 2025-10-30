@@ -41,6 +41,8 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+
   return {
     title: `Professional Dog Walking Service in ${locationInfo.name} | Platypus Certified Guardians`,
     description: `Professional ${locationInfo.description}. Live GPS tracking, safety protocols. Book trial walk ₹199 in ${locationInfo.displayName}.`,
@@ -48,10 +50,10 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     openGraph: {
       title: `Professional Dog Walking Service in ${locationInfo.name} | Platypus`,
       description: `Certified dog walking service in ${locationInfo.displayName} with live GPS tracking and trained Guardians.`,
-      url: `https://theplatypus.in/dog-walking/${location}`,
+      url: `${siteUrl}/dog-walking/${location}`,
       images: [
         {
-          url: 'https://theplatypus.in/hero-image.png',
+          url: `${siteUrl}/hero-image.png`,
           width: 1200,
           height: 630,
           alt: `Platypus Dog Walking in ${locationInfo.name}`,
@@ -59,7 +61,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
       ],
     },
     alternates: {
-      canonical: `https://theplatypus.in/dog-walking/${location}`,
+      canonical: `${siteUrl}/dog-walking/${location}`,
     },
     other: {
       'geo.region': 'IN-MH',
@@ -78,15 +80,17 @@ export default async function LocationPage({ params }: LocationPageProps) {
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: `Platypus Dog Walking Service - ${locationInfo.name}`,
     description: `Professional ${locationInfo.description}. Live GPS tracking, safety protocols, certified Guardians.`,
-    url: `https://theplatypus.in/dog-walking/${location}`,
+    url: `${siteUrl}/dog-walking/${location}`,
     telephone: '+918451880963',
     email: 'info@theplatypus.in',
-    image: 'https://theplatypus.in/hero-image.png',
+    image: `${siteUrl}/hero-image.png`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: locationInfo.name,

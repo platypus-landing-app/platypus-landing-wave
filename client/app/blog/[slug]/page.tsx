@@ -36,6 +36,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+
   return {
     title: `${post.title} | Platypus Blog`,
     description: post.metaDescription,
@@ -43,13 +45,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     authors: [{ name: post.author }],
     openGraph: {
       type: 'article',
-      url: `https://theplatypus.in/blog/${post.slug}`,
+      url: `${siteUrl}/blog/${post.slug}`,
       title: post.title,
       description: post.metaDescription,
       images: [
         {
-          url: `https://theplatypus.in${post.image}`,
-          secureUrl: `https://theplatypus.in${post.image}`,
+          url: `${siteUrl}${post.image}`,
+          secureUrl: `${siteUrl}${post.image}`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -66,12 +68,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       card: 'summary_large_image',
       title: post.title,
       description: post.metaDescription,
-      images: [`https://theplatypus.in${post.image}`],
+      images: [`${siteUrl}${post.image}`],
       site: '@platypus_bth',
       creator: '@platypus_bth',
     },
     alternates: {
-      canonical: `https://theplatypus.in/blog/${post.slug}`,
+      canonical: `${siteUrl}/blog/${post.slug}`,
     },
   };
 }
@@ -98,12 +100,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     .split('\n\n')
     .filter((section) => section.trim() !== '');
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
-    image: `https://theplatypus.in${post.image}`,
+    image: `${siteUrl}${post.image}`,
     datePublished: post.date,
     dateModified: post.date,
     author: {
@@ -115,12 +119,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       name: 'Platypus',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://theplatypus.in/logo.png',
+        url: `${siteUrl}/logo.png`,
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://theplatypus.in/blog/${post.slug}`,
+      '@id': `${siteUrl}/blog/${post.slug}`,
     },
   };
 
