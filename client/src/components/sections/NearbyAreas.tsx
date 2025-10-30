@@ -1,4 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MapPin } from "lucide-react";
 import { locations } from "@/data/locations";
 
@@ -9,10 +12,10 @@ interface NearbyAreasProps {
 
 export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasProps) {
   const currentLocationInfo = locations[currentLocation];
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleViewAllAreas = () => {
-    navigate("/#areas");
+    router.push("/#areas");
     setTimeout(() => {
       const element = document.querySelector("#areas");
       if (element) {
@@ -45,7 +48,7 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
             return (
               <Link
                 key={locationSlug}
-                to={`/dog-walking-${locationSlug}`}
+                href={`/dog-walking/${locationSlug}`}
                 className="group bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer block"
               >
                 <div className="flex items-start gap-3">

@@ -1,3 +1,5 @@
+'use client';
+
 import { PawPrint, MapPin, ShieldCheck } from "lucide-react";
 
 const Features = () => {

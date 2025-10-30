@@ -1,6 +1,6 @@
 // src/components/blog/BlogCard.tsx
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
@@ -18,7 +18,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
     });
 
     return (
-        <Link to={`/blog/${post.slug}`} className="group block">
+        <Link href={`/blog/${post.slug}`} className="group block">
             <Card className="h-full overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 bg-white">
                 {/* Image */}
                 <div className="relative overflow-hidden aspect-[16/10]">

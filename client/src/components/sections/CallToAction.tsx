@@ -1,3 +1,5 @@
+'use client';
+
 import { Phone, Smartphone } from "lucide-react";
 import ctaImage from '@/assets/3ind.png';
 

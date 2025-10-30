@@ -235,7 +235,7 @@ const TrialBookingDialog: React.FC = () => {
 
 async function onSubmit(values: TrialBookingFormValues) {
   try {
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/bookings/save-send-booking-email`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/bookings/save-send-booking-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),

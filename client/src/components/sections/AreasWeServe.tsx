@@ -1,7 +1,9 @@
+'use client';
+
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { locations } from "@/data/locations";
 
 const AreasWeServe = () => {
@@ -57,7 +59,7 @@ const AreasWeServe = () => {
           {locationsList.map((location, index) => (
             <Link
               key={index}
-              to={`/dog-walking-${location.slug}`}
+              href={`/dog-walking/${location.slug}`}
               className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 sm:py-3
                          bg-[#B4B4B466] hover:bg-blue-50 rounded-sm text-gray-700 hover:text-blue-600
                          transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg

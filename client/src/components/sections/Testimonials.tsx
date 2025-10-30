@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import ctaImage from "@/assets/3ind.png";
 import { useBooking } from "@/contexts/BookingContext";

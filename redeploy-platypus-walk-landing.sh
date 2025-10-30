@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# Platypus Walk Landing Page (Vite React + MongoDB) Deployment Script
+# Platypus Walk Landing Page (Next.js 15 + MongoDB) Deployment Script
 # Usage: ./redeploy-platypus-walk-landing.sh [options] [branch]
 # Default branch: main
 
 set -e  # Exit on any error
 
 # Configuration
-PROJECT_DIR="/opt/platypus/walk-landing"
+PROJECT_DIR="/opt/platypus/landing-page"
 REPO_URL="git@github.com:KaVipatel12/platypus-landing-wave.git"
 BRANCH="${1:-main}"
 COMPOSE_PROJECT="platypus-walk-landing"
-DOMAIN="theplatypus.in"
+DOMAIN="landing.theplatypus.in"  # TESTING subdomain
 
-# Environment variables for build (from your actual .env files)
-GOOGLE_MAPS_API_KEY=""
-BACKEND_API_URL="https://api.theplatypus.in/api"
-GA_MEASUREMENT_ID="GTM-K69JPQWK"
+# Environment variables for Next.js build (from your actual .env files)
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=""
+NEXT_PUBLIC_BACKEND_API_URL="https://api.landing.theplatypus.in/api"  # TESTING subdomain
+NEXT_PUBLIC_GA_MEASUREMENT_ID="GTM-K69JPQWK"
 
 # Backend environment variables (for production)
 MONGODB_URI="mongodb://platypus:platypus_secure_password_2024@mongodb:27017"
@@ -205,9 +205,9 @@ validate_config() {
         warning "client/nginx.frontend.conf not found - using default nginx config"
     fi
 
-    # Check for Vite-specific files in client directory
-    if [ ! -f "client/vite.config.ts" ] && [ ! -f "client/vite.config.js" ]; then
-        warning "No Vite config file found in client directory - this might not be a Vite project"
+    # Check for Next.js config files in client directory
+    if [ ! -f "client/next.config.ts" ] && [ ! -f "client/next.config.js" ]; then
+        warning "No Next.js config file found in client directory - this might not be a Next.js project"
     fi
 
     # Validate docker-compose.yml syntax
@@ -299,8 +299,8 @@ build_containers() {
     if [ -f "docker-compose.yml" ]; then
         # Set build arguments for all environment variables (removed Supabase)
         export VITE_GOOGLE_MAPS_API_KEY="$GOOGLE_MAPS_API_KEY"
-        export VITE_BACKEND_API_URL="$BACKEND_API_URL"
-        export VITE_GA_MEASUREMENT_ID="$GA_MEASUREMENT_ID"
+        export VITE_NEXT_PUBLIC_BACKEND_API_URL="$BACKEND_API_URL"
+        export VITE_NEXT_PUBLIC_GA_MEASUREMENT_ID="$GA_MEASUREMENT_ID"
 
         # Set backend environment variables
         export MONGODB_PASSWORD="platypus_secure_password_2024"

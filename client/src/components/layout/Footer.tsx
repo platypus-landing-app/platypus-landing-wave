@@ -1,5 +1,7 @@
+'use client';
+
 import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
-import '@/App.css'
+
 const Footer = () => {
    const handleScrollTo = (href: string) => {
   const element = document.querySelector(href) as HTMLElement;

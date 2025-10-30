@@ -1,17 +1,20 @@
+'use client';
+
 // src/components/layout/Navigation.tsx
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { openTrialBooking } = useBooking();
     const [activeSection, setActiveSection] = useState("home");
-    const location = useLocation();
-    const navigate = useNavigate();
+    const pathname = usePathname();
+    const router = useRouter();
 
     const navItems = [
         { name: "GUARDIANS", href: "#home", path: "/" },
@@ -49,7 +52,7 @@ const Navigation = () => {
             handleScrollTo(item.href);
         } else {
             // Section doesn't exist, navigate to homepage with hash
-            navigate(`/${item.href}`);
+            router.push(`/${item.href}`);
             // Wait for navigation to complete, then scroll
             setTimeout(() => {
                 const homeElement = document.querySelector(item.href);
@@ -101,7 +104,7 @@ const Navigation = () => {
                     {/* Logo */}
                     <div className="flex items-center -ml-5">
                         <Link
-                            to="/"
+                            href="/"
                             className="cursor-pointer"
                             style={{
                                 background: "transparent",
@@ -124,15 +127,15 @@ const Navigation = () => {
                                 return (
                                     <Link
                                         key={item.name}
-                                        to={item.href}
+                                        href={item.href}
                                         className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#0088FF] ${
-                                            location.pathname.startsWith(item.path)
+                                            pathname.startsWith(item.path)
                                                 ? "text-[#0088FF]"
                                                 : "text-gray-700"
                                         }`}
                                     >
                                         {item.name}
-                                        {location.pathname.startsWith(item.path) && (
+                                        {pathname.startsWith(item.path) && (
                                             <div className="absolute bottom-0 left-0 right-0 mx-auto w-[80%] h-0.5 bg-[#0088FF]"></div>
                                         )}
                                     </Link>
@@ -144,13 +147,13 @@ const Navigation = () => {
                                     key={item.name}
                                     onClick={() => handleNavClick(item)}
                                     className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#0088FF] ${
-                                        activeSection === item.href.substring(1) && location.pathname === "/"
+                                        activeSection === item.href.substring(1) && pathname === "/"
                                             ? "text-[#0088FF]"
                                             : "text-gray-700"
                                     }`}
                                 >
                                     {item.name}
-                                    {activeSection === item.href.substring(1) && location.pathname === "/" && (
+                                    {activeSection === item.href.substring(1) && pathname === "/" && (
                                         <div className="absolute bottom-0 left-0 right-0 mx-auto w-[80%] h-0.5 bg-[#0088FF]"></div>
                                     )}
                                 </button>
@@ -193,7 +196,7 @@ const Navigation = () => {
                                 return (
                                     <Link
                                         key={item.name}
-                                        to={item.href}
+                                        href={item.href}
                                         onClick={() => setIsOpen(false)}
                                         className="w-full text-left text-gray-700 hover:text-[#0088FF] font-medium block px-3 py-2 rounded-md transition-colors"
                                     >
