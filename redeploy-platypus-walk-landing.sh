@@ -11,12 +11,12 @@ PROJECT_DIR="/opt/platypus/landing-page"
 REPO_URL="git@github.com:KaVipatel12/platypus-landing-wave.git"
 BRANCH="${1:-main}"
 COMPOSE_PROJECT="platypus-landing-page"
-DOMAIN="landing.theplatypus.in"  # TESTING subdomain
+DOMAIN="theplatypus.in"
 SIDE_BY_SIDE=false  # Side-by-side deployment mode (don't stop existing containers)
 
 # Environment variables for Next.js build (from your actual .env files)
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=""
-NEXT_PUBLIC_BACKEND_API_URL="https://api.landing.theplatypus.in/api"  # TESTING subdomain
+NEXT_PUBLIC_BACKEND_API_URL="https://api.theplatypus.in/api"
 NEXT_PUBLIC_GA_MEASUREMENT_ID="GTM-K69JPQWK"
 
 # Backend environment variables (for production)

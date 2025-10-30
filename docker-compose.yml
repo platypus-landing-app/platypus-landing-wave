@@ -32,16 +32,16 @@ services:
     container_name: platypus_landing_backend
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for API subdomain (TESTING)
-      - VIRTUAL_HOST=api.landing.theplatypus.in
+      # nginx-proxy configuration for API subdomain
+      - VIRTUAL_HOST=api.theplatypus.in
       - VIRTUAL_PORT=3000
       # Let's Encrypt SSL configuration
-      - LETSENCRYPT_HOST=api.landing.theplatypus.in
+      - LETSENCRYPT_HOST=api.theplatypus.in
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}
       # Backend environment variables (from .env files)
       - NODE_ENV=production
       - PORT=3000
-      - CORS_ORIGIN=${CORS_ORIGIN:-https://landing.theplatypus.in}
+      - CORS_ORIGIN=${CORS_ORIGIN:-https://theplatypus.in}
       # MongoDB configuration
       - MONGODB_URI=mongodb://platypus:${MONGODB_PASSWORD}@mongodb:27017
       - DB_NAME=${DB_NAME:-platypus}
@@ -70,11 +70,11 @@ services:
     container_name: platypus_landing_frontend
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for domain routing (TESTING)
-      - VIRTUAL_HOST=landing.theplatypus.in
+      # nginx-proxy configuration for domain routing
+      - VIRTUAL_HOST=theplatypus.in
       - VIRTUAL_PORT=3000
       # Let's Encrypt SSL configuration
-      - LETSENCRYPT_HOST=landing.theplatypus.in
+      - LETSENCRYPT_HOST=theplatypus.in
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}
       # Next.js runtime environment
       - NODE_ENV=production
