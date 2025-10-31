@@ -19,17 +19,17 @@ SIDE_BY_SIDE=false  # Side-by-side deployment mode (don't stop existing containe
 # They should NOT be committed to git
 if [ -f "$PROJECT_DIR/.env" ]; then
     source "$PROJECT_DIR/.env"
-    log "Loaded environment from $PROJECT_DIR/.env"
+    echo "✓ Loaded environment from $PROJECT_DIR/.env"
 fi
 
 if [ -f "$PROJECT_DIR/server/.env" ]; then
     source "$PROJECT_DIR/server/.env"
-    log "Loaded environment from $PROJECT_DIR/server/.env"
+    echo "✓ Loaded environment from $PROJECT_DIR/server/.env"
 fi
 
 if [ -f "$PROJECT_DIR/client/.env.local" ]; then
     source "$PROJECT_DIR/client/.env.local"
-    log "Loaded environment from $PROJECT_DIR/client/.env.local"
+    echo "✓ Loaded environment from $PROJECT_DIR/client/.env.local"
 fi
 
 # Default values (will be overridden by .env files)
