@@ -14,17 +14,34 @@ COMPOSE_PROJECT="platypus-landing-page"
 DOMAIN="theplatypus.in"
 SIDE_BY_SIDE=false  # Side-by-side deployment mode (don't stop existing containers)
 
-# Environment variables for Next.js build (from your actual .env files)
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=""
-NEXT_PUBLIC_BACKEND_API_URL="https://api.theplatypus.in/api"
-NEXT_PUBLIC_GA_MEASUREMENT_ID="GTM-K69JPQWK"
+# Load environment variables from .env files
+# These files should exist on the server and contain actual values
+# They should NOT be committed to git
+if [ -f "$PROJECT_DIR/.env" ]; then
+    source "$PROJECT_DIR/.env"
+    log "Loaded environment from $PROJECT_DIR/.env"
+fi
 
-# Backend environment variables (for production)
-MONGODB_URI="mongodb://platypus:platypus_secure_password_2024@mongodb:27017"
-DB_NAME="platypus"
-BREVO_API_KEY=""
-BREVO_SENDER_EMAIL="info@theplatypus.in"
-RECEIVER_EMAIL="info@theplatypus.in"
+if [ -f "$PROJECT_DIR/server/.env" ]; then
+    source "$PROJECT_DIR/server/.env"
+    log "Loaded environment from $PROJECT_DIR/server/.env"
+fi
+
+if [ -f "$PROJECT_DIR/client/.env.local" ]; then
+    source "$PROJECT_DIR/client/.env.local"
+    log "Loaded environment from $PROJECT_DIR/client/.env.local"
+fi
+
+# Default values (will be overridden by .env files)
+NEXT_PUBLIC_BACKEND_API_URL="${NEXT_PUBLIC_BACKEND_API_URL:-https://api.theplatypus.in/api}"
+NEXT_PUBLIC_GA_MEASUREMENT_ID="${NEXT_PUBLIC_GA_MEASUREMENT_ID:-GTM-K69JPQWK}"
+NEXT_PUBLIC_SITE_URL="${NEXT_PUBLIC_SITE_URL:-https://theplatypus.in}"
+MONGODB_URI="${MONGODB_URI:-mongodb://platypus:\${MONGODB_PASSWORD}@mongodb:27017}"
+DB_NAME="${DB_NAME:-platypus}"
+BREVO_SENDER_EMAIL="${BREVO_SENDER_EMAIL:-info@theplatypus.in}"
+RECEIVER_EMAIL="${RECEIVER_EMAIL:-info@theplatypus.in}"
+CORS_ORIGIN="${CORS_ORIGIN:-https://theplatypus.in}"
+LETSENCRYPT_EMAIL="${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}"
 
 # Colors for output
 RED='\033[0;31m'
@@ -219,11 +236,11 @@ validate_config() {
     }
 
     # Validate environment variables are set
-    if [ -z "$GOOGLE_MAPS_API_KEY" ]; then
+    if [ -z "$NEXT_PUBLIC_GOOGLE_MAPS_API_KEY" ]; then
         warning "Google Maps API key not set - location features may not work"
     fi
 
-    if [ -z "$BACKEND_API_URL" ]; then
+    if [ -z "$NEXT_PUBLIC_BACKEND_API_URL" ]; then
         warning "Backend API URL not set - API calls may not work"
     fi
 
@@ -233,6 +250,10 @@ validate_config() {
 
     if [ -z "$BREVO_API_KEY" ]; then
         warning "Brevo API key not set - email functionality may not work"
+    fi
+
+    if [ -z "$RECAPTCHA_SECRET_KEY" ]; then
+        warning "reCAPTCHA secret key not set - bot protection may not work"
     fi
 
     # Check if .env files exist in the correct directories (for reference)
@@ -323,16 +344,21 @@ build_containers() {
         docker images | grep "platypus_landing" | awk '{print $3}' | xargs -r docker rmi -f 2>/dev/null || true
         docker images | grep "platypus-landing" | awk '{print $3}' | xargs -r docker rmi -f 2>/dev/null || true
 
-        # Set build arguments for all environment variables (removed Supabase)
-        export VITE_GOOGLE_MAPS_API_KEY="$GOOGLE_MAPS_API_KEY"
-        export VITE_NEXT_PUBLIC_BACKEND_API_URL="$BACKEND_API_URL"
-        export VITE_NEXT_PUBLIC_GA_MEASUREMENT_ID="$GA_MEASUREMENT_ID"
+        # Set build arguments for Next.js environment variables
+        export NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="$NEXT_PUBLIC_GOOGLE_MAPS_API_KEY"
+        export NEXT_PUBLIC_BACKEND_API_URL="$NEXT_PUBLIC_BACKEND_API_URL"
+        export NEXT_PUBLIC_GA_MEASUREMENT_ID="$NEXT_PUBLIC_GA_MEASUREMENT_ID"
+        export NEXT_PUBLIC_SITE_URL="$NEXT_PUBLIC_SITE_URL"
+        export NEXT_PUBLIC_RECAPTCHA_SITE_KEY="$NEXT_PUBLIC_RECAPTCHA_SITE_KEY"
 
         # Set backend environment variables
-        export MONGODB_PASSWORD="platypus_secure_password_2024"
+        export MONGODB_PASSWORD="$MONGODB_PASSWORD"
         export BREVO_API_KEY="$BREVO_API_KEY"
         export BREVO_SENDER_EMAIL="$BREVO_SENDER_EMAIL"
         export RECEIVER_EMAIL="$RECEIVER_EMAIL"
+        export RECAPTCHA_SECRET_KEY="$RECAPTCHA_SECRET_KEY"
+        export CORS_ORIGIN="$CORS_ORIGIN"
+        export LETSENCRYPT_EMAIL="$LETSENCRYPT_EMAIL"
 
         # Build with no cache and pull latest base images
         log "Building containers from scratch (this may take several minutes)..."
@@ -696,10 +722,11 @@ show_status() {
     echo "=== Environment ==="
     echo "Project Directory: $PROJECT_DIR"
     echo "Compose Project: $COMPOSE_PROJECT"
-    echo "Backend API: ${VITE_BACKEND_API_URL:-'Not set'}"
+    echo "Backend API: ${NEXT_PUBLIC_BACKEND_API_URL:-'Not set'}"
     echo "MongoDB Database: ${DB_NAME:-'Not set'}"
-    echo "Google Maps API: ${VITE_GOOGLE_MAPS_API_KEY:0:20}..." # Show only first 20 chars for security
-    echo "GA Measurement ID: ${VITE_GA_MEASUREMENT_ID:-'Not set'}"
+    echo "Google Maps API: ${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:0:20}..." # Show only first 20 chars for security
+    echo "GA Measurement ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID:-'Not set'}"
+    echo "reCAPTCHA Site Key: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY:0:20}..."
     echo "Environment loaded from: .env files"
     echo "Build Context: $(pwd)"
 
