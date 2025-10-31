@@ -17,18 +17,25 @@ SIDE_BY_SIDE=false  # Side-by-side deployment mode (don't stop existing containe
 # Load environment variables from .env files
 # These files should exist on the server and contain actual values
 # They should NOT be committed to git
+# Use 'set -a' to automatically export all variables
 if [ -f "$PROJECT_DIR/.env" ]; then
+    set -a
     source "$PROJECT_DIR/.env"
+    set +a
     echo "✓ Loaded environment from $PROJECT_DIR/.env"
 fi
 
 if [ -f "$PROJECT_DIR/server/.env" ]; then
+    set -a
     source "$PROJECT_DIR/server/.env"
+    set +a
     echo "✓ Loaded environment from $PROJECT_DIR/server/.env"
 fi
 
 if [ -f "$PROJECT_DIR/client/.env.local" ]; then
+    set -a
     source "$PROJECT_DIR/client/.env.local"
+    set +a
     echo "✓ Loaded environment from $PROJECT_DIR/client/.env.local"
 fi
 
