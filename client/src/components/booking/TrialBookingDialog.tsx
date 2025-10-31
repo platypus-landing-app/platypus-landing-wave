@@ -45,6 +45,7 @@ import {
 import { useKeyboardHeight } from "@/hooks/use-keyboard-height";
 import AddressAutocomplete, { SelectedAddress } from "@/components/AddressAutocomplete";
 import { useBooking } from "@/contexts/BookingContext";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 // Common dog breeds for India
 const DOG_BREEDS = [
@@ -146,6 +147,7 @@ const TrialBookingDialog: React.FC = () => {
   const [step, setStep] = React.useState(1);
   const [countdown, setCountdown] = React.useState(0);
   const { keyboardHeight, isKeyboardVisible } = useKeyboardHeight();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const form = useForm<TrialBookingFormValues>({
     resolver: zodResolver(TrialBookingSchema),
@@ -235,10 +237,21 @@ const TrialBookingDialog: React.FC = () => {
 
 async function onSubmit(values: TrialBookingFormValues) {
   try {
+    // Generate reCAPTCHA token
+    let recaptchaToken = null;
+    if (executeRecaptcha) {
+      try {
+        recaptchaToken = await executeRecaptcha('submit_booking');
+      } catch (error) {
+        console.warn('reCAPTCHA token generation failed:', error);
+        // Continue without token - backend will handle gracefully
+      }
+    }
+
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/bookings/save-send-booking-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, recaptchaToken }),
     });
 
     if (!response.ok) {

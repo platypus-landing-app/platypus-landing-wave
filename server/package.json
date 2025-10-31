@@ -1,10 +1,12 @@
 {
   "type": "module",
   "dependencies": {
+    "axios": "^1.13.1",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.2.0",
     "mongodb": "^6.19.0",
     "mongoose": "^8.18.1",
     "sib-api-v3-sdk": "^8.5.0"
@@ -14,4 +16,3 @@
     "dev": "node server.js"
   }
 }
-                                                                                                            

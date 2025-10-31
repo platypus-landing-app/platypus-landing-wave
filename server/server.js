@@ -4,6 +4,9 @@ import dotenv from "dotenv";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 import cors from "cors";
 import { MongoClient } from "mongodb";
+import { createHash } from "crypto";
+import rateLimit from "express-rate-limit";
+import axios from "axios";
 
 dotenv.config();
 
@@ -52,6 +55,30 @@ app.use(
     })
 );
 
+// --- Rate Limiting Configuration ---
+// Global rate limit: 100 requests per 15 minutes per IP
+const globalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100,
+    message: { success: false, message: "Too many requests, please try again later." },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+// Booking-specific rate limit: 3 submissions per 5 minutes per IP
+const bookingLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    max: 3,
+    message: {
+        success: false,
+        message: "Too many booking attempts. Please wait 5 minutes before trying again."
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+app.use(globalLimiter);
+
 // --- Health Check Endpoint ---
 app.get('/health', (req, res) => {
     res.status(200).json({
@@ -61,6 +88,55 @@ app.get('/health', (req, res) => {
         service: 'platypus-backend'
     });
 });
+
+// --- reCAPTCHA Verification Function ---
+async function verifyRecaptcha(token) {
+    try {
+        const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+        if (!secretKey) {
+            console.warn("⚠️ RECAPTCHA_SECRET_KEY not set, skipping verification");
+            return { success: true, score: 1.0 }; // Allow in development
+        }
+
+        const response = await axios.post(
+            `https://www.google.com/recaptcha/api/siteverify`,
+            null,
+            {
+                params: {
+                    secret: secretKey,
+                    response: token,
+                }
+            }
+        );
+
+        const data = response.data;
+
+        if (!data.success) {
+            console.error("❌ reCAPTCHA verification failed:", data["error-codes"]);
+            return { success: false, score: 0, errors: data["error-codes"] };
+        }
+
+        console.log(`✅ reCAPTCHA verified - Score: ${data.score}, Action: ${data.action}`);
+        return { success: true, score: data.score, action: data.action };
+    } catch (error) {
+        console.error("❌ reCAPTCHA verification error:", error.message);
+        return { success: false, score: 0, error: error.message };
+    }
+}
+
+// --- Generate Content Hash (to detect duplicate vs. changed submissions) ---
+function generateBookingHash(booking) {
+    const relevantData = {
+        fullName: booking.fullName,
+        email: booking.email,
+        dogs: booking.dogs,
+        preferredDate: booking.preferredDate,
+        timeSlot: booking.timeSlot,
+        location: booking.location
+    };
+    const dataString = JSON.stringify(relevantData);
+    return createHash('sha256').update(dataString).digest('hex');
+}
 
 // --- Email Function ---
 async function sendBookingEmail(values) {
@@ -135,32 +211,86 @@ async function sendBookingEmail(values) {
 }
 
 // --- Combined Booking Route (Save to DB + Send Email) ---
-app.post("/api/bookings/save-send-booking-email", async (req, res) => {
+app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, res) => {
     try {
-        const booking = req.body;
+        const { recaptchaToken, ...booking } = req.body;
 
-        // Check duplicate by mobile number
-        const existing = await db.collection("dog_bookings").findOne({ mobile: booking.mobile });
-        if (existing) {
-            return res.status(400).json({
-                success: false,
-                message: "A booking with this mobile number already exists.",
-            });
+        // 1. Verify reCAPTCHA
+        if (recaptchaToken) {
+            const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+
+            if (!recaptchaResult.success) {
+                return res.status(400).json({
+                    success: false,
+                    message: "reCAPTCHA verification failed. Please refresh and try again.",
+                });
+            }
+
+            // Block if score is too low (likely bot)
+            if (recaptchaResult.score < 0.3) {
+                console.warn(`⚠️ Low reCAPTCHA score (${recaptchaResult.score}) for mobile: ${booking.mobile}`);
+                return res.status(400).json({
+                    success: false,
+                    message: "Your submission appears suspicious. Please contact us directly if you're having trouble.",
+                });
+            }
+
+            // Log score for monitoring
+            booking.recaptchaScore = recaptchaResult.score;
+        } else {
+            console.warn("⚠️ No reCAPTCHA token provided");
         }
 
-        // Add timestamp
-        booking.createdAt = new Date();
+        // 2. Generate content hash for this submission
+        const currentHash = generateBookingHash(booking);
+        booking.contentHash = currentHash;
 
-        // Insert into MongoDB
+        // 3. Check for recent submissions from this mobile number
+        const existing = await db.collection("dog_bookings").findOne(
+            { mobile: booking.mobile },
+            { sort: { createdAt: -1 } } // Get most recent
+        );
+
+        if (existing) {
+            const hoursSinceLastSubmission = (Date.now() - existing.createdAt.getTime()) / (1000 * 60 * 60);
+
+            // SCENARIO 1: Recent identical submission (< 24 hours, same content)
+            if (hoursSinceLastSubmission < 24 && existing.contentHash === currentHash) {
+                return res.status(400).json({
+                    success: false,
+                    message: "You've already submitted this exact booking recently. Our team will contact you soon!",
+                    existingBookingId: existing._id,
+                    submittedAt: existing.createdAt
+                });
+            }
+
+            // SCENARIO 2: Very recent submission (< 1 hour) but different details
+            if (hoursSinceLastSubmission < 1 && existing.contentHash !== currentHash) {
+                console.log(`✅ Allowing updated submission within 1 hour for mobile: ${booking.mobile}`);
+                // Allow - user likely correcting/updating details
+            }
+
+            // SCENARIO 3: Submission after 24 hours - always allow (repeat customer)
+            if (hoursSinceLastSubmission >= 24) {
+                console.log(`✅ Allowing repeat submission after ${Math.floor(hoursSinceLastSubmission)} hours for mobile: ${booking.mobile}`);
+            }
+        }
+
+        // 4. Add metadata
+        booking.createdAt = new Date();
+        booking.ipAddress = req.ip || req.headers['x-forwarded-for'] || 'unknown';
+        booking.userAgent = req.headers['user-agent'] || 'unknown';
+
+        // 5. Insert into MongoDB
         const result = await db.collection("dog_bookings").insertOne(booking);
         console.log("✅ Booking saved to database with ID:", result.insertedId);
 
-        // Send email
+        // 6. Send email
         await sendBookingEmail(booking);
 
         res.status(201).json({
             success: true,
-            message: "Booking submitted and email sent successfully!",
+            message: "Booking submitted successfully! We'll contact you soon.",
             bookingId: result.insertedId,
         });
     } catch (err) {
@@ -168,7 +298,7 @@ app.post("/api/bookings/save-send-booking-email", async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Something went wrong. Please try again.",
-            error: err.message
+            error: process.env.NODE_ENV === 'development' ? err.message : undefined
         });
     }
 });
