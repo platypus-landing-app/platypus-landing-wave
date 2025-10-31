@@ -79,10 +79,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={funnelSans.variable}>
       <head>
+        {/* Critical CSS - Inline to prevent render blocking */}
+        <style dangerouslySetInnerHTML={{__html: `:root{--background:210 20% 98%;--foreground:215 25% 15%;--primary:200 85% 45%;--primary-foreground:210 40% 98%;--muted:195 100% 95%;--muted-foreground:215 16% 47%;--border:200 50% 90%;--ring:200 85% 45%;--radius:1rem}*{border-color:hsl(var(--border))}body{background-color:hsl(var(--background));color:hsl(var(--foreground));font-family:var(--font-funnel),system-ui,-apple-system,sans-serif}`}} />
 
         {/* Performance: Preload critical LCP image */}
-        <link rel="preload" href="/optimized/hero-image.avif" as="image" type="image/avif" />
-        <link rel="preload" href="/optimized/hero-image.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/optimized/hero-image.avif" as="image" type="image/avif" fetchPriority="high" />
+        <link rel="preload" href="/optimized/hero-image.webp" as="image" type="image/webp" fetchPriority="high" />
 
         {/* Google Analytics - Deferred loading */}
         <script

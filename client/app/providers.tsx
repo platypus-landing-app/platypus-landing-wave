@@ -5,13 +5,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BookingProvider } from "@/contexts/BookingContext";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-// Dynamically import TrialBookingDialog with no SSR to avoid Google Maps SSR issues
-const TrialBookingDialog = dynamic(
-  () => import("@/components/booking/TrialBookingDialog"),
+// Dynamically import TrialBookingDialog with reCAPTCHA - lazy load both together
+// This prevents reCAPTCHA from loading until the booking dialog is actually opened
+const TrialBookingDialogWithReCaptcha = dynamic(
+  () => import("@/components/booking/TrialBookingDialogWrapper"),
   { ssr: false }
 );
 
@@ -25,20 +25,16 @@ export function Providers({ children }: { children: React.ReactNode }) {
     },
   }));
 
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
-
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <BookingProvider>
-            <Toaster />
-            <Sonner />
-            {children}
-            <TrialBookingDialog />
-          </BookingProvider>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </GoogleReCaptchaProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BookingProvider>
+          <Toaster />
+          <Sonner />
+          {children}
+          <TrialBookingDialogWithReCaptcha />
+        </BookingProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }
