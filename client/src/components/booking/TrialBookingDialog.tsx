@@ -3,7 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { format } from "date-fns";
-import { CalendarIcon, ChevronLeft, ChevronRight, Plus, Trash2, X } from "lucide-react";
+import { CalendarIcon, ChevronLeft, ChevronRight, Plus, Trash2, X, Check, Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
@@ -26,6 +26,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { InputOTP } from "@/components/ui/input-otp";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -46,6 +47,12 @@ import { useKeyboardHeight } from "@/hooks/use-keyboard-height";
 import AddressAutocomplete, { SelectedAddress } from "@/components/AddressAutocomplete";
 import { useBooking } from "@/contexts/BookingContext";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { auth } from "@/lib/firebase";
+import {
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  ConfirmationResult,
+} from "firebase/auth";
 
 // Common dog breeds for India
 const DOG_BREEDS = [
@@ -149,6 +156,18 @@ const TrialBookingDialog: React.FC = () => {
   const { keyboardHeight, isKeyboardVisible } = useKeyboardHeight();
   const { executeRecaptcha } = useGoogleReCaptcha();
 
+  // Firebase Phone Auth states
+  const [phoneVerified, setPhoneVerified] = React.useState(false);
+  const [otpSent, setOtpSent] = React.useState(false);
+  const [otpSending, setOtpSending] = React.useState(false);
+  const [otpVerifying, setOtpVerifying] = React.useState(false);
+  const [recaptchaReady, setRecaptchaReady] = React.useState(false);
+  const [confirmationResult, setConfirmationResult] = React.useState<ConfirmationResult | null>(null);
+  const [userInteracted, setUserInteracted] = React.useState(false); // Track if user manually changed phone
+  const [rateLimitError, setRateLimitError] = React.useState(false); // Track rate limit errors
+  const [lastPhoneNumber, setLastPhoneNumber] = React.useState<string>(''); // Track the last phone number we sent OTP to
+  const recaptchaContainerRef = React.useRef<HTMLDivElement>(null);
+
   const form = useForm<TrialBookingFormValues>({
     resolver: zodResolver(TrialBookingSchema),
     defaultValues,
@@ -213,12 +232,22 @@ const TrialBookingDialog: React.FC = () => {
     }
   }, [form]);
 
-  const nextStep = async () => {    
+  const nextStep = async () => {
     if (step === 1) {
       const isValid = await trigger(["fullName", "mobile"]);
-      if (isValid) {
-        setStep(step + 1);
+      if (!isValid) return;
+
+      // Check phone verification
+      if (!phoneVerified) {
+        toast({
+          title: "Phone Verification Required",
+          description: "Please verify your phone number to continue",
+          variant: "destructive",
+        });
+        return;
       }
+
+      setStep(step + 1);
     } else if (step === 2) {
       const isValid = await trigger("dogs");
       if (isValid) {
@@ -234,6 +263,244 @@ const TrialBookingDialog: React.FC = () => {
   const addDog = () => {
     appendDog({ name: "", breed: "", breedOther: "", age: undefined as any, specialNotes: "" });
   };
+
+  // Initialize Firebase reCAPTCHA when dialog opens
+  React.useEffect(() => {
+    if (isTrialBookingOpen && !window.recaptchaVerifier) {
+      // Wait for DOM to be ready
+      const timer = setTimeout(() => {
+        if (recaptchaContainerRef.current) {
+          try {
+            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+              size: 'invisible',
+              callback: () => {
+                console.log('✅ reCAPTCHA solved');
+              },
+              'expired-callback': () => {
+                console.log('⚠️ reCAPTCHA expired');
+              }
+            });
+            setRecaptchaReady(true);
+            console.log('✅ reCAPTCHA initialized and ready');
+          } catch (error) {
+            console.error('❌ reCAPTCHA initialization error:', error);
+            setRecaptchaReady(false);
+          }
+        }
+      }, 1000); // Increased to 1 second for better reliability
+
+      return () => clearTimeout(timer);
+    }
+
+    // Cleanup when dialog closes
+    if (!isTrialBookingOpen) {
+      if (window.recaptchaVerifier) {
+        try {
+          window.recaptchaVerifier.clear();
+          window.recaptchaVerifier = undefined;
+          console.log('🧹 reCAPTCHA cleared');
+        } catch (error) {
+          console.error('reCAPTCHA cleanup error:', error);
+        }
+      }
+      setRecaptchaReady(false);
+      setOtpSent(false);
+      setPhoneVerified(false);
+      setConfirmationResult(null);
+      setLastPhoneNumber('');
+    }
+  }, [isTrialBookingOpen]);
+
+  // Firebase Phone Auth Functions
+  const handleSendOTP = async () => {
+    const phoneValue = watch('mobile');
+
+    if (!phoneValue || phoneValue.length !== 10) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid 10-digit mobile number",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setOtpSending(true);
+      setLastPhoneNumber(phoneValue); // Track the phone number we're attempting
+      const formattedPhone = `+91${phoneValue}`;
+
+      // Initialize reCAPTCHA if not already initialized
+      if (!window.recaptchaVerifier) {
+        console.log('Initializing reCAPTCHA on-demand...');
+        if (!recaptchaContainerRef.current) {
+          throw new Error('reCAPTCHA container not found');
+        }
+
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          size: 'invisible',
+          callback: () => {
+            console.log('reCAPTCHA solved');
+          },
+        });
+        console.log('✅ reCAPTCHA initialized on-demand');
+      }
+
+      console.log('Sending OTP to:', formattedPhone);
+      const result = await signInWithPhoneNumber(auth, formattedPhone, window.recaptchaVerifier);
+      setConfirmationResult(result);
+      setOtpSent(true);
+
+      toast({
+        title: "OTP Sent!",
+        description: "Please check your phone for the 6-digit code",
+      });
+    } catch (error: any) {
+      console.error('❌ OTP send error:', error);
+
+      // Check if it's a rate limit error
+      if (error.code === 'auth/too-many-requests') {
+        setRateLimitError(true);
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait a few minutes before trying again. Firebase has temporarily blocked OTP requests from this device.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Failed to Send OTP",
+          description: error.message || "Please try again",
+          variant: "destructive",
+        });
+      }
+
+      // Reset reCAPTCHA on error
+      if (window.recaptchaVerifier) {
+        try {
+          window.recaptchaVerifier.clear();
+          window.recaptchaVerifier = undefined;
+        } catch (e) {
+          console.error('Error clearing reCAPTCHA:', e);
+        }
+      }
+      setRecaptchaReady(false);
+    } finally {
+      setOtpSending(false);
+    }
+  };
+
+  const handleVerifyOTP = async (otp: string) => {
+    if (!confirmationResult) {
+      toast({
+        title: "Error",
+        description: "Please request a new OTP",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const phoneValue = watch('mobile');
+
+    try {
+      setOtpVerifying(true);
+
+      // Confirm the OTP with Firebase
+      const result = await confirmationResult.confirm(otp);
+      const user = result.user;
+
+      // Get Firebase ID token
+      const idToken = await user.getIdToken();
+
+      // Send to backend for verification and partial lead save
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/leads/verify-phone-and-save`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          idToken,
+          phone: phoneValue,
+          fullName: watch('fullName'),
+          email: watch('email'),
+          whatsappEnabled: watch('whatsappEnabled'),
+          formData: form.getValues()
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setPhoneVerified(true);
+        toast({
+          title: "Phone Verified!",
+          description: "Your contact information has been saved",
+        });
+      } else {
+        throw new Error(data.message || "Verification failed");
+      }
+    } catch (error: any) {
+      console.error('OTP verification error:', error);
+      toast({
+        title: "Verification Failed",
+        description: error.code === 'auth/invalid-verification-code'
+          ? "Invalid OTP code. Please try again"
+          : error.message || "Please check your OTP and try again",
+        variant: "destructive",
+      });
+    } finally {
+      setOtpVerifying(false);
+    }
+  };
+
+  // Reset OTP states when phone number changes
+  const phoneValue = watch('mobile');
+  React.useEffect(() => {
+    // Reset OTP states when user changes to a different phone number
+    if (phoneValue && phoneValue !== lastPhoneNumber && phoneValue.length >= 1) {
+      console.log(`📱 Phone number changed from ${lastPhoneNumber} to ${phoneValue}, resetting states...`);
+
+      setOtpSent(false);
+      setPhoneVerified(false);
+      setRateLimitError(false);
+      setConfirmationResult(null);
+
+      // Re-initialize reCAPTCHA if it was cleared due to error
+      if (!window.recaptchaVerifier && recaptchaContainerRef.current && isTrialBookingOpen) {
+        try {
+          window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            size: 'invisible',
+            callback: () => {
+              console.log('✅ reCAPTCHA solved');
+            },
+            'expired-callback': () => {
+              console.log('⚠️ reCAPTCHA expired');
+            }
+          });
+          setRecaptchaReady(true);
+          console.log('✅ reCAPTCHA re-initialized after phone change');
+        } catch (error) {
+          console.error('❌ reCAPTCHA re-initialization error:', error);
+          setRecaptchaReady(false);
+        }
+      }
+    }
+  }, [phoneValue, lastPhoneNumber, isTrialBookingOpen]);
+
+  // Auto-send OTP after phone number is complete AND reCAPTCHA is ready
+  React.useEffect(() => {
+    if (
+      phoneValue &&
+      phoneValue.length === 10 &&
+      !phoneVerified &&
+      !otpSent &&
+      !otpSending &&
+      recaptchaReady  // IMPORTANT: Only auto-send when reCAPTCHA is ready
+    ) {
+      console.log('📱 Phone number complete and reCAPTCHA ready, auto-sending OTP in 3s...');
+      const timer = setTimeout(() => {
+        handleSendOTP();
+      }, 3000); // 3 second debounce
+
+      return () => clearTimeout(timer);
+    }
+  }, [phoneValue, phoneVerified, otpSent, otpSending, recaptchaReady]);
 
 async function onSubmit(values: TrialBookingFormValues) {
   try {
@@ -268,6 +535,14 @@ async function onSubmit(values: TrialBookingFormValues) {
     // Reset form and localStorage
     form.reset(defaultValues);
     localStorage.removeItem(STORAGE_KEY);
+
+    // Reset OTP states
+    setPhoneVerified(false);
+    setOtpSent(false);
+    setOtpSending(false);
+    setOtpVerifying(false);
+    setStep(1);
+
     closeTrialBooking();
   } catch (err: any) {
     // Error already shown to user via toast
@@ -291,9 +566,12 @@ async function onSubmit(values: TrialBookingFormValues) {
   return (
     <Dialog open={isTrialBookingOpen} onOpenChange={closeTrialBooking}>
       <DialogContent className="max-w-2xl p-0 overflow-hidden sm:top-[50%] top-[20%] sm:translate-y-[-50%] translate-y-[-20%]">
-        <div 
+        {/* Firebase reCAPTCHA container (invisible) */}
+        <div ref={recaptchaContainerRef} id="recaptcha-container"></div>
+
+        <div
           className="flex flex-col"
-          style={{ 
+          style={{
             height: dialogHeight,
             maxHeight: dialogHeight,
             transition: 'height 0.3s ease-in-out'
@@ -369,19 +647,92 @@ async function onSubmit(values: TrialBookingFormValues) {
                               +91
                             </span>
                             <FormControl>
-                              <Input 
+                              <Input
                                 className="rounded-l-none"
-                                inputMode="numeric" 
-                                maxLength={10} 
-                                placeholder="10-digit number" 
-                                {...field} 
+                                inputMode="numeric"
+                                maxLength={10}
+                                placeholder="10-digit number"
+                                {...field}
+                                disabled={phoneVerified}
                               />
                             </FormControl>
                           </div>
                           <FormMessage />
+
+                          {/* reCAPTCHA Status & Manual Send */}
+                          {!phoneVerified && !otpSent && field.value?.length === 10 && (
+                            <div className="mt-2">
+                              {!recaptchaReady ? (
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Loader2 className="h-4 w-4 animate-spin" />
+                                  <span>Preparing verification...</span>
+                                </div>
+                              ) : (
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={handleSendOTP}
+                                  disabled={otpSending}
+                                  className="text-xs"
+                                >
+                                  {otpSending ? "Sending..." : "Send OTP Now"}
+                                </Button>
+                              )}
+                            </div>
+                          )}
+
+                          {/* OTP Sending Status */}
+                          {otpSending && (
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                              <span>Sending OTP...</span>
+                            </div>
+                          )}
+
+                          {/* Phone Verified Status */}
+                          {phoneVerified && (
+                            <div className="flex items-center gap-2 text-sm text-green-600 mt-2">
+                              <Check className="h-4 w-4" />
+                              <span>Phone verified</span>
+                            </div>
+                          )}
                         </FormItem>
                       )}
                     />
+
+                    {/* OTP Input */}
+                    {otpSent && !phoneVerified && (
+                      <div className="space-y-4 p-4 border rounded-lg bg-muted/20">
+                        <div className="space-y-2">
+                          <FormLabel>Enter Verification Code</FormLabel>
+                          <FormDescription>
+                            Enter the 6-digit code sent to your phone
+                          </FormDescription>
+                          <InputOTP
+                            length={6}
+                            onComplete={handleVerifyOTP}
+                            disabled={otpVerifying}
+                          />
+                          {otpVerifying && (
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                              <span>Verifying...</span>
+                            </div>
+                          )}
+                        </div>
+                        <Button
+                          type="button"
+                          variant="link"
+                          size="sm"
+                          onClick={handleSendOTP}
+                          disabled={otpSending}
+                          className="px-0 h-auto text-primary"
+                        >
+                          {otpSending ? "Sending..." : "Resend OTP"}
+                        </Button>
+                      </div>
+                    )}
 
                     <FormField
                       control={form.control}
@@ -734,6 +1085,7 @@ async function onSubmit(values: TrialBookingFormValues) {
                 <Button
                   type="button"
                   onClick={nextStep}
+                  disabled={step === 1 && !phoneVerified}
                   className="flex items-center gap-2"
                 >
                   Next

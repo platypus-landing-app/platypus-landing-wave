@@ -7,6 +7,7 @@ import { MongoClient } from "mongodb";
 import { createHash } from "crypto";
 import rateLimit from "express-rate-limit";
 import axios from "axios";
+import admin from "firebase-admin";
 
 dotenv.config();
 
@@ -22,10 +23,31 @@ async function connectDB() {
         await client.connect();
         db = client.db(process.env.DB_NAME || "platypus");
         console.log("✅ MongoDB connected");
+
+        // Create indexes for partial_leads collection
+        await db.collection("partial_leads").createIndex({ phone: 1 }, { unique: true });
+        await db.collection("partial_leads").createIndex({ email: 1 });
+        await db.collection("partial_leads").createIndex({ status: 1 });
+        await db.collection("partial_leads").createIndex({ created_at: 1 });
+        console.log("✅ Indexes created for partial_leads collection");
     } catch (err) {
         console.error("❌ MongoDB connection error:", err);
         process.exit(1);
     }
+}
+
+// --- Firebase Admin SDK Setup ---
+try {
+    admin.initializeApp({
+        credential: admin.credential.cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        }),
+    });
+    console.log("✅ Firebase Admin SDK initialized");
+} catch (error) {
+    console.error("❌ Firebase initialization error:", error.message);
 }
 
 // --- Express Setup ---
@@ -77,6 +99,30 @@ const bookingLimiter = rateLimit({
     legacyHeaders: false,
 });
 
+// OTP send rate limit: 5 OTP requests per 15 minutes per IP
+const otpSendLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5,
+    message: {
+        success: false,
+        message: "Too many OTP requests. Please wait before trying again."
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+// OTP verify rate limit: 10 verification attempts per 15 minutes per IP
+const otpVerifyLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10,
+    message: {
+        success: false,
+        message: "Too many verification attempts. Please request a new OTP."
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
 app.use(globalLimiter);
 
 // --- Health Check Endpoint ---
@@ -87,6 +133,141 @@ app.get('/health', (req, res) => {
         database: db ? 'connected' : 'disconnected',
         service: 'platypus-backend'
     });
+});
+
+// --- Cleanup Job for Old Partial Leads (90 days) ---
+async function cleanupOldPartialLeads() {
+    try {
+        const ninetyDaysAgo = new Date();
+        ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+        const result = await db.collection("partial_leads").deleteMany({
+            created_at: { $lt: ninetyDaysAgo },
+            status: { $in: ["partial", "contacted"] } // Only delete unresolved leads
+        });
+
+        if (result.deletedCount > 0) {
+            console.log(`🗑️  Cleaned up ${result.deletedCount} partial leads older than 90 days`);
+        }
+    } catch (error) {
+        console.error("❌ Cleanup job error:", error);
+    }
+}
+
+// Run cleanup daily at 2 AM
+setInterval(cleanupOldPartialLeads, 24 * 60 * 60 * 1000);
+// Run immediately on startup
+setTimeout(cleanupOldPartialLeads, 5000);
+
+// --- Firebase Phone Verification and Save Partial Lead Endpoint ---
+app.post("/api/leads/verify-phone-and-save", otpVerifyLimiter, async (req, res) => {
+    try {
+        const { idToken, phone, fullName, email, whatsappEnabled, formData } = req.body;
+
+        // Validate required fields
+        if (!idToken) {
+            return res.status(400).json({
+                success: false,
+                message: "Firebase ID token is required."
+            });
+        }
+
+        if (!phone || !/^\d{10}$/.test(phone)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid phone number format."
+            });
+        }
+
+        // Verify Firebase ID token
+        let decodedToken;
+        try {
+            decodedToken = await admin.auth().verifyIdToken(idToken);
+            console.log(`✅ Firebase token verified for phone: ${decodedToken.phone_number}`);
+        } catch (error) {
+            console.error(`❌ Firebase token verification failed:`, error.message);
+            return res.status(401).json({
+                success: false,
+                message: "Invalid or expired authentication token."
+            });
+        }
+
+        // Verify the phone number matches
+        const verifiedPhone = decodedToken.phone_number?.replace('+91', '');
+        if (verifiedPhone !== phone) {
+            return res.status(400).json({
+                success: false,
+                message: "Phone number mismatch."
+            });
+        }
+
+        console.log(`✅ Phone verified successfully: ${phone}`);
+
+        // Check if already exists in completed bookings
+        const existingBooking = await db.collection("dog_bookings").findOne({ mobile: phone });
+        if (existingBooking) {
+            console.log(`ℹ️  Phone ${phone} already has completed booking, skipping partial lead save`);
+            return res.status(200).json({
+                success: true,
+                message: "Phone verified successfully",
+                verified: true,
+                alreadyCustomer: true
+            });
+        }
+
+        // Check if already exists in partial_leads
+        const existingPartialLead = await db.collection("partial_leads").findOne({ phone });
+
+        const partialLeadData = {
+            phone,
+            email: email || null,
+            full_name: fullName || null,
+            whatsapp_enabled: whatsappEnabled || false,
+            status: "verified",
+            step_reached: 1,
+            form_data: formData || {},
+            firebase_uid: decodedToken.uid,
+            metadata: {
+                ip_address: req.ip || req.headers['x-forwarded-for'] || 'unknown',
+                user_agent: req.headers['user-agent'] || 'unknown',
+                page_url: req.headers.referer || 'unknown',
+                referrer: req.headers.referer || 'unknown'
+            },
+            last_updated: new Date(),
+            contact_attempts: 0
+        };
+
+        if (existingPartialLead) {
+            // Update existing partial lead
+            await db.collection("partial_leads").updateOne(
+                { phone },
+                {
+                    $set: partialLeadData,
+                    $setOnInsert: { created_at: existingPartialLead.created_at }
+                }
+            );
+            console.log(`✅ Updated existing partial lead for ${phone}`);
+        } else {
+            // Create new partial lead
+            partialLeadData.created_at = new Date();
+            await db.collection("partial_leads").insertOne(partialLeadData);
+            console.log(`✅ Created new partial lead for ${phone}`);
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Phone verified and information saved successfully",
+            verified: true
+        });
+    } catch (error) {
+        console.error("❌ Phone verification error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Verification failed. Please try again.",
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
 });
 
 // --- reCAPTCHA Verification Function ---
