@@ -263,6 +263,32 @@ validate_config() {
         warning "reCAPTCHA secret key not set - bot protection may not work"
     fi
 
+    # Validate Firebase environment variables (Client-side)
+    if [ -z "$NEXT_PUBLIC_FIREBASE_API_KEY" ]; then
+        warning "Firebase API key not set - phone authentication may not work"
+    fi
+
+    if [ -z "$NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN" ]; then
+        warning "Firebase Auth Domain not set - phone authentication may not work"
+    fi
+
+    if [ -z "$NEXT_PUBLIC_FIREBASE_PROJECT_ID" ]; then
+        warning "Firebase Project ID not set - phone authentication may not work"
+    fi
+
+    # Validate Firebase environment variables (Server-side)
+    if [ -z "$FIREBASE_PROJECT_ID" ]; then
+        warning "Firebase Admin Project ID not set - OTP verification may not work"
+    fi
+
+    if [ -z "$FIREBASE_PRIVATE_KEY" ]; then
+        warning "Firebase Admin Private Key not set - OTP verification may not work"
+    fi
+
+    if [ -z "$FIREBASE_CLIENT_EMAIL" ]; then
+        warning "Firebase Admin Client Email not set - OTP verification may not work"
+    fi
+
     # Check if .env files exist in the correct directories (for reference)
     if [ -f "client/.env" ]; then
         log "Found client/.env file"
@@ -358,6 +384,15 @@ build_containers() {
         export NEXT_PUBLIC_SITE_URL="$NEXT_PUBLIC_SITE_URL"
         export NEXT_PUBLIC_RECAPTCHA_SITE_KEY="$NEXT_PUBLIC_RECAPTCHA_SITE_KEY"
 
+        # Set Firebase environment variables (Client-side)
+        export NEXT_PUBLIC_FIREBASE_API_KEY="$NEXT_PUBLIC_FIREBASE_API_KEY"
+        export NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="$NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"
+        export NEXT_PUBLIC_FIREBASE_PROJECT_ID="$NEXT_PUBLIC_FIREBASE_PROJECT_ID"
+        export NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="$NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET"
+        export NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="$NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID"
+        export NEXT_PUBLIC_FIREBASE_APP_ID="$NEXT_PUBLIC_FIREBASE_APP_ID"
+        export NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID="$NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID"
+
         # Set backend environment variables
         export MONGODB_PASSWORD="$MONGODB_PASSWORD"
         export BREVO_API_KEY="$BREVO_API_KEY"
@@ -366,6 +401,11 @@ build_containers() {
         export RECAPTCHA_SECRET_KEY="$RECAPTCHA_SECRET_KEY"
         export CORS_ORIGIN="$CORS_ORIGIN"
         export LETSENCRYPT_EMAIL="$LETSENCRYPT_EMAIL"
+
+        # Set Firebase environment variables (Server-side Admin SDK)
+        export FIREBASE_PROJECT_ID="$FIREBASE_PROJECT_ID"
+        export FIREBASE_PRIVATE_KEY="$FIREBASE_PRIVATE_KEY"
+        export FIREBASE_CLIENT_EMAIL="$FIREBASE_CLIENT_EMAIL"
 
         # Build with no cache and pull latest base images
         log "Building containers from scratch (this may take several minutes)..."
