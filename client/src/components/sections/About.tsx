@@ -118,16 +118,16 @@ const About = () => {
   <picture className="block md:hidden">
     <source
       type="image/avif"
-      srcSet="/optimized/aboutus contact mobile-small.avif 400w, /optimized/aboutus contact mobile-medium.avif 800w, /optimized/aboutus contact mobile.avif 853w"
+      srcSet="/optimized/aboutus%20contact%20mobile-small.avif 400w, /optimized/aboutus%20contact%20mobile-medium.avif 800w, /optimized/aboutus%20contact%20mobile.avif 853w"
       sizes="(max-width: 768px) 400px, 800px"
     />
     <source
       type="image/webp"
-      srcSet="/optimized/aboutus contact mobile-small.webp 400w, /optimized/aboutus contact mobile-medium.webp 800w, /optimized/aboutus contact mobile.webp 853w"
+      srcSet="/optimized/aboutus%20contact%20mobile-small.webp 400w, /optimized/aboutus%20contact%20mobile-medium.webp 800w, /optimized/aboutus%20contact%20mobile.webp 853w"
       sizes="(max-width: 768px) 400px, 800px"
     />
     <img
-      src="/aboutus contact mobile.png"
+      src="/aboutus%20contact%20mobile.png"
       alt="Platypus App Mobile Preview"
       loading="lazy"
       decoding="async"
@@ -139,16 +139,16 @@ const About = () => {
   <picture className="hidden md:block">
     <source
       type="image/avif"
-      srcSet="/optimized/aboutus contact-small.avif 400w, /optimized/aboutus contact.avif 613w"
+      srcSet="/optimized/aboutus%20contact-small.avif 400w, /optimized/aboutus%20contact.avif 613w"
       sizes="(max-width: 1024px) 400px, 613px"
     />
     <source
       type="image/webp"
-      srcSet="/optimized/aboutus contact-small.webp 400w, /optimized/aboutus contact.webp 613w"
+      srcSet="/optimized/aboutus%20contact-small.webp 400w, /optimized/aboutus%20contact.webp 613w"
       sizes="(max-width: 1024px) 400px, 613px"
     />
     <img
-      src={"/aboutus contact.png"}
+      src="/aboutus%20contact.png"
       alt="Platypus App Preview"
       loading="lazy"
       decoding="async"

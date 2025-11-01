@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-select'], // Tree-shake large packages
-    cssChunking: 'loose', // Improved CSS chunking for better caching
+    cssChunking: true, // Improved CSS chunking for better caching
   },
   // Redirect old URL format to new format
   async redirects() {

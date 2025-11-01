@@ -1,12 +1,17 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import ctaImage from "@/assets/3ind.png";
 import { useBooking } from "@/contexts/BookingContext";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { openTrialBooking } = useBooking();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadElfsight, setLoadElfsight] = useState(false);
+  const reviewsSectionRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -49,6 +54,67 @@ const Testimonials = () => {
     return () => clearInterval(timer);
   }, [groupedTestimonials.length]);
 
+  // Lazy load Elfsight widget when Google Reviews section is in viewport
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    if (entries[0].isIntersecting && !loadElfsight) {
+      setLoadElfsight(true);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    }
+  }, [loadElfsight]);
+
+  useEffect(() => {
+    if (reviewsSectionRef.current) {
+      observerRef.current = new IntersectionObserver(handleIntersection, {
+        rootMargin: '100px',
+        threshold: 0.1,
+      });
+      observerRef.current.observe(reviewsSectionRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [handleIntersection]);
+
+  // Load Elfsight script when needed
+  useEffect(() => {
+    if (!loadElfsight) return;
+
+    const loadScript = () => {
+      if (document.querySelector('script[src*="elfsightcdn.com"]')) {
+        setIsLoading(false);
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://elfsightcdn.com/platform.js';
+      script.async = true;
+      script.defer = true;
+
+      script.onload = () => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+      };
+
+      script.onerror = () => {
+        setIsLoading(false);
+      };
+
+      document.body.appendChild(script);
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadScript);
+    } else {
+      setTimeout(loadScript, 100);
+    }
+  }, [loadElfsight]);
+
   return (
     <section id="testimonials" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,12 +143,12 @@ const Testimonials = () => {
 {group.map((testimonial, index) => (
 <div
   key={index}
-  className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start 
+  className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start
     ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}
-    
+
     /* Mobile & Tablet -> always card style */
-    bg-white rounded-2xl shadow-md border border-gray-200 
-    
+    bg-white rounded-2xl shadow-md border border-gray-200
+
     /* Laptop/Desktop -> remove card look by default */
     xl:bg-transparent xl:shadow-none xl:border-none xl:rounded-none`}
 >
@@ -115,14 +181,14 @@ const Testimonials = () => {
 
       {/* Overlay */}
       <div className="absolute bottom-0 left-0 right-0">
-        <div className="backdrop-blur-md bg-gray-500/40 px-3 py-2 sm:px-4 sm:py-3 
-                        flex flex-col sm:flex-row items-center justify-center 
+        <div className="backdrop-blur-md bg-gray-500/40 px-3 py-2 sm:px-4 sm:py-3
+                        flex flex-col sm:flex-row items-center justify-center
                         space-y-1 sm:space-y-0 sm:space-x-3">
-          <h3 className="font-[Funnel_Sans] font-bold text-[16px] sm:text-[20px] 
+          <h3 className="font-[Funnel_Sans] font-bold text-[16px] sm:text-[20px]
                          lg:text-[22px] text-white capitalize text-center">
             {testimonial.name}
           </h3>
-          <p className="font-[Funnel_Sans] font-normal text-[11px] sm:text-[13px] 
+          <p className="font-[Funnel_Sans] font-normal text-[11px] sm:text-[13px]
                         lg:text-[14px] text-white/90 capitalize text-center">
             {testimonial.location}
           </p>
@@ -132,7 +198,7 @@ const Testimonials = () => {
 
     {/* Content */}
     <div
-      className={`p-4 sm:p-6 xl:p-0 relative z-10 
+      className={`p-4 sm:p-6 xl:p-0 relative z-10
                   ${index % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}
     >
       {/* Background Logos */}
@@ -155,8 +221,8 @@ const Testimonials = () => {
         />
       </div>
 
-      <blockquote className="font-[Funnel_Sans] font-normal text-[16px] sm:text-[18px] 
-                             leading-relaxed sm:leading-[28px] md:leading-[32px] 
+      <blockquote className="font-[Funnel_Sans] font-normal text-[16px] sm:text-[18px]
+                             leading-relaxed sm:leading-[28px] md:leading-[32px]
                              text-gray-900 capitalize relative z-10">
         {testimonial.quote}
       </blockquote>
@@ -184,6 +250,47 @@ const Testimonials = () => {
                 aria-label={`Go to testimonials page ${index + 1}`}
               />
             ))}
+        </div>
+
+        {/* Google Reviews Section */}
+        <div ref={reviewsSectionRef} className="mt-20">
+          <div className="mb-12 text-left max-w-4xl">
+            <h3 className="font-[Funnel_Sans] font-bold text-3xl sm:text-4xl leading-tight text-black capitalize mb-4">
+              <span className="relative text-[#D94F1F]">
+                Google
+                <span className="absolute bottom-[-5px] left-0 w-full max-w-[100px] sm:max-w-[140px] h-0 border-b border-golden opacity-100"></span>
+              </span>{" "}
+              Reviews
+            </h3>
+            <p className="font-[Funnel_Sans] font-normal text-sm sm:text-base leading-relaxed text-black capitalize">
+              See what our community is saying about us.
+            </p>
+          </div>
+
+          <div className="relative min-h-[400px]">
+            {loadElfsight && (
+              <div
+                style={{
+                  contentVisibility: isLoading ? 'hidden' : 'auto',
+                  transition: 'opacity 0.3s ease-in-out',
+                  opacity: isLoading ? 0 : 1,
+                }}
+              >
+                {/* Elfsight Google Reviews | Platypus */}
+                <div className="elfsight-app-cebab982-f1bd-4a47-a253-e6b2c69e7117" data-elfsight-app-lazy></div>
+              </div>
+            )}
+
+            {/* Loading State */}
+            {isLoading && loadElfsight && (
+              <div className="flex items-center justify-center py-16">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="w-12 h-12 border-4 border-[#397CEF] border-t-transparent rounded-full animate-spin"></div>
+                  <p className="font-[Funnel_Sans] text-gray-600">Loading reviews...</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
