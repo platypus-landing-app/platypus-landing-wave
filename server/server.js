@@ -11,6 +11,9 @@ import admin from "firebase-admin";
 
 dotenv.config();
 
+// Import Telegram utilities AFTER dotenv.config() so env vars are available
+import { sendBookingNotification, sendPartialLeadNotification, sendTestNotification } from "./utils/telegram.js";
+
 // --- MongoDB Connection ---
 let db;
 async function connectDB() {
@@ -135,6 +138,23 @@ app.get('/health', (req, res) => {
     });
 });
 
+// --- Test Telegram Bot Endpoint ---
+app.get('/api/test-telegram', async (req, res) => {
+    try {
+        await sendTestNotification();
+        res.status(200).json({
+            success: true,
+            message: 'Telegram test notification sent! Check your Telegram.'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Telegram test failed',
+            error: error.message
+        });
+    }
+});
+
 // --- Cleanup Job for Old Partial Leads (90 days) ---
 async function cleanupOldPartialLeads() {
     try {
@@ -158,6 +178,84 @@ async function cleanupOldPartialLeads() {
 setInterval(cleanupOldPartialLeads, 24 * 60 * 60 * 1000);
 // Run immediately on startup
 setTimeout(cleanupOldPartialLeads, 5000);
+
+// --- Track Partial Lead (Before Phone Verification) ---
+app.post("/api/leads/track-partial", async (req, res) => {
+    try {
+        const { fullName, email, phone, dogs, preferredDate, timeSlot, location, stepReached } = req.body;
+
+        // At minimum, we need some identifying information
+        if (!fullName && !email && !phone) {
+            return res.status(400).json({
+                success: false,
+                message: "At least one identifying field (name, email, or phone) is required"
+            });
+        }
+
+        // Create partial lead data
+        const partialLeadData = {
+            full_name: fullName || null,
+            email: email || null,
+            phone: phone || null,
+            status: "partial",
+            step_reached: stepReached || 0,
+            form_data: {
+                dogs: dogs || [],
+                preferredDate: preferredDate || null,
+                timeSlot: timeSlot || null,
+                location: location || null
+            },
+            metadata: {
+                ip_address: req.ip || req.headers['x-forwarded-for'] || 'unknown',
+                user_agent: req.headers['user-agent'] || 'unknown',
+                page_url: req.headers.referer || 'unknown'
+            },
+            last_updated: new Date()
+        };
+
+        // Try to find existing partial lead (by phone, email, or name)
+        let query = {};
+        if (phone) query.phone = phone;
+        else if (email) query.email = email;
+        else if (fullName) query.full_name = fullName;
+
+        const existing = await db.collection("partial_leads").findOne(query);
+
+        if (existing) {
+            // Update existing
+            await db.collection("partial_leads").updateOne(
+                { _id: existing._id },
+                {
+                    $set: partialLeadData,
+                    $setOnInsert: { created_at: existing.created_at }
+                }
+            );
+            console.log(`✅ Updated partial lead for ${fullName || email || phone}`);
+        } else {
+            // Create new
+            partialLeadData.created_at = new Date();
+            partialLeadData.contact_attempts = 0;
+            await db.collection("partial_leads").insertOne(partialLeadData);
+            console.log(`✅ Created new partial lead for ${fullName || email || phone}`);
+
+            // Send Telegram notification for new partial leads (non-blocking)
+            sendPartialLeadNotification(partialLeadData).catch(err => {
+                console.error('⚠️  Telegram partial lead notification failed:', err.message);
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Progress saved"
+        });
+    } catch (error) {
+        console.error("❌ Track partial lead error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to save progress"
+        });
+    }
+});
 
 // --- Firebase Phone Verification and Save Partial Lead Endpoint ---
 app.post("/api/leads/verify-phone-and-save", otpVerifyLimiter, async (req, res) => {
@@ -468,6 +566,11 @@ app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, re
 
         // 6. Send email
         await sendBookingEmail(booking);
+
+        // 7. Send Telegram notification (non-blocking - don't wait for it)
+        sendBookingNotification({ ...booking, _id: result.insertedId }).catch(err => {
+            console.error('⚠️  Telegram notification failed (non-critical):', err.message);
+        });
 
         res.status(201).json({
             success: true,
