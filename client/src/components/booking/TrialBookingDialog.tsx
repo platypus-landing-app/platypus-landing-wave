@@ -54,6 +54,14 @@ import {
   ConfirmationResult,
 } from "firebase/auth";
 
+// Add this import for TypeScript declaration
+declare global {
+  interface Window {
+    recaptchaVerifier?: RecaptchaVerifier;
+    recaptchaWidgetId?: number;
+  }
+}
+
 // Common dog breeds for India
 const DOG_BREEDS = [
   "Labrador Retriever",
@@ -264,35 +272,67 @@ const TrialBookingDialog: React.FC = () => {
     appendDog({ name: "", breed: "", breedOther: "", age: undefined as any, specialNotes: "" });
   };
 
-  // Initialize Firebase reCAPTCHA when dialog opens
+  // Watch phone number for reCAPTCHA initialization
+  const phoneValue = watch('mobile');
+
+  // Debug log
   React.useEffect(() => {
-    if (isTrialBookingOpen && !window.recaptchaVerifier) {
-      // Wait for DOM to be ready
+    console.log('🔍 TrialBookingDialog mounted - phoneValue tracking active');
+  }, []);
+
+  // Initialize Firebase reCAPTCHA when phone number is complete
+  React.useEffect(() => {
+    if (!phoneVerified && !otpSent && phoneValue?.length === 10 && recaptchaContainerRef.current && !window.recaptchaVerifier) {
       const timer = setTimeout(() => {
-        if (recaptchaContainerRef.current) {
-          try {
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-              size: 'invisible',
-              callback: () => {
-                console.log('✅ reCAPTCHA solved');
-              },
-              'expired-callback': () => {
-                console.log('⚠️ reCAPTCHA expired');
+        try {
+          // Use reCAPTCHA Enterprise site key
+          const enterpriseSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_ENTERPRISE_SITE_KEY;
+
+          console.log('🔐 Initializing reCAPTCHA Enterprise with key:',
+            enterpriseSiteKey ? enterpriseSiteKey.substring(0, 20) + '...' : 'MISSING');
+
+          window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            size: 'normal',
+            callback: (response) => {
+              console.log('✅ reCAPTCHA Enterprise solved:', response.substring(0, 50) + '...');
+              // Add small delay to let Firebase process the token
+              setTimeout(() => {
+                setRecaptchaReady(true);
+                console.log('✅ reCAPTCHA Enterprise ready to use');
+              }, 1000);
+            },
+            'expired-callback': () => {
+              console.log('⚠️ reCAPTCHA Enterprise expired');
+              setRecaptchaReady(false);
+              // Re-render the widget
+              if (window.recaptchaVerifier) {
+                window.recaptchaVerifier.render();
               }
-            });
-            setRecaptchaReady(true);
-            console.log('✅ reCAPTCHA initialized and ready');
-          } catch (error) {
-            console.error('❌ reCAPTCHA initialization error:', error);
-            setRecaptchaReady(false);
-          }
+            },
+            'error-callback': (error) => {
+              console.error('❌ reCAPTCHA Enterprise error:', error);
+              setRecaptchaReady(false);
+            }
+          }, enterpriseSiteKey);
+
+          // Render the widget immediately
+          window.recaptchaVerifier.render().then((widgetId) => {
+            console.log('✅ reCAPTCHA Enterprise widget rendered, ID:', widgetId);
+            window.recaptchaWidgetId = widgetId;
+          });
+
+        } catch (error) {
+          console.error('❌ reCAPTCHA Enterprise initialization error:', error);
+          setRecaptchaReady(false);
         }
-      }, 1000); // Increased to 1 second for better reliability
+      }, 300);
 
       return () => clearTimeout(timer);
     }
+  }, [phoneValue, phoneVerified, otpSent]);
 
-    // Cleanup when dialog closes
+  // Cleanup when dialog closes
+  React.useEffect(() => {
     if (!isTrialBookingOpen) {
       if (window.recaptchaVerifier) {
         try {
@@ -313,12 +353,19 @@ const TrialBookingDialog: React.FC = () => {
 
   // Firebase Phone Auth Functions
   const handleSendOTP = async () => {
-    const phoneValue = watch('mobile');
-
     if (!phoneValue || phoneValue.length !== 10) {
       toast({
         title: "Invalid Phone Number",
         description: "Please enter a valid 10-digit mobile number",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!window.recaptchaVerifier) {
+      toast({
+        title: "reCAPTCHA Not Ready",
+        description: "Please wait for reCAPTCHA to load or solve the challenge",
         variant: "destructive",
       });
       return;
@@ -329,24 +376,15 @@ const TrialBookingDialog: React.FC = () => {
       setLastPhoneNumber(phoneValue); // Track the phone number we're attempting
       const formattedPhone = `+91${phoneValue}`;
 
-      // Initialize reCAPTCHA if not already initialized
-      if (!window.recaptchaVerifier) {
-        console.log('Initializing reCAPTCHA on-demand...');
-        if (!recaptchaContainerRef.current) {
-          throw new Error('reCAPTCHA container not found');
-        }
+      console.log('📤 Attempting to send OTP...');
+      console.log('  Phone:', formattedPhone);
+      console.log('  reCAPTCHA Verifier:', window.recaptchaVerifier);
+      console.log('  reCAPTCHA Type:', window.recaptchaVerifier.type);
+      console.log('  Widget ID:', window.recaptchaWidgetId);
 
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-          size: 'invisible',
-          callback: () => {
-            console.log('reCAPTCHA solved');
-          },
-        });
-        console.log('✅ reCAPTCHA initialized on-demand');
-      }
-
-      console.log('Sending OTP to:', formattedPhone);
       const result = await signInWithPhoneNumber(auth, formattedPhone, window.recaptchaVerifier);
+
+      console.log('✅ OTP sent successfully');
       setConfirmationResult(result);
       setOtpSent(true);
 
@@ -398,8 +436,6 @@ const TrialBookingDialog: React.FC = () => {
       return;
     }
 
-    const phoneValue = watch('mobile');
-
     try {
       setOtpVerifying(true);
 
@@ -450,7 +486,6 @@ const TrialBookingDialog: React.FC = () => {
   };
 
   // Reset OTP states when phone number changes
-  const phoneValue = watch('mobile');
   React.useEffect(() => {
     // Reset OTP states when user changes to a different phone number
     if (phoneValue && phoneValue !== lastPhoneNumber && phoneValue.length >= 1) {
@@ -460,47 +495,22 @@ const TrialBookingDialog: React.FC = () => {
       setPhoneVerified(false);
       setRateLimitError(false);
       setConfirmationResult(null);
+      setRecaptchaReady(false);
 
-      // Re-initialize reCAPTCHA if it was cleared due to error
-      if (!window.recaptchaVerifier && recaptchaContainerRef.current && isTrialBookingOpen) {
+      // Clear existing reCAPTCHA so the main effect can reinitialize it
+      if (window.recaptchaVerifier) {
         try {
-          window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-            size: 'invisible',
-            callback: () => {
-              console.log('✅ reCAPTCHA solved');
-            },
-            'expired-callback': () => {
-              console.log('⚠️ reCAPTCHA expired');
-            }
-          });
-          setRecaptchaReady(true);
-          console.log('✅ reCAPTCHA re-initialized after phone change');
+          window.recaptchaVerifier.clear();
+          window.recaptchaVerifier = undefined;
+          console.log('🧹 Cleared reCAPTCHA after phone number change');
         } catch (error) {
-          console.error('❌ reCAPTCHA re-initialization error:', error);
-          setRecaptchaReady(false);
+          console.error('❌ Error clearing reCAPTCHA:', error);
         }
       }
     }
   }, [phoneValue, lastPhoneNumber, isTrialBookingOpen]);
 
-  // Auto-send OTP after phone number is complete AND reCAPTCHA is ready
-  React.useEffect(() => {
-    if (
-      phoneValue &&
-      phoneValue.length === 10 &&
-      !phoneVerified &&
-      !otpSent &&
-      !otpSending &&
-      recaptchaReady  // IMPORTANT: Only auto-send when reCAPTCHA is ready
-    ) {
-      console.log('📱 Phone number complete and reCAPTCHA ready, auto-sending OTP in 3s...');
-      const timer = setTimeout(() => {
-        handleSendOTP();
-      }, 3000); // 3 second debounce
-
-      return () => clearTimeout(timer);
-    }
-  }, [phoneValue, phoneVerified, otpSent, otpSending, recaptchaReady]);
+  // No auto-send with visible reCAPTCHA - user must manually click "Send OTP"
 
 async function onSubmit(values: TrialBookingFormValues) {
   try {
@@ -566,9 +576,6 @@ async function onSubmit(values: TrialBookingFormValues) {
   return (
     <Dialog open={isTrialBookingOpen} onOpenChange={closeTrialBooking}>
       <DialogContent className="max-w-2xl p-0 overflow-hidden sm:top-[50%] top-[20%] sm:translate-y-[-50%] translate-y-[-20%]">
-        {/* Firebase reCAPTCHA container (invisible) */}
-        <div ref={recaptchaContainerRef} id="recaptcha-container"></div>
-
         <div
           className="flex flex-col"
           style={{
@@ -659,24 +666,22 @@ async function onSubmit(values: TrialBookingFormValues) {
                           </div>
                           <FormMessage />
 
-                          {/* reCAPTCHA Status & Manual Send */}
+                          {/* reCAPTCHA and Send OTP Button */}
                           {!phoneVerified && !otpSent && field.value?.length === 10 && (
-                            <div className="mt-2">
-                              {!recaptchaReady ? (
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <Loader2 className="h-4 w-4 animate-spin" />
-                                  <span>Preparing verification...</span>
-                                </div>
-                              ) : (
+                            <div className="mt-3 space-y-3">
+                              {/* Firebase reCAPTCHA widget renders here */}
+                              <div ref={recaptchaContainerRef} id="recaptcha-container" className="flex justify-start"></div>
+
+                              {/* Manual Send OTP button (shown after reCAPTCHA is solved) */}
+                              {recaptchaReady && !otpSending && (
                                 <Button
                                   type="button"
                                   variant="outline"
                                   size="sm"
                                   onClick={handleSendOTP}
-                                  disabled={otpSending}
                                   className="text-xs"
                                 >
-                                  {otpSending ? "Sending..." : "Send OTP Now"}
+                                  Send OTP Now
                                 </Button>
                               )}
                             </div>

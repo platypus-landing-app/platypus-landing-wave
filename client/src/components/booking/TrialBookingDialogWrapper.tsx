@@ -18,6 +18,8 @@ const TrialBookingDialog = dynamic(
 export default function TrialBookingDialogWrapper() {
   const { isTrialBookingOpen } = useBooking();
   const [hasLoadedRecaptcha, setHasLoadedRecaptcha] = useState(false);
+  // Use v3 key for GoogleReCaptchaProvider (backend booking validation)
+  // Enterprise key is used separately for Firebase Phone Auth
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
   // Load reCAPTCHA only when dialog is opened for the first time
