@@ -45,7 +45,7 @@ export async function sendBookingNotification(booking) {
         const message = `
 🎉 *NEW TRIAL WALK BOOKING!*
 
-👤 *Owner Details*
+👤 *Pet Parent Details*
 • Name: ${booking.fullName}
 • Mobile: ${booking.mobile}${booking.whatsappEnabled ? ' ✅ WhatsApp' : ''}
 • Email: ${booking.email || 'N/A'}
