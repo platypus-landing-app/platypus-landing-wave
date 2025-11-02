@@ -7,9 +7,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import FirebaseRecaptcha from "@/components/FirebaseRecaptcha";
 
-// Dynamically import TrialBookingDialog with reCAPTCHA - lazy load both together
-// This prevents reCAPTCHA from loading until the booking dialog is actually opened
+// Dynamically import TrialBookingDialog - reCAPTCHA loaded globally
 const TrialBookingDialogWithReCaptcha = dynamic(
   () => import("@/components/booking/TrialBookingDialogWrapper"),
   { ssr: false }
@@ -31,6 +31,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <BookingProvider>
           <Toaster />
           <Sonner />
+          {/* Global Firebase reCAPTCHA - loads badge on page mount */}
+          <FirebaseRecaptcha />
           {children}
           <TrialBookingDialogWithReCaptcha />
         </BookingProvider>
