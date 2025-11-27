@@ -1,15 +1,32 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Navigation from '@/components/layout/Navigation';
 import Hero from '@/components/sections/Hero';
-import Features from '@/components/sections/Features';
-import About from '@/components/sections/About';
-import AreasWeServe from '@/components/sections/AreasWeServe';
-import Process from '@/components/sections/Process';
-import Testimonials from '@/components/sections/Testimonials';
-import Footer from '@/components/layout/Footer';
 import HeroFeatures from '@/components/sections/HeroFeatures';
-import FAQ from '@/components/sections/FAQ';
 import Script from 'next/script';
+
+// Lazy load below-fold components to reduce initial JS bundle
+const Features = dynamic(() => import('@/components/sections/Features'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const About = dynamic(() => import('@/components/sections/About'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const AreasWeServe = dynamic(() => import('@/components/sections/AreasWeServe'), {
+  loading: () => <div className="min-h-[300px]" />,
+});
+const Process = dynamic(() => import('@/components/sections/Process'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
+  loading: () => <div className="min-h-[300px]" />,
+});
+const Footer = dynamic(() => import('@/components/layout/Footer'), {
+  loading: () => <div className="min-h-[200px]" />,
+});
 
 export const metadata: Metadata = {
   title: "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",

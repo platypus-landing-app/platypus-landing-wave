@@ -1,7 +1,5 @@
 'use client';
 
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
 import { motion, Variants, easeOut } from "framer-motion";
