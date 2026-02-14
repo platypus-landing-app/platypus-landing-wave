@@ -16,6 +16,7 @@ import { InputOTP } from '@/components/ui/input-otp';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useApplication } from '@/contexts/ApplicationContext';
 import { useToast } from '@/hooks/use-toast';
+import { trackGuardianApplication } from '@/lib/analytics';
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
 
 const applicationSchema = z.object({
@@ -212,6 +213,7 @@ export default function ProfessionalApplicationDialog() {
         throw new Error(data.message || 'Submission failed');
       }
 
+      trackGuardianApplication('complete');
       toast({ title: 'Application Submitted!', description: 'We\'ll review and get back to you within 48 hours.' });
       form.reset();
       setStep(1);

@@ -121,7 +121,6 @@ export default function RootLayout({
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
                   gtag('config', 'G-E00405X4KK', {
-                    page_title: 'Platypus - Dog Walking Service Mumbai',
                     send_page_view: true
                   });
                 }, 2000);

@@ -9,6 +9,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import FirebaseRecaptcha from "@/components/FirebaseRecaptcha";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 // Dynamically import TrialBookingDialog - reCAPTCHA loaded globally
 const TrialBookingDialogWithReCaptcha = dynamic(
@@ -44,6 +45,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             {children}
             <TrialBookingDialogWithReCaptcha />
             <ProfessionalApplicationDialogWrapper />
+            <WhatsAppButton />
           </ApplicationProvider>
         </BookingProvider>
       </TooltipProvider>

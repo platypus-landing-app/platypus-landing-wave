@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Loader2, CheckCircle } from 'lucide-react';
+import { trackServiceNotificationSubscribe } from '@/lib/analytics';
 
 interface EmailCaptureProps {
   serviceName: string;
@@ -40,6 +41,7 @@ export default function EmailCapture({ serviceName, serviceSlug }: EmailCaptureP
         throw new Error(data.message || 'Failed to subscribe');
       }
 
+      trackServiceNotificationSubscribe(serviceSlug);
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');

@@ -7,6 +7,7 @@ import { CalendarIcon, ChevronLeft, ChevronRight, Plus, Trash2, X, Check, Loader
 
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
+import { trackTrialBooking } from "@/lib/analytics";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -489,6 +490,9 @@ async function onSubmit(values: TrialBookingFormValues) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Booking failed");
     }
+
+    // Track conversion
+    trackTrialBooking(values.address || 'website');
 
     // Success toast
     toast({

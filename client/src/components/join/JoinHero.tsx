@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { useApplication } from '@/contexts/ApplicationContext';
+import { trackCTAClick } from '@/lib/analytics';
 
 export default function JoinHero() {
   const { openApplication } = useApplication();
@@ -23,7 +24,7 @@ export default function JoinHero() {
             care team as a Walker, Groomer, Trainer, or Sitter. Earn ₹15,000–30,000/month with flexible hours.
           </p>
           <Button
-            onClick={openApplication}
+            onClick={() => { trackCTAClick('join_hero_apply'); openApplication(); }}
             size="lg"
             className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-bold px-8 py-6 text-lg"
           >
