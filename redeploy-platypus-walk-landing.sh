@@ -183,9 +183,9 @@ validate_config() {
     step "Validating configuration files and environment..."
     cd "$PROJECT_DIR"
 
-    # Check if docker-compose.yml exists
-    if [ ! -f "docker-compose.yml" ]; then
-        error "docker-compose.yml not found!"
+    # Check if docker compose.yml exists
+    if [ ! -f "docker compose.yml" ]; then
+        error "docker compose.yml not found!"
         exit 1
     fi
 
@@ -235,10 +235,10 @@ validate_config() {
         warning "No Next.js config file found in client directory - this might not be a Next.js project"
     fi
 
-    # Validate docker-compose.yml syntax
-    log "Validating docker-compose.yml syntax..."
-    docker-compose config >/dev/null 2>&1 || {
-        error "Invalid docker-compose.yml syntax!"
+    # Validate docker compose.yml syntax
+    log "Validating docker compose.yml syntax..."
+    docker compose config >/dev/null 2>&1 || {
+        error "Invalid docker compose.yml syntax!"
         exit 1
     }
 
@@ -313,18 +313,18 @@ stop_containers() {
     step "Stopping Docker containers..."
     cd "$PROJECT_DIR"
 
-    if [ -f "docker-compose.yml" ]; then
+    if [ -f "docker compose.yml" ]; then
         # Stop containers gracefully with timeout
         log "Stopping containers with 30s timeout..."
-        docker-compose -p "$COMPOSE_PROJECT" stop -t 30 2>/dev/null || true
+        docker compose -p "$COMPOSE_PROJECT" stop -t 30 2>/dev/null || true
 
         # Remove containers
         log "Removing containers..."
-        docker-compose -p "$COMPOSE_PROJECT" down --remove-orphans 2>/dev/null || true
+        docker compose -p "$COMPOSE_PROJECT" down --remove-orphans 2>/dev/null || true
 
         success "Containers stopped successfully"
     else
-        warning "docker-compose.yml not found, skipping container stop"
+        warning "docker compose.yml not found, skipping container stop"
     fi
 }
 
@@ -361,7 +361,7 @@ build_containers() {
     step "Building Docker containers with fresh cache..."
     cd "$PROJECT_DIR"
 
-    if [ -f "docker-compose.yml" ]; then
+    if [ -f "docker compose.yml" ]; then
         # Clean up any existing build artifacts
         log "Cleaning .next build directory..."
         rm -rf "$PROJECT_DIR/client/.next" 2>/dev/null || true
@@ -411,18 +411,18 @@ build_containers() {
         log "Building containers from scratch (this may take several minutes)..."
         log "Using --no-cache --pull to ensure absolutely fresh build..."
 
-        if docker-compose -p "$COMPOSE_PROJECT" build --no-cache --pull --parallel; then
+        if docker compose -p "$COMPOSE_PROJECT" build --no-cache --pull --parallel; then
             success "Containers built successfully"
         else
             error "Container build failed!"
 
             # Show build logs for debugging
             log "Checking recent build logs..."
-            docker-compose -p "$COMPOSE_PROJECT" logs || true
+            docker compose -p "$COMPOSE_PROJECT" logs || true
             exit 1
         fi
     else
-        error "docker-compose.yml not found!"
+        error "docker compose.yml not found!"
         exit 1
     fi
 }
@@ -433,12 +433,12 @@ start_containers() {
     cd "$PROJECT_DIR"
 
     # Start containers in detached mode
-    if docker-compose -p "$COMPOSE_PROJECT" up -d; then
+    if docker compose -p "$COMPOSE_PROJECT" up -d; then
         success "Containers started successfully"
 
         # Show container status immediately
         log "Container status:"
-        docker-compose -p "$COMPOSE_PROJECT" ps
+        docker compose -p "$COMPOSE_PROJECT" ps
     else
         error "Failed to start containers!"
         show_logs
@@ -461,9 +461,9 @@ wait_for_services() {
         log "Health check attempt $attempt/$max_attempts..."
 
         # Check frontend container status (using your actual container name)
-        local frontend_container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
-        local backend_container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q backend 2>/dev/null || echo "")
-        local mongodb_container_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q mongodb 2>/dev/null || echo "")
+        local frontend_container_id=$(docker compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
+        local backend_container_id=$(docker compose -p "$COMPOSE_PROJECT" ps -q backend 2>/dev/null || echo "")
+        local mongodb_container_id=$(docker compose -p "$COMPOSE_PROJECT" ps -q mongodb 2>/dev/null || echo "")
 
         if [ -n "$frontend_container_id" ]; then
             local frontend_status=$(docker inspect -f '{{.State.Status}}' "$frontend_container_id" 2>/dev/null || echo "missing")
@@ -713,21 +713,21 @@ show_logs() {
 
     echo ""
     echo "=== Frontend Container Logs ==="
-    docker-compose -p "$COMPOSE_PROJECT" logs --tail=50 frontend || true
+    docker compose -p "$COMPOSE_PROJECT" logs --tail=50 frontend || true
 
     echo ""
     echo "=== Backend Container Logs ==="
-    docker-compose -p "$COMPOSE_PROJECT" logs --tail=50 backend || true
+    docker compose -p "$COMPOSE_PROJECT" logs --tail=50 backend || true
 
     echo ""
     echo "=== MongoDB Container Logs ==="
-    docker-compose -p "$COMPOSE_PROJECT" logs --tail=30 mongodb || true
+    docker compose -p "$COMPOSE_PROJECT" logs --tail=30 mongodb || true
 
     echo ""
     echo "=== Container Statistics ==="
-    local frontend_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
-    local backend_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q backend 2>/dev/null || echo "")
-    local mongodb_id=$(docker-compose -p "$COMPOSE_PROJECT" ps -q mongodb 2>/dev/null || echo "")
+    local frontend_id=$(docker compose -p "$COMPOSE_PROJECT" ps -q frontend 2>/dev/null || echo "")
+    local backend_id=$(docker compose -p "$COMPOSE_PROJECT" ps -q backend 2>/dev/null || echo "")
+    local mongodb_id=$(docker compose -p "$COMPOSE_PROJECT" ps -q mongodb 2>/dev/null || echo "")
 
     if [ -n "$frontend_id" ] || [ -n "$backend_id" ] || [ -n "$mongodb_id" ]; then
         docker stats --no-stream $frontend_id $backend_id $mongodb_id 2>/dev/null || true
@@ -741,11 +741,11 @@ show_status() {
 
     echo ""
     echo "=== Container Status ==="
-    docker-compose -p "$COMPOSE_PROJECT" ps
+    docker compose -p "$COMPOSE_PROJECT" ps
 
     echo ""
     echo "=== Resource Usage ==="
-    local container_ids=$(docker-compose -p "$COMPOSE_PROJECT" ps -q 2>/dev/null || echo "")
+    local container_ids=$(docker compose -p "$COMPOSE_PROJECT" ps -q 2>/dev/null || echo "")
     if [ -n "$container_ids" ]; then
         docker stats --no-stream $container_ids 2>/dev/null || true
     fi
@@ -779,10 +779,10 @@ show_status() {
 
     echo ""
     echo "=== Useful Commands ==="
-    echo "View logs: docker-compose -p $COMPOSE_PROJECT logs -f"
-    echo "Stop containers: docker-compose -p $COMPOSE_PROJECT down"
-    echo "Restart: docker-compose -p $COMPOSE_PROJECT restart"
-    echo "Rebuild: docker-compose -p $COMPOSE_PROJECT build --no-cache"
+    echo "View logs: docker compose -p $COMPOSE_PROJECT logs -f"
+    echo "Stop containers: docker compose -p $COMPOSE_PROJECT down"
+    echo "Restart: docker compose -p $COMPOSE_PROJECT restart"
+    echo "Rebuild: docker compose -p $COMPOSE_PROJECT build --no-cache"
     echo "Shell into frontend: docker exec -it platypus_frontend /bin/sh"
     echo "Shell into backend: docker exec -it platypus_backend /bin/sh"
     echo "Shell into MongoDB: docker exec -it platypus_mongodb mongosh"
@@ -849,7 +849,7 @@ preflight_checks() {
     fi
 
     # Check required commands
-    local commands=("docker" "docker-compose" "git" "curl" "wget")
+    local commands=("docker" "git" "curl" "wget")
     for cmd in "${commands[@]}"; do
         if ! command -v "$cmd" >/dev/null 2>&1; then
             error "$cmd is not installed or not in PATH"
@@ -863,8 +863,13 @@ preflight_checks() {
         exit 1
     fi
 
-    # Verify Docker Compose version (should work with v1 and v2)
-    local compose_version=$(docker-compose version --short 2>/dev/null || echo "unknown")
+    # Verify Docker Compose v2 plugin
+    if ! docker compose version >/dev/null 2>&1; then
+        error "Docker Compose plugin not installed (docker compose v2 required)"
+        exit 1
+    fi
+
+    local compose_version=$(docker compose version --short 2>/dev/null || echo "unknown")
     log "Docker Compose version: $compose_version"
 
     # Check nginx-proxy network
@@ -1025,12 +1030,12 @@ show_help() {
     echo "  Docker Project: $COMPOSE_PROJECT"
     echo ""
     echo "Prerequisites:"
-    echo "  - Docker and docker-compose installed"
+    echo "  - Docker and docker compose installed"
     echo "  - nginx-proxy running with nginx-proxy network"
     echo "  - SSH access to git repository (if private)"
     echo "  - Sufficient disk space (>1GB recommended)"
     echo ""
-    echo "For support, check logs with: docker-compose -p $COMPOSE_PROJECT logs -f"
+    echo "For support, check logs with: docker compose -p $COMPOSE_PROJECT logs -f"
 }
 
 # Parse command line arguments with enhanced options
