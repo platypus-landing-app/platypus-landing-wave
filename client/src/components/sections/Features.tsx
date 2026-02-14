@@ -1,3 +1,5 @@
+'use client';
+
 import { PawPrint, MapPin, ShieldCheck } from "lucide-react";
 
 const Features = () => {
@@ -52,15 +54,15 @@ const Features = () => {
       id="features"
       className="py-16 lg:py-24 bg-white relative overflow-hidden"
     >
-      {/* Background paw design - hidden on small screens */}
-      <div
-        className="hidden md:block absolute top-[-2rem] left-[-130px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none"
-        style={{
-          backgroundImage: "url('/paw.png')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-        }}
-      ></div>
+      {/* Background paw design - hidden on small screens, lazy loaded */}
+      <img
+        src="/paw.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="hidden md:block absolute top-[-2rem] left-[-130px] w-[250px] h-[300px] lg:top-[-4.5rem] lg:left-[-318px] lg:w-[445px] lg:h-[516px] pointer-events-none object-contain"
+        aria-hidden="true"
+      />
 
       {/* Content container - aligned with navbar */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +70,7 @@ const Features = () => {
         {/* Why Choose Platypus Heading */}
         <div className="text-left mb-12 lg:mb-16">
           <h2 className="font-funnel font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
-            <span className="text-[#f97e57] relative inline-block mr-2 align-middle">
+            <span className="text-[#D94F1F] relative inline-block mr-2 align-middle">
               Why Choose
               <span className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"></span>
             </span>
@@ -93,11 +95,25 @@ const Features = () => {
 
               {/* Image */}
               <div className="aspect-[4/3] overflow-hidden mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300 w-full">
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.avif 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.avif 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.avif 910w`}
+                    sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.webp 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.webp 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.webp 910w`}
+                    sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
+                  />
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </picture>
               </div>
 
               {/* Content */}

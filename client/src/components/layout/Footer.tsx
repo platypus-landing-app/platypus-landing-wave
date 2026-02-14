@@ -1,5 +1,8 @@
+'use client';
+
 import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
-import '@/App.css'
+import Link from 'next/link';
+
 const Footer = () => {
    const handleScrollTo = (href: string) => {
   const element = document.querySelector(href) as HTMLElement;
@@ -24,7 +27,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6 flex flex-col items-start relative top-[-15px]">
             <div className="flex flex-col items-center gap-0">
-              <img src="/footer.png" className="h-[100px]" /> {/* width badhaya */}
+              <img src="/footer.png" alt="Platypus - India's Dog Walking Experts" loading="lazy" decoding="async" className="h-[100px]" />
             </div>
             
             <p className="font-['Funnel_Sans'] relative font-normal text-[16px] leading-[30px] text-gray-700  w-[300px] top-[-30px]">
@@ -49,10 +52,27 @@ const Footer = () => {
                 Dog walking across most areas of Mumbai with verified Guardians.
               </p>
 
-<p 
-  onClick={() => handleScrollTo("#process")} 
-  className="group inline-flex items-center text-blue-500 cursor-pointer 
-             transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md"
+              <div className="space-y-2 mt-3">
+                <Link href="/services" className="group inline-flex items-center text-blue-500 transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md">
+                  <span className="text-[16px]">All Services</span>
+                  <span className="ml-2 text-[16px] font-extrabold relative top-[-2px]">→</span>
+                </Link>
+                <br />
+                <Link href="/blog" className="group inline-flex items-center text-blue-500 transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md">
+                  <span className="text-[16px]">Blog</span>
+                  <span className="ml-2 text-[16px] font-extrabold relative top-[-2px]">→</span>
+                </Link>
+                <br />
+                <Link href="/join" className="group inline-flex items-center text-blue-500 transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md">
+                  <span className="text-[16px]">Join Our Team</span>
+                  <span className="ml-2 text-[16px] font-extrabold relative top-[-2px]">→</span>
+                </Link>
+              </div>
+
+<p
+  onClick={() => handleScrollTo("#process")}
+  className="group inline-flex items-center text-blue-500 cursor-pointer
+             transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md mt-2"
 >
   <span className="text-[16px]">What to Expect</span>
 
@@ -88,26 +108,29 @@ const Footer = () => {
         <div className="mt-6">
   <p className="text-gray-700 mb-3">Follow us:</p>
   <div className="flex space-x-4">
-    <a 
-      href="https://www.facebook.com/share/17DXgXPyAf/?mibextid=wwXIfr" 
-      target="_blank" 
+    <a
+      href="https://www.facebook.com/share/17DXgXPyAf/?mibextid=wwXIfr"
+      target="_blank"
       rel="noopener noreferrer"
+      aria-label="Visit Platypus on Facebook"
       className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Facebook className="w-4 h-4 text-white" />
     </a>
-    <a 
-      href="https://www.linkedin.com/company/platypus-be-their-human/posts/?feedView=all" 
-      target="_blank" 
+    <a
+      href="https://www.linkedin.com/company/platypus-be-their-human/posts/?feedView=all"
+      target="_blank"
       rel="noopener noreferrer"
+      aria-label="Visit Platypus on LinkedIn"
       className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Linkedin className="w-4 h-4 text-white" />
     </a>
-    <a 
-      href="https://www.instagram.com/platypus_bth/" 
-      target="_blank" 
+    <a
+      href="https://www.instagram.com/platypus_bth/"
+      target="_blank"
       rel="noopener noreferrer"
+      aria-label="Visit Platypus on Instagram"
       className="w-8 h-8 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
     >
       <Instagram className="w-4 h-4 text-white" />

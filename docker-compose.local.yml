@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:latest
+    container_name: platypus_walk_nginx_proxy_local
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - platypus_walk_network
+      - nginx_proxy_network
+
+  # MongoDB Database
+  mongodb:
+    image: mongo:7-jammy
+    container_name: platypus_walk_mongodb_local
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: platypus
+      MONGO_INITDB_ROOT_PASSWORD: platypus_dev_password
+      MONGO_INITDB_DATABASE: platypus_dev
+    volumes:
+      - mongodb_data_local:/data/db
+      - mongodb_config_local:/data/configdb
+    networks:
+      - platypus_walk_network
+    ports:
+      - "27017:27017"  # Standard MongoDB port for local access
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Backend (Node.js Express API)
+  backend:
+    build:
+      context: ./server
+      dockerfile: ../Dockerfile.backend
+    container_name: platypus_walk_backend_local
+    restart: unless-stopped
+    environment:
+      # Local development configuration
+      - NODE_ENV=development
+      - PORT=3000
+      # CORS configuration from your env
+      - CORS_ORIGIN=http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173,http://localhost:8080,http://theplatypus.in,http://www.theplatypus.in
+      # MongoDB configuration matching your setup
+      - MONGODB_URI=mongodb://platypus:platypus_dev_password@mongodb:27017/platypus_dev?authSource=admin
+      - DB_NAME=platypus_dev
+      # Email configuration (your actual Brevo setup)
+      - BREVO_API_KEY=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
+      - BREVO_SENDER_EMAIL=info@theplatypus.in
+      - RECEIVER_EMAIL=info@theplatypus.in
+      # nginx-proxy virtual host configuration
+      - VIRTUAL_HOST=api.theplatypus.in
+      - VIRTUAL_PORT=3000
+    ports:
+      - "3000:3000"  # Backend API accessible at localhost:3000
+    networks:
+      - platypus_walk_network
+      - nginx_proxy_network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+  # Frontend (React Vite App)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ../Dockerfile.frontend
+      args:
+        # Your actual environment variables
+        - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
+        - VITE_BACKEND_API_URL=http://api.theplatypus.in/api
+        - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
+        # Legacy Supabase (in case still needed)
+        - VITE_SUPABASE_URL=https://jhckzuxlkggbkbrtjjdo.supabase.co
+        - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8
+    container_name: platypus_walk_frontend_local
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
+      - VIRTUAL_PORT=80
+    ports:
+      - "8080:80"  # Optional direct access at http://localhost:8080
+    expose:
+      - "80"
+    networks:
+      - platypus_walk_network
+      - nginx_proxy_network
+    depends_on:
+      - backend
+
+networks:
+  platypus_walk_network:
+    driver: bridge
+    name: platypus_walk_network_local
+  nginx_proxy_network:
+    driver: bridge
+    name: platypus_walk_nginx_proxy_network_local
+
+volumes:
+  mongodb_data_local:
+    driver: local
+    name: platypus_walk_mongodb_data_local
+  mongodb_config_local:
+    driver: local
+    name: platypus_walk_mongodb_config_local

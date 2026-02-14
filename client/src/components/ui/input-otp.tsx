@@ -1,69 +1,102 @@
-import * as React from "react"
-import { OTPInput, OTPInputContext } from "input-otp"
-import { Dot } from "lucide-react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
+export interface InputOTPProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  length?: number;
+  onComplete?: (value: string) => void;
+}
 
-const InputOTP = React.forwardRef<
-  React.ElementRef<typeof OTPInput>,
-  React.ComponentPropsWithoutRef<typeof OTPInput>
->(({ className, containerClassName, ...props }, ref) => (
-  <OTPInput
-    ref={ref}
-    containerClassName={cn(
-      "flex items-center gap-2 has-[:disabled]:opacity-50",
-      containerClassName
-    )}
-    className={cn("disabled:cursor-not-allowed", className)}
-    {...props}
-  />
-))
-InputOTP.displayName = "InputOTP"
+const InputOTP = React.forwardRef<HTMLInputElement, InputOTPProps>(
+  ({ className, length = 6, onComplete, ...props }, ref) => {
+    const [otp, setOtp] = React.useState<string[]>(new Array(length).fill(""));
+    const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
 
-const InputOTPGroup = React.forwardRef<
-  React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div">
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex items-center", className)} {...props} />
-))
-InputOTPGroup.displayName = "InputOTPGroup"
+    const handleChange = (index: number, value: string) => {
+      // Only allow digits
+      if (value && !/^\d+$/.test(value)) return;
 
-const InputOTPSlot = React.forwardRef<
-  React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div"> & { index: number }
->(({ index, className, ...props }, ref) => {
-  const inputOTPContext = React.useContext(OTPInputContext)
-  const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index]
+      const newOtp = [...otp];
+      // Take only the first character if pasting multiple
+      newOtp[index] = value.slice(0, 1);
+      setOtp(newOtp);
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
-        isActive && "z-10 ring-2 ring-ring ring-offset-background",
-        className
-      )}
-      {...props}
-    >
-      {char}
-      {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
-        </div>
-      )}
-    </div>
-  )
-})
-InputOTPSlot.displayName = "InputOTPSlot"
+      // Auto-focus next input
+      if (value && index < length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
 
-const InputOTPSeparator = React.forwardRef<
-  React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div">
->(({ ...props }, ref) => (
-  <div ref={ref} role="separator" {...props}>
-    <Dot />
-  </div>
-))
-InputOTPSeparator.displayName = "InputOTPSeparator"
+      // Call onComplete when all digits are entered
+      if (newOtp.every((digit) => digit !== "") && onComplete) {
+        onComplete(newOtp.join(""));
+      }
+    };
 
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }
+    const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Backspace" && !otp[index] && index > 0) {
+        // Move to previous input on backspace if current is empty
+        inputRefs.current[index - 1]?.focus();
+      } else if (e.key === "ArrowLeft" && index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      } else if (e.key === "ArrowRight" && index < length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    };
+
+    const handlePaste = (e: React.ClipboardEvent) => {
+      e.preventDefault();
+      const pastedData = e.clipboardData.getData("text/plain").slice(0, length);
+
+      if (!/^\d+$/.test(pastedData)) return;
+
+      const newOtp = pastedData.split("").concat(new Array(length).fill("")).slice(0, length);
+      setOtp(newOtp);
+
+      // Focus the next empty input or the last one
+      const nextIndex = Math.min(pastedData.length, length - 1);
+      inputRefs.current[nextIndex]?.focus();
+
+      // Call onComplete if all digits are filled
+      if (newOtp.every((digit) => digit !== "") && onComplete) {
+        onComplete(newOtp.join(""));
+      }
+    };
+
+    return (
+      <div className="flex gap-2 justify-center items-center">
+        {otp.map((digit, index) => (
+          <input
+            key={index}
+            ref={(el) => {
+              inputRefs.current[index] = el;
+              if (index === 0 && ref) {
+                if (typeof ref === "function") {
+                  ref(el);
+                } else {
+                  ref.current = el;
+                }
+              }
+            }}
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
+            value={digit}
+            onChange={(e) => handleChange(index, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(index, e)}
+            onPaste={handlePaste}
+            className={cn(
+              "flex h-12 w-12 items-center justify-center rounded-md border border-input bg-background text-center text-lg font-semibold text-foreground transition-colors",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:border-primary",
+              "disabled:cursor-not-allowed disabled:opacity-50",
+              className
+            )}
+            {...props}
+          />
+        ))}
+      </div>
+    );
+  }
+);
+
+InputOTP.displayName = "InputOTP";
+
+export { InputOTP };

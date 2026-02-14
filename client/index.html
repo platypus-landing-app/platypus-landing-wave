@@ -1,41 +1,415 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en-IN">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Fix the title to match your actual business -->
-    <title>Platypus - Infinity by Platypus - Intelligent Pet Care Ecosystem</title>
-    
-    <!-- Make description specific and actionable -->
-    <meta name="description" content="India's first intelligent collar and app ecosystem for complete pet wellness, safety, and care." />
-    
-    <!-- Add canonical URL -->
-    <link rel="canonical" href="https://platypus-landing-wave.vercel.app/" />
 
-    <!-- Add favicon -->
+    <!-- Google Analytics 4 - Deferred loading for better performance -->
+    <script>
+        // Defer GA loading until after page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-E00405X4KK';
+                script.async = true;
+                document.head.appendChild(script);
+
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-E00405X4KK', {
+                    page_title: 'Platypus - Dog Walking Service Mumbai',
+                    send_page_view: true
+                });
+            }, 2000); // Delay by 2 seconds after page load
+        });
+    </script>
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Professional Dog Walking Service in Mumbai | Platypus Certified Guardians</title>
+    <meta name="description" content="Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols. Book trial walk ₹199. Serving Bandra, Andheri, Powai & more." />
+    <meta name="keywords" content="dog walking Mumbai, certified dog walkers, professional pet care Mumbai, dog walking service Bandra, pet walking Andheri, GPS tracking dog walk, trusted dog walkers Mumbai, pet care service India, Platypus Guardians, dog walker near me" />
+    <meta name="author" content="Platypus - Third Planet Solutions Private Limited" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="geo.region" content="IN-MH" />
+    <meta name="geo.placename" content="Mumbai" />
+    <meta name="geo.position" content="19.0760;72.8777" />
+    <meta name="ICBM" content="19.0760, 72.8777" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://theplatypus.in/" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <!-- Remove generic keywords meta tag (not used by search engines) -->
-    <meta name="author" content="Platypus Team" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Improved Open Graph tags -->
-    <meta property="og:title" content="Platypus - Infinity by Platypus - Intelligent Pet Care Ecosystem" />
-    <meta property="og:description" content="India's first intelligent collar and app ecosystem for complete pet wellness, safety, and care." />
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://platypus-landing-wave.vercel.app/" />
-    <meta property="og:image" content="https://landing.theplatypus.in/og-image.jpg" />
+    <meta property="og:url" content="https://theplatypus.in/" />
+    <meta property="og:title" content="Professional Dog Walking Service in Mumbai | Platypus Certified Guardians" />
+    <meta property="og:description" content="Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Powai & more areas." />
+    <meta property="og:image" content="https://theplatypus.in/hero-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Platypus" />
+    <meta property="og:locale" content="en_IN" />
 
-    <!-- Improved Twitter tags -->
-    <meta property="og:title" content="Platypus - Smart Pet Care Management" />
-    <meta property="og:description" content="India's first intelligent collar and app ecosystem for complete pet wellness, safety, and care." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://platypus-landing-wave.vercel.app/" />
-    
-  </head>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://theplatypus.in/" />
+    <meta property="twitter:title" content="Professional Dog Walking Service in Mumbai | Platypus Certified Guardians" />
+    <meta property="twitter:description" content="Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Mumbai." />
+    <meta property="twitter:image" content="https://theplatypus.in/hero-image.png" />
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Platypus - Professional Dog Walking Service Mumbai",
+            "alternateName": "Platypus Pet Care",
+            "image": [
+                "https://theplatypus.in/logo.png",
+                "https://theplatypus.in/hero-image.png",
+                "https://theplatypus.in/certified-guardians.jpeg"
+            ],
+            "description": "India's first certified dog walking service with trained Guardians, live GPS tracking, and safety protocols across Mumbai areas including Bandra, Andheri, Powai, Worli, and more.",
+            "url": "https://theplatypus.in",
+            "telephone": "+918451880963",
+            "email": "info@theplatypus.in",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Mumbai",
+                "addressRegion": "Maharashtra",
+                "postalCode": "400101",
+                "addressCountry": "IN"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 19.0760,
+                "longitude": 72.8777
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+                ],
+                "opens": "06:00",
+                "closes": "22:00"
+            },
+            "serviceArea": [
+                {
+                    "@type": "Place",
+                    "name": "Bandra",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Andheri",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Powai",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Worli",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Juhu",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Thane",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Lower Parel",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Colaba",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Versova",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Malad",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Borivali",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Kandivali",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Santacruz",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Khar",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Byculla",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Dadar",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Matunga",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Kurla",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Chembur",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Ghatkopar",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Mulund",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Navi Mumbai",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Vile Parle",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                },
+                {
+                    "@type": "Place",
+                    "name": "Goregaon",
+                    "containedInPlace": { "@type": "City", "name": "Mumbai" }
+                }
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Dog Walking Services",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Trial Dog Walk",
+                            "description": "Professional dog walking trial service with certified Guardian and live GPS tracking"
+                        },
+                        "price": "199",
+                        "priceCurrency": "INR"
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Monthly Dog Walking - Once Daily",
+                            "description": "Daily professional dog walking service with live tracking and certified Guardian"
+                        },
+                        "price": "4680",
+                        "priceCurrency": "INR"
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Monthly Dog Walking - Twice Daily",
+                            "description": "Twice-daily professional dog walking service with morning and evening slots"
+                        },
+                        "price": "7800",
+                        "priceCurrency": "INR"
+                    }
+                ]
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "47"
+            },
+            "priceRange": "₹199 - ₹7800",
+            "sameAs": [
+                "https://www.facebook.com/share/17DXgXPyAf/",
+                "https://www.linkedin.com/company/platypus-be-their-human/",
+                "https://www.instagram.com/platypus_bth/"
+            ]
+        }
+    </script>
+
+    <!-- Enhanced FAQ Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What areas in Mumbai do you serve for dog walking?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We serve major areas in Mumbai including Bandra, Andheri, Powai, Worli, Lower Parel, Colaba, Juhu, Versova, Malad, Borivali, Kandivali, Santacruz, Thane, and Navi Mumbai with our certified dog walking Guardians."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How much does a professional dog walking service cost in Mumbai?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our pricing starts with a trial walk at ₹199, monthly once-a-day plan at ₹4,680, and twice-a-day plan at ₹7,800. We also offer 3-month discounted packages for regular customers."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Are your dog walkers certified and trained?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, all our Guardians are certified professionals with background verification, training in pet care, safety protocols, and first aid. They follow strict hygiene and safety standards."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do you provide live GPS tracking during walks?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, we provide real-time GPS tracking for every walk so you can monitor your pet's location, route, and activity. You'll receive updates about your dog's behavior and bathroom breaks."
+                    }
+                }
+            ]
+        }
+    </script>
+
+    <!-- Service Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Professional Dog Walking Service",
+            "description": "Certified dog walking service with live GPS tracking and trained Guardians across Mumbai",
+            "provider": {
+                "@type": "LocalBusiness",
+                "name": "Platypus"
+            },
+            "areaServed": {
+                "@type": "City",
+                "name": "Mumbai"
+            },
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Dog Walking Services",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Trial Dog Walk"
+                        },
+                        "price": "199",
+                        "priceCurrency": "INR"
+                    }
+                ]
+            }
+        }
+    </script>
+
+    <!-- Mobile optimization -->
+    <meta name="theme-color" content="#397CEF" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <!-- Preload critical LCP image with high priority - modern formats -->
+    <link rel="preload" href="/optimized/hero-image.avif" as="image" fetchpriority="high" type="image/avif" />
+    <link rel="preload" href="/optimized/hero-image.webp" as="image" fetchpriority="high" type="image/webp" />
+    <link rel="preload" href="/hero-image.png" as="image" fetchpriority="high" type="image/png" />
+    <link rel="preload" href="/optimized/logo.avif" as="image" type="image/avif" />
+    <link rel="preload" href="/logo.png" as="image" type="image/png" />
+
+    <!-- Preload critical CSS and JS -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="preload" href="/src/index.css" as="style" />
+
+    <!-- Performance: DNS prefetch and preconnect for external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+    <!-- Optimized font loading with font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Performance: HTTP Client Hints -->
+    <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" />
+
+    <!-- Google Maps API - Idle loading for better performance -->
+    <script>
+      // Load Google Maps when browser is idle or after user interaction
+      function loadGoogleMaps() {
+        if (window.googleMapsLoaded) return;
+        window.googleMapsLoaded = true;
+
+        const script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8&libraries=places&region=IN&loading=async';
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+
+      // Load on idle or after 3 seconds
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGoogleMaps, { timeout: 3000 });
+      } else {
+        setTimeout(loadGoogleMaps, 3000);
+      }
+
+      // Also load on first user interaction
+      ['click', 'touchstart', 'scroll'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleMaps, { once: true, passive: true });
+      });
+    </script>
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-E00405X4KK"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
+</body>
 </html>

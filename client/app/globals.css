@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ocean-themed design system for platypus landing page. All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 210 100% 97%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 210 100% 97%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 200 85% 45%;
+    --primary-foreground: 210 40% 98%;
+    --primary-hover: 200 85% 40%;
+
+    --secondary: 195 100% 95%;
+    --secondary-foreground: 200 85% 25%;
+
+    --muted: 195 100% 95%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 180 75% 85%;
+    --accent-foreground: 200 85% 25%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 50% 90%;
+    --input: 200 50% 92%;
+    --ring: 200 85% 45%;
+
+    --ocean-deep: 210 100% 15%;
+    --ocean-medium: 200 85% 45%;
+    --ocean-light: 195 100% 85%;
+    --wave-primary: 180 75% 70%;
+    --wave-secondary: 195 100% 80%;
+
+    --golden: 48 94% 49%;
+
+    --gradient-ocean: linear-gradient(135deg, hsl(200 85% 45%), hsl(210 100% 15%));
+    --gradient-wave: linear-gradient(90deg, hsl(180 75% 70%), hsl(195 100% 80%));
+    --gradient-hero: linear-gradient(180deg, hsl(195 100% 95%), hsl(200 50% 90%));
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 100% 4%;
+    --foreground: 195 100% 95%;
+
+    --card: 215 100% 6%;
+    --card-foreground: 195 100% 95%;
+
+    --popover: 215 100% 6%;
+    --popover-foreground: 195 100% 95%;
+
+    --primary: 180 75% 70%;
+    --primary-foreground: 215 100% 6%;
+    --primary-hover: 180 75% 75%;
+
+    --secondary: 215 100% 10%;
+    --secondary-foreground: 195 100% 85%;
+
+    --muted: 215 100% 10%;
+    --muted-foreground: 195 50% 65%;
+
+    --accent: 200 85% 25%;
+    --accent-foreground: 195 100% 85%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 100% 12%;
+    --input: 215 100% 12%;
+    --ring: 180 75% 70%;
+
+    --ocean-deep: 215 100% 6%;
+    --ocean-medium: 200 85% 35%;
+    --ocean-light: 200 50% 25%;
+    --wave-primary: 180 75% 60%;
+    --wave-secondary: 195 75% 45%;
+
+    --gradient-ocean: linear-gradient(135deg, hsl(200 85% 35%), hsl(215 100% 6%));
+    --gradient-wave: linear-gradient(90deg, hsl(180 75% 60%), hsl(195 75% 45%));
+    --gradient-hero: linear-gradient(180deg, hsl(215 100% 10%), hsl(215 100% 6%));
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* index.css or app.css */
+.text-blur-shadow {
+  text-shadow: 
+    0px 1.42px 4.26px rgba(0, 0, 0, 0.15), /* First soft shadow */
+    0px 1.42px 2.84px rgba(0, 0, 0, 0.30); /* Second darker shadow */
+}
+
+
+@keyframes arrow-move {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+.animate-arrow-move {
+  animation: arrow-move 1s infinite ease-in-out;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-funnel bg-background text-foreground text-black;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scroller Styles */
+.custom-scroller {
+  scrollbar-width: thin;
+  scrollbar-color: #397CEF #e5f3ff;
+}
+
+.custom-scroller::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scroller::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #e5f3ff 0%, #f0f7ff 50%, #e5f3ff 100%);
+  border-radius: 10px;
+}
+
+.custom-scroller::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #397CEF 0%, #5fa3f5 50%, #397CEF 100%);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(57, 124, 239, 0.3);
+}
+
+.custom-scroller::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+}
+
+/* reCAPTCHA z-index fix - ensure reCAPTCHA elements appear above all dialogs */
+.grecaptcha-badge,
+div[class*="grecaptcha"],
+iframe[src*="recaptcha"],
+iframe[src*="google.com/recaptcha"] {
+  z-index: 2147483647 !important;
+}
+
+/* Ensure reCAPTCHA challenge popup is clickable */
+body > div[style*="z-index"] {
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+}

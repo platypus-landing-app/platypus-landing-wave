@@ -1,40 +1,148 @@
-version: '3.8'
+name: platypus-landing
 
 services:
-  # Frontend (React Vite App)
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        VITE_SUPABASE_URL: "https://jhckzuxlkggbkbrtjjdo.supabase.co"
-        VITE_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8"
-    container_name: platypus_walk_landing_frontend
+  # MongoDB Database
+  mongodb:
+    image: mongo:7-jammy
+    container_name: platypus_landing_mongodb
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for domain routing
-      - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
-      - VIRTUAL_PORT=80
-      # Let's Encrypt SSL configuration
-      - LETSENCRYPT_HOST=theplatypus.in,www.theplatypus.in
-      - LETSENCRYPT_EMAIL=sagar@quantalynk.com
-      # Supabase configuration
-      - VITE_SUPABASE_URL=https://jhckzuxlkggbkbrtjjdo.supabase.co
-      - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoY2t6dXhsa2dnYmticnRqamRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzNjM0NTMsImV4cCI6MjA3MTkzOTQ1M30.53_OwRcIN5NGSRV5YTfLvgqUFl8a0EKWwGjFl0OUWj8
-    expose:
-      - "80"
+      MONGO_INITDB_ROOT_USERNAME: platypus
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_NAME:-platypus}
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
     networks:
-      - platypus_walk_network
-      - nginx-proxy_default
+      - platypus_landing_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+          pids: 100
+    security_opt:
+      - no-new-privileges:true
+
+  # Backend (Node.js Express API)
+  backend:
+    build:
+      context: ./server
+      dockerfile: ../Dockerfile.backend
+    container_name: platypus_landing_backend
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=api.theplatypus.in
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=api.theplatypus.in
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}
+      - NODE_ENV=production
+      - PORT=3000
+      - CORS_ORIGIN=${CORS_ORIGIN:-https://theplatypus.in}
+      - MONGODB_URI=mongodb://platypus:${MONGODB_PASSWORD}@mongodb:27017
+      - DB_NAME=${DB_NAME:-platypus}
+      - BREVO_API_KEY=${BREVO_API_KEY}
+      - BREVO_SENDER_EMAIL=${BREVO_SENDER_EMAIL}
+      - RECEIVER_EMAIL=${RECEIVER_EMAIL}
+      - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
+      - FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}
+      - FIREBASE_PRIVATE_KEY=${FIREBASE_PRIVATE_KEY}
+      - FIREBASE_CLIENT_EMAIL=${FIREBASE_CLIENT_EMAIL}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    expose:
+      - "3000"
+    networks:
+      - platypus_landing_network
+      - nginx-proxy
+    depends_on:
+      - mongodb
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+          pids: 50
+    security_opt:
+      - no-new-privileges:true
+
+  # Frontend (Next.js 15 App)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ../Dockerfile.frontend
+      args:
+        - NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+        - NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
+        - NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
+        - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+        - NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+        - NEXT_PUBLIC_FIREBASE_API_KEY=${NEXT_PUBLIC_FIREBASE_API_KEY}
+        - NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}
+        - NEXT_PUBLIC_FIREBASE_PROJECT_ID=${NEXT_PUBLIC_FIREBASE_PROJECT_ID}
+        - NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET}
+        - NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID}
+        - NEXT_PUBLIC_FIREBASE_APP_ID=${NEXT_PUBLIC_FIREBASE_APP_ID}
+        - NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}
+    container_name: platypus_landing_frontend
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=theplatypus.in,www.theplatypus.in
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}
+      - NODE_ENV=production
+    expose:
+      - "3000"
+    networks:
+      - platypus_landing_network
+      - nginx-proxy
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', (res) => { process.exit((res.statusCode >= 200 && res.statusCode < 500) ? 0 : 1); }).on('error', () => { process.exit(1); });"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+          pids: 100
+    security_opt:
+      - no-new-privileges:true
 
 networks:
-  platypus_walk_network:
+  platypus_landing_network:
     driver: bridge
-  nginx-proxy_default:
+    name: platypus_landing_network
+  nginx-proxy:
     external: true
+
+volumes:
+  mongodb_data:
+    driver: local
+    name: platypus_landing_mongodb_data
+  mongodb_config:
+    driver: local
+    name: platypus_landing_mongodb_config
+  platypus_landing_data:
+    driver: local

@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
 
@@ -24,17 +26,24 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-24 bg-[#eaeff8] bg-cover bg-center relative"
-      style={{ backgroundImage: "url('/aboutus bg.png')" }}
+      className="py-24 bg-[#eaeff8] relative"
     >
-      {" "}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background image with lazy loading */}
+      <img
+        src="/aboutus-bg.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        aria-hidden="true"
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div>
 <h2 className="text-[1.6rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[2.82rem] font-bold text-yellow-400 mb-4 leading-tight">                <span className="relative inline-block mr-2 align-middle">
-                  <span className="text-[#f97e57] font-bold">Coming</span>
+                  <span className="text-[#D94F1F] font-bold">Coming</span>
                   <span className="text-black font-normal"> Soon</span>
                   {/* underline */}
                   <span
@@ -65,6 +74,8 @@ const About = () => {
                     <img
                       src={feature.icon}
                       alt={feature.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-5 h-5 object-contain"
                     />
                   </div>
@@ -77,7 +88,7 @@ const About = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#7B879D] break-words">
+                    <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#4B5563] break-words">
                       {feature.description}
                     </p>
                   </div>
@@ -92,7 +103,7 @@ const About = () => {
     font-funnel font-bold text-[16.51px] leading-[24.4px] 
     tracking-[1.25px] uppercase text-center rounded
     border-0 shadow-none focus:ring-0
-    bg-blue-500 hover:bg-blue-400 rounded hover:shadow-xl 
+    bg-blue-600 hover:bg-blue-500 rounded hover:shadow-xl 
     transition-all duration-300 hover:scale-105"
 >
   BOOK TRIAL WALK NOW
@@ -104,18 +115,46 @@ const About = () => {
 
 <div className="relative overflow-hidden">
   {/* Mobile Image */}
-  <img
-    src="/aboutus contact mobile.png"
-    alt="Platypus App Mobile Preview"
-    className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
-  />
+  <picture className="block md:hidden">
+    <source
+      type="image/avif"
+      srcSet="/optimized/aboutus%20contact%20mobile-small.avif 400w, /optimized/aboutus%20contact%20mobile-medium.avif 800w, /optimized/aboutus%20contact%20mobile.avif 853w"
+      sizes="(max-width: 768px) 400px, 800px"
+    />
+    <source
+      type="image/webp"
+      srcSet="/optimized/aboutus%20contact%20mobile-small.webp 400w, /optimized/aboutus%20contact%20mobile-medium.webp 800w, /optimized/aboutus%20contact%20mobile.webp 853w"
+      sizes="(max-width: 768px) 400px, 800px"
+    />
+    <img
+      src="/aboutus%20contact%20mobile.png"
+      alt="Platypus App Mobile Preview"
+      loading="lazy"
+      decoding="async"
+      className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
+    />
+  </picture>
 
   {/* Desktop Image */}
-  <img
-    src={"/aboutus contact.png"}
-    alt="Platypus App Preview"
-    className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
-  />
+  <picture className="hidden md:block">
+    <source
+      type="image/avif"
+      srcSet="/optimized/aboutus%20contact-small.avif 400w, /optimized/aboutus%20contact.avif 613w"
+      sizes="(max-width: 1024px) 400px, 613px"
+    />
+    <source
+      type="image/webp"
+      srcSet="/optimized/aboutus%20contact-small.webp 400w, /optimized/aboutus%20contact.webp 613w"
+      sizes="(max-width: 1024px) 400px, 613px"
+    />
+    <img
+      src="/aboutus%20contact.png"
+      alt="Platypus App Preview"
+      loading="lazy"
+      decoding="async"
+      className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
+    />
+  </picture>
 </div>
 
 

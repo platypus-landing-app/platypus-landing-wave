@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const tailwindcssAnimate = require("tailwindcss-animate");
 
 export default {
 	darkMode: ["class"],
@@ -19,8 +21,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				funnel: ['"Funnel Sans"', 'sans-serif'], // 👈 Funnel Sans
+				funnel: ['var(--font-funnel)', 'sans-serif'],
 				rounded: ['Nunito', 'sans-serif'],
+				segoe: ['"Segoe UI"', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -119,5 +122,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

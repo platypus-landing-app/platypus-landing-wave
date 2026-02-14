@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
+import { trackCTAClick } from "@/lib/analytics";
 import { motion, Variants, easeOut } from "framer-motion";
 
 const Hero = () => {
@@ -25,7 +26,7 @@ const heroVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: easeOut, // ✅ correct
+      ease: easeOut,
     },
   },
 };
@@ -80,6 +81,16 @@ const heroVariants: Variants = {
               </h1>
             </div>
 
+            {/* SEO H2 Subheading */}
+            <motion.div 
+              variants={heroVariants}
+              className="mt-4 md:mt-6"
+            >
+              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#397CEF] leading-tight">
+                Mumbai's #1 Certified Dog Walking Service with Live GPS Tracking
+              </h2>
+            </motion.div>
+
             {/* Paragraph */}
             <motion.div 
               variants={heroVariants}
@@ -97,10 +108,10 @@ const heroVariants: Variants = {
               className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-6 lg:pt-0 mt-8 md:mt-10 lg:mt-12"
             >
               <Button
-                onClick={openTrialBooking}
+                onClick={() => { trackCTAClick('hero_book_trial'); openTrialBooking(); }}
                 size="lg"
                 className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
-                bg-blue-500 hover:bg-blue-400 hover:shadow-xl transition-all duration-300 hover:scale-105"
+                bg-blue-600 hover:bg-blue-500 hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 Book Trial Now
               </Button>
@@ -114,27 +125,42 @@ const heroVariants: Variants = {
            transition-all duration-300 hover:scale-105"
               >
                 <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#397CEF] to-[#709DEB] flex items-center rounded-full justify-center">
-                  <img src="/Live.png" className="w-4 md:w-5 h-4 md:h-5 text-white" />
+                  <img src="/Live.png" alt="Live tracking indicator" loading="lazy" decoding="async" className="w-4 md:w-5 h-4 md:h-5 text-white" />
                 </div>
                 <div className="text-left">
                   <div className="font-semibold text-xs md:text-sm text-[#000000]">Live Now</div>
-                  <div className="text-[11px] md:text-[13.89px] font-medium text-[#6ACB5D]">Walking in your area</div>
+                  <div className="text-[11px] md:text-[13.89px] font-medium text-[#2D6A1F]">Walking in your area</div>
                 </div>
               </Button>
             </motion.div>
           </motion.div>
 
-          {/* Right Image */}
-          <motion.div 
-            variants={heroVariants}
-            className="lg:flex justify-end items-center hidden"
-          >
+          {/* Right Image - Optimized for LCP */}
+          <div className="lg:flex justify-end items-center hidden">
             <div className="relative">
-              <img
-                src={"/hero Img.png"}
-                alt="Professional dog walker with golden retriever"
-                className="h-[525px] w-[502px] object-contain rounded-3xl"
-              />
+              <picture>
+                {/* AVIF - Modern format, best compression */}
+                <source
+                  type="image/avif"
+                  srcSet="/optimized/hero-image-small.avif 400w, /optimized/hero-image-medium.avif 800w, /optimized/hero-image.avif 853w"
+                  sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 502px"
+                />
+                {/* WebP - Wide browser support, good compression */}
+                <source
+                  type="image/webp"
+                  srcSet="/optimized/hero-image-small.webp 400w, /optimized/hero-image-medium.webp 800w, /optimized/hero-image.webp 853w"
+                  sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 502px"
+                />
+                {/* PNG fallback - Original format */}
+                <img
+                  src="/hero-image.png"
+                  alt="Professional dog walker with golden retriever"
+                  width="502"
+                  height="525"
+                  fetchPriority="high"
+                  className="h-[525px] w-[502px] object-contain rounded-3xl"
+                />
+              </picture>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 0.3, scale: 1 }}
@@ -142,7 +168,7 @@ const heroVariants: Variants = {
                 className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-3xl -z-10"
               ></motion.div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
