@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: 'Expert dog care tips and pet health advice from Platypus certified Guardians.',
     images: [
       {
-        url: 'https://theplatypus.in/hero-image.png',
+        url: 'https://theplatypus.in/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Platypus Dog Care Blog',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Dog Care & Pet Health Blog | Platypus',
     description: 'Expert dog care tips from Platypus certified Guardians.',
-    images: ['https://theplatypus.in/hero-image.png'],
+    images: ['https://theplatypus.in/og-image.png'],
   },
   alternates: {
     canonical: 'https://theplatypus.in/blog',

@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
       url: `${siteUrl}/dog-walking/${location}`,
       images: [
         {
-          url: `${siteUrl}/hero-image.png`,
+          url: `${siteUrl}/og-image.png`,
           width: 1200,
           height: 630,
           alt: `Platypus Dog Walking in ${locationInfo.name}`,
