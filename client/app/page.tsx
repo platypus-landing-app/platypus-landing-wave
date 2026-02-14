@@ -51,18 +51,17 @@ export default function Home() {
     "description": "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols. Book trial walk ₹199. Serving Bandra, Andheri, Powai & more.",
     "url": "https://theplatypus.in",
     "inLanguage": "en-IN",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Platypus",
-      "url": "https://theplatypus.in"
-    },
-    "about": {
-      "@type": "LocalBusiness",
-      "name": "Platypus"
-    },
+    "isPartOf": { "@id": "https://theplatypus.in/#website" },
+    "about": { "@id": "https://theplatypus.in/#organization" },
     "primaryImageOfPage": {
       "@type": "ImageObject",
-      "url": "https://theplatypus.in/hero-image.png"
+      "url": "https://theplatypus.in/og-image.png"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theplatypus.in" }
+      ]
     }
   };
 

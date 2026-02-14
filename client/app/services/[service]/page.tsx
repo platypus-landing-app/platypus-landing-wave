@@ -52,19 +52,34 @@ export default async function ServicePage({ params }: ServicePageProps) {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: svc.name,
+    name: `${svc.name} Service in Mumbai`,
     description: svc.description,
     url: `${siteUrl}/services/${svc.slug}`,
+    image: `${siteUrl}${svc.image}`,
     provider: {
       '@type': 'Organization',
+      '@id': 'https://theplatypus.in/#organization',
       name: 'Platypus',
       url: siteUrl,
     },
     areaServed: {
       '@type': 'City',
       name: 'Mumbai',
+      containedInPlace: { '@type': 'State', name: 'Maharashtra' },
     },
-    ...(svc.price && { offers: { '@type': 'Offer', price: '199', priceCurrency: 'INR' } }),
+    serviceType: svc.name,
+    ...(svc.status === 'active' && {
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: `${svc.name} Plans`,
+        itemListElement: [
+          { '@type': 'Offer', name: 'Trial Walk', price: '199', priceCurrency: 'INR', description: 'Single trial walk with a certified Guardian' },
+          { '@type': 'Offer', name: 'Experience Pack', price: '399', priceCurrency: 'INR', description: '2 walks to experience our service' },
+          { '@type': 'Offer', name: 'Monthly Once Daily', price: '4680', priceCurrency: 'INR', description: 'Once-a-day walks for a full month' },
+          { '@type': 'Offer', name: 'Monthly Twice Daily', price: '7800', priceCurrency: 'INR', description: 'Twice-a-day walks for a full month' },
+        ],
+      },
+    }),
   };
 
   return (

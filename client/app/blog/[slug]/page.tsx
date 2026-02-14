@@ -102,20 +102,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
 
+  const wordCount = post.content.trim().split(/\s+/).length;
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.excerpt,
+    description: post.metaDescription || post.excerpt,
     image: `${siteUrl}${post.image}`,
     datePublished: post.date,
     dateModified: post.date,
+    wordCount,
+    articleSection: post.category,
+    keywords: post.keywords?.join(', '),
+    inLanguage: 'en-IN',
     author: {
       '@type': 'Organization',
-      name: post.author,
+      '@id': 'https://theplatypus.in/#organization',
+      name: 'Platypus',
     },
     publisher: {
       '@type': 'Organization',
+      '@id': 'https://theplatypus.in/#organization',
       name: 'Platypus',
       logo: {
         '@type': 'ImageObject',
@@ -125,6 +133,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${siteUrl}/blog/${post.slug}`,
+    },
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': 'https://theplatypus.in/#website',
     },
   };
 
