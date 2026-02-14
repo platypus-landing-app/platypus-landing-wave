@@ -1,5 +1,4 @@
 name: platypus-landing
-version: '3.8'
 
 services:
   # MongoDB Database
@@ -27,9 +26,9 @@ services:
         limits:
           memory: 512M
           cpus: "0.5"
+          pids: 100
     security_opt:
       - no-new-privileges:true
-    pids_limit: 100
 
   # Backend (Node.js Express API)
   backend:
@@ -74,9 +73,9 @@ services:
         limits:
           memory: 256M
           cpus: "0.5"
+          pids: 50
     security_opt:
       - no-new-privileges:true
-    pids_limit: 50
 
   # Frontend (Next.js 15 App)
   frontend:
@@ -127,9 +126,9 @@ services:
         limits:
           memory: 512M
           cpus: "1.0"
+          pids: 100
     security_opt:
       - no-new-privileges:true
-    pids_limit: 100
 
 networks:
   platypus_landing_network:
