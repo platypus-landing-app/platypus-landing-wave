@@ -82,21 +82,19 @@ const FAQ = () => {
                                 )}
                             </button>
 
-                            {openItems.includes(index) && (
-                                <div
-                                    className="px-6 pb-4"
-                                    itemScope
-                                    itemProp="acceptedAnswer"
-                                    itemType="https://schema.org/Answer"
+                            <div
+                                className={`px-6 pb-4 ${openItems.includes(index) ? '' : 'hidden'}`}
+                                itemScope
+                                itemProp="acceptedAnswer"
+                                itemType="https://schema.org/Answer"
+                            >
+                                <p
+                                    className="font-rubik text-gray-700 leading-relaxed"
+                                    itemProp="text"
                                 >
-                                    <p
-                                        className="font-rubik text-gray-700 leading-relaxed"
-                                        itemProp="text"
-                                    >
-                                        {faq.answer}
-                                    </p>
-                                </div>
-                            )}
+                                    {faq.answer}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>

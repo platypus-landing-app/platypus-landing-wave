@@ -128,6 +128,62 @@ export default function Home() {
     ]
   };
 
+  // FAQ structured data (JSON-LD, server-rendered for Google)
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What areas in Mumbai do you serve for dog walking services?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We provide professional dog walking services across major Mumbai areas including Bandra, Andheri, Powai, Worli, Lower Parel, Colaba, Juhu, Versova, Malad, Borivali, Kandivali, Santacruz, Khar, Byculla, Dadar, Matunga, Kurla, Chembur, Ghatkopar, Mulund, Thane, and Navi Mumbai. Our certified Guardians are strategically located to serve these areas with consistent, reliable service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does professional dog walking cost in Mumbai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our dog walking services are affordably priced: Trial walk at ₹199, Experience walks (2 walks) for ₹399, Monthly once-a-day plan at ₹4,680, Monthly twice-a-day plan at ₹7,800, and discounted 3-month plans starting at ₹21,600 for twice-daily service. All packages include live GPS tracking, certified Guardian service, and safety protocols."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are your dog walkers certified and professionally trained?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all our Guardians undergo rigorous certification and training programs. They receive professional uniforms, hygiene kits, safety training, and follow strict protocols. We maintain backup walker availability to ensure your dog's walk is never cancelled. Our training covers pet behavior, safety procedures, emergency protocols, and customer service standards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide live GPS tracking during dog walks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! Every dog walk includes live GPS tracking so you can monitor your pet's location, route, and activity in real-time through our app. You'll receive SOS alerts, digital updates about your dog's behavior, bathroom breaks, and overall walk experience. This transparency gives pet parents complete peace of mind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What safety measures do you follow during dog walks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Safety is our top priority. Our certified Guardians follow strict hygiene protocols, carry sanitization kits, use secure leashing techniques, and are trained in pet first aid. We conduct health checks before each walk, maintain vaccination verification, and have emergency contact protocols. All Guardians are background-verified and insured."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I book a dog walking service with Platypus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Booking is simple! You can book through our website, WhatsApp (+91 84518 80963), or our upcoming mobile app. We recommend starting with our ₹199 trial walk to experience our service quality. Our team will match you with a local certified Guardian based on your area, preferred timing, and your dog's specific needs."
+        }
+      }
+    ]
+  };
+
   return (
     <>
       {/* Structured Data */}
@@ -140,6 +196,11 @@ export default function Home() {
         id="local-business-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessStructuredData) }}
+      />
+      <Script
+        id="faq-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
 
       <div className="min-h-screen">
