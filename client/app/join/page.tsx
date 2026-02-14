@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: 'Join Platypus | Careers in Pet Care',
     description: 'Become a certified Guardian. Flexible hours, great pay, free training.',
     url: 'https://theplatypus.in/join',
-    images: [{ url: 'https://theplatypus.in/hero-image.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://theplatypus.in/og-image.png', width: 1200, height: 630 }],
   },
 };
 

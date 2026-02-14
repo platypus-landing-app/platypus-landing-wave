@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: 'Pet Care Services in Mumbai | Platypus',
     description: 'Professional dog walking, grooming, training, and pet sitting services in Mumbai.',
     url: 'https://theplatypus.in/services',
-    images: [{ url: 'https://theplatypus.in/hero-image.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://theplatypus.in/og-image.png', width: 1200, height: 630 }],
   },
 };
 

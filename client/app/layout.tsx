@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Powai & more areas.",
     images: [
       {
-        url: "https://theplatypus.in/hero-image.png",
+        url: "https://theplatypus.in/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Professional Dog Walking Service in Mumbai",
+        alt: "Platypus - India's Dog Walking Expert",
       },
     ],
   },
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     creator: "@platypus_bth",
     title: "Professional Dog Walking Service in Mumbai | Platypus",
     description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols.",
-    images: ["https://theplatypus.in/hero-image.png"],
+    images: ["https://theplatypus.in/og-image.png"],
   },
   robots: {
     index: true,
