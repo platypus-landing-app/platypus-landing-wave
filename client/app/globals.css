@@ -174,15 +174,16 @@
   background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
 }
 
-/* reCAPTCHA z-index fix - ensure reCAPTCHA elements appear above all dialogs */
-.grecaptcha-badge,
-div[class*="grecaptcha"],
+/* Hide reCAPTCHA badge — text branding added to forms per Google's terms */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+/* Ensure reCAPTCHA challenge popup still works when triggered */
 iframe[src*="recaptcha"],
 iframe[src*="google.com/recaptcha"] {
   z-index: 2147483647 !important;
 }
-
-/* Ensure reCAPTCHA challenge popup is clickable */
 body > div[style*="z-index"] {
   z-index: 2147483647 !important;
   pointer-events: auto !important;

@@ -1062,10 +1062,13 @@ async function onSubmit(values: TrialBookingFormValues) {
             </div>
 
             {step === 3 && (
-              <div className="text-center mt-3">
+              <div className="text-center mt-3 space-y-1">
                 <div className="text-xs text-muted-foreground flex items-center justify-center gap-1">
                   🔒 Your details are 100% safe with us
                 </div>
+                <p className="text-[10px] text-muted-foreground/70">
+                  Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">Terms</a>
+                </p>
               </div>
             )}
           </div>

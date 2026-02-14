@@ -608,6 +608,11 @@ export default function ProfessionalApplicationDialog() {
             </Button>
           )}
         </div>
+        {step === 4 && (
+          <p className="text-[10px] text-center text-muted-foreground/70 pb-3">
+            Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">Terms</a>
+          </p>
+        )}
       </DialogContent>
     </Dialog>
   );
