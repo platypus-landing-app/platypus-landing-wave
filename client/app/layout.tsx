@@ -156,6 +156,76 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Organization + WebSite structured data — site-wide */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://theplatypus.in/#organization",
+                  "name": "Platypus",
+                  "url": "https://theplatypus.in",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://theplatypus.in/logo.png"
+                  },
+                  "image": "https://theplatypus.in/og-image.png",
+                  "description": "Professional pet care platform in India. Certified Guardians, GPS-tracked dog walking, grooming, training, and pet sitting services across Mumbai.",
+                  "email": "info@theplatypus.in",
+                  "telephone": "+918451880963",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Mumbai",
+                    "addressRegion": "Maharashtra",
+                    "addressCountry": "IN"
+                  },
+                  "sameAs": [
+                    "https://www.instagram.com/platypus.pet",
+                    "https://twitter.com/platypus_bth"
+                  ],
+                  "foundingDate": "2024",
+                  "founder": {
+                    "@type": "Person",
+                    "name": "Sagar Sutaria"
+                  },
+                  "numberOfEmployees": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 10,
+                    "maxValue": 50
+                  },
+                  "areaServed": {
+                    "@type": "City",
+                    "name": "Mumbai",
+                    "containedInPlace": {
+                      "@type": "State",
+                      "name": "Maharashtra"
+                    }
+                  },
+                  "knowsAbout": ["Dog Walking", "Pet Care", "Dog Grooming", "Dog Training", "Pet Sitting"]
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://theplatypus.in/#website",
+                  "url": "https://theplatypus.in",
+                  "name": "Platypus",
+                  "publisher": { "@id": "https://theplatypus.in/#organization" },
+                  "inLanguage": "en-IN",
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                      "@type": "EntryPoint",
+                      "urlTemplate": "https://theplatypus.in/blog?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body>
         <Providers>{children}</Providers>
