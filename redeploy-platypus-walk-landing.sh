@@ -10,7 +10,7 @@ set -e  # Exit on any error
 PROJECT_DIR="/opt/platypus/landing-page"
 REPO_URL="git@github.com:platypus-landing-app/platypus-landing-wave.git"
 BRANCH="${1:-main}"
-COMPOSE_PROJECT="platypus-landing-page"
+COMPOSE_PROJECT="platypus-landing"
 DOMAIN="theplatypus.in"
 SIDE_BY_SIDE=false  # Side-by-side deployment mode (don't stop existing containers)
 
