@@ -14,10 +14,13 @@ export const post: BlogPostFull = {
     "become dog walker India",
     "dog walking career",
     "professional dog walker job",
+    "dog walker job mumbai",
+    "dog walking jobs mumbai",
     "pet care career India",
-    "dog walker salary India"
+    "dog walker salary India",
+    "dog walker job near me"
   ],
-  tags: ["careers", "dog walking", "India", "supply-side"],
+  tags: ["careers", "dog walking", "India", "Mumbai", "supply-side"],
   featured: true,
   status: "published",
   relatedSlugs: ["why-certified-dog-walkers-matter", "dog-walking-schedule-by-breed"],

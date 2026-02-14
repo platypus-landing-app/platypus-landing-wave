@@ -10,11 +10,11 @@ import JoinApplicationCTA from '@/components/join/JoinApplicationCTA';
 import JoinFAQ from '@/components/join/JoinFAQ';
 
 export const metadata: Metadata = {
-  title: 'Join Platypus | Become a Dog Walker, Groomer or Trainer in Mumbai',
+  title: 'Dog Walker Job in Mumbai | Join Platypus as a Guardian',
   description:
-    'Join Mumbai\'s most trusted pet care team. Apply to become a certified Dog Walker, Groomer, Trainer, or Pet Sitter. Flexible hours, great pay, free training.',
+    'Looking for a dog walker job in Mumbai? Join Platypus as a certified Guardian. Earn ₹15,000-30,000/month with flexible hours, free training, and insurance. Apply now.',
   keywords:
-    'dog walker jobs Mumbai, pet care jobs, dog groomer jobs, become a dog walker, Platypus careers, pet sitter jobs Mumbai',
+    'dog walker job mumbai, dog walking jobs mumbai, dog walker job near me, pet care jobs mumbai, dog groomer jobs mumbai, become a dog walker mumbai, Platypus careers, pet sitter jobs mumbai, dog walking vacancy mumbai',
   alternates: {
     canonical: 'https://theplatypus.in/join',
   },
@@ -32,9 +32,9 @@ export default function JoinPage() {
   const jobPostingData = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
-    title: 'Dog Walker (Guardian)',
+    title: 'Dog Walker Job in Mumbai — Platypus Guardian',
     description:
-      'Join Platypus as a certified Dog Walker (Guardian). Walk dogs across Mumbai with GPS tracking, safety protocols, and a supportive team. Flexible hours, competitive pay.',
+      'Looking for a dog walker job in Mumbai? Join Platypus as a certified Guardian. Walk dogs across Mumbai with GPS tracking, safety protocols, and a supportive team. Earn ₹15,000-30,000/month with flexible hours.',
     datePosted: '2025-01-01',
     validThrough: '2026-12-31',
     employmentType: 'PART_TIME',
