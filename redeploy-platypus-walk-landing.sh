@@ -183,9 +183,9 @@ validate_config() {
     step "Validating configuration files and environment..."
     cd "$PROJECT_DIR"
 
-    # Check if docker compose.yml exists
-    if [ ! -f "docker compose.yml" ]; then
-        error "docker compose.yml not found!"
+    # Check if docker-compose.yml exists
+    if [ ! -f "docker-compose.yml" ]; then
+        error "docker-compose.yml not found!"
         exit 1
     fi
 
@@ -235,10 +235,10 @@ validate_config() {
         warning "No Next.js config file found in client directory - this might not be a Next.js project"
     fi
 
-    # Validate docker compose.yml syntax
-    log "Validating docker compose.yml syntax..."
+    # Validate docker-compose.yml syntax
+    log "Validating docker-compose.yml syntax..."
     docker compose config >/dev/null 2>&1 || {
-        error "Invalid docker compose.yml syntax!"
+        error "Invalid docker-compose.yml syntax!"
         exit 1
     }
 
@@ -313,7 +313,7 @@ stop_containers() {
     step "Stopping Docker containers..."
     cd "$PROJECT_DIR"
 
-    if [ -f "docker compose.yml" ]; then
+    if [ -f "docker-compose.yml" ]; then
         # Stop containers gracefully with timeout
         log "Stopping containers with 30s timeout..."
         docker compose -p "$COMPOSE_PROJECT" stop -t 30 2>/dev/null || true
@@ -324,7 +324,7 @@ stop_containers() {
 
         success "Containers stopped successfully"
     else
-        warning "docker compose.yml not found, skipping container stop"
+        warning "docker-compose.yml not found, skipping container stop"
     fi
 }
 
@@ -361,7 +361,7 @@ build_containers() {
     step "Building Docker containers with fresh cache..."
     cd "$PROJECT_DIR"
 
-    if [ -f "docker compose.yml" ]; then
+    if [ -f "docker-compose.yml" ]; then
         # Clean up any existing build artifacts
         log "Cleaning .next build directory..."
         rm -rf "$PROJECT_DIR/client/.next" 2>/dev/null || true
@@ -422,7 +422,7 @@ build_containers() {
             exit 1
         fi
     else
-        error "docker compose.yml not found!"
+        error "docker-compose.yml not found!"
         exit 1
     fi
 }
