@@ -1,3 +1,4 @@
+name: platypus-landing
 version: '3.8'
 
 services:
@@ -15,14 +16,20 @@ services:
       - mongodb_config:/data/configdb
     networks:
       - platypus_landing_network
-    ports:
-      - "27018:27017"
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
 
   # Backend (Node.js Express API)
   backend:
@@ -32,39 +39,44 @@ services:
     container_name: platypus_landing_backend
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for API subdomain
       - VIRTUAL_HOST=api.theplatypus.in
       - VIRTUAL_PORT=3000
-      # Let's Encrypt SSL configuration
       - LETSENCRYPT_HOST=api.theplatypus.in
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}
-      # Backend environment variables (from .env files)
       - NODE_ENV=production
       - PORT=3000
       - CORS_ORIGIN=${CORS_ORIGIN:-https://theplatypus.in}
-      # MongoDB configuration
       - MONGODB_URI=mongodb://platypus:${MONGODB_PASSWORD}@mongodb:27017
       - DB_NAME=${DB_NAME:-platypus}
-      # Email configuration (from .env)
       - BREVO_API_KEY=${BREVO_API_KEY}
       - BREVO_SENDER_EMAIL=${BREVO_SENDER_EMAIL}
       - RECEIVER_EMAIL=${RECEIVER_EMAIL}
-      # reCAPTCHA configuration
       - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
-      # Firebase Admin SDK configuration (from .env)
       - FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}
       - FIREBASE_PRIVATE_KEY=${FIREBASE_PRIVATE_KEY}
       - FIREBASE_CLIENT_EMAIL=${FIREBASE_CLIENT_EMAIL}
-      # Telegram Bot configuration (for instant lead notifications)
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
     expose:
       - "3000"
     networks:
       - platypus_landing_network
-      - nginx-proxy_default
+      - nginx-proxy
     depends_on:
       - mongodb
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 50
 
   # Frontend (Next.js 15 App)
   frontend:
@@ -72,14 +84,11 @@ services:
       context: ./client
       dockerfile: ../Dockerfile.frontend
       args:
-        # Build arguments for Next.js environment variables (from .env files)
         - NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
         - NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
         - NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID}
         - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
-        # reCAPTCHA Enterprise (Single Key for Everything)
         - NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-        # Firebase configuration (from .env files)
         - NEXT_PUBLIC_FIREBASE_API_KEY=${NEXT_PUBLIC_FIREBASE_API_KEY}
         - NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}
         - NEXT_PUBLIC_FIREBASE_PROJECT_ID=${NEXT_PUBLIC_FIREBASE_PROJECT_ID}
@@ -90,19 +99,16 @@ services:
     container_name: platypus_landing_frontend
     restart: unless-stopped
     environment:
-      # nginx-proxy configuration for domain routing
-      - VIRTUAL_HOST=theplatypus.in
+      - VIRTUAL_HOST=theplatypus.in,www.theplatypus.in
       - VIRTUAL_PORT=3000
-      # Let's Encrypt SSL configuration
-      - LETSENCRYPT_HOST=theplatypus.in
+      - LETSENCRYPT_HOST=theplatypus.in,www.theplatypus.in
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-sagar@quantalynk.com}
-      # Next.js runtime environment
       - NODE_ENV=production
     expose:
       - "3000"
     networks:
       - platypus_landing_network
-      - nginx-proxy_default
+      - nginx-proxy
     depends_on:
       - backend
     healthcheck:
@@ -111,22 +117,33 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
 
 networks:
   platypus_landing_network:
     driver: bridge
     name: platypus_landing_network
-  nginx-proxy_default:
+  nginx-proxy:
     external: true
 
 volumes:
-  # MongoDB persistent storage
   mongodb_data:
     driver: local
     name: platypus_landing_mongodb_data
   mongodb_config:
     driver: local
     name: platypus_landing_mongodb_config
-  # General app data
   platypus_landing_data:
     driver: local
