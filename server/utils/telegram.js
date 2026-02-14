@@ -138,6 +138,69 @@ Consider reaching out to complete the booking!
 }
 
 /**
+ * Send a notification about a new professional application
+ * @param {Object} application - Application data
+ */
+export async function sendApplicationNotification(application) {
+    initializeBot();
+
+    if (!bot || !process.env.TELEGRAM_CHAT_ID) {
+        console.log('ℹ️  Skipping Telegram notification (not configured)');
+        return { success: false, reason: 'not_configured' };
+    }
+
+    const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+    try {
+        const roleLabels = {
+            'dog-walker': 'Dog Walker (Guardian)',
+            'dog-groomer': 'Dog Groomer',
+            'dog-trainer': 'Dog Trainer',
+            'pet-sitter': 'Pet Sitter',
+        };
+
+        const message = `
+🎯 *NEW PROFESSIONAL APPLICATION!*
+
+👤 *Applicant Details*
+• Name: ${application.full_name}
+• Phone: ${application.phone}
+• Email: ${application.email}
+• City: ${application.city || 'Mumbai'}
+• Area: ${application.area || 'N/A'}
+
+💼 *Professional Info*
+• Role: ${roleLabels[application.role] || application.role}
+• Experience: ${application.experience}
+• Own Transport: ${application.has_own_transport ? '✅ Yes' : '❌ No'}
+• Resume: ${application.resume_name || 'Not uploaded'}
+
+📅 *Availability*
+• Days: ${(application.available_days || []).join(', ') || 'N/A'}
+• Slots: ${(application.preferred_slots || []).join(', ') || 'N/A'}
+• Start Immediately: ${application.can_start_immediately ? '✅ Yes' : '❌ No'}
+
+📝 *Why Join*
+${application.why_join || 'N/A'}
+
+🐾 *Animal Experience*
+${application.animal_experience || 'N/A'}
+
+📊 *Metadata*
+• Application ID: \`${application._id || 'pending'}\`
+• Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+`;
+
+        await bot.sendMessage(TELEGRAM_CHAT_ID, message, { parse_mode: 'Markdown' });
+        console.log('✅ Telegram application notification sent');
+        return { success: true };
+    } catch (error) {
+        console.error('❌ Telegram application notification error:', error.message);
+        return { success: false, error: error.message };
+    }
+}
+
+/**
  * Send a test notification to verify bot is working
  */
 export async function sendTestNotification() {

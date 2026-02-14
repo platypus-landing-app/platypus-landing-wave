@@ -19,10 +19,11 @@ const Navigation = () => {
     const navItems = [
         { name: "GUARDIANS", href: "#home", path: "/" },
         { name: "WHY PLATYPUS", href: "#features", path: "/" },
+        { name: "SERVICES", href: "/services", path: "/services", isRoute: true },
         { name: "AREAS WE SERVE", href: "#areas", path: "/" },
         { name: "PROCESS", href: "#process", path: "/" },
-        { name: "TESTIMONIALS", href: "#testimonials", path: "/" },
         { name: "BLOG", href: "/blog", path: "/blog", isRoute: true },
+        { name: "JOIN US", href: "/join", path: "/join", isRoute: true },
     ];
 
     // Smooth scroll function

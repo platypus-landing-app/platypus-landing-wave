@@ -21,6 +21,15 @@ const Process = dynamic(() => import('@/components/sections/Process'), {
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
   loading: () => <div className="min-h-[400px]" />,
 });
+const OurServices = dynamic(() => import('@/components/sections/OurServices'), {
+  loading: () => <div className="min-h-[300px]" />,
+});
+const StatsCounters = dynamic(() => import('@/components/sections/StatsCounters'), {
+  loading: () => <div className="min-h-[200px]" />,
+});
+const JoinTeamCTA = dynamic(() => import('@/components/sections/JoinTeamCTA'), {
+  loading: () => <div className="min-h-[200px]" />,
+});
 const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
   loading: () => <div className="min-h-[300px]" />,
 });
@@ -148,10 +157,13 @@ export default function Home() {
           <Hero />
           <HeroFeatures />
           <Features />
+          <OurServices />
           <About />
+          <StatsCounters />
           <AreasWeServe />
           <Process />
           <Testimonials />
+          <JoinTeamCTA />
           <FAQ />
         </main>
 

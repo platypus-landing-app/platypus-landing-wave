@@ -12,7 +12,7 @@ import admin from "firebase-admin";
 dotenv.config();
 
 // Import Telegram utilities AFTER dotenv.config() so env vars are available
-import { sendBookingNotification, sendPartialLeadNotification, sendTestNotification } from "./utils/telegram.js";
+import { sendBookingNotification, sendPartialLeadNotification, sendTestNotification, sendApplicationNotification } from "./utils/telegram.js";
 
 // --- MongoDB Connection ---
 let db;
@@ -486,6 +486,193 @@ async function sendBookingEmail(values) {
     } catch (error) {
         console.error("❌ Email sending error:", error);
         throw error;
+    }
+}
+
+// --- Service Launch Notification Subscription ---
+app.post("/api/notifications/subscribe", async (req, res) => {
+    try {
+        const { email, service } = req.body;
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: "Please provide a valid email address."
+            });
+        }
+
+        if (!service) {
+            return res.status(400).json({
+                success: false,
+                message: "Service name is required."
+            });
+        }
+
+        // Upsert: update if exists, insert if new
+        await db.collection("service_notifications").updateOne(
+            { email, service },
+            {
+                $set: {
+                    email,
+                    service,
+                    last_updated: new Date(),
+                    ip_address: req.ip || req.headers['x-forwarded-for'] || 'unknown',
+                },
+                $setOnInsert: {
+                    created_at: new Date(),
+                    notified: false,
+                }
+            },
+            { upsert: true }
+        );
+
+        console.log(`✅ Notification subscription: ${email} for ${service}`);
+
+        res.status(200).json({
+            success: true,
+            message: "Subscribed successfully! We'll notify you when the service launches."
+        });
+    } catch (error) {
+        console.error("❌ Notification subscribe error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to subscribe. Please try again."
+        });
+    }
+});
+
+// --- Professional Application Submission ---
+app.post("/api/applications/submit", bookingLimiter, async (req, res) => {
+    try {
+        const {
+            fullName, phone, email, city, area,
+            role, experience, hasOwnTransport, resume, resumeName,
+            availableDays, preferredSlots, canStartImmediately,
+            whyJoin, animalExperience
+        } = req.body;
+
+        // Basic validation
+        if (!fullName || !phone || !email || !role) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing required fields."
+            });
+        }
+
+        // Check for duplicate application (same phone, within 24 hours)
+        const existing = await db.collection("professional_applications").findOne(
+            { phone },
+            { sort: { created_at: -1 } }
+        );
+
+        if (existing) {
+            const hoursSince = (Date.now() - existing.created_at.getTime()) / (1000 * 60 * 60);
+            if (hoursSince < 24) {
+                return res.status(400).json({
+                    success: false,
+                    message: "You've already submitted an application recently. We'll get back to you within 48 hours!"
+                });
+            }
+        }
+
+        const applicationData = {
+            full_name: fullName,
+            phone,
+            email,
+            city: city || 'Mumbai',
+            area: area || '',
+            role,
+            experience,
+            has_own_transport: hasOwnTransport || false,
+            resume: resume || null,
+            resume_name: resumeName || null,
+            available_days: availableDays || [],
+            preferred_slots: preferredSlots || [],
+            can_start_immediately: canStartImmediately || false,
+            why_join: whyJoin || '',
+            animal_experience: animalExperience || '',
+            status: 'new',
+            created_at: new Date(),
+            metadata: {
+                ip_address: req.ip || req.headers['x-forwarded-for'] || 'unknown',
+                user_agent: req.headers['user-agent'] || 'unknown',
+            }
+        };
+
+        const result = await db.collection("professional_applications").insertOne(applicationData);
+        console.log(`✅ Application saved: ${fullName} (${role}) - ID: ${result.insertedId}`);
+
+        // Send Telegram notification (non-blocking)
+        sendApplicationNotification({ ...applicationData, _id: result.insertedId }).catch(err => {
+            console.error('⚠️  Telegram application notification failed:', err.message);
+        });
+
+        // Send confirmation email via Brevo (non-blocking)
+        sendApplicationConfirmationEmail(applicationData).catch(err => {
+            console.error('⚠️  Application confirmation email failed:', err.message);
+        });
+
+        res.status(201).json({
+            success: true,
+            message: "Application submitted successfully! We'll review and get back to you within 48 hours.",
+            applicationId: result.insertedId,
+        });
+    } catch (error) {
+        console.error("❌ Application submission error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to submit application. Please try again."
+        });
+    }
+});
+
+// --- Application Confirmation Email ---
+async function sendApplicationConfirmationEmail(application) {
+    try {
+        let defaultClient = SibApiV3Sdk.ApiClient.instance;
+        let apiKey = defaultClient.authentications["api-key"];
+        apiKey.apiKey = process.env.BREVO_API_KEY;
+
+        if (!apiKey.apiKey) {
+            console.warn("⚠️ BREVO_API_KEY not set, skipping confirmation email");
+            return;
+        }
+
+        const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+        const roleLabels = {
+            'dog-walker': 'Dog Walker (Guardian)',
+            'dog-groomer': 'Dog Groomer',
+            'dog-trainer': 'Dog Trainer',
+            'pet-sitter': 'Pet Sitter',
+        };
+
+        const sendSmtpEmail = {
+            sender: {
+                email: process.env.BREVO_SENDER_EMAIL || "noreply@theplatypus.in",
+                name: "Platypus",
+            },
+            to: [{ email: application.email, name: application.full_name }],
+            subject: `Application Received - ${roleLabels[application.role] || application.role}`,
+            htmlContent: `
+<div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; padding: 20px;">
+    <img src="https://theplatypus.in/logo.png" alt="Platypus" style="height: 50px; margin-bottom: 20px;" />
+    <h2 style="color: #0088FF;">We Got Your Application!</h2>
+    <p>Hi ${application.full_name},</p>
+    <p>Thank you for applying to join the Platypus team as a <strong>${roleLabels[application.role] || application.role}</strong>!</p>
+    <p>Our team will review your application and get back to you within <strong>48 hours</strong>.</p>
+    <p>In the meantime, feel free to explore our <a href="https://theplatypus.in/blog" style="color: #0088FF;">blog</a> to learn more about what we do.</p>
+    <br/>
+    <p>Best,<br/>The Platypus Team</p>
+    <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+    <p style="font-size: 12px; color: #999;">This is an automated email from Platypus. Please do not reply directly.</p>
+</div>`,
+        };
+
+        await apiInstance.sendTransacEmail(sendSmtpEmail);
+        console.log(`✅ Application confirmation email sent to ${application.email}`);
+    } catch (error) {
+        console.error("❌ Application confirmation email error:", error);
     }
 }
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
    const handleScrollTo = (href: string) => {
@@ -51,10 +52,27 @@ const Footer = () => {
                 Dog walking across most areas of Mumbai with verified Guardians.
               </p>
 
-<p 
-  onClick={() => handleScrollTo("#process")} 
-  className="group inline-flex items-center text-blue-500 cursor-pointer 
-             transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md"
+              <div className="space-y-2 mt-3">
+                <Link href="/services" className="group inline-flex items-center text-blue-500 transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md">
+                  <span className="text-[16px]">All Services</span>
+                  <span className="ml-2 text-[16px] font-extrabold relative top-[-2px]">→</span>
+                </Link>
+                <br />
+                <Link href="/blog" className="group inline-flex items-center text-blue-500 transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md">
+                  <span className="text-[16px]">Blog</span>
+                  <span className="ml-2 text-[16px] font-extrabold relative top-[-2px]">→</span>
+                </Link>
+                <br />
+                <Link href="/join" className="group inline-flex items-center text-blue-500 transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md">
+                  <span className="text-[16px]">Join Our Team</span>
+                  <span className="ml-2 text-[16px] font-extrabold relative top-[-2px]">→</span>
+                </Link>
+              </div>
+
+<p
+  onClick={() => handleScrollTo("#process")}
+  className="group inline-flex items-center text-blue-500 cursor-pointer
+             transition-all duration-300 hover:text-blue-400 hover:scale-105 hover:drop-shadow-md mt-2"
 >
   <span className="text-[16px]">What to Expect</span>
 

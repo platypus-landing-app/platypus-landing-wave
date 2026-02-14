@@ -4,7 +4,7 @@ import Script from 'next/script';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BlogCard from '@/components/blog/BlogCard';
-import { getBlogPostBySlug, getRelatedPosts, blogPosts } from '@/data/blogPosts';
+import { getBlogPostBySlug, getRelatedPosts, getPublishedPosts } from '@/data/blog';
 import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -20,7 +20,7 @@ export const dynamic = 'force-dynamic';
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
+  return getPublishedPosts().map((post) => ({
     slug: post.slug,
   }));
 }

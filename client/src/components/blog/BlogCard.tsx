@@ -6,10 +6,10 @@ import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
-import { BlogPost } from "@/data/blogPosts";
+import type { BlogPostFull } from "@/data/blog";
 
 interface BlogCardProps {
-    post: BlogPost;
+    post: BlogPostFull;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {

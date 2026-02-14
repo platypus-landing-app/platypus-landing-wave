@@ -3,7 +3,7 @@ import Script from 'next/script';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BlogCard from '@/components/blog/BlogCard';
-import { blogPosts } from '@/data/blogPosts';
+import { getPublishedPosts } from '@/data/blog';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 export const dynamic = 'force-dynamic';
@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const blogPosts = getPublishedPosts();
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
