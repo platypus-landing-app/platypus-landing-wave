@@ -8,7 +8,7 @@ set -e  # Exit on any error
 
 # Configuration
 PROJECT_DIR="/opt/platypus/landing-page"
-REPO_URL="git@github.com:KaVipatel12/platypus-landing-wave.git"
+REPO_URL="git@github.com:platypus-landing-app/platypus-landing-wave.git"
 BRANCH="${1:-main}"
 COMPOSE_PROJECT="platypus-landing-page"
 DOMAIN="theplatypus.in"
@@ -627,9 +627,9 @@ test_deployment() {
     fi
 
     # Test nginx-proxy integration (using your actual network name)
-    if docker network inspect nginx-proxy_default >/dev/null 2>&1; then
-        local frontend_connected=$(docker network inspect nginx-proxy_default | grep -q "platypus_frontend" && echo "yes" || echo "no")
-        local backend_connected=$(docker network inspect nginx-proxy_default | grep -q "platypus_backend" && echo "yes" || echo "no")
+    if docker network inspect nginx-proxy >/dev/null 2>&1; then
+        local frontend_connected=$(docker network inspect nginx-proxy | grep -q "platypus_frontend" && echo "yes" || echo "no")
+        local backend_connected=$(docker network inspect nginx-proxy | grep -q "platypus_backend" && echo "yes" || echo "no")
 
         if [ "$frontend_connected" = "yes" ]; then
             success "✅ Frontend connected to nginx-proxy network"
@@ -868,9 +868,9 @@ preflight_checks() {
     log "Docker Compose version: $compose_version"
 
     # Check nginx-proxy network
-    if ! docker network inspect nginx-proxy_default >/dev/null 2>&1; then
-        error "nginx-proxy_default network not found. nginx-proxy must be running."
-        info "To start nginx-proxy: docker run -d -p 80:80 -p 443:443 --name nginx-proxy --net nginx-proxy_default ..."
+    if ! docker network inspect nginx-proxy >/dev/null 2>&1; then
+        error "nginx-proxy network not found. nginx-proxy must be running."
+        info "To start nginx-proxy: docker run -d -p 80:80 -p 443:443 --name nginx-proxy --net nginx-proxy ..."
         exit 1
     fi
 
@@ -1026,7 +1026,7 @@ show_help() {
     echo ""
     echo "Prerequisites:"
     echo "  - Docker and docker-compose installed"
-    echo "  - nginx-proxy running with nginx-proxy_default network"
+    echo "  - nginx-proxy running with nginx-proxy network"
     echo "  - SSH access to git repository (if private)"
     echo "  - Sufficient disk space (>1GB recommended)"
     echo ""
