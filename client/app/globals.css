@@ -177,6 +177,11 @@
 /* Hide reCAPTCHA badge — text branding added to forms per Google's terms */
 .grecaptcha-badge {
   visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Ensure reCAPTCHA challenge popup still works when triggered */

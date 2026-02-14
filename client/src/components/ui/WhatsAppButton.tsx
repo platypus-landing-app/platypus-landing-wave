@@ -31,8 +31,9 @@ export default function WhatsAppButton() {
     <button
       onClick={handleClick}
       aria-label="Chat with us on WhatsApp"
-      className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] shadow-lg hover:bg-[#20BD5A] hover:shadow-xl transition-all duration-300 ${
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+      style={{ zIndex: 2147483646 }}
+      className={`fixed bottom-6 right-6 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] shadow-lg hover:bg-[#20BD5A] hover:shadow-xl transition-all duration-300 ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
       }`}
     >
       <svg
