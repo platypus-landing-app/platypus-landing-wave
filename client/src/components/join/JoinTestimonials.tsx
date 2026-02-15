@@ -35,7 +35,7 @@ export default function JoinTestimonials() {
               <p className="text-gray-700 leading-relaxed mb-6 italic">&ldquo;{t.quote}&rdquo;</p>
               <div>
                 <p className="font-bold text-gray-900">{t.name}</p>
-                <p className="text-sm text-[#0088FF]">{t.role}</p>
+                <p className="text-sm text-[#247AFD]">{t.role}</p>
               </div>
             </div>
           ))}

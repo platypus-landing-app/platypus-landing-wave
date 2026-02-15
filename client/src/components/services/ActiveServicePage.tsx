@@ -31,7 +31,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
 
       <main className="pt-[70px] md:pt-[80px]">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-[#0088FF] via-[#0077EE] to-[#0066DD] text-white py-20 md:py-28 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] text-white py-20 md:py-28 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
@@ -48,7 +48,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                 <Button
                   onClick={openTrialBooking}
                   size="lg"
-                  className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-bold px-8 py-6 text-lg"
+                  className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg"
                 >
                   Book Trial Walk — {service.price}
                 </Button>
@@ -96,7 +96,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                 <Link
                   key={name}
                   href={`/dog-walking/${name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 text-gray-700 hover:border-[#0088FF] hover:text-[#0088FF] transition-colors text-sm font-medium"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 text-gray-700 hover:border-[#247AFD] hover:text-[#247AFD] transition-colors text-sm font-medium"
                 >
                   <MapPin className="w-3.5 h-3.5" />
                   {name}
@@ -109,7 +109,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
         {/* CTA */}
         <section className="py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0088FF] via-[#0077EE] to-[#0066DD] p-10 md:p-14 text-center shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] p-10 md:p-14 text-center shadow-2xl">
               <div className="absolute inset-0 opacity-20">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
@@ -124,7 +124,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                 <Button
                   onClick={openTrialBooking}
                   size="lg"
-                  className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-bold px-8 py-6 text-lg"
+                  className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg"
                 >
                   Book Trial Walk — {service.price}
                 </Button>

@@ -121,7 +121,7 @@ const Testimonials = () => {
         {/* Heading */}
         <div className="mb-16 text-left max-w-4xl">
           <h2 className="font-[Funnel_Sans] font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-black capitalize mb-6">
-            <span className="relative text-[#D94F1F]">
+            <span className="relative text-[#FF5B00]">
               Client
               <span className="absolute bottom-[-5px] left-0 w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] h-0 border-b border-golden opacity-100"></span>
             </span>{" "}
@@ -256,7 +256,7 @@ const Testimonials = () => {
         <div ref={reviewsSectionRef} className="mt-20">
           <div className="mb-12 text-left max-w-4xl">
             <h3 className="font-[Funnel_Sans] font-bold text-3xl sm:text-4xl leading-tight text-black capitalize mb-4">
-              <span className="relative text-[#D94F1F]">
+              <span className="relative text-[#FF5B00]">
                 Google
                 <span className="absolute bottom-[-5px] left-0 w-full max-w-[100px] sm:max-w-[140px] h-0 border-b border-golden opacity-100"></span>
               </span>{" "}
@@ -285,7 +285,7 @@ const Testimonials = () => {
             {isLoading && loadElfsight && (
               <div className="flex items-center justify-center py-16">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-12 h-12 border-4 border-[#397CEF] border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-12 h-12 border-4 border-[#247AFD] border-t-transparent rounded-full animate-spin"></div>
                   <p className="font-[Funnel_Sans] text-gray-600">Loading reviews...</p>
                 </div>
               </div>
@@ -319,7 +319,7 @@ const Testimonials = () => {
         </div>
         </div>
        {/* Inner White Box */}
-<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#397CEF] shadow-[0_15px_30px_-10px_rgba(57,124,239,0.3)] max-w-3xl mx-auto -mt-[200px] mb-4">
+<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#247AFD] shadow-[0_15px_30px_-10px_rgba(57,124,239,0.3)] max-w-3xl mx-auto -mt-[200px] mb-4">
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
     {/* Ready to Book */}

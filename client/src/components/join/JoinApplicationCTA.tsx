@@ -9,7 +9,7 @@ export default function JoinApplicationCTA() {
   return (
     <section className="py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0088FF] via-[#0077EE] to-[#0066DD] p-10 md:p-14 text-center shadow-2xl">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] p-10 md:p-14 text-center shadow-2xl">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
@@ -24,7 +24,7 @@ export default function JoinApplicationCTA() {
             <Button
               onClick={openApplication}
               size="lg"
-              className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-bold px-8 py-6 text-lg"
+              className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg"
             >
               Apply Now
             </Button>

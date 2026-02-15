@@ -56,7 +56,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                       transition: { duration: 0.8, ease: 'easeOut' },
                     },
                   }}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-[5xl] font-light text-[#F3C313] text-blur-shadow inline-block"
+                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-[5xl] font-light text-[#FFE135] text-blur-shadow inline-block"
                 >
                   PLATYPUS
                 </motion.span>
@@ -103,7 +103,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
               }}
               className="mt-4 md:mt-6"
             >
-              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#397CEF] leading-tight text-left">
+              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#247AFD] leading-tight text-left">
                 Certified Guardians with Live GPS Tracking in {locationInfo.displayName}
               </h2>
             </motion.div>
@@ -151,12 +151,12 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
               <Button
                 variant="outline"
                 size="lg"
-                className="text-[#397CEF] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px]
+                className="text-[#247AFD] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px]
                   w-full sm:w-[240px] md:w-[257px] rounded-[4px] py-3 md:py-4
                   text-sm flex items-center gap-3 shadow-md hover:shadow-lg
                   transition-all duration-300 hover:scale-105"
               >
-                <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#397CEF] to-[#709DEB] flex items-center rounded-full justify-center">
+                <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#247AFD] to-[#5A9AFE] flex items-center rounded-full justify-center">
                   <img
                     src="/Live.png"
                     className="w-4 md:w-5 h-4 md:h-5 text-white"
@@ -202,7 +202,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                   <div className="grid grid-cols-2 gap-3">
                     {locationInfo.neighborhoods.map((neighborhood, idx) => (
                       <div key={idx} className="flex items-center space-x-2">
-                        <span className="text-[#397CEF] text-lg">✓</span>
+                        <span className="text-[#247AFD] text-lg">✓</span>
                         <span className="text-gray-700 text-sm">{neighborhood}</span>
                       </div>
                     ))}
@@ -220,7 +220,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                 </div>
 
                 {/* Trial price badge */}
-                <div className="mt-6 bg-[#F3C313] rounded-xl p-4 text-center">
+                <div className="mt-6 bg-[#FFE135] rounded-xl p-4 text-center">
                   <p className="text-black text-sm font-medium mb-1">Trial Walk Starting At</p>
                   <p className="text-black text-3xl font-bold">₹199</p>
                 </div>

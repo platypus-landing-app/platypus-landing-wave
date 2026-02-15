@@ -35,8 +35,8 @@ const Process = () => {
   ];
 
   return (
-    <section id="process" className="py-20 bg-[#0088FF] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#0088FF] opacity-90"></div>
+    <section id="process" className="py-20 bg-[#247AFD] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[#247AFD] opacity-90"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-7 relative z-10">
   <div className="text-center mb-16">
     <h2 className="text-4xl md:text-5xl font-bold text-yellow-200 mb-4">

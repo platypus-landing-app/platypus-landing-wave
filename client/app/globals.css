@@ -2,109 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ocean-themed design system for platypus landing page. All colors MUST be HSL. */
+/* Brand design system — colors from PLATYPUS_BRAND GUIDELINES_2025.pdf */
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 25% 15%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
-    --card: 210 100% 97%;
-    --card-foreground: 215 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
 
-    --popover: 210 100% 97%;
-    --popover-foreground: 215 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 200 85% 45%;
-    --primary-foreground: 210 40% 98%;
-    --primary-hover: 200 85% 40%;
+    /* Primary: Clear Blue #247AFD */
+    --primary: 216 98% 57%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 216 98% 50%;
 
-    --secondary: 195 100% 95%;
-    --secondary-foreground: 200 85% 25%;
+    --secondary: 216 90% 95%;
+    --secondary-foreground: 216 98% 30%;
 
-    --muted: 195 100% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 216 20% 95%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 180 75% 85%;
-    --accent-foreground: 200 85% 25%;
+    /* Secondary: Fresh Green #69D84F */
+    --accent: 109 64% 58%;
+    --accent-foreground: 109 64% 20%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 200 50% 90%;
-    --input: 200 50% 92%;
-    --ring: 200 85% 45%;
+    --border: 0 0% 90%;
+    --input: 0 0% 92%;
+    --ring: 216 98% 57%;
 
-    --ocean-deep: 210 100% 15%;
-    --ocean-medium: 200 85% 45%;
-    --ocean-light: 195 100% 85%;
-    --wave-primary: 180 75% 70%;
-    --wave-secondary: 195 100% 80%;
+    /* Brand palette as CSS vars for direct use */
+    --brand-blue: 216 98% 57%;
+    --brand-yellow: 51 100% 60%;
+    --brand-green: 109 64% 58%;
+    --brand-purple: 274 99% 72%;
+    --brand-orange: 21 100% 50%;
 
-    --golden: 48 94% 49%;
+    --golden: 51 100% 60%;
 
-    --gradient-ocean: linear-gradient(135deg, hsl(200 85% 45%), hsl(210 100% 15%));
-    --gradient-wave: linear-gradient(90deg, hsl(180 75% 70%), hsl(195 100% 80%));
-    --gradient-hero: linear-gradient(180deg, hsl(195 100% 95%), hsl(200 50% 90%));
+    --gradient-brand: linear-gradient(135deg, #247AFD, #1A5BC4);
+    --gradient-hero: linear-gradient(180deg, hsl(216 90% 97%), hsl(216 50% 93%));
 
     --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 216 98% 57%;
   }
 
   .dark {
-    --background: 210 100% 4%;
-    --foreground: 195 100% 95%;
+    --background: 216 30% 5%;
+    --foreground: 0 0% 95%;
 
-    --card: 215 100% 6%;
-    --card-foreground: 195 100% 95%;
+    --card: 216 30% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 215 100% 6%;
-    --popover-foreground: 195 100% 95%;
+    --popover: 216 30% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 180 75% 70%;
-    --primary-foreground: 215 100% 6%;
-    --primary-hover: 180 75% 75%;
+    --primary: 216 98% 65%;
+    --primary-foreground: 216 30% 5%;
+    --primary-hover: 216 98% 70%;
 
-    --secondary: 215 100% 10%;
-    --secondary-foreground: 195 100% 85%;
+    --secondary: 216 30% 12%;
+    --secondary-foreground: 216 50% 85%;
 
-    --muted: 215 100% 10%;
-    --muted-foreground: 195 50% 65%;
+    --muted: 216 30% 12%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 200 85% 25%;
-    --accent-foreground: 195 100% 85%;
+    --accent: 109 64% 45%;
+    --accent-foreground: 109 64% 85%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 100% 12%;
-    --input: 215 100% 12%;
-    --ring: 180 75% 70%;
+    --border: 216 30% 15%;
+    --input: 216 30% 15%;
+    --ring: 216 98% 65%;
 
-    --ocean-deep: 215 100% 6%;
-    --ocean-medium: 200 85% 35%;
-    --ocean-light: 200 50% 25%;
-    --wave-primary: 180 75% 60%;
-    --wave-secondary: 195 75% 45%;
+    --brand-blue: 216 98% 65%;
+    --brand-yellow: 51 100% 55%;
+    --brand-green: 109 64% 45%;
+    --brand-purple: 274 99% 65%;
+    --brand-orange: 21 100% 45%;
 
-    --gradient-ocean: linear-gradient(135deg, hsl(200 85% 35%), hsl(215 100% 6%));
-    --gradient-wave: linear-gradient(90deg, hsl(180 75% 60%), hsl(195 75% 45%));
-    --gradient-hero: linear-gradient(180deg, hsl(215 100% 10%), hsl(215 100% 6%));
+    --golden: 51 100% 55%;
+
+    --gradient-brand: linear-gradient(135deg, #3A8CFE, #1A5BC4);
+    --gradient-hero: linear-gradient(180deg, hsl(216 30% 10%), hsl(216 30% 5%));
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -112,7 +109,7 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 216 98% 57%;
   }
 }
 
@@ -147,12 +144,16 @@
     @apply font-funnel bg-background text-foreground text-black;
     overflow-x: hidden;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-domine;
+  }
 }
 
 /* Custom Scroller Styles */
 .custom-scroller {
   scrollbar-width: thin;
-  scrollbar-color: #397CEF #e5f3ff;
+  scrollbar-color: #247AFD #e8f0fe;
 }
 
 .custom-scroller::-webkit-scrollbar {
@@ -160,18 +161,18 @@
 }
 
 .custom-scroller::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, #e5f3ff 0%, #f0f7ff 50%, #e5f3ff 100%);
+  background: linear-gradient(90deg, #e8f0fe 0%, #f0f5ff 50%, #e8f0fe 100%);
   border-radius: 10px;
 }
 
 .custom-scroller::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #397CEF 0%, #5fa3f5 50%, #397CEF 100%);
+  background: linear-gradient(90deg, #247AFD 0%, #5A9AFE 50%, #247AFD 100%);
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(57, 124, 239, 0.3);
+  box-shadow: 0 2px 4px rgba(36, 122, 253, 0.3);
 }
 
 .custom-scroller::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+  background: linear-gradient(90deg, #1A5BC4 0%, #247AFD 50%, #1A5BC4 100%);
 }
 
 /* Hide reCAPTCHA badge — text branding added to forms per Google's terms */

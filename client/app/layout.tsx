@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Funnel_Sans } from "next/font/google";
+import { Funnel_Sans, Domine } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-// Self-hosted Funnel Sans - exact same font, zero render-blocking
 const funnelSans = Funnel_Sans({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-funnel',
+});
+
+const domine = Domine({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-domine',
 });
 
 export const metadata: Metadata = {
@@ -75,19 +81,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={funnelSans.variable}>
+    <html lang="en" suppressHydrationWarning className={`${funnelSans.variable} ${domine.variable}`}>
       <head>
         {/* Critical CSS - Inline to prevent render blocking */}
         <style dangerouslySetInnerHTML={{__html: `
+          @font-face {
+            font-family: 'Guttery';
+            src: url('/fonts/Guttery.ttf') format('truetype');
+            font-display: swap;
+          }
           :root {
-            --background: 210 20% 98%;
-            --foreground: 215 25% 15%;
-            --primary: 200 85% 45%;
-            --primary-foreground: 210 40% 98%;
-            --muted: 195 100% 95%;
-            --muted-foreground: 215 16% 47%;
-            --border: 200 50% 90%;
-            --ring: 200 85% 45%;
+            --background: 0 0% 100%;
+            --foreground: 0 0% 7%;
+            --primary: 216 98% 57%;
+            --primary-foreground: 0 0% 100%;
+            --muted: 216 20% 95%;
+            --muted-foreground: 0 0% 40%;
+            --border: 0 0% 90%;
+            --ring: 216 98% 57%;
             --radius: 1rem;
           }
           * {
@@ -97,6 +108,9 @@ export default function RootLayout({
             background-color: hsl(var(--background));
             color: hsl(var(--foreground));
             font-family: var(--font-funnel), system-ui, -apple-system, sans-serif;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-domine), Georgia, serif;
           }
         `}} />
 

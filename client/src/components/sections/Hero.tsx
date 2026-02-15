@@ -60,7 +60,7 @@ const heroVariants: Variants = {
               <h1 className="flex flex-col text-left tracking-[0.06em]">
                 <motion.span 
                   variants={heroVariants}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-[5xl] font-light text-[#F3C313] text-blur-shadow inline-block"
+                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-[5xl] font-light text-[#FFE135] text-blur-shadow inline-block"
                 >
                   PLATYPUS
                 </motion.span>
@@ -86,7 +86,7 @@ const heroVariants: Variants = {
               variants={heroVariants}
               className="mt-4 md:mt-6"
             >
-              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#397CEF] leading-tight">
+              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#247AFD] leading-tight">
                 Mumbai's #1 Certified Dog Walking Service with Live GPS Tracking
               </h2>
             </motion.div>
@@ -119,12 +119,12 @@ const heroVariants: Variants = {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-[#397CEF] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px] 
+                className="text-[#247AFD] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px] 
            w-full sm:w-[240px] md:w-[257px] rounded-[4px] py-3 md:py-4 
            text-sm flex items-center gap-3 shadow-md hover:shadow-lg 
            transition-all duration-300 hover:scale-105"
               >
-                <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#397CEF] to-[#709DEB] flex items-center rounded-full justify-center">
+                <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#247AFD] to-[#5A9AFE] flex items-center rounded-full justify-center">
                   <img src="/Live.png" alt="Live tracking indicator" loading="lazy" decoding="async" className="w-4 md:w-5 h-4 md:h-5 text-white" />
                 </div>
                 <div className="text-left">

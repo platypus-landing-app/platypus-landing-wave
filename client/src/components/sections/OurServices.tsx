@@ -57,9 +57,9 @@ const OurServices = () => {
               >
                 <div className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100 h-full flex flex-col items-center text-center">
                   <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-                    <Icon className="w-7 h-7 text-[#0088FF]" />
+                    <Icon className="w-7 h-7 text-[#247AFD]" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-[#0088FF] transition-colors">
+                  <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-[#247AFD] transition-colors">
                     {svc.name}
                   </h3>
                   {svc.status === 'coming-soon' && (
@@ -68,7 +68,7 @@ const OurServices = () => {
                     </Badge>
                   )}
                   <p className="text-gray-500 text-sm leading-relaxed flex-1">{svc.tagline}</p>
-                  <div className="mt-4 flex items-center text-[#0088FF] text-sm font-semibold">
+                  <div className="mt-4 flex items-center text-[#247AFD] text-sm font-semibold">
                     {svc.status === 'active' ? 'Learn More' : 'Get Notified'}
                     <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>

@@ -47,9 +47,9 @@ const FAQ = () => {
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h2 className="font-funnel font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-                        Frequently Asked <span className="text-[#D94F1F]">Questions</span>
+                        Frequently Asked <span className="text-[#FF5B00]">Questions</span>
                     </h2>
-                    <p className="font-rubik text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="font-funnel text-lg text-gray-600 max-w-2xl mx-auto">
                         Get answers to common questions about our professional dog walking services in Mumbai
                     </p>
                 </div>
@@ -89,7 +89,7 @@ const FAQ = () => {
                                 itemType="https://schema.org/Answer"
                             >
                                 <p
-                                    className="font-rubik text-gray-700 leading-relaxed"
+                                    className="font-funnel text-gray-700 leading-relaxed"
                                     itemProp="text"
                                 >
                                     {faq.answer}
@@ -101,7 +101,7 @@ const FAQ = () => {
 
                 {/* CTA at bottom */}
                 <div className="mt-12 text-center">
-                    <p className="font-rubik text-gray-600 mb-4">
+                    <p className="font-funnel text-gray-600 mb-4">
                         Still have questions? We're here to help!
                     </p>
                     <a

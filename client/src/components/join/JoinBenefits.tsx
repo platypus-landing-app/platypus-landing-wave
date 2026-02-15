@@ -52,7 +52,7 @@ export default function JoinBenefits() {
                 className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
               >
                 <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-                  <Icon className="w-6 h-6 text-[#0088FF]" />
+                  <Icon className="w-6 h-6 text-[#247AFD]" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{benefit.description}</p>

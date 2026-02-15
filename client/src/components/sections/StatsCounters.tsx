@@ -44,7 +44,7 @@ function StatCounter({ stat, isVisible }: { stat: StatItem; isVisible: boolean }
 
   return (
     <div className="text-center">
-      <div className="text-4xl md:text-5xl font-bold text-[#0088FF] mb-2">
+      <div className="text-4xl md:text-5xl font-bold text-[#247AFD] mb-2">
         {count.toLocaleString()}{stat.suffix}
       </div>
       <div className="text-gray-600 font-medium">{stat.label}</div>

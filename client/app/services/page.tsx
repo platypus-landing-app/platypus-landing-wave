@@ -88,7 +88,7 @@ export default function ServicesPage() {
 
         <main className="pt-[70px] md:pt-[80px]">
           {/* Hero */}
-          <section className="relative bg-gradient-to-br from-[#0088FF] via-[#0077EE] to-[#0066DD] text-white py-20 md:py-28 overflow-hidden">
+          <section className="relative bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] text-white py-20 md:py-28 overflow-hidden">
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
               <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
@@ -119,7 +119,7 @@ export default function ServicesPage() {
                       <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 h-full flex flex-col">
                         <div className="flex items-start justify-between mb-4">
                           <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                            <Icon className="w-7 h-7 text-[#0088FF]" />
+                            <Icon className="w-7 h-7 text-[#247AFD]" />
                           </div>
                           {svc.status === 'coming-soon' && (
                             <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
@@ -132,12 +132,12 @@ export default function ServicesPage() {
                             </Badge>
                           )}
                         </div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-[#0088FF] transition-colors">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-[#247AFD] transition-colors">
                           {svc.name}
                         </h2>
                         <p className="text-gray-500 font-medium mb-3">{svc.tagline}</p>
                         <p className="text-gray-600 leading-relaxed flex-1">{svc.description}</p>
-                        <div className="mt-6 flex items-center text-[#0088FF] font-semibold">
+                        <div className="mt-6 flex items-center text-[#247AFD] font-semibold">
                           {svc.status === 'active' ? 'Learn More' : 'Get Notified'}
                           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                         </div>
