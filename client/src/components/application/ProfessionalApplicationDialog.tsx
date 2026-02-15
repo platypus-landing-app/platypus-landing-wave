@@ -467,8 +467,8 @@ export default function ProfessionalApplicationDialog() {
                               }}
                               className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                                 field.value.includes(day)
-                                  ? 'bg-[#0088FF] text-white border-[#0088FF]'
-                                  : 'bg-white text-gray-700 border-gray-300 hover:border-[#0088FF]'
+                                  ? 'bg-[#247AFD] text-white border-[#247AFD]'
+                                  : 'bg-white text-gray-700 border-gray-300 hover:border-[#247AFD]'
                               }`}
                             >
                               {day}
@@ -499,8 +499,8 @@ export default function ProfessionalApplicationDialog() {
                               }}
                               className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                                 field.value.includes(slot)
-                                  ? 'bg-[#0088FF] text-white border-[#0088FF]'
-                                  : 'bg-white text-gray-700 border-gray-300 hover:border-[#0088FF]'
+                                  ? 'bg-[#247AFD] text-white border-[#247AFD]'
+                                  : 'bg-white text-gray-700 border-gray-300 hover:border-[#247AFD]'
                               }`}
                             >
                               {slot}

@@ -28,7 +28,7 @@ export default function ShareButton({ title, excerpt }: ShareButtonProps) {
   return (
     <button
       onClick={handleShare}
-      className="flex items-center gap-2 ml-auto hover:text-[#0088FF] transition-colors font-medium"
+      className="flex items-center gap-2 ml-auto hover:text-[#247AFD] transition-colors font-medium"
     >
       <Share2 className="w-5 h-5" />
       <span>Share</span>

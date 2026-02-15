@@ -224,7 +224,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Category Badge */}
               <div className="mb-6">
-                <Badge className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-semibold px-4 py-1.5 text-sm">
+                <Badge className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-semibold px-4 py-1.5 text-sm">
                   {post.category}
                 </Badge>
               </div>
@@ -237,11 +237,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {/* Meta Info & Share */}
               <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-10 pb-8 border-b border-gray-200">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-[#0088FF]" />
+                  <Calendar className="w-5 h-5 text-[#247AFD]" />
                   <span className="font-medium">{formattedDate}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-[#0088FF]" />
+                  <Clock className="w-5 h-5 text-[#247AFD]" />
                   <span className="font-medium">{post.readTime}</span>
                 </div>
                 <ShareButton title={post.title} excerpt={post.excerpt} />
@@ -286,7 +286,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
 
               {/* CTA Section */}
-              <div className="mt-20 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0088FF] via-[#0077EE] to-[#0066DD] p-10 md:p-14 text-center shadow-2xl">
+              <div className="mt-20 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] p-10 md:p-14 text-center shadow-2xl">
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-300 rounded-full blur-3xl"></div>
                   <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>

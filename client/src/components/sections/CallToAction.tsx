@@ -28,7 +28,7 @@ const CallToAction = () => {
 </div>
 
 {/* Inner White Box */}
-<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#397CEF] shadow-[0px_8px_25px_-5px_#397CEF26] max-w-3xl mx-auto -mt-12 mb-4">
+<div className="bg-white rounded-3xl px-8 py-6 border-b border-[#247AFD] shadow-[0px_8px_25px_-5px_#247AFD26] max-w-3xl mx-auto -mt-12 mb-4">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Ready to Book */}
             <div className="text-left">

@@ -22,7 +22,8 @@ export default {
 		extend: {
 			fontFamily: {
 				funnel: ['var(--font-funnel)', 'sans-serif'],
-				rounded: ['Nunito', 'sans-serif'],
+				domine: ['var(--font-domine)', 'Georgia', 'serif'],
+				guttery: ['Guttery', 'cursive'],
 				segoe: ['"Segoe UI"', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Arial', 'sans-serif'],
 			},
 			colors: {
@@ -60,14 +61,15 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				ocean: {
-					deep: 'hsl(var(--ocean-deep))',
-					medium: 'hsl(var(--ocean-medium))',
-					light: 'hsl(var(--ocean-light))'
-				},
-				wave: {
-					primary: 'hsl(var(--wave-primary))',
-					secondary: 'hsl(var(--wave-secondary))'
+				brand: {
+					blue: '#247AFD',
+					'blue-dark': '#1A5BC4',
+					'blue-light': '#5A9AFE',
+					yellow: '#FFE135',
+					'yellow-dark': '#E6CA2F',
+					green: '#69D84F',
+					purple: '#C071FE',
+					orange: '#FF5B00',
 				},
 				golden: 'hsl(var(--golden))',
 				sidebar: {
@@ -87,8 +89,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			backgroundImage: {
-				'gradient-ocean': 'var(--gradient-ocean)',
-				'gradient-wave': 'var(--gradient-wave)',
+				'gradient-brand': 'var(--gradient-brand)',
 				'gradient-hero': 'var(--gradient-hero)'
 			},
 			keyframes: {

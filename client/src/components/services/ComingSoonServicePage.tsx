@@ -76,7 +76,7 @@ export default function ComingSoonServicePage({ service }: ComingSoonServicePage
                   className="flex items-start gap-4 p-5 rounded-xl bg-white border border-gray-100"
                 >
                   <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-4 h-4 text-[#0088FF]" />
+                    <Check className="w-4 h-4 text-[#247AFD]" />
                   </div>
                   <span className="text-gray-700 text-lg">{feature}</span>
                 </div>

@@ -8,7 +8,7 @@ export default function JoinHero() {
   const { openApplication } = useApplication();
 
   return (
-    <section className="relative bg-gradient-to-br from-[#0088FF] via-[#0077EE] to-[#0066DD] text-white py-20 md:py-28 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] text-white py-20 md:py-28 overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
@@ -26,7 +26,7 @@ export default function JoinHero() {
           <Button
             onClick={() => { trackCTAClick('join_hero_apply'); openApplication(); }}
             size="lg"
-            className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-bold px-8 py-6 text-lg"
+            className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg"
           >
             Apply Now
           </Button>

@@ -129,15 +129,15 @@ const Navigation = () => {
                                     <Link
                                         key={item.name}
                                         href={item.href}
-                                        className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#0088FF] ${
+                                        className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#247AFD] ${
                                             pathname.startsWith(item.path)
-                                                ? "text-[#0088FF]"
+                                                ? "text-[#247AFD]"
                                                 : "text-gray-700"
                                         }`}
                                     >
                                         {item.name}
                                         {pathname.startsWith(item.path) && (
-                                            <div className="absolute bottom-0 left-0 right-0 mx-auto w-[80%] h-0.5 bg-[#0088FF]"></div>
+                                            <div className="absolute bottom-0 left-0 right-0 mx-auto w-[80%] h-0.5 bg-[#247AFD]"></div>
                                         )}
                                     </Link>
                                 );
@@ -147,15 +147,15 @@ const Navigation = () => {
                                 <button
                                     key={item.name}
                                     onClick={() => handleNavClick(item)}
-                                    className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#0088FF] ${
+                                    className={`px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative hover:text-[#247AFD] ${
                                         activeSection === item.href.substring(1) && pathname === "/"
-                                            ? "text-[#0088FF]"
+                                            ? "text-[#247AFD]"
                                             : "text-gray-700"
                                     }`}
                                 >
                                     {item.name}
                                     {activeSection === item.href.substring(1) && pathname === "/" && (
-                                        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[80%] h-0.5 bg-[#0088FF]"></div>
+                                        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[80%] h-0.5 bg-[#247AFD]"></div>
                                     )}
                                 </button>
                             );
@@ -179,7 +179,7 @@ const Navigation = () => {
                         <div className="lg:hidden">
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
-                                className="p-2 text-gray-700 hover:text-[#0088FF] focus:outline-none"
+                                className="p-2 text-gray-700 hover:text-[#247AFD] focus:outline-none"
                                 aria-label={isOpen ? "Close menu" : "Open menu"}
                             >
                                 {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -200,7 +200,7 @@ const Navigation = () => {
                                         key={item.name}
                                         href={item.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="w-full text-left text-gray-700 hover:text-[#0088FF] font-medium block px-3 py-2 rounded-md transition-colors"
+                                        className="w-full text-left text-gray-700 hover:text-[#247AFD] font-medium block px-3 py-2 rounded-md transition-colors"
                                     >
                                         {item.name}
                                     </Link>
@@ -211,7 +211,7 @@ const Navigation = () => {
                                 <button
                                     key={item.name}
                                     onClick={() => handleNavClick(item)}
-                                    className="w-full text-left text-gray-700 hover:text-[#0088FF] font-medium block px-3 py-2 rounded-md transition-colors"
+                                    className="w-full text-left text-gray-700 hover:text-[#247AFD] font-medium block px-3 py-2 rounded-md transition-colors"
                                 >
                                     {item.name}
                                 </button>
@@ -220,7 +220,7 @@ const Navigation = () => {
                         <div className="pt-4">
                             <Button
                                 onClick={openTrialBooking}
-                                className="w-full bg-[#397CEF] hover:bg-[#0088FF] text-white py-3 rounded font-medium"
+                                className="w-full bg-[#247AFD] hover:bg-[#247AFD] text-white py-3 rounded font-medium"
                             >
                                 BOOK TRIAL NOW
                             </Button>

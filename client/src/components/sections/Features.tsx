@@ -70,7 +70,7 @@ const Features = () => {
         {/* Why Choose Platypus Heading */}
         <div className="text-left mb-12 lg:mb-16">
           <h2 className="font-funnel font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
-            <span className="text-[#D94F1F] relative inline-block mr-2 align-middle">
+            <span className="text-[#FF5B00] relative inline-block mr-2 align-middle">
               Why Choose
               <span className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"></span>
             </span>
@@ -79,7 +79,7 @@ const Features = () => {
             </span>
           </h2>
 
-          <p className="font-rubik mt-4 sm:mt-6 font-normal text-[14px] sm:text-[16px] md:text-[16px] leading-[20px] sm:leading-[23px] md:leading-[23px] tracking-[0px] capitalize text-black max-w-full sm:max-w-3xl">
+          <p className="font-funnel mt-4 sm:mt-6 font-normal text-[14px] sm:text-[16px] md:text-[16px] leading-[20px] sm:leading-[23px] md:leading-[23px] tracking-[0px] capitalize text-black max-w-full sm:max-w-3xl">
             We're Not Just Another Walking Service — We're India's First
             Certified And Tech-Enabled Dog Walking Experts.
           </p>
@@ -118,7 +118,7 @@ const Features = () => {
 
               {/* Content */}
               <div className="px-4 flex flex-col items-center text-center">
-                <h3 className="font-funnel font-bold text-[24px] leading-[33.25px] text-[#397CEF] mb-3">
+                <h3 className="font-funnel font-bold text-[24px] leading-[33.25px] text-[#247AFD] mb-3">
                   {feature.title}
                 </h3>
                 <p className="font-funnel font-normal text-[16px] leading-[27.06px] text-black">

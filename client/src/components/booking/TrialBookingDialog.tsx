@@ -1053,7 +1053,7 @@ async function onSubmit(values: TrialBookingFormValues) {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#397CEF] hover:bg-[#397CEF]/90 text-white font-semibold px-8"
+                    className="bg-[#247AFD] hover:bg-[#247AFD]/90 text-white font-semibold px-8"
                   >
                     {isSubmitting ? "Booking..." : "Book My Trial Walk Now"}
                   </Button>

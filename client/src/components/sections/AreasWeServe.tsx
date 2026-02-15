@@ -33,7 +33,7 @@ const AreasWeServe = () => {
               Areas
               <span className="absolute bottom-[-10px] left-0 w-full max-w-[220px] h-0 border-b border-golden opacity-100"></span>
             </span>{" "}
-            <span className="text-[#D94F1F]">We Serve</span>
+            <span className="text-[#FF5B00]">We Serve</span>
           </h2>
 
           {/* Paragraph and Button in flex container */}

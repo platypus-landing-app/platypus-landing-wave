@@ -31,7 +31,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute top-4 left-4">
-                        <Badge className="bg-[#FFD700] hover:bg-[#FFC700] text-gray-900 font-semibold px-3 py-1 text-xs">
+                        <Badge className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-semibold px-3 py-1 text-xs">
                             {post.category}
                         </Badge>
                     </div>
@@ -39,7 +39,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
 
                 {/* Content */}
                 <CardHeader className="pb-3 pt-6">
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-[#0088FF] transition-colors leading-tight line-clamp-2 mb-2">
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-[#247AFD] transition-colors leading-tight line-clamp-2 mb-2">
                         {post.title}
                     </h3>
                 </CardHeader>
@@ -56,7 +56,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
                         <Calendar className="w-4 h-4" />
                         <span>{formattedDate}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[#0088FF] font-medium">
+                    <div className="flex items-center gap-1.5 text-[#247AFD] font-medium">
                         <Clock className="w-4 h-4" />
                         <span>{post.readTime}</span>
                     </div>

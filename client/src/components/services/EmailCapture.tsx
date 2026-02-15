@@ -75,7 +75,7 @@ export default function EmailCapture({ serviceName, serviceSlug }: EmailCaptureP
         <Button
           type="submit"
           disabled={loading}
-          className="h-12 px-6 bg-[#0088FF] hover:bg-[#0077EE] text-white font-semibold"
+          className="h-12 px-6 bg-[#247AFD] hover:bg-[#1F6AE0] text-white font-semibold"
         >
           {loading ? (
             <>

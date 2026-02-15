@@ -31,7 +31,7 @@ const HeroFeatures = () => {
                 className="flex items-center gap-3 flex-shrink-0 min-w-[160px] sm:min-w-[180px] md:min-w-[200px] lg:min-w-[220px]"
               >
                 {feature.type === "icon" && feature.icon ? (
-                  <feature.icon className="w-6 h-6 text-[#397CEF]" />
+                  <feature.icon className="w-6 h-6 text-[#247AFD]" />
                 ) : (
                   <img
                     src={feature.image}
