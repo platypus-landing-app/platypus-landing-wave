@@ -109,17 +109,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.metaDescription || post.excerpt,
-    image: `${siteUrl}${post.image}`,
+    image: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}${post.image}`,
+      width: 1200,
+      height: 750,
+      caption: post.title,
+    },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedDate || post.date,
     wordCount,
     articleSection: post.category,
     keywords: post.keywords?.join(', '),
     inLanguage: 'en-IN',
     author: {
-      '@type': 'Organization',
-      '@id': 'https://theplatypus.in/#organization',
-      name: 'Platypus',
+      '@type': 'Person',
+      name: 'Sagar Sutaria',
+      jobTitle: 'Founder',
+      url: 'https://www.linkedin.com/in/sagarsutaria/',
+      worksFor: { '@id': 'https://theplatypus.in/#organization' },
     },
     publisher: {
       '@type': 'Organization',
@@ -138,7 +146,42 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       '@type': 'WebSite',
       '@id': 'https://theplatypus.in/#website',
     },
+    about: {
+      '@type': 'Thing',
+      name: post.category,
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.prose h2', '.prose p:first-of-type'],
+    },
   };
+
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${siteUrl}/blog/${post.slug}` },
+    ],
+  };
+
+  // HowTo schema for posts with step-by-step instructions
+  const howToData = post.howToSteps && post.howToSteps.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: post.title,
+        description: post.metaDescription || post.excerpt,
+        image: `${siteUrl}${post.image}`,
+        step: post.howToSteps.map((s, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+        })),
+      }
+    : null;
 
   return (
     <>
@@ -147,6 +190,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <Script
+        id="blog-breadcrumb-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+      />
+      {howToData && (
+        <Script
+          id="blog-howto-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToData) }}
+        />
+      )}
 
       <div className="min-h-screen bg-white">
         <Navigation />

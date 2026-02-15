@@ -35,6 +35,8 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   const serviceList = Object.values(services);
 
+  const siteUrl = 'https://theplatypus.in';
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -47,13 +49,23 @@ export default function ServicesPage() {
         '@type': 'Service',
         name: svc.name,
         description: svc.description,
-        url: `https://theplatypus.in/services/${svc.slug}`,
+        url: `${siteUrl}/services/${svc.slug}`,
         provider: {
           '@type': 'Organization',
+          '@id': `${siteUrl}/#organization`,
           name: 'Platypus',
         },
       },
     })),
+  };
+
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
+    ],
   };
 
   return (
@@ -62,6 +74,11 @@ export default function ServicesPage() {
         id="services-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="services-breadcrumb-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
 
       <div className="min-h-screen bg-white">

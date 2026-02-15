@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Should your dog exercise indoors or outdoors? Both have unique benefits, but understanding the difference helps you give your dog a balanced, fulfilling routine.",
   author: "Platypus Team",
   date: "2025-10-08",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Pet Health",
   image: "/blog/indoor-vs-outdoor-dog-exercise.jpg",

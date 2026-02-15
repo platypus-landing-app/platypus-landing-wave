@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "From bathing frequency to nail trimming, this complete grooming guide covers everything dog parents need to know to keep their furry companions clean, healthy, and comfortable at home.",
   author: "Platypus Team",
   date: "2025-09-10",
+  updatedDate: "2025-02-15",
   readTime: "6 min read",
   category: "Pet Care Tips",
   image: "/blog/pet-grooming-basics.jpg",

@@ -41,21 +41,44 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const blogPosts = getPublishedPosts();
+  const siteUrl = 'https://theplatypus.in';
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Platypus Blog - Dog Care Tips & Pet Health',
     description:
       'Expert advice on dog walking, pet health, and dog care from Platypus certified Guardians. Learn how to keep your pup happy and healthy.',
-    url: 'https://theplatypus.in/blog',
+    url: `${siteUrl}/blog`,
     publisher: {
       '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
       name: 'Platypus',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://theplatypus.in/logo.png',
+        url: `${siteUrl}/logo.png`,
       },
     },
+    blogPost: blogPosts.slice(0, 10).map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: `${siteUrl}/blog/${p.slug}`,
+      datePublished: p.date,
+      image: `${siteUrl}${p.image}`,
+      author: {
+        '@type': 'Person',
+        name: 'Sagar Sutaria',
+      },
+    })),
+  };
+
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+    ],
   };
 
   return (
@@ -64,6 +87,11 @@ export default function BlogPage() {
         id="blog-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="blog-breadcrumb-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
 
       <div className="min-h-screen bg-white">

@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "India's pet care industry is booming, and professional dog walking is emerging as a rewarding career. Learn what it takes to become a certified dog walker, what you can earn, and how to get started with Platypus.",
   author: "Platypus Team",
   date: "2025-09-15",
+  updatedDate: "2025-02-15",
   readTime: "6 min read",
   category: "Careers",
   image: "/blog/become-dog-walker-india.jpg",

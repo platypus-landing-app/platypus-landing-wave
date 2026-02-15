@@ -74,12 +74,26 @@ export default function JoinPage() {
     },
   };
 
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Join Us', item: `${siteUrl}/join` },
+    ],
+  };
+
   return (
     <>
       <Script
         id="job-posting-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingData) }}
+      />
+      <Script
+        id="join-breadcrumb-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
 
       <div className="min-h-screen bg-white">

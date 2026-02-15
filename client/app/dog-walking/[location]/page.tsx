@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
 
   return {
     title: `Professional Dog Walking Service in ${locationInfo.name} | Platypus Certified Guardians`,
@@ -80,11 +80,13 @@ export default async function LocationPage({ params }: LocationPageProps) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
 
+  // LocalBusiness with location-specific reviews and neighborhood areaServed
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': `${siteUrl}/dog-walking/${location}#business`,
     name: `Platypus Dog Walking Service - ${locationInfo.name}`,
     description: `Professional ${locationInfo.description}. Live GPS tracking, safety protocols, certified Guardians.`,
     url: `${siteUrl}/dog-walking/${location}`,
@@ -102,16 +104,21 @@ export default async function LocationPage({ params }: LocationPageProps) {
       latitude: locationInfo.coordinates.lat,
       longitude: locationInfo.coordinates.lng,
     },
-    areaServed: {
-      '@type': 'Place',
-      name: locationInfo.name,
+    areaServed: locationInfo.neighborhoods.map((n) => ({
+      '@type': 'Neighborhood',
+      name: n,
       containedInPlace: {
         '@type': 'City',
         name: 'Mumbai',
       },
-    },
+    })),
     priceRange: '₹199 - ₹7800',
     openingHours: 'Mo-Su 06:00-22:00',
+    parentOrganization: { '@id': 'https://theplatypus.in/#organization' },
+    sameAs: [
+      'https://www.instagram.com/platypus.pet',
+      'https://twitter.com/platypus_bth',
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
@@ -119,39 +126,60 @@ export default async function LocationPage({ params }: LocationPageProps) {
       worstRating: '1',
       ratingCount: '127',
     },
-    review: [
+    review: locationInfo.reviews.map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.author },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(r.rating),
+        bestRating: '5',
+      },
+      reviewBody: r.text,
+      datePublished: r.date,
+    })),
+  };
+
+  // BreadcrumbList JSON-LD
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
       {
-        '@type': 'Review',
-        author: {
-          '@type': 'Person',
-          name: 'Sneha Pandey',
-        },
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-          bestRating: '5',
-        },
-        reviewBody:
-          'I would definitely recommend Platypus. The Guardians provided by your team are well-trained, trustworthy & clearly care about the pet they walk.',
-        datePublished: '2024-12-15',
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
       },
       {
-        '@type': 'Review',
-        author: {
-          '@type': 'Person',
-          name: 'Tanusri Maitra',
-        },
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-          bestRating: '5',
-        },
-        reviewBody:
-          'So far, I am very happy with the service. Regular, Punctual, Proper handling of the child, and the other best practices are picking up poop. I am so happy with the kind of walk my little one is getting',
-        datePublished: '2025-01-10',
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Dog Walking Services',
+        item: `${siteUrl}/services/dog-walking`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: `${locationInfo.name} Dog Walking`,
+        item: `${siteUrl}/dog-walking/${location}`,
       },
     ],
   };
+
+  // FAQPage JSON-LD from location-specific FAQ data
+  const faqData = locationInfo.faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: locationInfo.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.answer,
+          },
+        })),
+      }
+    : null;
 
   return (
     <>
@@ -160,13 +188,25 @@ export default async function LocationPage({ params }: LocationPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <Script
+        id="location-breadcrumb-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+      />
+      {faqData && (
+        <Script
+          id="location-faq-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
+        />
+      )}
 
       <div className="min-h-screen">
         <Navigation />
 
         <Breadcrumb
           items={[
-            { label: 'Dog Walking Services', href: '/#areas' },
+            { label: 'Dog Walking Services', href: '/services/dog-walking' },
             { label: `${locationInfo.name} Dog Walking` },
           ]}
         />
@@ -174,6 +214,19 @@ export default async function LocationPage({ params }: LocationPageProps) {
         <main id="main-content">
           {/* Location-Specific Hero Section */}
           <LocationHero locationInfo={locationInfo} location={location} />
+
+          {/* Location FAQ - visible in DOM for crawlers */}
+          {locationInfo.faq.length > 0 && (
+            <section className="sr-only" aria-label={`Frequently asked questions about dog walking in ${locationInfo.name}`}>
+              <h2>Dog Walking FAQ - {locationInfo.name}</h2>
+              {locationInfo.faq.map((f, i) => (
+                <div key={i}>
+                  <h3>{f.question}</h3>
+                  <p>{f.answer}</p>
+                </div>
+              ))}
+            </section>
+          )}
 
           {/* Standard Sections */}
           <HeroFeatures />

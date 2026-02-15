@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Should you take your dog for structured walks or let them run free at the dog park? We break down the pros, cons, and safety considerations of each to help you decide what is best for your pup.",
   author: "Platypus Team",
   date: "2025-08-28",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Pet Care Tips",
   image: "/blog/dog-walking-vs-dog-park.jpg",

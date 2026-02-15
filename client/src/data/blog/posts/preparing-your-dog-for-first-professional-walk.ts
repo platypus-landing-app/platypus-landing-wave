@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "A little preparation goes a long way. Here is everything you need to know before your dog's first outing with a professional walker, from introductions to what to share.",
   author: "Platypus Team",
   date: "2025-10-01",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Pet Care Tips",
   image: "/blog/first-professional-dog-walk.jpg",
@@ -21,6 +22,13 @@ export const post: BlogPostFull = {
   featured: false,
   status: "published",
   relatedSlugs: ["how-to-choose-right-dog-walker-mumbai", "why-every-pet-parent-should-consider-dog-walking-service"],
+  howToSteps: [
+    { name: "Gather Essentials Before the Walk", text: "Prepare your dog's leash, harness, and waste bags. Write down your dog's name, age, breed, medical conditions, allergies, and behavioral quirks." },
+    { name: "Introduce Your Dog to the Walker", text: "Schedule a meet-and-greet. Let your dog approach on their own terms. Use treats to build a positive connection. Allow 2–3 short meetings for shy dogs." },
+    { name: "Share Your Dog's Routine", text: "Tell the walker about feeding times, usual walk times, favourite routes, recall reliability, and any specific habits or triggers." },
+    { name: "Book a Trial Walk", text: "Use the trial walk to let the walker assess your dog's comfort, leash manners, and energy level. Expect an honest update afterward." },
+    { name: "Handle Separation Anxiety", text: "For anxious dogs, have the walker visit your home first. Gradually increase outing duration. Leave a worn clothing item for familiar scent." },
+  ],
   content: `
 Hiring a professional dog walker is one of the best decisions you can make for your pet. But the first walk can feel nerve-wracking—for you and your dog. A little preparation ensures the experience is smooth, safe, and sets the tone for a lasting routine.
 

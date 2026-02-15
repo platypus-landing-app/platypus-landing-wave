@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Socialization is one of the most critical aspects of raising a well-adjusted dog. Discover how regular walks expose your dog to new experiences and build the confidence they need to thrive in any environment.",
   author: "Platypus Team",
   date: "2025-10-20",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Dog Behavior",
   image: "/blog/socializing-dog-walks.jpg",

@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Mumbai's monsoon brings unique challenges for dog walks—from waterlogged streets to tick infestations. Here are essential safety tips every pet parent should know to keep their dog healthy and happy through the rainy season.",
   author: "Platypus Team",
   date: "2025-11-05",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Safety",
   image: "/blog/monsoon-dog-walking-safety.jpg",

@@ -62,13 +62,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
       name: 'Platypus',
       url: siteUrl,
     },
-    areaServed: {
-      '@type': 'City',
-      name: 'Mumbai',
-      containedInPlace: { '@type': 'State', name: 'Maharashtra' },
-    },
+    areaServed: [
+      { '@type': 'City', name: 'Mumbai', containedInPlace: { '@type': 'State', name: 'Maharashtra' } },
+      { '@type': 'City', name: 'Thane', containedInPlace: { '@type': 'State', name: 'Maharashtra' } },
+      { '@type': 'City', name: 'Navi Mumbai', containedInPlace: { '@type': 'State', name: 'Maharashtra' } },
+    ],
     serviceType: svc.name,
     ...(svc.status === 'active' && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        bestRating: '5',
+        worstRating: '1',
+        ratingCount: '127',
+      },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: `${svc.name} Plans`,
@@ -82,12 +89,27 @@ export default async function ServicePage({ params }: ServicePageProps) {
     }),
   };
 
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
+      { '@type': 'ListItem', position: 3, name: svc.name, item: `${siteUrl}/services/${svc.slug}` },
+    ],
+  };
+
   return (
     <>
       <Script
         id="service-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="service-breadcrumb-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
       {svc.status === 'active' ? (
         <ActiveServicePage service={svc} />
