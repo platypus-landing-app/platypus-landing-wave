@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Dog walking may look like a simple daily routine, but science shows it's one of the most powerful ways to keep your pup healthy both physically and mentally.",
   author: "Platypus Team",
   date: "2025-10-10",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Pet Health",
   image: "/science-of-dog-walking.png",

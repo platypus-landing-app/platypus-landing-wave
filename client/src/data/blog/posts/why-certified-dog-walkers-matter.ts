@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Not all dog walkers are created equal. Certified walkers bring training, preparedness, and accountability that protect your dog in ways casual walkers simply cannot.",
   author: "Platypus Team",
   date: "2025-09-25",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Safety",
   image: "/blog/certified-dog-walkers.jpg",

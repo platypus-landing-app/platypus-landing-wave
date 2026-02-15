@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "From puppies to senior dogs, exercise needs vary dramatically. This vet-backed guide breaks down how much daily activity your dog really needs based on age, breed, and health conditions.",
   author: "Platypus Team",
   date: "2025-09-05",
+  updatedDate: "2025-02-15",
   readTime: "5 min read",
   category: "Pet Health",
   image: "/blog/how-much-exercise-dog.jpg",

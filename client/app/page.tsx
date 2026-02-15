@@ -62,6 +62,10 @@ export default function Home() {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theplatypus.in" }
       ]
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["#main-content h1", "#main-content .hero-description"]
     }
   };
 
@@ -69,12 +73,18 @@ export default function Home() {
   const localBusinessStructuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://theplatypus.in/#localbusiness",
     "name": "Platypus Dog Walking Service",
     "image": "https://theplatypus.in/hero-image.png",
     "description": "Professional dog walking service in Mumbai with certified Guardians, live GPS tracking, and comprehensive safety protocols.",
     "url": "https://theplatypus.in",
     "telephone": "+918451880963",
     "email": "info@theplatypus.in",
+    "parentOrganization": { "@id": "https://theplatypus.in/#organization" },
+    "sameAs": [
+      "https://www.instagram.com/platypus.pet",
+      "https://twitter.com/platypus_bth"
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mumbai",
@@ -86,6 +96,11 @@ export default function Home() {
       "latitude": 19.0760,
       "longitude": 72.8777
     },
+    "areaServed": [
+      { "@type": "City", "name": "Mumbai" },
+      { "@type": "City", "name": "Thane" },
+      { "@type": "City", "name": "Navi Mumbai" }
+    ],
     "priceRange": "₹199 - ₹7800",
     "openingHours": "Mo-Su 06:00-22:00",
     "aggregateRating": {

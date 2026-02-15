@@ -15,12 +15,13 @@ export async function GET() {
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${post.category}</category>
       <author>info@theplatypus.in (${post.author})</author>
+      <enclosure url="${siteUrl}${post.image}" type="image/jpeg" length="0" />
     </item>`
     )
     .join('');
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Platypus Blog - Dog Care Tips &amp; Pet Health</title>
     <link>${siteUrl}/blog</link>
@@ -28,6 +29,11 @@ export async function GET() {
     <language>en-in</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>${siteUrl}/logo.png</url>
+      <title>Platypus Blog</title>
+      <link>${siteUrl}/blog</link>
+    </image>
     ${items}
   </channel>
 </rss>`;

@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "GPS tracking technology has transformed the dog walking experience. Learn how real-time location monitoring gives pet parents peace of mind and keeps dogs safer on every outing.",
   author: "Platypus Team",
   date: "2025-10-28",
+  updatedDate: "2025-02-15",
   readTime: "4 min read",
   category: "Technology",
   image: "/blog/gps-tracking-dog-safety.jpg",

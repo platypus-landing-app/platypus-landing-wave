@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Not every dog needs the same amount of walking. From high-energy Labradors to laid-back Bulldogs, here is a breed-by-breed guide to building the right walking schedule.",
   author: "Platypus Team",
   date: "2025-09-20",
+  updatedDate: "2025-02-15",
   readTime: "7 min read",
   category: "Pet Health",
   image: "/blog/dog-walking-schedule-breed.jpg",

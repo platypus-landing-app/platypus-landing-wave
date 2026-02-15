@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Your dog communicates constantly during walks through tail positions, ear movements, and posture. Learning to read these signals transforms every outing into a deeper connection.",
   author: "Platypus Team",
   date: "2025-10-15",
+  updatedDate: "2025-02-15",
   readTime: "6 min read",
   category: "Dog Behavior",
   image: "/blog/dog-body-language-walks.jpg",

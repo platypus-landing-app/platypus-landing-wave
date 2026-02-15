@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Being a pet parent is one of life's greatest joys, but it also comes with responsibilities. In fast-paced metro cities, long commutes and demanding work schedules make it difficult to give your dogs the regular walks they truly need.",
   author: "Platypus Team",
   date: "2025-10-12",
+  updatedDate: "2025-02-15",
   readTime: "4 min read",
   category: "Pet Care Tips",
   image: "/why-dog-walking-service.png",

@@ -6,6 +6,7 @@ export const post: BlogPostFull = {
   excerpt: "Finding a trustworthy dog walker in Mumbai can feel overwhelming. This complete guide covers everything you need to know—from certifications to red flags—so you can make the best choice for your furry friend.",
   author: "Platypus Team",
   date: "2025-11-15",
+  updatedDate: "2025-02-15",
   readTime: "6 min read",
   category: "Pet Care Tips",
   image: "/blog/choose-dog-walker-mumbai.jpg",
@@ -21,6 +22,14 @@ export const post: BlogPostFull = {
   featured: false,
   status: "published",
   relatedSlugs: ["why-every-pet-parent-should-consider-dog-walking-service", "why-certified-dog-walkers-matter"],
+  howToSteps: [
+    { name: "Look for Proper Certification and Training", text: "Verify the dog walker has formal training in canine behavior, first aid, and breed-specific handling. Ask about their certification background." },
+    { name: "Insist on GPS Tracking and Real-Time Updates", text: "Choose a service that offers live GPS tracking and post-walk reports including route maps, duration, and behavioral observations." },
+    { name: "Evaluate Safety Protocols", text: "Ask about emergency protocols — what happens if the dog slips its leash, encounters strays, or shows signs of heatstroke. Confirm background verification and insurance." },
+    { name: "Assess Breed Knowledge and Temperament Matching", text: "Ensure the walker understands breed-specific needs and can match walking style to your dog's temperament and energy level." },
+    { name: "Check References and Reviews", text: "Read verified reviews, ask for references from current clients, and check the service's track record in your specific area." },
+    { name: "Start With a Trial Walk", text: "Book a trial walk to observe how the walker interacts with your dog before committing to a long-term plan." },
+  ],
   content: `
 Finding the right dog walker in Mumbai is one of the most important decisions you'll make as a pet parent. Your dog's safety, happiness, and well-being depend on the person you trust with their daily walks. With the growing number of dog walking services in Mumbai, here's a comprehensive guide to help you make an informed choice.
 

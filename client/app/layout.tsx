@@ -66,9 +66,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // verification: { google: "ADD_YOUR_GSC_CODE_HERE" },
 };
 
 export default function RootLayout({
@@ -189,22 +187,29 @@ export default function RootLayout({
                   "foundingDate": "2024",
                   "founder": {
                     "@type": "Person",
-                    "name": "Sagar Sutaria"
+                    "name": "Sagar Sutaria",
+                    "jobTitle": "Founder",
+                    "sameAs": "https://www.linkedin.com/in/sagarsutaria/"
                   },
                   "numberOfEmployees": {
                     "@type": "QuantitativeValue",
                     "minValue": 10,
                     "maxValue": 50
                   },
-                  "areaServed": {
-                    "@type": "City",
-                    "name": "Mumbai",
-                    "containedInPlace": {
-                      "@type": "State",
-                      "name": "Maharashtra"
+                  "areaServed": [
+                    { "@type": "City", "name": "Mumbai", "containedInPlace": { "@type": "State", "name": "Maharashtra" } },
+                    { "@type": "City", "name": "Thane", "containedInPlace": { "@type": "State", "name": "Maharashtra" } },
+                    { "@type": "City", "name": "Navi Mumbai", "containedInPlace": { "@type": "State", "name": "Maharashtra" } }
+                  ],
+                  "knowsAbout": ["Dog Walking", "Pet Care", "Dog Grooming", "Dog Training", "Pet Sitting"],
+                  "hasCredential": [
+                    {
+                      "@type": "EducationalOccupationalCredential",
+                      "name": "Platypus Guardian Certification Program",
+                      "description": "In-house training and certification for professional dog walkers covering safety protocols, pet behavior, first aid, and GPS tracking systems."
                     }
-                  },
-                  "knowsAbout": ["Dog Walking", "Pet Care", "Dog Grooming", "Dog Training", "Pet Sitting"]
+                  ],
+                  "slogan": "India's Dog Walking Expert"
                 },
                 {
                   "@type": "WebSite",
