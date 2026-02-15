@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
+import Link from 'next/link';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import BlogCard from '@/components/blog/BlogCard';
 import { getBlogPostBySlug, getRelatedPosts, getPublishedPosts } from '@/data/blog';
-import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Calendar, Clock, ArrowLeft, User } from 'lucide-react';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import ShareButton from './ShareButton';
 import BookingButton from './BookingButton';
@@ -207,49 +206,61 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <Navigation />
 
         <main className="pt-[70px] md:pt-[80px]">
-          {/* Breadcrumbs */}
-          <div className="bg-gray-50 border-b border-gray-200">
-            <div className="max-w-5xl mx-auto">
-              <Breadcrumb
-                items={[
-                  { label: 'Blog', href: '/blog' },
-                  { label: post.title },
-                ]}
-              />
+          {/* Hero Image */}
+          <div className="relative w-full max-h-[60vh] overflow-hidden">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-auto block"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+            {/* Back to blog */}
+            <div className="absolute top-6 left-0 right-0 z-10">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors bg-black/20 backdrop-blur-sm rounded-full px-4 py-2"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Blog
+                </Link>
+              </div>
+            </div>
+
+            {/* Category + Title overlay */}
+            <div className="absolute bottom-0 left-0 right-0 z-10">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-10">
+                <span className="inline-block bg-brand-yellow text-gray-900 font-semibold px-4 py-1.5 text-sm rounded-full mb-4">
+                  {post.category}
+                </span>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  {post.title}
+                </h1>
+              </div>
             </div>
           </div>
 
-          {/* Article Header */}
-          <article className="py-12 md:py-16">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* Category Badge */}
-              <div className="mb-6">
-                <Badge className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-semibold px-4 py-1.5 text-sm">
-                  {post.category}
-                </Badge>
-              </div>
-
-              {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                {post.title}
-              </h1>
-
-              {/* Meta Info & Share */}
-              <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-10 pb-8 border-b border-gray-200">
+          {/* Article */}
+          <article className="py-10 md:py-14">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Meta Info */}
+              <div className="flex flex-wrap items-center gap-5 text-gray-500 text-sm mb-10 pb-8 border-b border-gray-100">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-[#247AFD]" />
-                  <span className="font-medium">{formattedDate}</span>
+                  <User className="w-4 h-4 text-brand-blue" />
+                  <span className="font-medium text-gray-700">{post.author}</span>
+                  <span className="text-gray-400">·</span>
+                  <span className="text-gray-500">Founder, Platypus</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-[#247AFD]" />
-                  <span className="font-medium">{post.readTime}</span>
+                  <Calendar className="w-4 h-4 text-brand-blue" />
+                  <span>{formattedDate}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-brand-blue" />
+                  <span>{post.readTime}</span>
                 </div>
                 <ShareButton title={post.title} excerpt={post.excerpt} />
-              </div>
-
-              {/* Featured Image */}
-              <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
-                <img src={post.image} alt={post.title} className="w-full h-auto" />
               </div>
 
               {/* Article Content */}
@@ -262,7 +273,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     return (
                       <h2
                         key={index}
-                        className="text-3xl md:text-4xl font-bold text-gray-900 mt-16 mb-6 leading-tight"
+                        className="text-2xl md:text-3xl font-bold text-gray-900 mt-14 mb-5 leading-tight"
                       >
                         {trimmedSection.substring(3)}
                       </h2>
@@ -278,24 +289,44 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   return (
                     <p
                       key={index}
-                      className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6"
+                      className="text-lg text-gray-700 leading-[1.8] mb-6"
                       dangerouslySetInnerHTML={{ __html: processedText }}
                     />
                   );
                 })}
               </div>
 
+              {/* Tags */}
+              {post.tags && post.tags.length > 0 && (
+                <div className="mt-12 pt-8 border-t border-gray-100">
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-block bg-[#F0F6FF] text-brand-blue text-sm font-medium px-3 py-1.5 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* CTA Section */}
-              <div className="mt-20 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] p-10 md:p-14 text-center shadow-2xl">
+              <div className="mt-16 relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#247AFD] via-[#1F6AE0] to-[#1A5BC4] p-10 md:p-14 text-center shadow-2xl">
+                <div className="absolute inset-0 bg-noise" />
+                <div className="absolute top-[-30px] right-[-30px] w-[120px] h-[120px] rounded-full border border-white/10 pointer-events-none" />
+                <div className="absolute bottom-[-20px] left-[-20px] w-[80px] h-[80px] rounded-full border border-white/5 pointer-events-none" />
                 <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-300 rounded-full blur-3xl"></div>
-                  <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
+                  <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
                 </div>
                 <div className="relative z-10">
+                  <span className="font-guttery text-brand-yellow text-lg sm:text-xl mb-3 block">try it out</span>
                   <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                     Ready to Give Your Dog the Best Care?
                   </h3>
-                  <p className="text-lg md:text-xl mb-8 text-white/95 max-w-2xl mx-auto">
+                  <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
                     Book a trial walk with our certified Guardians today
                   </p>
                   <BookingButton />
@@ -306,11 +337,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
-            <section className="py-16 md:py-20 bg-gray-50">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-                  Related Articles
-                </h2>
+            <section className="py-16 md:py-20 bg-gradient-to-b from-[#F8FAFF] to-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-dots opacity-20 pointer-events-none" />
+              <div className="absolute bottom-10 left-[-40px] w-[100px] h-[100px] rounded-full border border-brand-blue/8 pointer-events-none" />
+
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-center mb-12">
+                  <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">keep reading</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    Related Articles
+                  </h2>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                   {relatedPosts.map((relatedPost) => (
                     <BlogCard key={relatedPost.slug} post={relatedPost} />

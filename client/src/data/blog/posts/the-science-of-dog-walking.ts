@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "the-science-of-dog-walking",
   title: "The Science of Dog Walking: What Happens to Your Pup's Body & Brain",
   excerpt: "Dog walking may look like a simple daily routine, but science shows it's one of the most powerful ways to keep your pup healthy both physically and mentally.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-10-10",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

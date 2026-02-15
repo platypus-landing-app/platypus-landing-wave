@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "why-certified-dog-walkers-matter",
   title: "Why Certified Dog Walkers Matter: Safety Beyond the Leash",
   excerpt: "Not all dog walkers are created equal. Certified walkers bring training, preparedness, and accountability that protect your dog in ways casual walkers simply cannot.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-09-25",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

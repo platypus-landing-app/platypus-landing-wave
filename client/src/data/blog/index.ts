@@ -18,6 +18,9 @@ import { post as groomingBasics } from './posts/pet-grooming-basics-guide';
 import { post as howMuchExercise } from './posts/how-much-exercise-does-my-dog-need';
 import { post as walkingVsPark } from './posts/dog-walking-vs-dog-park-which-is-better';
 import { post as topRoutesMumbai } from './posts/top-dog-walking-routes-mumbai';
+import { post as signsNeedExercise } from './posts/signs-dog-needs-more-exercise';
+import { post as summerSafety } from './posts/summer-dog-walking-safety-mumbai';
+import { post as firstTimeDogParent } from './posts/first-time-dog-parent-guide';
 
 // Registry of all posts (sorted by date in getPublishedPosts)
 const allPosts: BlogPostFull[] = [
@@ -38,6 +41,9 @@ const allPosts: BlogPostFull[] = [
   howMuchExercise,
   walkingVsPark,
   topRoutesMumbai,
+  signsNeedExercise,
+  summerSafety,
+  firstTimeDogParent,
 ];
 
 /** Returns all published posts sorted by date (newest first) */

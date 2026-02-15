@@ -16,10 +16,17 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
   return (
     <section
       id="home"
-      className="relative bg-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden bg-cover bg-center bg-no-repeat lg:min-h-screen"
+      className="relative bg-gradient-to-b from-[#F0F6FF] via-white to-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden bg-cover bg-center bg-no-repeat lg:min-h-screen"
       style={{ backgroundImage: `url("/Ellipse 25.png")` }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-0">
+      {/* Dot grid pattern overlay */}
+      <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+
+      {/* Decorative circles */}
+      <div className="absolute top-20 right-[-60px] w-[140px] h-[140px] rounded-full border border-brand-blue/10 pointer-events-none" />
+      <div className="absolute bottom-40 left-[-40px] w-[100px] h-[100px] rounded-full border border-brand-blue/8 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-0 relative z-10">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] gap-8 md:gap-12 lg:gap-40"
           initial="hidden"
@@ -44,6 +51,17 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
               },
             }}
           >
+            {/* Guttery tagline */}
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+              }}
+              className="font-guttery text-[#247AFD] text-lg sm:text-xl md:text-2xl block mb-2"
+            >
+              be their human
+            </motion.span>
+
             {/* Heading */}
             <div className="w-full max-w-[400px]">
               <h1 className="flex flex-col text-left tracking-[0.06em]">
@@ -143,7 +161,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                 onClick={openTrialBooking}
                 size="lg"
                 className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
-                  bg-blue-500 hover:bg-blue-400 hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  bg-[#247AFD] hover:bg-[#1A5BC4] hover:shadow-[0_0_20px_rgba(36,122,253,0.3)] transition-all duration-300 hover:scale-105"
               >
                 Book Trial Now
               </Button>
@@ -189,7 +207,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
           >
             <div className="relative">
               {/* Location-specific details card */}
-              <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-[500px] border border-gray-100">
+              <div className="bg-white rounded-3xl shadow-brand-lg p-8 max-w-[500px] border border-gray-100">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6 text-left">
                   We Serve {locationInfo.name}
                 </h3>

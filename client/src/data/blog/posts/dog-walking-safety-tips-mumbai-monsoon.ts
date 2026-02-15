@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "dog-walking-safety-tips-mumbai-monsoon",
   title: "Dog Walking Safety Tips for Mumbai's Monsoon Season",
   excerpt: "Mumbai's monsoon brings unique challenges for dog walks—from waterlogged streets to tick infestations. Here are essential safety tips every pet parent should know to keep their dog healthy and happy through the rainy season.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-11-05",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

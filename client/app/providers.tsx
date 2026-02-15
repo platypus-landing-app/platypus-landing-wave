@@ -10,6 +10,8 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import FirebaseRecaptcha from "@/components/FirebaseRecaptcha";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import BackToTop from "@/components/ui/BackToTop";
 
 // Dynamically import TrialBookingDialog - reCAPTCHA loaded globally
 const TrialBookingDialogWithReCaptcha = dynamic(
@@ -45,6 +47,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
             {children}
             <TrialBookingDialogWithReCaptcha />
             <ProfessionalApplicationDialogWrapper />
+            <ScrollProgress />
+            <BackToTop />
             <WhatsAppButton />
           </ApplicationProvider>
         </BookingProvider>

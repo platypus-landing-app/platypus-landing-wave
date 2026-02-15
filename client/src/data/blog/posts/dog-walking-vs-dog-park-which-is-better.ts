@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "dog-walking-vs-dog-park-which-is-better",
   title: "Dog Walking vs Dog Park: Which Is Better for Your Dog?",
   excerpt: "Should you take your dog for structured walks or let them run free at the dog park? We break down the pros, cons, and safety considerations of each to help you decide what is best for your pup.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-08-28",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

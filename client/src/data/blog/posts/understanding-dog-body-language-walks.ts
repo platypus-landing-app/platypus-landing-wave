@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "understanding-dog-body-language-walks",
   title: "Understanding Your Dog's Body Language During Walks",
   excerpt: "Your dog communicates constantly during walks through tail positions, ear movements, and posture. Learning to read these signals transforms every outing into a deeper connection.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-10-15",
   updatedDate: "2025-02-15",
   readTime: "6 min read",

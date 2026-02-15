@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import ScrollReveal from '@/components/ui/ScrollReveal';
+import StaggerContainer, { staggerItem } from '@/components/ui/StaggerContainer';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const FAQ = () => {
     const [openItems, setOpenItems] = useState<number[]>([]);
@@ -42,67 +45,97 @@ const FAQ = () => {
     ];
 
     return (
-        <section id="faq" className="py-16 lg:py-24 bg-gray-50">
+        <section id="faq" className="py-16 lg:py-24 bg-white">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <h2 className="font-funnel font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-                        Frequently Asked <span className="text-[#FF5B00]">Questions</span>
-                    </h2>
-                    <p className="font-funnel text-lg text-gray-600 max-w-2xl mx-auto">
-                        Get answers to common questions about our professional dog walking services in Mumbai
-                    </p>
-                </div>
+                <ScrollReveal variant="fadeUp">
+                    <div className="text-center mb-16">
+                        <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
+                            Frequently Asked <span className="text-[#FF5B00]">Questions</span>
+                        </h2>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Get answers to common questions about our professional dog walking services in Mumbai
+                        </p>
+                    </div>
+                </ScrollReveal>
 
                 {/* FAQ Items */}
-                <div className="space-y-4" itemScope itemType="https://schema.org/FAQPage">
+                <StaggerContainer staggerDelay={0.08} className="space-y-4" >
+                    <div itemScope itemType="https://schema.org/FAQPage">
                     {faqs.map((faq, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+                            variants={staggerItem}
+                            className={`bg-[#F8FAFF] rounded-lg overflow-hidden border transition-colors duration-200 mb-4
+                                ${openItems.includes(index)
+                                    ? 'border-brand-blue/30 border-l-4 border-l-brand-blue'
+                                    : 'border-brand-blue/10 hover:border-brand-blue/30'
+                                }`}
                             itemScope
                             itemProp="mainEntity"
                             itemType="https://schema.org/Question"
                         >
                             <button
-                                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+                                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#F0F4FF] transition-colors duration-200"
                                 onClick={() => toggleItem(index)}
                                 aria-expanded={openItems.includes(index)}
                             >
                                 <h3
-                                    className="font-funnel font-semibold text-lg text-gray-900 pr-4"
+                                    className="font-semibold text-lg text-gray-900 pr-4"
                                     itemProp="name"
                                 >
                                     {faq.question}
                                 </h3>
-                                {openItems.includes(index) ? (
-                                    <ChevronUp className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                                ) : (
-                                    <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                                )}
+                                <motion.div
+                                    animate={{ rotate: openItems.includes(index) ? 180 : 0 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <ChevronDown className={`w-5 h-5 flex-shrink-0 ${openItems.includes(index) ? 'text-brand-blue' : 'text-gray-500'}`} />
+                                </motion.div>
                             </button>
 
-                            <div
-                                className={`px-6 pb-4 ${openItems.includes(index) ? '' : 'hidden'}`}
-                                itemScope
-                                itemProp="acceptedAnswer"
-                                itemType="https://schema.org/Answer"
-                            >
-                                <p
-                                    className="font-funnel text-gray-700 leading-relaxed"
-                                    itemProp="text"
+                            <AnimatePresence initial={false}>
+                                {openItems.includes(index) && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                        className="overflow-hidden"
+                                        itemScope
+                                        itemProp="acceptedAnswer"
+                                        itemType="https://schema.org/Answer"
+                                    >
+                                        <p
+                                            className="px-6 pb-4 text-gray-700 leading-relaxed"
+                                            itemProp="text"
+                                        >
+                                            {faq.answer}
+                                        </p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            {/* Hidden structured data for SEO when closed */}
+                            {!openItems.includes(index) && (
+                                <div
+                                    className="hidden"
+                                    itemScope
+                                    itemProp="acceptedAnswer"
+                                    itemType="https://schema.org/Answer"
                                 >
-                                    {faq.answer}
-                                </p>
-                            </div>
-                        </div>
+                                    <span itemProp="text">{faq.answer}</span>
+                                </div>
+                            )}
+                        </motion.div>
                     ))}
-                </div>
+                    </div>
+                </StaggerContainer>
 
                 {/* CTA at bottom */}
                 <div className="mt-12 text-center">
-                    <p className="font-funnel text-gray-600 mb-4">
-                        Still have questions? We're here to help!
+                    <p className="text-gray-600 mb-4">
+                        Still have questions? We&apos;re here to help!
                     </p>
                     <a
                         href="tel:+918451880963"
