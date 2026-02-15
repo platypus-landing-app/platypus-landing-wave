@@ -28,9 +28,10 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
   };
 
   return (
-    <section className="py-12 md:py-16 bg-gray-50">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
+          <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">explore more</span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Dog Walking Services in Nearby Areas
           </h2>
@@ -49,12 +50,12 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
               <Link
                 key={locationSlug}
                 href={`/dog-walking/${locationSlug}`}
-                className="group bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer block"
+                className="group bg-white rounded-lg p-4 md:p-6 shadow-sm hover:shadow-brand-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer block"
               >
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
+                  <MapPin className="w-5 h-5 text-brand-blue flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-1">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-brand-blue transition-colors mb-1">
                       {location.name}
                     </h3>
                     <p className="text-sm text-gray-600 line-clamp-2">
@@ -70,7 +71,7 @@ export function NearbyAreas({ currentLocation, nearbyLocations }: NearbyAreasPro
         <div className="mt-8 text-center">
           <button
             onClick={handleViewAllAreas}
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors cursor-pointer"
+            className="inline-flex items-center text-brand-blue hover:text-brand-blue-dark font-medium transition-colors cursor-pointer"
           >
             View All Service Areas
             <svg

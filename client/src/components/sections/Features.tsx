@@ -1,22 +1,15 @@
 'use client';
 
-import { PawPrint, MapPin, ShieldCheck } from "lucide-react";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import StaggerContainer, { staggerItem } from "@/components/ui/StaggerContainer";
+import { motion } from "framer-motion";
 
 const Features = () => {
-  // HeroFeatures data
-  const heroFeatures = [
-    { icon: PawPrint, text: "50+ Dogs Walked Daily", type: "icon" },
-    { icon: MapPin, text: "Live GPS Tracking", type: "icon" },
-    { icon: ShieldCheck, text: "Certified Walkers", type: "icon" },
-    { icon: ShieldCheck, text: "Certified Walkers", type: "icon" },
-  ];
-
-  // Features data
   const features = [
     {
       title: "Certified Guardians",
       description:
-        "Certified Guardians with tech-backed tracking ensure your pet is always in safe hands.",
+        "Tech-backed tracking ensures your pet is always in safe hands.",
       image: "/Certified Guardians.jpeg",
     },
     {
@@ -27,7 +20,7 @@ const Features = () => {
     },
     {
       title: "Back-Up Walkers",
-      description: "No cancellations, your dog's walks are always on schedule.",
+      description: "No cancellations — your dog's walks are always on schedule.",
       image: "/Back-Up Walkers.png",
     },
     {
@@ -52,9 +45,9 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="py-16 lg:py-24 bg-white relative overflow-hidden"
+      className="py-16 lg:py-24 bg-gradient-to-b from-white via-[#FFFCF0] to-white relative overflow-hidden"
     >
-      {/* Background paw design - hidden on small screens, lazy loaded */}
+      {/* Background paw design */}
       <img
         src="/paw.png"
         alt=""
@@ -64,71 +57,79 @@ const Features = () => {
         aria-hidden="true"
       />
 
-      {/* Content container - aligned with navbar */}
+      {/* Dot grid decoration */}
+      <div className="absolute top-20 right-0 w-[200px] h-[200px] bg-dots opacity-60 pointer-events-none" aria-hidden="true" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Why Choose Platypus Heading */}
-        {/* Why Choose Platypus Heading */}
-        <div className="text-left mb-12 lg:mb-16">
-          <h2 className="font-funnel font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
-            <span className="text-[#FF5B00] relative inline-block mr-2 align-middle">
-              Why Choose
-              <span className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"></span>
-            </span>
-            <span className="text-gray-900 align-middle break-words leading-tight sm:leading-tight md:leading-[2]">
-              Platypus?
-            </span>
-          </h2>
+        <ScrollReveal variant="fadeUp">
+          <div className="text-left mb-12 lg:mb-16">
+            <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">India&apos;s first certified service</span>
+            <h2 className="font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
+              <span className="text-[#FF5B00] relative inline-block mr-2 align-middle">
+                Why Choose
+                <span className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"></span>
+              </span>
+              <span className="text-gray-900 align-middle break-words leading-tight sm:leading-tight md:leading-[2]">
+                Platypus?
+              </span>
+            </h2>
+            <p className="mt-4 sm:mt-6 font-normal text-[14px] sm:text-[16px] md:text-[16px] leading-[20px] sm:leading-[23px] md:leading-[23px] tracking-[0px] capitalize text-black max-w-full sm:max-w-3xl">
+              We&apos;re Not Just Another Walking Service — We&apos;re India&apos;s First
+              Certified And Tech-Enabled Dog Walking Experts.
+            </p>
+          </div>
+        </ScrollReveal>
 
-          <p className="font-funnel mt-4 sm:mt-6 font-normal text-[14px] sm:text-[16px] md:text-[16px] leading-[20px] sm:leading-[23px] md:leading-[23px] tracking-[0px] capitalize text-black max-w-full sm:max-w-3xl">
-            We're Not Just Another Walking Service — We're India's First
-            Certified And Tech-Enabled Dog Walking Experts.
-          </p>
-        </div>
-
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 justify-items-center">
+        {/* Magazine-style overlay cards */}
+        <StaggerContainer
+          staggerDelay={0.1}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
           {features.map((feature, index) => (
-           <div
-  key={index}
-  className="group cursor-pointer max-w-md w-full flex flex-col items-center text-center"
->
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="group cursor-pointer relative rounded-2xl overflow-hidden h-[320px] md:h-[360px] shadow-md hover:shadow-brand-lg transition-all duration-500 hover:-translate-y-2"
+            >
+              {/* Full-bleed image */}
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.avif 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.avif 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.avif 910w`}
+                  sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
+                />
+                <source
+                  type="image/webp"
+                  srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.webp 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.webp 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.webp 910w`}
+                  sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
+                />
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </picture>
 
-              {/* Image */}
-              <div className="aspect-[4/3] overflow-hidden mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300 w-full">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.avif 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.avif 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.avif 910w`}
-                    sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
-                  />
-                  <source
-                    type="image/webp"
-                    srcSet={`/optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-small.webp 400w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}-medium.webp 800w, /optimized/${encodeURIComponent(feature.image.replace(/^\//, '').replace(/\.(png|jpe?g)$/i, ''))}.webp 910w`}
-                    sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 910px"
-                  />
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </picture>
-              </div>
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
-              {/* Content */}
-              <div className="px-4 flex flex-col items-center text-center">
-                <h3 className="font-funnel font-bold text-[24px] leading-[33.25px] text-[#247AFD] mb-3">
+              {/* Text content floating at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="font-bold text-[22px] leading-[28px] text-white mb-2 drop-shadow-md">
                   {feature.title}
                 </h3>
-                <p className="font-funnel font-normal text-[16px] leading-[27.06px] text-black">
+                <p className="font-normal text-[14px] leading-[22px] text-white/85 drop-shadow-sm">
                   {feature.description}
                 </p>
-                <div className="h-1 bg-blue-600 w-0 group-hover:w-full transition-all duration-300 mt-4 self-start"></div>
               </div>
-            </div>
+
+              {/* Hover accent line */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-blue to-brand-yellow scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </motion.div>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

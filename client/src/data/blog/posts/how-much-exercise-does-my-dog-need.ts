@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "how-much-exercise-does-my-dog-need",
   title: "How Much Exercise Does My Dog Need? A Vet-Backed Guide",
   excerpt: "From puppies to senior dogs, exercise needs vary dramatically. This vet-backed guide breaks down how much daily activity your dog really needs based on age, breed, and health conditions.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-09-05",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

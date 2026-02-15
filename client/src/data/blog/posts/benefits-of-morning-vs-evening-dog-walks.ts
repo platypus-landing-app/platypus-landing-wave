@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "benefits-of-morning-vs-evening-dog-walks",
   title: "Morning vs Evening Dog Walks: Which Is Better for Your Dog?",
   excerpt: "Should you walk your dog in the morning or the evening? Both have unique advantages. Learn how timing affects your dog's health, energy, and behavior so you can build the ideal walking schedule.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-11-10",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

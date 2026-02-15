@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "how-to-choose-right-dog-walker-mumbai",
   title: "How to Choose the Right Dog Walker in Mumbai: A Complete Guide",
   excerpt: "Finding a trustworthy dog walker in Mumbai can feel overwhelming. This complete guide covers everything you need to know—from certifications to red flags—so you can make the best choice for your furry friend.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-11-15",
   updatedDate: "2025-02-15",
   readTime: "6 min read",

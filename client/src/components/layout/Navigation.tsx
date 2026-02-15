@@ -8,11 +8,13 @@ import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { openTrialBooking } = useBooking();
     const [activeSection, setActiveSection] = useState("home");
+    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
 
@@ -68,9 +70,11 @@ const Navigation = () => {
         setIsOpen(false);
     };
 
-    // Active section detection
+    // Active section detection + scroll state
     useEffect(() => {
         const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+
             const sections = ["home", "features", "areas", "process", "testimonials"];
             const scrollPosition = window.scrollY + 100;
 
@@ -95,10 +99,13 @@ const Navigation = () => {
 
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-50
-  bg-background/95 supports-[backdrop-filter]:bg-background/80 
-  backdrop-blur-md border-b border-border/50 
-  shadow-md transition-all duration-300"
+            className={`fixed top-0 left-0 right-0 z-50
+  backdrop-blur-md border-b border-border/50
+  transition-all duration-300
+  ${scrolled
+    ? 'bg-background/95 supports-[backdrop-filter]:bg-background/85 shadow-lg'
+    : 'bg-background/80 supports-[backdrop-filter]:bg-background/60 shadow-md'
+  }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-[70px] md:h-[80px] py-2">
@@ -169,7 +176,7 @@ const Navigation = () => {
                             <Button
                                 onClick={openTrialBooking}
                                 className="text-white px-6 py-3 rounded font-medium
-        bg-blue-500 hover:bg-blue-400 hover:shadow-xl transition-all duration-300 hover:scale-105"
+        bg-[#247AFD] hover:bg-[#1A5BC4] hover:shadow-xl transition-all duration-300 hover:scale-105 animate-subtle-pulse"
                             >
                                 BOOK TRIAL NOW
                             </Button>
@@ -190,44 +197,79 @@ const Navigation = () => {
             </div>
 
             {/* Mobile Navigation */}
-            {isOpen && (
-                <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg z-40">
-                    <div className="px-4 pt-4 pb-6 space-y-2">
-                        {navItems.map((item) => {
-                            if (item.isRoute) {
-                                return (
-                                    <Link
-                                        key={item.name}
-                                        href={item.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="w-full text-left text-gray-700 hover:text-[#247AFD] font-medium block px-3 py-2 rounded-md transition-colors"
-                                    >
-                                        {item.name}
-                                    </Link>
-                                );
-                            }
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        className="lg:hidden absolute top-full left-0 w-full backdrop-blur-xl bg-white/95 border-t border-gray-200/50 shadow-brand-lg z-40"
+                    >
+                        <div className="px-4 pt-4 pb-6 space-y-1">
+                            {navItems.map((item, index) => {
+                                const isActive = item.isRoute
+                                    ? pathname.startsWith(item.path)
+                                    : activeSection === item.href.substring(1) && pathname === "/";
 
-                            return (
-                                <button
-                                    key={item.name}
-                                    onClick={() => handleNavClick(item)}
-                                    className="w-full text-left text-gray-700 hover:text-[#247AFD] font-medium block px-3 py-2 rounded-md transition-colors"
-                                >
-                                    {item.name}
-                                </button>
-                            );
-                        })}
-                        <div className="pt-4">
-                            <Button
-                                onClick={openTrialBooking}
-                                className="w-full bg-[#247AFD] hover:bg-[#247AFD] text-white py-3 rounded font-medium"
+                                const className = `w-full text-left font-medium block px-4 py-3 rounded-lg transition-all duration-200 ${
+                                    isActive
+                                        ? 'text-[#247AFD] bg-blue-50'
+                                        : 'text-gray-700 hover:text-[#247AFD] hover:bg-gray-50'
+                                }`;
+
+                                if (item.isRoute) {
+                                    return (
+                                        <motion.div
+                                            key={item.name}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.03 }}
+                                        >
+                                            <Link
+                                                href={item.href}
+                                                onClick={() => setIsOpen(false)}
+                                                className={className}
+                                            >
+                                                {item.name}
+                                            </Link>
+                                        </motion.div>
+                                    );
+                                }
+
+                                return (
+                                    <motion.div
+                                        key={item.name}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.03 }}
+                                    >
+                                        <button
+                                            onClick={() => handleNavClick(item)}
+                                            className={className}
+                                        >
+                                            {item.name}
+                                        </button>
+                                    </motion.div>
+                                );
+                            })}
+                            <motion.div
+                                className="pt-3"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
                             >
-                                BOOK TRIAL NOW
-                            </Button>
+                                <Button
+                                    onClick={() => { setIsOpen(false); openTrialBooking(); }}
+                                    className="w-full bg-[#247AFD] hover:bg-[#1A5BC4] text-white py-3 rounded-lg font-medium shadow-brand transition-all duration-300"
+                                >
+                                    BOOK TRIAL NOW
+                                </Button>
+                            </motion.div>
                         </div>
-                    </div>
-                </div>
-            )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 };

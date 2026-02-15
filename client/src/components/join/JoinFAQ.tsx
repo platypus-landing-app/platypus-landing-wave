@@ -40,15 +40,18 @@ export default function JoinFAQ() {
   return (
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-          Frequently Asked Questions
-        </h2>
+        <div className="text-center mb-12">
+          <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">got questions?</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Frequently Asked Questions
+          </h2>
+        </div>
         <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((faq, i) => (
             <AccordionItem
               key={i}
               value={`faq-${i}`}
-              className="bg-white rounded-xl border border-gray-200 px-6"
+              className="bg-white rounded-xl border border-gray-200 px-6 data-[state=open]:border-brand-blue/30 data-[state=open]:border-l-4 data-[state=open]:border-l-brand-blue transition-colors"
             >
               <AccordionTrigger className="text-left font-semibold text-gray-900 py-5 hover:no-underline">
                 {faq.q}

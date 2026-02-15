@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const About = () => {
   const { openTrialBooking } = useBooking();
@@ -26,7 +27,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-24 bg-[#eaeff8] relative"
+      className="py-24 bg-gradient-to-br from-[#E3ECFA] to-[#EEF3FC] relative overflow-hidden"
     >
       {/* Background image with lazy loading */}
       <img
@@ -37,126 +38,134 @@ const About = () => {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         aria-hidden="true"
       />
+
+      {/* Dot grid decoration */}
+      <div className="absolute top-10 right-0 w-[180px] h-[180px] bg-dots opacity-40 pointer-events-none" aria-hidden="true" />
+
+      {/* Decorative circles */}
+      <div className="absolute bottom-[-40px] left-[-40px] w-[140px] h-[140px] rounded-full border border-brand-blue/10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-[-30px] right-[20%] w-[80px] h-[80px] rounded-full border border-brand-blue/8 pointer-events-none" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8">
-            <div>
-<h2 className="text-[1.6rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[2.82rem] font-bold text-yellow-400 mb-4 leading-tight">                <span className="relative inline-block mr-2 align-middle">
-                  <span className="text-[#FF5B00] font-bold">Coming</span>
-                  <span className="text-black font-normal"> Soon</span>
-                  {/* underline */}
-                  <span
-                    className="absolute left-0 w-full border-b border-golden 
-                    -bottom-2 sm:-bottom-3 lg:-bottom-4"
-                  ></span>
-                </span>
-                <span className="text-black font-normal align-middle break-words leading-[1.6]">
-                  – Platypus App
-                </span>
-              </h2>
+          <ScrollReveal variant="fadeLeft">
+            <div className="space-y-8">
+              <div>
+                <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">smarter walks ahead</span>
+                <h2 className="text-[1.6rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[2.82rem] font-bold mb-4 leading-tight">
+                  <span className="relative inline-block mr-2 align-middle">
+                    <span className="text-[#FF5B00] font-bold">Coming</span>
+                    <span className="text-gray-900 font-bold"> Soon</span>
+                    {/* underline */}
+                    <span
+                      className="absolute left-0 w-full border-b border-golden
+                      -bottom-2 sm:-bottom-3 lg:-bottom-4"
+                    ></span>
+                  </span>
+                  <span className="text-gray-900 font-normal align-middle break-words leading-[1.6]">
+                    – Platypus App
+                  </span>
+                </h2>
 
-              <p className="font-funnel mt-9 font-normal text-[16px] leading-[23px] tracking-[0px] capitalize text-black max-w-3xl">
-                Walking Your Dog Is About To Get Smarter With Our AI-Powered
-                App. Book And Track Walks In Real-Time, Get Rich Updates, And
-                Manage Everything From One Place.
-              </p>
-            </div>
+                <p className="mt-9 font-normal text-[16px] leading-[23px] tracking-[0px] capitalize text-black max-w-3xl">
+                  Walking Your Dog Is About To Get Smarter With Our AI-Powered
+                  App. Book And Track Walks In Real-Time, Get Rich Updates, And
+                  Manage Everything From One Place.
+                </p>
+              </div>
 
-            <div className="space-y-6">
-              {appFeatures.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex min-h-[84px] items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-[#FFFFFF] rounded-lg shadow-sm overflow-hidden"
-                >
-                  {/* Icon */}
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <img
-                      src={feature.icon}
-                      alt={feature.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-5 h-5 object-contain"
-                    />
+              <div className="space-y-6">
+                {appFeatures.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex min-h-[84px] items-start space-x-3 sm:space-x-4 p-3 sm:p-4 glass-card rounded-lg shadow-sm overflow-hidden"
+                  >
+                    {/* Icon */}
+                    <div className="w-10 h-10 bg-[#247AFD]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <img
+                        src={feature.icon}
+                        alt={feature.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#363D49] mb-1">
+                        {feature.title}
+                      </h3>
+                      <p className="font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#4B5563] break-words">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
+                ))}
+              </div>
 
-                  {/* Text */}
-                  <div className="flex-1 min-w-0">
-                    {/* Heading */}
-                    <h3 className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#363D49] mb-1">
-                      {feature.title}
-                    </h3>
+              <Button
+                onClick={openTrialBooking}
+                size="lg"
+                className="w-full sm:w-auto text-white px-8 py-4
+                  font-bold text-[16.51px] leading-[24.4px]
+                  tracking-[1.25px] uppercase text-center rounded
+                  border-0 shadow-none focus:ring-0
+                  bg-blue-600 hover:bg-blue-500 hover:shadow-xl
+                  transition-all duration-300 hover:scale-105"
+              >
+                BOOK TRIAL WALK NOW
+              </Button>
 
-                    {/* Description */}
-                    <p className="font-funnel font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] text-[#4B5563] break-words">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
             </div>
-
-<Button
-  onClick={openTrialBooking}
-  size="lg"
-  className="w-full sm:w-auto text-white px-8 py-4 
-    font-funnel font-bold text-[16.51px] leading-[24.4px] 
-    tracking-[1.25px] uppercase text-center rounded
-    border-0 shadow-none focus:ring-0
-    bg-blue-600 hover:bg-blue-500 rounded hover:shadow-xl 
-    transition-all duration-300 hover:scale-105"
->
-  BOOK TRIAL WALK NOW
-</Button>
-
-          </div>
+          </ScrollReveal>
 
           {/* Right Image */}
+          <ScrollReveal variant="fadeRight">
+            <div className="relative overflow-hidden">
+              {/* Mobile Image */}
+              <picture className="block md:hidden">
+                <source
+                  type="image/avif"
+                  srcSet="/optimized/aboutus%20contact%20mobile-small.avif 400w, /optimized/aboutus%20contact%20mobile-medium.avif 800w, /optimized/aboutus%20contact%20mobile.avif 853w"
+                  sizes="(max-width: 768px) 400px, 800px"
+                />
+                <source
+                  type="image/webp"
+                  srcSet="/optimized/aboutus%20contact%20mobile-small.webp 400w, /optimized/aboutus%20contact%20mobile-medium.webp 800w, /optimized/aboutus%20contact%20mobile.webp 853w"
+                  sizes="(max-width: 768px) 400px, 800px"
+                />
+                <img
+                  src="/aboutus%20contact%20mobile.png"
+                  alt="Platypus App Mobile Preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
+                />
+              </picture>
 
-<div className="relative overflow-hidden">
-  {/* Mobile Image */}
-  <picture className="block md:hidden">
-    <source
-      type="image/avif"
-      srcSet="/optimized/aboutus%20contact%20mobile-small.avif 400w, /optimized/aboutus%20contact%20mobile-medium.avif 800w, /optimized/aboutus%20contact%20mobile.avif 853w"
-      sizes="(max-width: 768px) 400px, 800px"
-    />
-    <source
-      type="image/webp"
-      srcSet="/optimized/aboutus%20contact%20mobile-small.webp 400w, /optimized/aboutus%20contact%20mobile-medium.webp 800w, /optimized/aboutus%20contact%20mobile.webp 853w"
-      sizes="(max-width: 768px) 400px, 800px"
-    />
-    <img
-      src="/aboutus%20contact%20mobile.png"
-      alt="Platypus App Mobile Preview"
-      loading="lazy"
-      decoding="async"
-      className="block md:hidden w-full max-w-md mx-auto h-auto rounded-2xl"
-    />
-  </picture>
-
-  {/* Desktop Image */}
-  <picture className="hidden md:block">
-    <source
-      type="image/avif"
-      srcSet="/optimized/aboutus%20contact-small.avif 400w, /optimized/aboutus%20contact.avif 613w"
-      sizes="(max-width: 1024px) 400px, 613px"
-    />
-    <source
-      type="image/webp"
-      srcSet="/optimized/aboutus%20contact-small.webp 400w, /optimized/aboutus%20contact.webp 613w"
-      sizes="(max-width: 1024px) 400px, 613px"
-    />
-    <img
-      src="/aboutus%20contact.png"
-      alt="Platypus App Preview"
-      loading="lazy"
-      decoding="async"
-      className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
-    />
-  </picture>
-</div>
-
+              {/* Desktop Image */}
+              <picture className="hidden md:block">
+                <source
+                  type="image/avif"
+                  srcSet="/optimized/aboutus%20contact-small.avif 400w, /optimized/aboutus%20contact.avif 613w"
+                  sizes="(max-width: 1024px) 400px, 613px"
+                />
+                <source
+                  type="image/webp"
+                  srcSet="/optimized/aboutus%20contact-small.webp 400w, /optimized/aboutus%20contact.webp 613w"
+                  sizes="(max-width: 1024px) 400px, 613px"
+                />
+                <img
+                  src="/aboutus%20contact.png"
+                  alt="Platypus App Preview"
+                  loading="lazy"
+                  decoding="async"
+                  className="hidden md:block w-full max-w-md mx-auto h-auto rounded-2xl lg:max-w-lg xl:max-w-xl lg:ml-auto"
+                />
+              </picture>
+            </div>
+          </ScrollReveal>
 
         </div>
       </div>

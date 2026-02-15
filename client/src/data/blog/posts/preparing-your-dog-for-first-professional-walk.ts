@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "preparing-your-dog-for-first-professional-walk",
   title: "Preparing Your Dog for Their First Professional Walk",
   excerpt: "A little preparation goes a long way. Here is everything you need to know before your dog's first outing with a professional walker, from introductions to what to share.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-10-01",
   updatedDate: "2025-02-15",
   readTime: "5 min read",

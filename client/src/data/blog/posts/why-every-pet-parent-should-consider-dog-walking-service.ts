@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "why-every-pet-parent-should-consider-dog-walking-service",
   title: "Why Every Pet Parent Should Consider a Dog Walking Service",
   excerpt: "Being a pet parent is one of life's greatest joys, but it also comes with responsibilities. In fast-paced metro cities, long commutes and demanding work schedules make it difficult to give your dogs the regular walks they truly need.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-10-12",
   updatedDate: "2025-02-15",
   readTime: "4 min read",

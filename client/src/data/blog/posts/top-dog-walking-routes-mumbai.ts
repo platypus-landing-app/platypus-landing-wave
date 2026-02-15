@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "top-dog-walking-routes-mumbai",
   title: "Top 10 Dog-Friendly Walking Routes in Mumbai",
   excerpt: "Mumbai offers some fantastic spots for dog walks—from Juhu Beach at sunrise to the green trails of Aarey Colony. Here are the top 10 dog-friendly walking routes every pet parent should explore.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-08-20",
   updatedDate: "2025-02-15",
   readTime: "7 min read",

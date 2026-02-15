@@ -4,7 +4,7 @@ export const post: BlogPostFull = {
   slug: "pet-grooming-basics-guide",
   title: "Pet Grooming Basics: A Complete Guide for Dog Parents",
   excerpt: "From bathing frequency to nail trimming, this complete grooming guide covers everything dog parents need to know to keep their furry companions clean, healthy, and comfortable at home.",
-  author: "Platypus Team",
+  author: "Sagar Sutaria",
   date: "2025-09-10",
   updatedDate: "2025-02-15",
   readTime: "6 min read",
