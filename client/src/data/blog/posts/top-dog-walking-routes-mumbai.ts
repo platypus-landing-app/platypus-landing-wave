@@ -21,7 +21,7 @@ export const post: BlogPostFull = {
   tags: ["Mumbai", "routes", "local", "guide"],
   featured: true,
   status: "published",
-  relatedSlugs: ["dog-walking-safety-tips-mumbai-monsoon", "how-to-choose-right-dog-walker-mumbai"],
+  relatedSlugs: ["dog-walking-guide-bandra", "dog-walking-safety-tips-mumbai-monsoon", "how-to-choose-right-dog-walker-mumbai"],
   content: `
 Mumbai may be one of the most densely packed cities in the world, but it still holds some wonderful spots for dog walks if you know where to look. From breezy seafront promenades to lush green trails, the city and its surrounding areas offer diverse terrain for dogs of every breed and energy level. Here are ten of the best dog-friendly walking routes every Mumbai pet parent should know about.
 

@@ -21,7 +21,7 @@ export const post: BlogPostFull = {
   tags: ["breeds", "schedule", "health", "exercise"],
   featured: false,
   status: "published",
-  relatedSlugs: ["benefits-of-morning-vs-evening-dog-walks", "how-much-exercise-does-my-dog-need"],
+  relatedSlugs: ["labrador-exercise-walking-guide", "benefits-of-morning-vs-evening-dog-walks", "how-much-exercise-does-my-dog-need"],
   content: `
 One of the most common questions dog parents ask is, "How much should I walk my dog?" The answer depends heavily on breed, age, and individual temperament. A walking schedule that keeps a Labrador happy would exhaust a Bulldog, and what satisfies a Shih Tzu would barely warm up a German Shepherd. Here is a practical guide to help you build the right routine.
 

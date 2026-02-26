@@ -21,7 +21,7 @@ export const post: BlogPostFull = {
   tags: ["exercise", "health", "guide", "fitness"],
   featured: false,
   status: "published",
-  relatedSlugs: ["dog-walking-schedule-by-breed", "indoor-vs-outdoor-exercise-for-dogs"],
+  relatedSlugs: ["labrador-exercise-walking-guide", "dog-walking-schedule-by-breed", "indoor-vs-outdoor-exercise-for-dogs"],
   content: `
 One of the most common questions pet parents ask their veterinarians is a deceptively simple one: how much exercise does my dog actually need? The answer is not one-size-fits-all. A Border Collie's needs are vastly different from a Pug's, and a puppy's energy levels bear little resemblance to those of a senior dog. Understanding your dog's specific exercise requirements is key to keeping them physically healthy and mentally balanced.
 

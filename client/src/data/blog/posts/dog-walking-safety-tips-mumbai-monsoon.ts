@@ -21,7 +21,7 @@ export const post: BlogPostFull = {
   tags: ["safety", "monsoon", "Mumbai", "seasonal"],
   featured: false,
   status: "published",
-  relatedSlugs: ["the-science-of-dog-walking", "how-to-choose-right-dog-walker-mumbai"],
+  relatedSlugs: ["dog-walking-guide-bandra", "the-science-of-dog-walking", "how-to-choose-right-dog-walker-mumbai"],
   content: `
 Mumbai's monsoon season transforms the city—and with it, the daily dog walk. Between June and September, heavy rainfall, waterlogged streets, and increased parasite activity create real hazards for our four-legged companions. But skipping walks entirely isn't the answer. Dogs still need exercise and stimulation, even when the skies open up. Here's how to keep your dog safe and healthy through the rainy season.
 

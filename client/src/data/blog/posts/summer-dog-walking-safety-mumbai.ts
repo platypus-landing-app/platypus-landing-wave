@@ -22,7 +22,7 @@ export const post: BlogPostFull = {
   tags: ["safety", "summer", "Mumbai", "tips"],
   featured: false,
   status: "published",
-  relatedSlugs: ["dog-walking-safety-tips-mumbai-monsoon", "top-dog-walking-routes-mumbai"],
+  relatedSlugs: ["dog-walking-guide-juhu", "dog-walking-safety-tips-mumbai-monsoon", "top-dog-walking-routes-mumbai"],
   howToSteps: [
     { name: "Test the pavement temperature", text: "Place the back of your hand flat on the pavement for 7 seconds. If it's too hot for your hand, it's too hot for your dog's paws." },
     { name: "Walk during safe hours", text: "Schedule walks before 7 AM or after 6:30 PM during Mumbai summers. Avoid the 10 AM to 4 PM peak heat window entirely." },
