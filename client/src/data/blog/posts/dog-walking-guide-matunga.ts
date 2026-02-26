@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Matunga", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-dadar", "dog-walking-guide-byculla", "dog-walking-safety-tips-mumbai-monsoon"],
   content: `
 Matunga sits in the heart of central Mumbai, bordered by Dadar to the west, Sion to the south, and Kings Circle anchoring its northern edge. Unlike the commercial frenzy of neighbouring areas, Matunga retains a residential calm that makes it surprisingly pleasant for dog walks. The wide, tree-lined avenues running through the neighbourhood—many dating back to the colonial era—provide natural shade and manageable pedestrian traffic. Add to that a handful of well-maintained gardens, college campuses with open grounds, and connecting lanes that run between LBS Marg and the western railway corridor, and you have a neighbourhood that offers genuine variety for dogs of every temperament and energy level.

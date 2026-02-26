@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Colaba", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-worli", "dog-walking-guide-byculla", "top-dog-walking-routes-mumbai"],
   content: `
 Colaba is where Mumbai begins—geographically, historically, and in many ways, spiritually. The narrow peninsula that forms the city's southernmost tip is defined by heritage architecture, tree-lined avenues, military cantonment areas, and a character that feels distinctly different from the suburban sprawl further north. For dog walking, Colaba offers something rare in Mumbai: quiet, wide-pavement walks past colonial-era buildings, access to seafront promenades on both its eastern and western flanks, and a residential density low enough that early morning streets feel genuinely peaceful. The trade-off is size—Colaba is compact, and the route options are fewer than in larger neighbourhoods—but what exists here is high quality and deeply pleasant.

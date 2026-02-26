@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Thane", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-mulund", "dog-walking-guide-navi-mumbai", "top-dog-walking-routes-mumbai"],
   content: `
 Thane is Mumbai's greener, more spacious neighbour, and for dog walking, that difference matters enormously. Where Mumbai proper struggles with narrow footpaths and relentless traffic, Thane offers wide township roads, lakeside promenades, and actual forested hills within city limits. The city has over 30 lakes, with Upvan Lake and Masunda Lake (Talao Pali) being the most prominent, and the Yeoor Hills on its eastern edge provide genuine nature trails that you simply cannot find anywhere in Mumbai. Pet ownership in Thane has grown rapidly alongside the city's residential expansion, particularly along Ghodbunder Road and in the Majiwada-Kasarvadavali corridor, and the walking infrastructure has, unusually for this region, kept pace.

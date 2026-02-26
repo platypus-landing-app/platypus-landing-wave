@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Powai", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-ghatkopar", "dog-walking-guide-mulund", "top-dog-walking-routes-mumbai"],
   content: `
 Powai feels like a different city entirely. While most of Mumbai's prime dog walking spots are coastal, Powai's appeal comes from its lakeside setting, planned township streets, and unusually generous green cover. The neighbourhood was largely developed in the 1990s around the Hiranandani township model, which means wider roads, dedicated footpaths, and landscaped common areas—luxuries that older Mumbai localities simply do not have. For pet parents, this translates to a walking environment that is safer, cleaner, and more predictable than almost anywhere else in the city.

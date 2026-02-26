@@ -20,7 +20,7 @@ const FAQ = () => {
     const faqs = [
         {
             question: "What areas in Mumbai do you serve for dog walking services?",
-            answer: "We provide professional dog walking services across major Mumbai areas including Bandra, Andheri, Powai, Worli, Lower Parel, Colaba, Juhu, Versova, Malad, Borivali, Kandivali, Santacruz, Khar, Byculla, Dadar, Matunga, Kurla, Chembur, Ghatkopar, Mulund, Thane, and Navi Mumbai. Our certified Guardians are strategically located to serve these areas with consistent, reliable service."
+            answer: "We provide professional dog walking services across 16 Mumbai areas including Mira Road, Borivali, Kandivali, Malad, Goregaon, Andheri, Juhu, Bandra, Khar, Dadar, Wadala, Prabhadevi, Lower Parel, Grant Road, Kurla, and Chembur. Our certified Guardians are strategically located to serve these areas with consistent, reliable service."
         },
         {
             question: "How much does professional dog walking cost in Mumbai?",

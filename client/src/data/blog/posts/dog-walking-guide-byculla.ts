@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Byculla", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-dadar", "dog-walking-guide-lower-parel", "dog-walking-safety-tips-mumbai-monsoon"],
   content: `
 Byculla occupies a unique position in Mumbai's geography and history. Situated in South-Central Mumbai, it was once the city's most fashionable address, home to grand residences, tree-lined boulevards, and the famous Victoria Gardens (now Jijamata Udyaan). While much of that grandeur has faded, what remains is a neighbourhood with wide roads by Mumbai standards, an extraordinary collection of heritage architecture, and a density of open spaces that most South Mumbai areas cannot match.

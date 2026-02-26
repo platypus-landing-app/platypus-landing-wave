@@ -23,7 +23,7 @@ Platypus is Mumbai's trusted pet care platform connecting pet parents with certi
 
 - [Homepage](${siteUrl}): Book a trial walk, see how it works, and explore areas we serve.
 - [All Services](${siteUrl}/services): Overview of all pet care services.
-- [Blog](${siteUrl}/blog): 59 expert articles on dog care, pet health, breed-specific exercise guides, and local walking guides for ${locationList.length} Mumbai neighborhoods.
+- [Blog](${siteUrl}/blog): 47 expert articles on dog care, pet health, breed-specific exercise guides, and local walking guides for ${locationList.length} Mumbai neighborhoods.
 - [Join Our Team](${siteUrl}/join): Apply to become a Platypus Guardian (dog walker, groomer, or trainer).
 
 ## Service Areas
@@ -52,7 +52,7 @@ A: Dog walking is our core service today. We are expanding into dog grooming, do
 
 ## Blog Content
 
-Our blog covers 59 articles across these categories:
+Our blog covers 47 articles across these categories:
 - **Local Guides**: Dog walking guides for ${locationList.length} Mumbai areas — best routes, parks, timing, and breed suitability for each neighborhood.
 - **Breed Exercise Guides**: Exercise and walking guides for 15 popular dog breeds in India — Labrador, Golden Retriever, German Shepherd, Beagle, Pug, Shih Tzu, Indian Pariah (Indie), Rottweiler, Doberman, Cocker Spaniel, Poodle, Boxer, Husky, Dalmatian, and Great Dane.
 - **Pet Health**: Science-backed guides on exercise needs, walking schedules, grooming basics, and recognizing under-exercise symptoms.

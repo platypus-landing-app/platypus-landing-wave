@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Versova", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-andheri", "dog-walking-guide-juhu", "summer-dog-walking-safety-mumbai"],
   content: `
 Versova sits at a fascinating intersection of old Mumbai and new. On one side, you have the fishing village with its narrow lanes and the smell of salt in the air. On the other, the wide, tree-lined streets of Seven Bungalows and the residential calm of Yari Road. For dog parents, this means variety. You can take your dog for a sandy beach run one morning and a shaded residential stroll the next, all within a couple of kilometres.

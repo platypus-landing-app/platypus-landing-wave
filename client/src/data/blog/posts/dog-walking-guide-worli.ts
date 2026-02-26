@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Worli", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-lower-parel", "dog-walking-guide-bandra", "summer-dog-walking-safety-mumbai"],
   content: `
 Worli occupies one of Mumbai's most dramatic stretches of coastline. The neighbourhood rises from the Arabian Sea on the west, curves around the base of the Worli hill, and extends inland toward the old mill lands of Lower Parel and the temple streets of Prabhadevi. For dog walkers, this geography means access to a long, uninterrupted seafront promenade with some of the best views in the city, complemented by quieter inland routes through residential colonies and heritage neighbourhoods. Worli is not the easiest neighbourhood to navigate on foot—the terrain has elevation, the streets can be narrow, and traffic on the main roads is relentless—but the rewards for those who know where to walk are significant.

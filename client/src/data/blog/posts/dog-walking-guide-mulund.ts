@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Mulund", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-thane", "dog-walking-guide-ghatkopar", "summer-dog-walking-safety-mumbai"],
   content: `
 Mulund sits at Mumbai's northeastern boundary, where the city begins its transition into Thane. This position gives Mulund something most Mumbai suburbs can only dream of—proximity to actual hills and forest cover. The foothills of Sanjay Gandhi National Park brush against Mulund West, and the residential areas of Mulund East open toward the Thane Creek. Between the hills and the creek, the neighbourhood has developed into a spacious, well-planned residential zone with wide roads, established housing colonies, and some of the best-maintained public gardens in the eastern suburbs. For dog owners, Mulund is as good as it gets within Mumbai city limits.

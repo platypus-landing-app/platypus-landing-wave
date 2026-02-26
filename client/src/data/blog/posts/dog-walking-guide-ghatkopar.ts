@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Ghatkopar", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-kurla", "dog-walking-guide-chembur", "top-dog-walking-routes-mumbai"],
   content: `
 Ghatkopar is one of Mumbai's most densely populated eastern suburbs, and on the surface it might not seem like a dog walking destination. The areas around Ghatkopar station are chaotic—narrow lanes packed with shops, autorickshaw stands, and the constant flow of metro and railway commuters. But Ghatkopar is larger than its commercial centre suggests. Push into the residential belts of Pant Nagar, the quieter lanes of Ghatkopar West behind R City Mall, or the housing societies near Asalpha, and you find a different neighbourhood entirely. Tree-lined internal roads, established housing societies with compound gardens, and pockets of green space create genuine walking options for pet parents who know where to look.

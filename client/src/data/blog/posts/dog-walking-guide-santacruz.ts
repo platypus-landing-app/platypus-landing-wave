@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Santacruz", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-bandra", "dog-walking-guide-khar", "top-dog-walking-routes-mumbai"],
   content: `
 Santacruz is one of those suburbs that rarely gets credit for how walkable it actually is. Sandwiched between the glamour of Bandra to the south and the bustle of Vile Parle to the north, it tends to get lost in the conversation. But for dog parents, Santacruz offers something valuable: well-established residential pockets with mature tree cover, manageable traffic, and a community of pet owners who have been walking these streets for years.

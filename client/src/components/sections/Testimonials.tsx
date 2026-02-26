@@ -31,7 +31,7 @@ const Testimonials = () => {
     },
     {
       name: "Tanusri Maitra",
-      location: "Pet Parent To Prince • Thane",
+      location: "Pet Parent To Prince",
       image: "/testimonial2.jpg",
       quote:
         "So far, I am very happy with the service. Regular, Punctual, Proper handling of the child, and the other best practices are picking up poop. I am so happy with the kind of walk my little one is getting",

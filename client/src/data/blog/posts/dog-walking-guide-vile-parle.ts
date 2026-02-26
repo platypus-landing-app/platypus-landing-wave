@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Vile Parle", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-andheri", "dog-walking-guide-santacruz", "summer-dog-walking-safety-mumbai"],
   content: `
 Vile Parle occupies a strategic sweet spot in Mumbai's western suburbs—south of Andheri's sprawl, north of Santacruz's residential calm, and within easy reach of Juhu's beachfront. The neighbourhood splits cleanly along the railway line: Vile Parle West is predominantly residential with the planned JVPD Scheme layout, Irla's quiet streets, and proximity to Juhu beach. Vile Parle East is more commercial around the station but opens into established residential colonies further from the railway. For dog owners, Vile Parle West is the clear winner—the JVPD Scheme's grid layout, wide internal roads, and mature tree cover create one of western Mumbai's most consistently walkable environments.

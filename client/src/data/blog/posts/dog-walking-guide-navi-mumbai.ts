@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Navi Mumbai", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-thane", "dog-walking-guide-chembur", "top-dog-walking-routes-mumbai"],
   content: `
 Navi Mumbai is a planned city, and that single fact transforms the dog walking experience. Where Mumbai proper is characterised by organic, densely packed development where green space is an afterthought, Navi Mumbai was designed from the ground up with wide roads, dedicated footpaths, sector-based residential layouts, and proportional green space. The result is a metropolitan area that is genuinely built for walking—of any kind, but particularly for the kind of structured, daily walking that dogs need. From the seafront promenade of Palm Beach Road to the forested hills of Kharghar, from the quiet sectors of Nerul to the commercial-residential balance of Vashi, Navi Mumbai offers a diversity of walking environments that no single neighbourhood in Mumbai can match.

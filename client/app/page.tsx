@@ -39,7 +39,7 @@ const Footer = dynamic(() => import('@/components/layout/Footer'), {
 
 export const metadata: Metadata = {
   title: "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",
-  description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Powai & more areas.",
+  description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Juhu & more areas.",
 };
 
 export default function Home() {
@@ -48,7 +48,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",
-    "description": "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols. Book trial walk ₹199. Serving Bandra, Andheri, Powai & more.",
+    "description": "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols. Book trial walk ₹199. Serving Bandra, Andheri, Juhu & more.",
     "url": "https://theplatypus.in",
     "inLanguage": "en-IN",
     "isPartOf": { "@id": "https://theplatypus.in/#website" },
@@ -97,9 +97,7 @@ export default function Home() {
       "longitude": 72.8777
     },
     "areaServed": [
-      { "@type": "City", "name": "Mumbai" },
-      { "@type": "City", "name": "Thane" },
-      { "@type": "City", "name": "Navi Mumbai" }
+      { "@type": "City", "name": "Mumbai" }
     ],
     "priceRange": "₹199 - ₹7800",
     "openingHours": "Mo-Su 06:00-22:00",
@@ -152,7 +150,7 @@ export default function Home() {
         "name": "What areas in Mumbai do you serve for dog walking services?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We provide professional dog walking services across major Mumbai areas including Bandra, Andheri, Powai, Worli, Lower Parel, Colaba, Juhu, Versova, Malad, Borivali, Kandivali, Santacruz, Khar, Byculla, Dadar, Matunga, Kurla, Chembur, Ghatkopar, Mulund, Thane, and Navi Mumbai. Our certified Guardians are strategically located to serve these areas with consistent, reliable service."
+          "text": "We provide professional dog walking services across major Mumbai areas including Mira Road, Borivali, Kandivali, Malad, Goregaon, Andheri, Juhu, Bandra, Khar, Dadar, Wadala, Prabhadevi, Lower Parel, Grant Road, Kurla, and Chembur. Our certified Guardians are strategically located to serve these areas with consistent, reliable service."
         }
       },
       {
