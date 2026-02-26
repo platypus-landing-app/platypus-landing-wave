@@ -203,7 +203,7 @@ export default function RootLayout({
                     "@type": "Person",
                     "name": "Sagar Sutaria",
                     "jobTitle": "Founder",
-                    "sameAs": "https://www.linkedin.com/in/sagarsutaria/"
+                    "sameAs": "https://www.linkedin.com/in/sagar-sutaria/"
                   },
                   "numberOfEmployees": {
                     "@type": "QuantitativeValue",

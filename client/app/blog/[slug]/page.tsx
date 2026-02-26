@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       '@type': 'Person',
       name: 'Sagar Sutaria',
       jobTitle: 'Founder',
-      url: 'https://www.linkedin.com/in/sagarsutaria/',
+      url: 'https://www.linkedin.com/in/sagar-sutaria/',
       worksFor: { '@id': 'https://theplatypus.in/#organization' },
     },
     publisher: {
@@ -248,7 +248,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="flex flex-wrap items-center gap-5 text-gray-500 text-sm mb-10 pb-8 border-b border-gray-100">
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4 text-brand-blue" />
-                  <span className="font-medium text-gray-700">{post.author}</span>
+                  <a href="https://www.linkedin.com/in/sagar-sutaria/" target="_blank" rel="noopener noreferrer" className="font-medium text-gray-700 hover:text-brand-blue transition-colors">{post.author}</a>
                   <span className="text-gray-400">·</span>
                   <span className="text-gray-500">Founder, Platypus</span>
                 </div>
