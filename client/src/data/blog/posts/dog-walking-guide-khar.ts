@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Khar", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-bandra", "dog-walking-guide-santacruz", "summer-dog-walking-safety-mumbai"],
   content: `
 Ask any experienced pet parent in Mumbai where the best neighbourhood for dog walks is, and Khar will appear on nearly every shortlist. There is something about this suburb that just works for dogs and their humans. The lanes in Khar West are among the most tree-lined in the city, the community of pet owners is large and established, and the proximity to both the Bandra seafront to the south and the quieter Santacruz stretch to the north means you are never short of options.

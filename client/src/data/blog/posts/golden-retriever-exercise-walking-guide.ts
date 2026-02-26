@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Golden Retriever", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "labrador-exercise-walking-guide"],
   content: `
 Golden Retrievers were bred in the Scottish Highlands to retrieve game across rough terrain and cold water — a job demanding stamina, athleticism, and an eagerness to work alongside humans for hours. That heritage is still very much alive in every Golden you see bounding through a Mumbai park. They are affectionate, intelligent, and deeply social dogs who thrive on physical activity and human companionship.

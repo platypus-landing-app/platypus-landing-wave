@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["German Shepherd", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "rottweiler-exercise-walking-guide"],
   content: `
 The German Shepherd was developed in late 19th-century Germany for one purpose: to be the most capable working dog in the world. Captain Max von Stephanitz bred them for intelligence, physical endurance, and an unwavering drive to have a job. That genetic programming has not changed. Your GSD living in a Mumbai apartment carries the same mental and physical engine as the dogs that herd sheep across German hillsides, serve in police K-9 units, and work search-and-rescue operations.

@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Goregaon", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-malad", "dog-walking-guide-andheri", "top-dog-walking-routes-mumbai"],
   content: `
 Goregaon holds a position in Mumbai's western suburbs that no other neighbourhood can replicate. To its east lies Aarey Colony—over 3,000 acres of green cover that forms the last major lung space in the city. To the north, Film City's wooded campus creates another buffer of vegetation. And within the developed residential areas of Goregaon West and East, decades-old housing colonies provide the kind of tree-lined, low-traffic lanes that are rapidly disappearing from Mumbai's suburban landscape. For dog owners, this combination of accessible wilderness and walkable residential streets creates a range of options that stretches from forest trails to standard neighbourhood circuits.

@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Beagle", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "cocker-spaniel-exercise-walking-guide"],
   content: `
 The Beagle is one of the most misunderstood breeds when it comes to exercise. People see a small, compact dog and assume they are low-maintenance. They are not. Beagles were bred as pack hounds, developed over centuries to track rabbits and hare across English countryside for hours at a stretch. That nose — with roughly 220 million scent receptors compared to a human's 5 million — drives nearly everything they do. A Beagle on a walk is not just walking. They are processing a constantly updating map of smells, and that mental engagement is as tiring and necessary for them as physical distance.

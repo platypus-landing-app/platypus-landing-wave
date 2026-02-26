@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Shih Tzu", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "pug-exercise-walking-guide"],
   content: `
 The Shih Tzu was bred for one job: to be a companion. For over a thousand years, these dogs lived in Chinese imperial palaces, sitting on laps, warming beds, and charming royalty. They were never herders, hunters, or working dogs. Their purpose was — and remains — to be close to their people.

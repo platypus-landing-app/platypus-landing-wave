@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Poodle", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "cocker-spaniel-exercise-walking-guide"],
   content: `
 Poodles are consistently ranked among the most intelligent dog breeds in the world — second only to the Border Collie. Originally bred as water retrievers in Germany and France, they're athletic, elegant, and far more robust than their groomed appearance suggests. The critical thing to understand about Poodle exercise needs is that physical activity alone is never enough. A Poodle that walks the same route every day at the same pace will become bored regardless of the distance covered. They need variety, novelty, and mental engagement woven into their daily exercise. If you have a Poodle in Mumbai, this guide covers exactly what that looks like in practice.

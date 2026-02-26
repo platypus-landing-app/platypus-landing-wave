@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Rottweiler", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "german-shepherd-exercise-walking-guide"],
   content: `
 The Rottweiler's origins trace back to the Roman Empire, where their ancestors drove cattle alongside marching legions. By the Middle Ages, they had become the drover's dog of choice in the German town of Rottweil — herding livestock, pulling carts, and guarding money pouches for butchers returning from market. Every aspect of this breed was forged through work that demanded strength, endurance, intelligence, and absolute reliability.

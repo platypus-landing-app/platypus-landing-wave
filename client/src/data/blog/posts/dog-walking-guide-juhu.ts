@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Juhu", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-versova", "dog-walking-guide-bandra", "summer-dog-walking-safety-mumbai"],
   content: `
 Juhu holds a special place in Mumbai's relationship with the outdoors. While the rest of the city races and honks, Juhu moves at a slower pace—the wide beach, the old bungalow plots, and the relatively low-rise skyline create a neighbourhood that still breathes. For pet parents, this translates into some of the best dog walking conditions on Mumbai's western seaboard. You get a 6-kilometre beach, shaded residential lanes, and proximity to the quieter stretches of Vile Parle and Santacruz—all within a neighbourhood where dogs on morning walks are as much a part of the scenery as the coconut palms.

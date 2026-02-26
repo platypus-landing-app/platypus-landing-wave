@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Great Dane", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "rottweiler-exercise-walking-guide"],
   content: `
 The Great Dane is the tallest dog breed in the world, with males regularly standing over 80 centimetres at the shoulder and weighing 55-90 kilograms. Despite their imposing size, Great Danes are famously gentle, calm, and affectionate — they're often called "gentle giants" for good reason. They were originally bred in Germany as boar-hunting dogs, but centuries of selective breeding have produced a companion breed with moderate energy and a calm indoor demeanour. The most important thing to understand about Great Dane exercise is that less is more. Their enormous frame puts tremendous stress on joints and bones, making the quality and type of exercise far more important than the quantity.

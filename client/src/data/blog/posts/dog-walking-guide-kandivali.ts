@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Kandivali", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-borivali", "dog-walking-guide-malad", "dog-walking-safety-tips-mumbai-monsoon"],
   content: `
 Kandivali does not make many "best of Mumbai" lists, and that is exactly what makes it work for dog walks. While the suburb lacks a single marquee attraction like a beach or national park, what it offers is something arguably more useful for daily routines: consistent, walkable residential infrastructure with enough variety to keep your dog mentally engaged day after day. Thakur Village on the west side is one of the most planned residential layouts in the suburbs, Poisar on the eastern edge touches forested foothills, and the older pockets around Kandivali station have a neighbourhood character that rewards exploration.

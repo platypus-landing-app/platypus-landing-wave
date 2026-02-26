@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Bandra", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-khar", "dog-walking-guide-santacruz", "top-dog-walking-routes-mumbai"],
   content: `
 Bandra is arguably Mumbai's most dog-friendly neighbourhood. Walk through any lane in Bandra West on an early morning and you will spot Labradors trotting along the Hill Road footpaths, Indie dogs lounging outside cafes on Linking Road, and Golden Retrievers pulling their parents toward Carter Road's sea breeze. The area's mix of wide promenades, tree-lined residential streets, and quiet hilltop lanes creates a variety of terrain that suits nearly every breed and energy level. Whether you live in Pali Hill, Bandra East, or anywhere in between, there is a walking route that fits your dog's needs perfectly.

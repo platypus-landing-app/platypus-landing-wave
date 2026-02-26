@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Malad", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-goregaon", "dog-walking-guide-kandivali", "dog-walking-safety-tips-mumbai-monsoon"],
   content: `
 Malad is one of those Mumbai suburbs that gets overlooked in conversations about dog-friendly areas, usually in favour of more photogenic neighbourhoods to the south. That is a mistake. Malad, particularly its western half, has a network of residential lanes, a handful of well-maintained gardens, and a pace of life that is noticeably slower than the Andheri-Bandra stretch. For dog parents, this translates into quieter walks, fewer confrontations with traffic, and enough green cover to keep things interesting.

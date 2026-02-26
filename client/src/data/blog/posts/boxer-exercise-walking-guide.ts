@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Boxer", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "labrador-exercise-walking-guide"],
   content: `
 Boxers are a contradiction that every Boxer owner learns to navigate: they have the energy of a working breed but the respiratory system of a brachycephalic one. Bred in Germany as hunting and guarding dogs, Boxers are muscular, playful, and genuinely athletic. They want to run, jump, and play hard. But their shortened muzzle means they can't cool themselves as efficiently as longer-nosed breeds, making heat a serious — sometimes life-threatening — risk. In Mumbai's tropical climate, this tension between energy and anatomy defines how you need to approach your Boxer's exercise routine.

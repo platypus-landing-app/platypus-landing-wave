@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Pug", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "shih-tzu-exercise-walking-guide"],
   content: `
 Pugs are one of the most beloved companion breeds in Mumbai — affectionate, comical, and perfectly sized for apartment living. But they are also one of the most medically vulnerable breeds when it comes to exercise, and getting their walking routine wrong can be genuinely life-threatening.

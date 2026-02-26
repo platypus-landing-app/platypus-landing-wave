@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Indie", "Indian Pariah", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "beagle-exercise-walking-guide"],
   content: `
 The Indian Pariah Dog — commonly called the Indie — is not a breed that was designed by humans. They are a landrace, shaped by thousands of years of natural selection across the Indian subcontinent. No human breeder decided what they should look like, how big they should be, or what job they should do. Evolution did that work, and the result is one of the healthiest, most genetically sound, and most climate-adapted dogs on the planet.

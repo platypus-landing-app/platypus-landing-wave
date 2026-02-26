@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Chembur", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-kurla", "dog-walking-guide-ghatkopar", "dog-walking-safety-tips-mumbai-monsoon"],
   content: `
 Chembur occupies a unique position in Mumbai's eastern corridor. Once a distant suburb defined by industrial colonies and refineries, it has evolved into a well-connected residential hub that retains the spacious, planned layouts of its colony origins. The RCF Colony, the BARC staff quarters, the tree-lined avenues of Tilak Nagar, and the established residential pockets around Diamond Garden give Chembur a quality that is increasingly rare in Mumbai—breathing room. For dog owners, this translates into wider lanes, mature tree cover, maintained gardens, and a pace of life that accommodates leisurely morning walks without the crush of foot traffic you encounter in western Mumbai.

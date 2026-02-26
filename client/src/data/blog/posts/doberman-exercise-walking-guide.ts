@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Doberman", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "rottweiler-exercise-walking-guide"],
   content: `
 The Doberman Pinscher was bred in 19th-century Germany as a personal protection dog — fast, alert, loyal, and built to work. That working heritage defines everything about the breed's exercise needs. Dobermans are lean, muscular athletes with high energy reserves and sharp intelligence. They don't just need physical exercise — they need purpose. A Doberman without adequate daily activity becomes anxious, restless, and often destructive. If you own a Doberman in Mumbai, understanding their specific walking and exercise requirements is essential for keeping them balanced and healthy.

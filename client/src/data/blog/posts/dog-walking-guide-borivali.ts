@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Borivali", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-kandivali", "dog-walking-guide-malad", "top-dog-walking-routes-mumbai"],
   content: `
 Borivali holds a rare distinction among Mumbai suburbs: it borders an actual national park. Sanjay Gandhi National Park covers over 100 square kilometres of forest on Borivali's eastern flank, which means that pet parents here have access to walking environments that simply do not exist anywhere else in the city. The suburb itself, both east and west, also offers a mix of residential calm, old village character, and green open spaces that make daily dog walks genuinely enjoyable rather than a chore squeezed between traffic.

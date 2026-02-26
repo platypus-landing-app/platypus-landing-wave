@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Dalmatian", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "labrador-exercise-walking-guide"],
   content: `
 The Dalmatian's history is unique among dog breeds. While most breeds were developed for hunting, herding, or guarding, Dalmatians were bred as coach dogs — running alongside horse-drawn carriages for miles, serving as both companion and protector on the road. Later, they became firehouse dogs, running ahead of horse-drawn fire engines to clear the way. This heritage tells you everything you need to know about the breed: Dalmatians were literally designed for sustained, long-distance trotting. They have exceptional stamina, lean muscular builds, and an innate drive to cover ground. If you own a Dalmatian in Mumbai, meeting that drive is your primary responsibility.

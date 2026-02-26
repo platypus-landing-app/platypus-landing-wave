@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Kurla", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-ghatkopar", "dog-walking-guide-chembur", "summer-dog-walking-safety-mumbai"],
   content: `
 Kurla is one of those Mumbai neighbourhoods that does not immediately come to mind when you think about dog walking. The area carries a reputation for congestion, heavy traffic on LBS Marg, and densely packed commercial zones around Kurla station. But step away from the main arteries and into the residential pockets of Kurla West, Nehru Nagar, or the lanes approaching BKC, and the picture changes considerably. Quieter streets, surprisingly spacious housing society compounds, and the wide open stretches of the Bandra-Kurla Complex periphery create genuine options for daily dog walks. The key is knowing where to go and when.

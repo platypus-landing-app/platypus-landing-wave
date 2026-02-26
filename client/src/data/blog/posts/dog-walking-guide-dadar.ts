@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Dadar", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-matunga", "dog-walking-guide-worli", "top-dog-walking-routes-mumbai"],
   content: `
 Dadar is the geographic and cultural heart of Mumbai. It is where the western and central railway lines converge, where the Shivaji Park neighbourhood has maintained a residential identity for nearly a century, and where the famous flower market fills the streets with colour every morning. For dog parents, Dadar offers something that very few Mumbai neighbourhoods can match: Shivaji Park, a 28-acre open ground that functions as the city's closest equivalent to a proper dog walking destination. But Dadar's appeal extends well beyond the park. The residential lanes of Dadar West are tree-lined and walkable, and even Dadar East, denser and more commercial, has pockets of calm that reward exploration.

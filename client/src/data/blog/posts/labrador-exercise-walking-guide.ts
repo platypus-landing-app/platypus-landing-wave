@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Labrador", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "golden-retriever-exercise-walking-guide"],
   content: `
 Labradors are the most popular dog breed in Mumbai, and for good reason. They are friendly, loyal, endlessly enthusiastic, and genuinely happy to see every human and dog they encounter. Originally bred as working retrievers in Newfoundland, Labs were built to spend entire days fetching nets and hauling catches alongside fishermen. That working heritage means one thing for modern pet parents: your Lab needs a lot of exercise. Not optional, not nice-to-have — genuinely essential for their physical and mental health.

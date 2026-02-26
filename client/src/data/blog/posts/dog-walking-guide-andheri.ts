@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Andheri", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-versova", "dog-walking-guide-juhu", "top-dog-walking-routes-mumbai"],
   content: `
 Andheri is Mumbai's largest suburb by population and, perhaps surprisingly, one of its better areas for dog walking. The neighbourhood stretches from the Versova coastline in the west to the Jogeshwari-Vikhroli Link Road in the east, encompassing everything from quiet residential complexes to bustling commercial zones. What makes Andheri work for pet parents is its sheer variety. Within a fifteen-minute radius, you can walk your dog along a beach, through a manicured garden, or on a quiet residential road with mature trees providing overhead shade.

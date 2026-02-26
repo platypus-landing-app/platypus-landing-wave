@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Lower Parel", "local guide", "Mumbai", "dog walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-guide-worli", "dog-walking-guide-dadar", "dog-walking-safety-tips-mumbai-monsoon"],
   content: `
 Lower Parel has undergone one of Mumbai's most dramatic transformations. Two decades ago, this was a neighbourhood defined by defunct textile mills and industrial sheds. Today, those mill compounds house luxury residential towers, corporate headquarters, and commercial complexes like Phoenix Mills and High Street Phoenix. For dog walking, this transformation has produced an unusual but surprisingly functional landscape: wide compound roads designed for vehicle access to commercial properties now double as spacious, low-traffic walking corridors during early morning and late evening hours. The neighbourhood is dense and vertical—most residents live in high-rise towers—but the pockets of open space between these towers, combined with proximity to the Worli seafront, create a workable dog walking circuit.

@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Cocker Spaniel", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "beagle-exercise-walking-guide"],
   content: `
 The Cocker Spaniel — whether American or English — was originally bred as a gun dog, flushing woodcock and other game birds from dense brush. That hunting heritage lives on in the breed's cheerful energy, strong nose, and genuine love of being outdoors. Cocker Spaniels are social, affectionate dogs with moderate energy levels that make them adaptable to apartment living — provided they get consistent daily exercise. They're not as demanding as a Labrador or German Shepherd, but underestimating their exercise needs is a common mistake that leads to weight gain and behavioural issues.

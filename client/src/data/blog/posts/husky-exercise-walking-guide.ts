@@ -20,7 +20,7 @@ export const post: BlogPostFull = {
   ],
   tags: ["Husky", "exercise", "breed guide", "walking"],
   featured: false,
-  status: "published",
+  status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "golden-retriever-exercise-walking-guide"],
   content: `
 Let's be direct about something: the Siberian Husky was bred to run 150 kilometres a day through Arctic conditions at temperatures of minus 50°C. Mumbai's average temperature is 30°C with 70-85% humidity. This is not a natural environment for this breed. That reality does not mean you cannot own a Husky in Mumbai, but it does mean that exercise management becomes the single most important aspect of their care. Getting it wrong isn't just uncomfortable for your Husky — it can be life-threatening.
