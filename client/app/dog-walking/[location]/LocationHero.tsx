@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
+import { motion, Variants, easeOut } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useBooking } from '@/contexts/BookingContext';
 import { LocationData } from '@/data/locations';
@@ -13,133 +14,84 @@ interface LocationHeroProps {
 export default function LocationHero({ locationInfo, location }: LocationHeroProps) {
   const { openTrialBooking } = useBooking();
 
+  const heroVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: easeOut },
+    },
+  };
+
   return (
     <section
       id="home"
-      className="relative bg-gradient-to-b from-[#F0F6FF] via-white to-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden bg-cover bg-center bg-no-repeat lg:min-h-screen"
-      style={{ backgroundImage: `url("/Ellipse 25.png")` }}
+      className="relative bg-[#FFFBF0] pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden lg:min-h-screen"
     >
-      {/* Dot grid pattern overlay */}
-      <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
-
-      {/* Decorative circles */}
-      <div className="absolute top-20 right-[-60px] w-[140px] h-[140px] rounded-full border border-brand-blue/10 pointer-events-none" />
-      <div className="absolute bottom-40 left-[-40px] w-[100px] h-[100px] rounded-full border border-brand-blue/8 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,225,53,0.10)_0%,_transparent_60%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-0 relative z-10">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] gap-8 md:gap-12 lg:gap-40"
+          className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] gap-8 md:gap-12 lg:gap-16"
+          variants={heroVariants}
           initial="hidden"
           animate="show"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: { staggerChildren: 0.3 },
-            },
-          }}
         >
           {/* Left Content */}
-          <motion.div
-            className="z-10 relative"
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.8, ease: 'easeOut' },
-              },
-            }}
-          >
-            {/* Guttery tagline */}
+          <motion.div variants={heroVariants} className="z-10 relative">
+            {/* Brand wordmark */}
+            <motion.div variants={heroVariants} className="mb-1 ml-[-2px]">
+              <img
+                src="/platypus-wordmark.svg"
+                alt="Platypus"
+                className="h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px] w-auto"
+              />
+            </motion.div>
+
+            {/* Tagline */}
             <motion.span
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-              }}
-              className="font-guttery text-[#247AFD] text-lg sm:text-xl md:text-2xl block mb-2"
+              variants={heroVariants}
+              className="font-guttery text-brand-blue text-xl sm:text-2xl md:text-[1.75rem] lg:text-[2rem] block mb-4 ml-[-1px]"
             >
               be their human
             </motion.span>
 
-            {/* Heading */}
-            <div className="w-full max-w-[400px]">
-              <h1 className="flex flex-col text-left tracking-[0.06em]">
-                <motion.span
-                  variants={{
-                    hidden: { opacity: 0, y: 50 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.8, ease: 'easeOut' },
-                    },
-                  }}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-[5xl] font-light text-[#FFE135] text-blur-shadow inline-block"
-                >
-                  PLATYPUS
-                </motion.span>
-
-                <motion.span
-                  variants={{
-                    hidden: { opacity: 0, y: 50 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.8, ease: 'easeOut' },
-                    },
-                  }}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mt-2"
-                >
-                  {locationInfo.name.toUpperCase()}
-                </motion.span>
-
-                <motion.span
-                  variants={{
-                    hidden: { opacity: 0, y: 50 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.8, ease: 'easeOut' },
-                    },
-                  }}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mt-2"
-                >
-                  DOG WALKING
-                </motion.span>
+            {/* Heading — serif, sentence case */}
+            <div className="w-full max-w-[500px]">
+              <h1 className="font-domine font-bold text-gray-900 text-[32px] xs:text-[36px] sm:text-[42px] md:text-[48px] lg:text-[52px] leading-[1.15]">
+                Dog Walking in {locationInfo.name}
               </h1>
             </div>
 
-            {/* SEO H2 Subheading */}
+            {/* Social proof badge */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: 'easeOut' },
-                },
-              }}
-              className="mt-4 md:mt-6"
+              variants={heroVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-yellow/20 shadow-sm mt-5 md:mt-6"
             >
-              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#247AFD] leading-tight text-left">
-                Certified Guardians with Live GPS Tracking in {locationInfo.displayName}
+              <div className="flex -space-x-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 text-brand-yellow fill-brand-yellow" />
+                ))}
+              </div>
+              <span className="text-sm font-medium text-gray-700">4.9 rated</span>
+              <span className="text-gray-300">|</span>
+              <span className="text-sm font-medium text-gray-700">500+ happy families</span>
+            </motion.div>
+
+            {/* SEO H2 Subheading */}
+            <motion.div variants={heroVariants} className="mt-4 md:mt-5">
+              <h2 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-medium text-gray-600 leading-snug">
+                Certified Guardians with live GPS tracking in {locationInfo.displayName}
               </h2>
             </motion.div>
 
-            {/* Paragraph */}
+            {/* Body copy */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: 'easeOut' },
-                },
-              }}
-              className="mt-6 md:mt-8 lg:mt-10 w-full sm:w-[90%] md:w-[500px] lg:w-[638px] xl:w-[670px]"
+              variants={heroVariants}
+              className="mt-5 md:mt-6 w-full sm:w-[90%] md:w-[500px] lg:w-[580px]"
             >
-              <p className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px] xl:text-[22px] text-[#1A1A1A] font-normal font-segoe leading-[160%] sm:leading-[170%] md:leading-[180%] lg:leading-[180%] xl:leading-[130%] text-left">
-                India's first certified dog walking service in {locationInfo.name}. Our trained
+              <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] text-gray-700 font-funnel leading-[1.7]">
+                India&apos;s first certified dog walking service in {locationInfo.name}. Our trained
                 Guardians provide safe, reliable walks with live GPS tracking, safety protocols,
                 and professional care for your dog in {locationInfo.displayName}.
               </p>
@@ -147,21 +99,14 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
 
             {/* Buttons */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: 'easeOut' },
-                },
-              }}
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-6 lg:pt-0 mt-8 md:mt-10 lg:mt-12"
+              variants={heroVariants}
+              className="flex flex-col sm:flex-row gap-4 md:gap-5 mt-8 md:mt-10"
             >
               <Button
                 onClick={openTrialBooking}
                 size="lg"
-                className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
-                  bg-[#247AFD] hover:bg-[#1A5BC4] hover:shadow-[0_0_20px_rgba(36,122,253,0.3)] transition-all duration-300 hover:scale-105"
+                className="text-[16px] sm:text-[17px] md:text-[18px] text-white px-8 md:px-10 h-[48px] md:h-[52px] w-full sm:w-auto py-3 font-medium rounded-full
+                  bg-brand-blue hover:bg-brand-blue-dark hover:shadow-brand transition-all duration-300 hover:-translate-y-0.5"
               >
                 Book Trial Now
               </Button>
@@ -169,25 +114,17 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
               <Button
                 variant="outline"
                 size="lg"
-                className="text-[#247AFD] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px]
-                  w-full sm:w-[240px] md:w-[257px] rounded-[4px] py-3 md:py-4
-                  text-sm flex items-center gap-3 shadow-md hover:shadow-lg
-                  transition-all duration-300 hover:scale-105"
+                className="text-gray-800 hover:bg-white/60 px-6 md:px-8 h-[48px] md:h-[52px]
+                  w-full sm:w-auto rounded-full py-3
+                  text-sm flex items-center gap-3 shadow-sm hover:shadow-md border-gray-200
+                  transition-all duration-300 hover:-translate-y-0.5"
               >
-                <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#247AFD] to-[#5A9AFE] flex items-center rounded-full justify-center">
-                  <img
-                    src="/Live.png"
-                    className="w-4 md:w-5 h-4 md:h-5 text-white"
-                    alt="Live"
-                  />
+                <div className="relative flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-brand-green animate-subtle-pulse-green" />
                 </div>
                 <div className="text-left">
-                  <div className="font-semibold text-xs md:text-sm text-[#000000]">
-                    Live Now
-                  </div>
-                  <div className="text-[11px] md:text-[13.89px] font-medium text-[#6ACB5D]">
-                    Walking in {locationInfo.name}
-                  </div>
+                  <div className="font-semibold text-xs md:text-sm text-gray-900">Live Now</div>
+                  <div className="text-[11px] md:text-[13px] font-medium text-brand-green">Walking in {locationInfo.name}</div>
                 </div>
               </Button>
             </motion.div>
@@ -195,14 +132,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
 
           {/* Right Content - Location Details */}
           <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.8, ease: 'easeOut' },
-              },
-            }}
+            variants={heroVariants}
             className="lg:flex justify-end items-center hidden"
           >
             <div className="relative">
@@ -228,7 +158,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                 </div>
 
                 {/* Landmarks */}
-                <div className="bg-blue-50 rounded-xl p-4">
+                <div className="bg-[#FFF8E7] rounded-xl p-4">
                   <h4 className="font-semibold text-gray-900 mb-2 text-left text-sm">
                     Popular Walking Routes Near:
                   </h4>
@@ -249,24 +179,17 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 0.3, scale: 1 }}
                 transition={{ duration: 1, ease: 'easeOut' }}
-                className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-3xl -z-10"
+                className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-brand-yellow/20 to-brand-yellow/10 rounded-3xl -z-10"
               ></motion.div>
             </div>
           </motion.div>
 
           {/* Mobile version of location details */}
           <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.8, ease: 'easeOut' },
-              },
-            }}
+            variants={heroVariants}
             className="lg:hidden"
           >
-            <div className="bg-blue-50 rounded-lg p-6 mt-8">
+            <div className="bg-[#FFF8E7] rounded-lg p-6 mt-8">
               <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">
                 We Serve {locationInfo.name} Areas Including:
               </h3>

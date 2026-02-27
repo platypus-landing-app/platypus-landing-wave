@@ -20,12 +20,6 @@ const AreasWeServe = () => {
 
   return (
     <section id="areas" className="relative py-24 bg-white overflow-hidden">
-      {/* Dot grid decoration */}
-      <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-dots opacity-50 pointer-events-none" aria-hidden="true" />
-
-      {/* Decorative circle */}
-      <div className="absolute top-20 right-[-50px] w-[120px] h-[120px] rounded-full border border-brand-blue/10 pointer-events-none" aria-hidden="true" />
-
       {/* Background paw design - hidden on small screens */}
       <div
         className="hidden md:block absolute top-[-1rem] right-0 w-[200px] h-[240px] lg:top-[-2rem] lg:right-0 lg:w-[350px] lg:h-[400px] pointer-events-none"
@@ -59,9 +53,9 @@ const AreasWeServe = () => {
               <Button
                 onClick={openTrialBooking}
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded hover:shadow-xl transition-all duration-300 hover:scale-105 items-center justify-center"
+                className="bg-brand-blue hover:bg-brand-blue/90 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded-full hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 items-center justify-center"
               >
-                BOOK NOW
+                Book Now
               </Button>
             </div>
           </div>
@@ -73,12 +67,12 @@ const AreasWeServe = () => {
               <Link
                 href={`/dog-walking/${location.slug}`}
                 className="group flex items-center justify-center space-x-2 px-3 sm:px-4 py-2.5 sm:py-3
-                           bg-[#F0F6FF] border border-brand-blue/15 hover:bg-brand-blue hover:text-white hover:border-brand-blue rounded-lg text-gray-700
+                           bg-[#FFF8E7] border border-brand-yellow/15 hover:bg-brand-blue hover:text-white hover:border-brand-blue rounded-full text-gray-700
                            transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-brand
-                           hover:scale-105"
+                           hover:-translate-y-0.5"
               >
                 <MapPin className="w-4 h-4 text-brand-blue group-hover:text-white transition-colors" />
-                <span className="font-segoe text-[15px] leading-[22px] font-medium text-center group-hover:text-white transition-colors">
+                <span className="text-[15px] leading-[22px] font-medium text-center group-hover:text-white transition-colors">
                   {location.name}
                 </span>
               </Link>
@@ -91,9 +85,9 @@ const AreasWeServe = () => {
           <Button
             onClick={openTrialBooking}
             size="lg"
-            className="w-full max-w-md bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg font-medium rounded shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full max-w-md bg-brand-blue hover:bg-brand-blue/90 text-white py-4 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
           >
-            BOOK NOW
+            Book Now
           </Button>
         </div>
       </div>

@@ -14,7 +14,7 @@ const HeroFeatures = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-6 sm:py-10">
+    <section className="w-full bg-gradient-to-b from-white to-[#FFFCF0] py-6 sm:py-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="fadeUp">
           <StaggerContainer

@@ -29,10 +29,7 @@ const testimonials = [
 
 export default function JoinTestimonials() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-[#F8FAFF] relative overflow-hidden">
-      {/* Decorative circle */}
-      <div className="absolute top-10 right-[-40px] w-[120px] h-[120px] rounded-full border border-brand-blue/10 pointer-events-none" aria-hidden="true" />
-
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-[#FFFCF0] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">our guardians</span>

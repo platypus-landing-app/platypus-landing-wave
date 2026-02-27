@@ -56,13 +56,13 @@ export default function ServicesShowcase({ services }: ServicesShowcaseProps) {
                     <Button
                       onClick={openTrialBooking}
                       size="lg"
-                      className="bg-brand-yellow hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg hover:shadow-warm hover:scale-105 transition-all duration-300"
+                      className="bg-brand-yellow hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg rounded-full hover:shadow-warm hover:-translate-y-0.5 transition-all duration-300"
                     >
                       Book Trial Walk — {activeService.price}
                     </Button>
                     <Link
                       href={`/services/${activeService.slug}`}
-                      className="inline-flex items-center gap-2 text-white/90 hover:text-white font-semibold px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition-all"
+                      className="inline-flex items-center gap-2 text-white/90 hover:text-white font-semibold px-6 py-3 border border-white/30 rounded-full hover:bg-white/10 transition-all"
                     >
                       Learn More <ArrowRight className="w-4 h-4" />
                     </Link>

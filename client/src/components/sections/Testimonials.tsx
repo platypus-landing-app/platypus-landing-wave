@@ -87,10 +87,7 @@ const Testimonials = () => {
   }, [loadElfsight]);
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-[#F8FAFF] relative">
-      {/* Dot grid decoration */}
-      <div className="absolute bottom-0 left-0 w-[180px] h-[180px] bg-dots opacity-50 pointer-events-none" aria-hidden="true" />
-
+    <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-[#FFFCF0] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <ScrollReveal variant="fadeUp">
@@ -221,7 +218,7 @@ const Testimonials = () => {
               </picture>
             </div>
           </div>
-          <div className="glass-card rounded-3xl px-8 py-8 border-b-2 border-[#247AFD] shadow-brand-lg max-w-3xl mx-auto -mt-[200px] mb-4">
+          <div className="bg-white rounded-3xl px-8 py-8 border border-gray-100 shadow-lg max-w-3xl mx-auto -mt-[200px] mb-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="mx-auto max-w-sm text-left">
                 <h3 className="font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">Ready To Book?</h3>
@@ -234,7 +231,7 @@ const Testimonials = () => {
               <div className="mx-auto max-w-sm text-left">
                 <h3 className="font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">Unlock Early Access</h3>
                 <p className="text-[16px] leading-[24px] text-[#686868] mb-3">Get early access to the Platypus app</p>
-                <button onClick={openTrialBooking} className="flex items-center space-x-2 text-[#247AFD] hover:text-[#1A5BC4] transition-all duration-300 hover:scale-105 hover:drop-shadow-md">
+                <button onClick={openTrialBooking} className="flex items-center space-x-2 text-[#247AFD] hover:text-[#1A5BC4] transition-all duration-300 hover:-translate-y-0.5 hover:drop-shadow-md">
                   <img src="/phone icon.png" loading="lazy" decoding="async" className="w-6 h-6" alt="Phone Icon" />
                   <span className="text-[16px] leading-[24px]">Join our community today</span>
                 </button>

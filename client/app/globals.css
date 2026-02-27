@@ -47,7 +47,7 @@
     --golden: 51 100% 60%;
 
     --gradient-brand: linear-gradient(135deg, #247AFD, #1A5BC4);
-    --gradient-hero: linear-gradient(180deg, hsl(216 90% 97%), hsl(216 50% 93%));
+    --gradient-hero: linear-gradient(180deg, #FFFBF0, #FFF8E7);
 
     --radius: 1rem;
 
@@ -113,14 +113,6 @@
   }
 }
 
-/* index.css or app.css */
-.text-blur-shadow {
-  text-shadow: 
-    0px 1.42px 4.26px rgba(0, 0, 0, 0.15), /* First soft shadow */
-    0px 1.42px 2.84px rgba(0, 0, 0, 0.30); /* Second darker shadow */
-}
-
-
 @keyframes arrow-move {
   0%, 100% {
     transform: translateX(0);
@@ -156,10 +148,10 @@
 
 /* Glass card utility */
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 225, 53, 0.12);
 }
 
 /* Noise texture overlay */
@@ -175,14 +167,14 @@
 
 /* Dot grid decorative pattern */
 .bg-dots {
-  background-image: radial-gradient(circle, rgba(36, 122, 253, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255, 225, 53, 0.10) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 /* Custom Scroller Styles */
 .custom-scroller {
   scrollbar-width: thin;
-  scrollbar-color: #247AFD #e8f0fe;
+  scrollbar-color: #247AFD #FFF8E7;
 }
 
 .custom-scroller::-webkit-scrollbar {
@@ -190,7 +182,7 @@
 }
 
 .custom-scroller::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, #e8f0fe 0%, #f0f5ff 50%, #e8f0fe 100%);
+  background: linear-gradient(90deg, #FFF8E7 0%, #FFFBF0 50%, #FFF8E7 100%);
   border-radius: 10px;
 }
 

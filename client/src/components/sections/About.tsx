@@ -27,7 +27,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-24 bg-gradient-to-br from-[#E3ECFA] to-[#EEF3FC] relative overflow-hidden"
+      className="py-24 bg-gradient-to-br from-[#FFFBF0] to-[#FFFCF0] relative overflow-hidden"
     >
       {/* Background image with lazy loading */}
       <img
@@ -39,12 +39,6 @@ const About = () => {
         aria-hidden="true"
       />
 
-      {/* Dot grid decoration */}
-      <div className="absolute top-10 right-0 w-[180px] h-[180px] bg-dots opacity-40 pointer-events-none" aria-hidden="true" />
-
-      {/* Decorative circles */}
-      <div className="absolute bottom-[-40px] left-[-40px] w-[140px] h-[140px] rounded-full border border-brand-blue/10 pointer-events-none" aria-hidden="true" />
-      <div className="absolute top-[-30px] right-[20%] w-[80px] h-[80px] rounded-full border border-brand-blue/8 pointer-events-none" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -109,12 +103,12 @@ const About = () => {
                 size="lg"
                 className="w-full sm:w-auto text-white px-8 py-4
                   font-bold text-[16.51px] leading-[24.4px]
-                  tracking-[1.25px] uppercase text-center rounded
+                  text-center rounded-full
                   border-0 shadow-none focus:ring-0
-                  bg-blue-600 hover:bg-blue-500 hover:shadow-xl
-                  transition-all duration-300 hover:scale-105"
+                  bg-brand-blue hover:bg-brand-blue/90 hover:shadow-xl
+                  transition-all duration-300 hover:-translate-y-0.5"
               >
-                BOOK TRIAL WALK NOW
+                Book Trial Walk
               </Button>
 
             </div>

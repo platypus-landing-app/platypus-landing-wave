@@ -66,7 +66,7 @@ const FAQ = () => {
                         <motion.div
                             key={index}
                             variants={staggerItem}
-                            className={`bg-[#F8FAFF] rounded-lg overflow-hidden border transition-colors duration-200 mb-4
+                            className={`bg-[#FFFCF0] rounded-lg overflow-hidden border transition-colors duration-200 mb-4
                                 ${openItems.includes(index)
                                     ? 'border-brand-blue/30 border-l-4 border-l-brand-blue'
                                     : 'border-brand-blue/10 hover:border-brand-blue/30'
@@ -76,7 +76,7 @@ const FAQ = () => {
                             itemType="https://schema.org/Question"
                         >
                             <button
-                                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#F0F4FF] transition-colors duration-200"
+                                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[#FFF8E7] transition-colors duration-200"
                                 onClick={() => toggleItem(index)}
                                 aria-expanded={openItems.includes(index)}
                             >
@@ -139,7 +139,7 @@ const FAQ = () => {
                     </p>
                     <a
                         href="tel:+918451880963"
-                        className="inline-flex items-center px-6 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-colors duration-200"
+                        className="inline-flex items-center px-6 py-3 bg-brand-blue text-white font-medium rounded-full hover:bg-brand-blue/90 transition-colors duration-200"
                     >
                         Call us: +91 84518 80963
                     </a>

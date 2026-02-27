@@ -57,9 +57,6 @@ const Features = () => {
         aria-hidden="true"
       />
 
-      {/* Dot grid decoration */}
-      <div className="absolute top-20 right-0 w-[200px] h-[200px] bg-dots opacity-60 pointer-events-none" aria-hidden="true" />
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="fadeUp">
           <div className="text-left mb-12 lg:mb-16">

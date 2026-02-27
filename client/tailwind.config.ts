@@ -70,6 +70,9 @@ export default {
 					green: '#69D84F',
 					purple: '#C071FE',
 					orange: '#FF5B00',
+					cream: '#FFFCF0',
+					'cream-light': '#FFFBF0',
+					'warm-bg': '#FFF8E7',
 				},
 				golden: 'hsl(var(--golden))',
 				sidebar: {
@@ -97,7 +100,7 @@ export default {
 				'gradient-brand': 'var(--gradient-brand)',
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-warm': 'linear-gradient(180deg, #FFFFFF 0%, #FFFCF0 50%, #FFFFFF 100%)',
-				'gradient-blue-subtle': 'linear-gradient(180deg, #F0F6FF 0%, #FFFFFF 100%)',
+				'gradient-warm-subtle': 'linear-gradient(180deg, #FFFCF0 0%, #FFFFFF 100%)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -128,6 +131,10 @@ export default {
 					'0%, 100%': { transform: 'translate(0, 0) scale(1)' },
 					'33%': { transform: 'translate(30px, -20px) scale(1.05)' },
 					'66%': { transform: 'translate(-20px, 15px) scale(0.95)' }
+				},
+				'subtle-pulse-green': {
+					'0%, 100%': { boxShadow: '0 0 0 0 rgba(105, 216, 79, 0.4)' },
+					'50%': { boxShadow: '0 0 0 6px rgba(105, 216, 79, 0)' }
 				}
 			},
 			animation: {
@@ -137,7 +144,8 @@ export default {
 				'wave': 'wave 3s ease-in-out infinite',
 				'float': 'float 3s ease-in-out infinite',
 				'subtle-pulse': 'subtle-pulse 3s ease-in-out infinite',
-				'blob-float': 'blob-float 8s ease-in-out infinite'
+				'blob-float': 'blob-float 8s ease-in-out infinite',
+				'subtle-pulse-green': 'subtle-pulse-green 2s ease-in-out infinite'
 			}
 		}
 	},

@@ -303,7 +303,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-block bg-[#F0F6FF] text-brand-blue text-sm font-medium px-3 py-1.5 rounded-full"
+                        className="inline-block bg-[#FFF8E7] text-brand-blue text-sm font-medium px-3 py-1.5 rounded-full"
                       >
                         {tag}
                       </span>
@@ -337,10 +337,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
-            <section className="py-16 md:py-20 bg-gradient-to-b from-[#F8FAFF] to-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-dots opacity-20 pointer-events-none" />
-              <div className="absolute bottom-10 left-[-40px] w-[100px] h-[100px] rounded-full border border-brand-blue/8 pointer-events-none" />
-
+            <section className="py-16 md:py-20 bg-gradient-to-b from-[#FFFCF0] to-white relative overflow-hidden">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
                   <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">keep reading</span>

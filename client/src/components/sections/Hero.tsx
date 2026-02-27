@@ -10,12 +10,12 @@ const Hero = () => {
   const { openTrialBooking } = useBooking();
 
   const heroVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.7,
         ease: easeOut,
       },
     },
@@ -24,30 +24,14 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative bg-gradient-to-b from-[#F0F6FF] via-white to-white pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden bg-cover bg-center bg-no-repeat lg:min-h-screen"
-      style={{ backgroundImage: `url("/Ellipse 25.png")` }}
+      className="relative bg-[#FFFBF0] pt-12 sm:pt-12 md:pt-16 lg:pt-20 overflow-hidden lg:min-h-screen"
     >
-      {/* Dot grid pattern overlay */}
-      <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
-
-      {/* Floating blobs */}
-      <motion.div
-        className="absolute top-20 left-[-100px] w-[400px] h-[400px] rounded-full bg-[#247AFD]/8 blur-[100px] pointer-events-none"
-        animate={{
-          x: [0, 30, -20, 0],
-          y: [0, -20, 15, 0],
-          scale: [1, 1.05, 0.95, 1],
+      {/* Subtle warm radial gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255, 225, 53, 0.06) 0%, transparent 70%)',
         }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-40 right-[-80px] w-[350px] h-[350px] rounded-full bg-[#FFE135]/12 blur-[100px] pointer-events-none"
-        animate={{
-          x: [0, -20, 30, 0],
-          y: [0, 15, -20, 0],
-          scale: [1, 0.95, 1.05, 1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Container */}
@@ -60,14 +44,38 @@ const Hero = () => {
         >
           {/* Left Content */}
           <motion.div variants={heroVariants} className="z-10 relative">
+            {/* Brand wordmark */}
+            <motion.div variants={heroVariants} className="mb-1 ml-[-2px]">
+              <img
+                src="/platypus-wordmark.svg"
+                alt="Platypus"
+                className="h-[32px] sm:h-[36px] md:h-[40px] lg:h-[44px] w-auto"
+              />
+            </motion.div>
+
+            {/* Tagline — Guttery script, paired with wordmark */}
+            <motion.span
+              variants={heroVariants}
+              className="font-guttery text-brand-blue text-xl sm:text-2xl md:text-[1.75rem] lg:text-[2rem] block mb-4 ml-[-1px]"
+            >
+              be their human
+            </motion.span>
+
+            {/* Heading — serif, sentence case */}
+            <div className="w-full max-w-[500px]">
+              <h1 className="font-domine font-bold text-gray-900 text-[32px] xs:text-[36px] sm:text-[42px] md:text-[48px] lg:text-[52px] leading-[1.15]">
+                India&apos;s Dog Walking Experts
+              </h1>
+            </div>
+
             {/* Social proof badge */}
             <motion.div
               variants={heroVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-blue/10 shadow-sm mb-4"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-yellow/20 shadow-sm mt-5 md:mt-6"
             >
               <div className="flex -space-x-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 text-[#FFE135] fill-[#FFE135]" />
+                  <Star key={i} className="w-3.5 h-3.5 text-brand-yellow fill-brand-yellow" />
                 ))}
               </div>
               <span className="text-sm font-medium text-gray-700">4.9 rated</span>
@@ -75,89 +83,55 @@ const Hero = () => {
               <span className="text-sm font-medium text-gray-700">500+ happy families</span>
             </motion.div>
 
-            {/* Guttery tagline */}
-            <motion.span
-              variants={heroVariants}
-              className="font-guttery text-[#247AFD] text-lg sm:text-xl md:text-2xl block mb-2"
-            >
-              be their human
-            </motion.span>
-
-            {/* Heading */}
-            <div className="w-full max-w-[400px]">
-              <h1 className="font-funnel flex flex-col text-left tracking-[0.06em]">
-                <motion.span
-                  variants={heroVariants}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-[5xl] font-light text-[#FFE135] text-blur-shadow inline-block"
-                >
-                  PLATYPUS
-                </motion.span>
-
-                <motion.span
-                  variants={heroVariants}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mt-2"
-                >
-                  INDIA&apos;S DOG
-                </motion.span>
-
-                <motion.span
-                  variants={heroVariants}
-                  className="text-[36px] xs:text-[42px] sm:text-[52px] md:text-[55px] lg:text-6xl font-extrabold text-black text-blur-shadow inline-block mt-2"
-                >
-                  WALKING&nbsp;EXPERTS
-                </motion.span>
-              </h1>
-            </div>
-
-            {/* SEO H2 Subheading */}
+            {/* SEO H2 Subheading — supportive, not competing */}
             <motion.div
               variants={heroVariants}
-              className="mt-4 md:mt-6"
+              className="mt-4 md:mt-5"
             >
-              <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-[#247AFD] leading-tight">
-                Mumbai&apos;s #1 Certified Dog Walking Service with Live GPS Tracking
+              <h2 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-medium text-gray-600 leading-snug">
+                Mumbai&apos;s certified dog walking service with live GPS tracking
               </h2>
             </motion.div>
 
-            {/* Paragraph */}
+            {/* Body copy */}
             <motion.div
               variants={heroVariants}
-              className="mt-6 md:mt-8 lg:mt-10 w-full sm:w-[90%] md:w-[500px] lg:w-[638px] xl:w-[670px]"
+              className="mt-5 md:mt-6 w-full sm:w-[90%] md:w-[500px] lg:w-[580px]"
             >
-              <p className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[22px] xl:text-[22px] text-[#1A1A1A] font-normal font-segoe leading-[160%] sm:leading-[170%] md:leading-[180%] lg:leading-[180%] xl:leading-[130%]">
-                Book a Trial Walk Today: Safe, Joyful, Professionally Trained
-                Walkers. Live GPS tracking and verified Guardians across Mumbai.
+              <p className="text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] text-gray-700 font-funnel leading-[1.7]">
+                Safe, joyful, professionally trained walkers. Live GPS tracking
+                and verified Guardians across Mumbai.
               </p>
             </motion.div>
 
             {/* Buttons */}
             <motion.div
               variants={heroVariants}
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-6 lg:pt-0 mt-8 md:mt-10 lg:mt-12"
+              className="flex flex-col sm:flex-row gap-4 md:gap-5 mt-8 md:mt-10"
             >
               <Button
                 onClick={() => { trackCTAClick('hero_book_trial'); openTrialBooking(); }}
                 size="lg"
-                className="text-[16px] sm:text-[18px] md:text-[20px] text-white px-8 md:px-10 h-[48px] md:h-[55px] w-full sm:w-[200px] md:w-[213px] py-3 md:py-4 font-medium rounded-[4px]
-                bg-[#247AFD] hover:bg-[#1A5BC4] hover:shadow-[0_0_20px_rgba(36,122,253,0.3)] transition-all duration-300 hover:scale-105"
+                className="text-[16px] sm:text-[17px] md:text-[18px] text-white px-8 md:px-10 h-[48px] md:h-[52px] w-full sm:w-auto py-3 font-medium rounded-full
+                bg-brand-blue hover:bg-brand-blue-dark hover:shadow-brand transition-all duration-300 hover:-translate-y-0.5"
               >
-                Book Trial Now
+                Book a Free Trial
               </Button>
 
               <Button
                 variant="outline"
                 size="lg"
-                className="text-[#247AFD] hover:bg-blue-50 px-6 md:px-8 h-[48px] md:h-[55px]
-           w-full sm:w-[240px] md:w-[257px] rounded-[4px] py-3 md:py-4
-           text-sm flex items-center gap-3 shadow-md hover:shadow-lg
-           transition-all duration-300 hover:scale-105"
+                className="text-gray-800 hover:bg-white/60 px-6 md:px-8 h-[48px] md:h-[52px]
+                  w-full sm:w-auto rounded-full py-3
+                  text-sm flex items-center gap-3 shadow-sm hover:shadow-md border-gray-200
+                  transition-all duration-300 hover:-translate-y-0.5"
               >
-                <div className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-b from-[#247AFD] to-[#5A9AFE] flex items-center rounded-full justify-center">
-                  <img src="/Live.png" alt="Live tracking indicator" loading="lazy" decoding="async" className="w-4 md:w-5 h-4 md:h-5 text-white" />
+                <div className="relative flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-brand-green animate-subtle-pulse-green" />
                 </div>
                 <div className="text-left">
-                  <div className="font-semibold text-xs md:text-sm text-[#000000]">Live Now</div>
-                  <div className="text-[11px] md:text-[13.89px] font-medium text-[#2D6A1F]">Walking in your area</div>
+                  <div className="font-semibold text-xs md:text-sm text-gray-900">Live Now</div>
+                  <div className="text-[11px] md:text-[13px] font-medium text-brand-green">Walking in your area</div>
                 </div>
               </Button>
             </motion.div>
@@ -165,7 +139,12 @@ const Hero = () => {
 
           {/* Right Image - Desktop */}
           <div className="hidden lg:flex justify-end items-center">
-            <div className="relative animate-float">
+            <div className="relative">
+              {/* Organic blob shape behind image */}
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[110%] h-[95%] bg-brand-yellow/10 -z-10"
+                style={{ borderRadius: '60% 40% 55% 45% / 50% 60% 40% 50%' }}
+              />
               <picture>
                 <source
                   type="image/avif"
@@ -183,15 +162,9 @@ const Hero = () => {
                   width="502"
                   height="525"
                   fetchPriority="high"
-                  className="h-[525px] w-[502px] object-contain rounded-3xl"
+                  className="h-[525px] w-[502px] object-contain"
                 />
               </picture>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 0.3, scale: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-3xl -z-10"
-              ></motion.div>
             </div>
           </div>
 
@@ -201,6 +174,11 @@ const Hero = () => {
             className="lg:hidden flex justify-center mt-4"
           >
             <div className="relative">
+              {/* Organic blob shape behind image */}
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[110%] h-[95%] bg-brand-yellow/10 -z-10"
+                style={{ borderRadius: '60% 40% 55% 45% / 50% 60% 40% 50%' }}
+              />
               <picture>
                 <source
                   type="image/avif"
@@ -218,10 +196,9 @@ const Hero = () => {
                   width="360"
                   height="376"
                   fetchPriority="high"
-                  className="h-[280px] sm:h-[340px] w-auto object-contain rounded-2xl"
+                  className="h-[280px] sm:h-[340px] w-auto object-contain"
                 />
               </picture>
-              <div className="absolute -top-3 -left-3 w-full h-full bg-gradient-to-br from-blue-200 to-yellow-200 rounded-2xl -z-10 opacity-30" />
             </div>
           </motion.div>
         </motion.div>

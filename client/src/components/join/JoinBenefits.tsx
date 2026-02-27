@@ -41,10 +41,7 @@ const benefits = [
 
 export default function JoinBenefits() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-      {/* Dot grid decoration */}
-      <div className="absolute top-10 left-0 w-[180px] h-[180px] bg-dots opacity-40 pointer-events-none" aria-hidden="true" />
-
+    <section className="py-16 md:py-24 bg-gradient-to-b from-[#FFFCF0] to-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">benefits</span>

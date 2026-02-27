@@ -59,8 +59,7 @@ export default function ComingSoonServicePage({ service }: ComingSoonServicePage
             <ScrollReveal variant="fadeUp">
               <p className="text-lg text-gray-700 leading-relaxed mb-10">{service.description}</p>
 
-              <div className="bg-gradient-to-br from-blue-50 to-[#F0F6FF] rounded-2xl p-8 border border-blue-100 relative overflow-hidden">
-                <div className="absolute top-[-20px] right-[-20px] w-[80px] h-[80px] rounded-full border border-brand-blue/10 pointer-events-none" />
+              <div className="bg-gradient-to-br from-[#FFFCF0] to-[#FFF8E7] rounded-2xl p-8 border border-brand-yellow/15 relative overflow-hidden">
                 <h2 className="text-xl font-bold text-gray-900 mb-2">
                   Be the first to know when we launch
                 </h2>
@@ -74,10 +73,7 @@ export default function ComingSoonServicePage({ service }: ComingSoonServicePage
         </section>
 
         {/* What to Expect */}
-        <section className="py-16 md:py-24 bg-gradient-to-b from-[#F8FAFF] to-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-dots opacity-20 pointer-events-none" />
-          <div className="absolute bottom-20 left-[-50px] w-[120px] h-[120px] rounded-full border border-brand-blue/8 pointer-events-none" />
-
+        <section className="py-16 md:py-24 bg-gradient-to-b from-[#FFFCF0] to-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <ScrollReveal variant="fadeUp">
               <div className="text-center mb-12">

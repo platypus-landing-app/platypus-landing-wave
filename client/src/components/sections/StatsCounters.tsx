@@ -24,7 +24,7 @@ const StatsCounters = () => {
   return (
     <div className="relative">
       {/* Wave top — blends from the About section's light blue */}
-      <WaveDivider color="#1A5BC4" className="relative -mb-1 bg-gradient-to-br from-[#E3ECFA] to-[#EEF3FC]" />
+      <WaveDivider color="#1A5BC4" className="relative -mb-1 bg-gradient-to-br from-[#FFFBF0] to-[#FFFCF0]" />
 
       <section className="py-20 md:py-28 bg-gradient-to-r from-[#1A5BC4] to-[#247AFD] relative overflow-hidden">
         {/* Noise texture */}
