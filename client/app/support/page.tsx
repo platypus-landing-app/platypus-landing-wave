@@ -92,10 +92,10 @@ export default function SupportPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
                 <a
-                  href="mailto:sagar@theplatypus.in"
+                  href="mailto:support@theplatypus.in"
                   className="text-blue-600 hover:underline"
                 >
-                  sagar@theplatypus.in
+                  support@theplatypus.in
                 </a>
                 <p className="text-sm text-gray-500 mt-2">We respond within 24 hours</p>
               </div>

@@ -187,10 +187,10 @@ export default function PrivacyPolicyPage() {
                 <p className="mt-3">
                   To exercise any of these rights, please email us at{' '}
                   <a
-                    href="mailto:sagar@theplatypus.in"
+                    href="mailto:support@theplatypus.in"
                     className="text-blue-600 hover:underline"
                   >
-                    sagar@theplatypus.in
+                    support@theplatypus.in
                   </a>
                   . We will respond to your request within 30 days.
                 </p>
@@ -269,10 +269,10 @@ export default function PrivacyPolicyPage() {
                   <li>
                     <strong>Email:</strong>{' '}
                     <a
-                      href="mailto:sagar@theplatypus.in"
+                      href="mailto:support@theplatypus.in"
                       className="text-blue-600 hover:underline"
                     >
-                      sagar@theplatypus.in
+                      support@theplatypus.in
                     </a>
                   </li>
                   <li>

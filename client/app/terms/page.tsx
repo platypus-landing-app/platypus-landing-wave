@@ -273,10 +273,10 @@ export default function TermsOfServicePage() {
                   <li>
                     <strong>Email:</strong>{' '}
                     <a
-                      href="mailto:sagar@theplatypus.in"
+                      href="mailto:support@theplatypus.in"
                       className="text-blue-600 hover:underline"
                     >
-                      sagar@theplatypus.in
+                      support@theplatypus.in
                     </a>
                   </li>
                   <li>

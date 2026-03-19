@@ -101,10 +101,10 @@ export default function RefundPolicyPage() {
                   concerns, failure to follow instructions), please report the issue through the app
                   or email us at{' '}
                   <a
-                    href="mailto:sagar@theplatypus.in"
+                    href="mailto:support@theplatypus.in"
                     className="text-blue-600 hover:underline"
                   >
-                    sagar@theplatypus.in
+                    support@theplatypus.in
                   </a>{' '}
                   within 24 hours of the walk.
                 </p>
@@ -166,10 +166,10 @@ export default function RefundPolicyPage() {
                   <li>
                     <strong>Email:</strong>{' '}
                     <a
-                      href="mailto:sagar@theplatypus.in"
+                      href="mailto:support@theplatypus.in"
                       className="text-blue-600 hover:underline"
                     >
-                      sagar@theplatypus.in
+                      support@theplatypus.in
                     </a>{' '}
                     with your booking ID and reason for refund.
                   </li>
@@ -208,10 +208,10 @@ export default function RefundPolicyPage() {
                   <li>
                     <strong>Email:</strong>{' '}
                     <a
-                      href="mailto:sagar@theplatypus.in"
+                      href="mailto:support@theplatypus.in"
                       className="text-blue-600 hover:underline"
                     >
-                      sagar@theplatypus.in
+                      support@theplatypus.in
                     </a>
                   </li>
                   <li>
