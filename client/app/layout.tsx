@@ -150,7 +150,7 @@ export default function RootLayout({
                 window.googleMapsLoaded = true;
 
                 const script = document.createElement('script');
-                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8' + '&libraries=places' + '&region=IN' + '&loading=async';
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAZZo-vH9yr_CEwAU5UhNvwITAVtH5BuLY' + '&libraries=places' + '&region=IN' + '&loading=async';
                 script.async = true;
                 script.defer = true;
                 document.head.appendChild(script);

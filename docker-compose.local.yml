@@ -75,7 +75,7 @@ services:
       dockerfile: ../Dockerfile.frontend
       args:
         # Your actual environment variables
-        - VITE_GOOGLE_MAPS_API_KEY=AIzaSyDPagXMYjDaZHTwwph1RAx485E8GEq8RO8
+        - VITE_GOOGLE_MAPS_API_KEY=AIzaSyAZZo-vH9yr_CEwAU5UhNvwITAVtH5BuLY
         - VITE_BACKEND_API_URL=http://api.theplatypus.in/api
         - VITE_GA_MEASUREMENT_ID=GTM-K69JPQWK
         # Legacy Supabase (in case still needed)
