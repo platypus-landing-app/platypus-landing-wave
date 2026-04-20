@@ -57,8 +57,7 @@ const Hero = () => {
             >
               A quiet, careful walk
               <br />
-              for the dog you
-              <span className="italic text-brand-ink"> love</span>
+              for your dog
               <span className="inline-block w-2 h-2 rounded-full bg-brand-yellow ml-1 align-top mt-4" />
             </motion.h1>
 
