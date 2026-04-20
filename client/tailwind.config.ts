@@ -23,6 +23,8 @@ export default {
 			fontFamily: {
 				funnel: ['var(--font-funnel)', 'sans-serif'],
 				domine: ['var(--font-domine)', 'Georgia', 'serif'],
+				mono: ['var(--font-jetbrains)', 'JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+				// Guttery retained for legacy pages (privacy/terms/etc) but NOT used on Direction D surfaces.
 				guttery: ['Guttery', 'cursive'],
 				segoe: ['"Segoe UI"', '-apple-system', 'BlinkMacSystemFont', 'Roboto', 'Arial', 'sans-serif'],
 			},
@@ -62,17 +64,32 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				brand: {
+					// Direction D surfaces — two-tone: bone canvas + white card + cream secondary.
+					bone: '#FBF9F3',         // scaffold canvas
+					cream: '#F7F4EC',         // secondary elevated surface
+					'cream-light': '#FBF9F3', // legacy alias -> bone (back-compat for older classes)
+					'warm-bg': '#F7F4EC',     // legacy alias -> cream (back-compat)
+					// Direction D ink + rule
+					ink: '#0B0B0B',
+					graphite: '#2B2B2B',
+					slate: '#6B6B6B',
+					muted: '#9A9A94',
+					rule: '#E5E1D7',
+					'rule-soft': '#EDEAE0',
+					// Accent palette (retained — Direction D keeps blue for motion / GPS / links)
 					blue: '#247AFD',
 					'blue-dark': '#1A5BC4',
 					'blue-light': '#5A9AFE',
+					'blue-soft': '#E0EBFF',
 					yellow: '#FFE135',
 					'yellow-dark': '#E6CA2F',
-					green: '#69D84F',
+					'yellow-soft': '#FFF4A6',
+					green: '#2E7D5B',        // Direction D fresh green (darker, editorial)
+					'green-soft': '#D7ECDF',
 					purple: '#C071FE',
+					'purple-soft': '#F0DFFF',
 					orange: '#FF5B00',
-					cream: '#FFFCF0',
-					'cream-light': '#FFFBF0',
-					'warm-bg': '#FFF8E7',
+					'orange-soft': '#FFDCC7',
 				},
 				golden: 'hsl(var(--golden))',
 				sidebar: {
@@ -99,8 +116,9 @@ export default {
 			backgroundImage: {
 				'gradient-brand': 'var(--gradient-brand)',
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-warm': 'linear-gradient(180deg, #FFFFFF 0%, #FFFCF0 50%, #FFFFFF 100%)',
-				'gradient-warm-subtle': 'linear-gradient(180deg, #FFFCF0 0%, #FFFFFF 100%)',
+				// Direction D: warm gradients flattened to bone + white two-tone. No flood-fill yellow.
+				'gradient-warm': 'linear-gradient(180deg, #FFFFFF 0%, #FBF9F3 50%, #FFFFFF 100%)',
+				'gradient-warm-subtle': 'linear-gradient(180deg, #FBF9F3 0%, #FFFFFF 100%)',
 			},
 			keyframes: {
 				'accordion-down': {

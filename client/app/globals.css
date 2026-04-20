@@ -6,50 +6,56 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 7%;
+    /* Direction D — bone scaffold (#FBF9F3), white cards, ink #0B0B0B type.
+       Two-tone surface discipline: scaffold ≠ card. See CLAUDE.md anti-patterns. */
+    --background: 44 47% 97%;       /* bone #FBF9F3 */
+    --foreground: 0 0% 4%;          /* ink #0B0B0B */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
+    --card: 0 0% 100%;              /* pure white card on bone canvas */
+    --card-foreground: 0 0% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover-foreground: 0 0% 4%;
 
-    /* Primary: Clear Blue #247AFD */
+    /* Primary: Clear Blue #247AFD (Direction D retains blue for motion / GPS / links) */
     --primary: 216 98% 57%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 216 98% 50%;
 
-    --secondary: 216 90% 95%;
-    --secondary-foreground: 216 98% 30%;
+    --secondary: 44 30% 94%;        /* cream #F7F4EC */
+    --secondary-foreground: 0 0% 16%;
 
-    --muted: 216 20% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 46 24% 93%;            /* cream family */
+    --muted-foreground: 0 0% 42%;   /* slate #6B6B6B */
 
-    /* Secondary: Fresh Green #69D84F */
-    --accent: 109 64% 58%;
-    --accent-foreground: 109 64% 20%;
+    /* Accent: Direction D fresh green (editorial, not neon) */
+    --accent: 151 46% 33%;          /* #2E7D5B */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 18 100% 50%;     /* bright orange #FF5B00 for alerts */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 92%;
+    --border: 44 26% 87%;           /* rule #E5E1D7 */
+    --input: 44 26% 87%;
     --ring: 216 98% 57%;
 
-    /* Brand palette as CSS vars for direct use */
+    /* Brand palette as CSS vars — Direction D */
+    --brand-bone: 44 47% 97%;
+    --brand-cream: 44 30% 94%;
+    --brand-ink: 0 0% 4%;
     --brand-blue: 216 98% 57%;
     --brand-yellow: 51 100% 60%;
-    --brand-green: 109 64% 58%;
+    --brand-green: 151 46% 33%;
     --brand-purple: 274 99% 72%;
-    --brand-orange: 21 100% 50%;
+    --brand-orange: 18 100% 50%;
 
     --golden: 51 100% 60%;
 
     --gradient-brand: linear-gradient(135deg, #247AFD, #1A5BC4);
-    --gradient-hero: linear-gradient(180deg, #FFFBF0, #FFF8E7);
+    /* Hero gradient flattened — Direction D doesn't flood-fill yellow. Bone only. */
+    --gradient-hero: linear-gradient(180deg, #FBF9F3, #FBF9F3);
 
-    --radius: 1rem;
+    --radius: 0.875rem;              /* 14px — moderate editorial radius, not pill */
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -171,10 +177,10 @@
   background-size: 24px 24px;
 }
 
-/* Custom Scroller Styles */
+/* Custom Scroller Styles — Direction D: ink on bone, no warm flood */
 .custom-scroller {
   scrollbar-width: thin;
-  scrollbar-color: #247AFD #FFF8E7;
+  scrollbar-color: #247AFD #F7F4EC;
 }
 
 .custom-scroller::-webkit-scrollbar {
@@ -182,7 +188,7 @@
 }
 
 .custom-scroller::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, #FFF8E7 0%, #FFFBF0 50%, #FFF8E7 100%);
+  background: #F7F4EC;
   border-radius: 10px;
 }
 

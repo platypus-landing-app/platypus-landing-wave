@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Funnel_Sans, Domine } from "next/font/google";
+import { Funnel_Sans, Domine, JetBrains_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -15,6 +15,14 @@ const domine = Domine({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-domine',
+});
+
+// Direction D: JetBrains Mono for metrics / eyebrow numerics / data.
+const jetbrainsMono = JetBrains_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains',
 });
 
 export const metadata: Metadata = {
@@ -81,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${funnelSans.variable} ${domine.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${funnelSans.variable} ${domine.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Critical CSS - Inline to prevent render blocking */}
         <style dangerouslySetInnerHTML={{__html: `
@@ -91,15 +99,15 @@ export default function RootLayout({
             font-display: swap;
           }
           :root {
-            --background: 0 0% 100%;
-            --foreground: 0 0% 7%;
+            --background: 44 47% 97%;
+            --foreground: 0 0% 4%;
             --primary: 216 98% 57%;
             --primary-foreground: 0 0% 100%;
-            --muted: 216 20% 95%;
-            --muted-foreground: 0 0% 40%;
-            --border: 0 0% 90%;
+            --muted: 46 24% 93%;
+            --muted-foreground: 0 0% 42%;
+            --border: 44 26% 87%;
             --ring: 216 98% 57%;
-            --radius: 1rem;
+            --radius: 0.875rem;
           }
           * {
             border-color: hsl(var(--border));
@@ -111,6 +119,7 @@ export default function RootLayout({
           }
           h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-domine), Georgia, serif;
+            letter-spacing: -0.02em;
           }
         `}} />
 
