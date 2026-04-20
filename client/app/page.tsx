@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Navigation from '@/components/layout/Navigation';
 import Hero from '@/components/sections/Hero';
-import WaveDivider from '@/components/ui/WaveDivider';
 import HeroFeatures from '@/components/sections/HeroFeatures';
 import Script from 'next/script';
 
@@ -229,7 +228,8 @@ export default function Home() {
 
         <main id="main-content">
           <Hero />
-          <WaveDivider color="#ffffff" className="-mt-1 bg-[#FFFBF0]" />
+          {/* Direction D: no wave divider — the bone scaffold carries through.
+              Rule: two-tone is the mockup, not a variation. */}
           <HeroFeatures />
           <Features />
           <OurServices />
