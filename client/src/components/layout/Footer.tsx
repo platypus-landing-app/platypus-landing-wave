@@ -132,14 +132,12 @@ const Footer = () => {
         </div>
       </footer>
 
-      {/* Bottom Bar */}
-      <div
-        className="w-full h-[50px] flex items-center justify-center"
-        style={{
-          background: "linear-gradient(98.82deg, #7E650B -13.7%, #F5F5F4 -13.69%, #FFE135 15.19%, #FFE135 40.43%, #FFE135 71.72%)",
-        }}
-      >
-        <p className="text-gray-900 text-sm">&copy; Third Planet Solutions Private Limited</p>
+      {/* Direction D: restrained bone bottom bar with a single yellow marker as accent, not flood */}
+      <div className="w-full h-[52px] flex items-center justify-center bg-brand-bone border-t border-brand-rule">
+        <p className="text-brand-graphite text-[12px] font-medium flex items-center gap-2">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-yellow" />
+          <span>&copy; Third Planet Solutions Private Limited</span>
+        </p>
       </div>
     </>
   );

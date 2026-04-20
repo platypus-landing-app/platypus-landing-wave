@@ -100,11 +100,10 @@ const Navigation = () => {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50
-  backdrop-blur-md border-b border-border/50
-  transition-all duration-300
+  border-b transition-all duration-300
   ${scrolled
-    ? 'bg-background/95 supports-[backdrop-filter]:bg-background/85 shadow-lg'
-    : 'bg-background/80 supports-[backdrop-filter]:bg-background/60 shadow-md'
+    ? 'bg-brand-bone/95 supports-[backdrop-filter]:bg-brand-bone/85 backdrop-blur-md border-brand-rule'
+    : 'bg-brand-bone/80 supports-[backdrop-filter]:bg-brand-bone/60 backdrop-blur-md border-transparent'
   }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -171,14 +170,16 @@ const Navigation = () => {
 
                     {/* Right side: Trial Button (desktop) + Hamburger (mobile) */}
                     <div className="flex items-center space-x-4">
-                        {/* Trial Button - Desktop only */}
+                        {/* Direction D: ink CTA with moderate radius, no pulse — editorial register */}
                         <div className="hidden md:block">
                             <Button
                                 onClick={openTrialBooking}
-                                className="text-white px-6 py-3 rounded font-medium
-        bg-[#247AFD] hover:bg-[#1A5BC4] hover:shadow-xl transition-all duration-300 hover:scale-105 animate-subtle-pulse"
+                                className="bg-brand-ink text-brand-bone hover:bg-brand-graphite
+                                    px-5 h-10 rounded-xl font-semibold text-[13px] tracking-[-0.005em]
+                                    shadow-none transition-colors"
                             >
-                                BOOK TRIAL NOW
+                                Book a trial
+                                <span className="ml-1.5 text-brand-yellow">→</span>
                             </Button>
                         </div>
 
@@ -261,9 +262,10 @@ const Navigation = () => {
                             >
                                 <Button
                                     onClick={() => { setIsOpen(false); openTrialBooking(); }}
-                                    className="w-full bg-[#247AFD] hover:bg-[#1A5BC4] text-white py-3 rounded-lg font-medium shadow-brand transition-all duration-300"
+                                    className="w-full bg-brand-ink hover:bg-brand-graphite text-brand-bone py-3 rounded-xl font-semibold transition-colors"
                                 >
-                                    BOOK TRIAL NOW
+                                    Book a trial
+                                    <span className="ml-1.5 text-brand-yellow">→</span>
                                 </Button>
                             </motion.div>
                         </div>

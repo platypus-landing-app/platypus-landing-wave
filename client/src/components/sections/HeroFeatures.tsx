@@ -5,21 +5,25 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import StaggerContainer, { staggerItem } from "@/components/ui/StaggerContainer";
 import { motion } from "framer-motion";
 
+/**
+ * Direction D: four editorial stat tiles on bone scaffold, separated by hairline rules.
+ * No colour floods on the icon bowls — monochrome iconography, one accent per card.
+ */
 const HeroFeatures = () => {
   const features = [
-    { icon: PawPrint, text: "50+ Dogs Walked Daily", color: "bg-brand-blue/10 text-brand-blue" },
-    { icon: MapPin, text: "Live GPS Tracking", color: "bg-brand-green/10 text-brand-green" },
-    { icon: Star, text: "Safety & Hygiene Protocols", color: "bg-brand-orange/10 text-brand-orange" },
-    { icon: ShieldCheck, text: "Certified Guardians", color: "bg-brand-purple/10 text-brand-purple" },
+    { icon: PawPrint, label: "50+", text: "Dogs walked daily" },
+    { icon: MapPin, label: "Live", text: "GPS tracking on every walk" },
+    { icon: Star, label: "4.9", text: "Parent rating · 127 reviews" },
+    { icon: ShieldCheck, label: "100%", text: "Certified guardians" },
   ];
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-[#FFFCF0] py-6 sm:py-10">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-brand-bone border-y border-brand-rule">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-14">
         <ScrollReveal variant="fadeUp">
           <StaggerContainer
-            staggerDelay={0.08}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            staggerDelay={0.06}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-x-10 lg:divide-x lg:divide-brand-rule"
           >
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -27,12 +31,13 @@ const HeroFeatures = () => {
                 <motion.div
                   key={index}
                   variants={staggerItem}
-                  className="flex flex-col items-center text-center gap-3 p-4 sm:p-5 rounded-xl hover:bg-gray-50 transition-colors duration-300"
+                  className="flex flex-col items-start text-left gap-3 lg:px-8 first:lg:pl-0 last:lg:pr-0"
                 >
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full ${feature.color} flex items-center justify-center`}>
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <Icon className="w-5 h-5 text-brand-ink" strokeWidth={1.5} />
+                  <div className="font-domine text-[32px] md:text-[36px] leading-none font-medium text-brand-ink tracking-[-0.02em]">
+                    {feature.label}
                   </div>
-                  <span className="font-semibold text-[13px] sm:text-[15px] text-gray-800 leading-tight">
+                  <span className="font-mono text-[11px] tracking-[0.08em] uppercase text-brand-slate font-semibold leading-snug">
                     {feature.text}
                   </span>
                 </motion.div>
