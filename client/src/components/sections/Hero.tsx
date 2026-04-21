@@ -176,23 +176,37 @@ const Hero = () => {
             variants={photo}
             className="relative w-full"
           >
-            {/* Soft radial mask fades edges into the bone canvas — no card, no border. */}
-            <div
-              className="relative aspect-[4/5] md:aspect-[5/6] w-full"
-              style={{
-                maskImage:
-                  'radial-gradient(ellipse 90% 95% at 50% 48%, black 58%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.35) 88%, transparent 100%)',
-                WebkitMaskImage:
-                  'radial-gradient(ellipse 90% 95% at 50% 48%, black 58%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.35) 88%, transparent 100%)',
-              }}
-            >
-              <img
-                src="/images/hero/walk-thakurvillage-hero.jpg"
-                alt="A quiet labrador, watching morning light in a Thakur Village home."
-                width={1024}
-                height={1536}
-                fetchPriority="high"
-                className="absolute inset-0 w-full h-full object-cover"
+            {/* Smudged feather — edges dissolve into the bone canvas.
+                Layered: (1) soft alpha mask on the photo with long gradient,
+                (2) bone-coloured radial overlay that swallows the outer ring. */}
+            <div className="relative aspect-[4/5] md:aspect-[5/6] w-full">
+              <div
+                className="absolute inset-0"
+                style={{
+                  maskImage:
+                    'radial-gradient(ellipse 85% 90% at 50% 46%, black 8%, rgba(0,0,0,0.95) 28%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.38) 72%, rgba(0,0,0,0.12) 90%, transparent 100%)',
+                  WebkitMaskImage:
+                    'radial-gradient(ellipse 85% 90% at 50% 46%, black 8%, rgba(0,0,0,0.95) 28%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.38) 72%, rgba(0,0,0,0.12) 90%, transparent 100%)',
+                }}
+              >
+                <img
+                  src="/images/hero/walk-thakurvillage-hero.jpg"
+                  alt="A quiet labrador, watching morning light in a Thakur Village home."
+                  width={1024}
+                  height={1536}
+                  fetchPriority="high"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Bone-coloured smudge overlay — extra softness at the edges so the
+                  image truly dissolves into the page canvas. */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(ellipse 80% 85% at 50% 46%, transparent 35%, rgba(251,249,243,0.18) 60%, rgba(251,249,243,0.55) 80%, rgba(251,249,243,0.9) 95%, #FBF9F3 100%)',
+                }}
               />
             </div>
 
