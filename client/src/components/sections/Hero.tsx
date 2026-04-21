@@ -115,32 +115,38 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right — hero photo framed in bone-ring on white card */}
+          {/* Right — hero photo feathered into bone canvas, no frame */}
           <motion.div
             variants={heroVariants}
             className="relative w-full"
           >
-            {/* Bone ring frame over white card — Direction D "bone ring on ink surface" adapted for light scaffold */}
-            <div className="relative bg-white rounded-[28px] p-3 md:p-4 border border-brand-rule shadow-[0_1px_2px_rgba(11,11,11,0.04)]">
-              <div className="relative rounded-[20px] overflow-hidden bg-brand-cream aspect-[4/5] md:aspect-[5/6]">
-                <img
-                  src="/images/hero/walk-thakurvillage-hero.jpg"
-                  alt="A Platypus guardian walking a dog in a Thakur Village lane, Mumbai."
-                  width={640}
-                  height={800}
-                  fetchPriority="high"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
+            {/* Soft radial mask fades edges into the bone canvas — no card, no border. */}
+            <div
+              className="relative aspect-[4/5] md:aspect-[5/6] w-full"
+              style={{
+                maskImage:
+                  'radial-gradient(ellipse 90% 95% at 50% 48%, black 58%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.35) 88%, transparent 100%)',
+                WebkitMaskImage:
+                  'radial-gradient(ellipse 90% 95% at 50% 48%, black 58%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.35) 88%, transparent 100%)',
+              }}
+            >
+              <img
+                src="/images/hero/walk-thakurvillage-hero.jpg"
+                alt="A quiet labrador, watching morning light in a Thakur Village home."
+                width={1024}
+                height={1536}
+                fetchPriority="high"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
 
-              {/* Floating editorial caption card — inset bottom-left */}
-              <div className="absolute left-5 bottom-5 md:left-6 md:bottom-6 bg-brand-ink text-brand-bone rounded-xl px-4 py-3 max-w-[240px]">
-                <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-brand-yellow font-semibold mb-1.5">
-                  Live · 5:58 PM
-                </div>
-                <div className="font-domine text-[14px] leading-[1.3] font-medium">
-                  Leo is on his evening walk with Sagar.
-                </div>
+            {/* Floating editorial caption — glass on bone, no hard frame */}
+            <div className="absolute left-5 bottom-7 md:left-6 md:bottom-10 bg-brand-ink/95 backdrop-blur-sm text-brand-bone rounded-xl px-4 py-3 max-w-[240px] shadow-[0_2px_18px_rgba(11,11,11,0.08)]">
+              <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-brand-yellow font-semibold mb-1.5">
+                Live · 5:58 PM
+              </div>
+              <div className="font-domine text-[14px] leading-[1.3] font-medium">
+                Leo is on his evening walk with Sagar.
               </div>
             </div>
           </motion.div>
