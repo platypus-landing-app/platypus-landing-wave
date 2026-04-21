@@ -176,36 +176,29 @@ const Hero = () => {
             variants={photo}
             className="relative w-full"
           >
-            {/* Smudged feather — edges dissolve into the bone canvas.
-                Layered: (1) soft alpha mask on the photo with long gradient,
-                (2) bone-coloured radial overlay that swallows the outer ring. */}
+            {/* Smudged feather — photo dissolves into bone canvas.
+                Aggressive bone radial overlay that starts painting at 25% and
+                reaches full bone at the edges. No frame, no border. */}
             <div className="relative aspect-[4/5] md:aspect-[5/6] w-full">
-              <div
-                className="absolute inset-0"
-                style={{
-                  maskImage:
-                    'radial-gradient(ellipse 85% 90% at 50% 46%, black 8%, rgba(0,0,0,0.95) 28%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.38) 72%, rgba(0,0,0,0.12) 90%, transparent 100%)',
-                  WebkitMaskImage:
-                    'radial-gradient(ellipse 85% 90% at 50% 46%, black 8%, rgba(0,0,0,0.95) 28%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.38) 72%, rgba(0,0,0,0.12) 90%, transparent 100%)',
-                }}
-              >
-                <img
-                  src="/images/hero/walk-thakurvillage-hero.jpg"
-                  alt="A quiet labrador, watching morning light in a Thakur Village home."
-                  width={1024}
-                  height={1536}
-                  fetchPriority="high"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
+              <img
+                src="/images/hero/walk-thakurvillage-hero.jpg"
+                alt="A quiet labrador, watching morning light in a Thakur Village home."
+                width={1024}
+                height={1536}
+                fetchPriority="high"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
 
-              {/* Bone-coloured smudge overlay — extra softness at the edges so the
-                  image truly dissolves into the page canvas. */}
+              {/* Bone vignette — aggressive smudge so edges genuinely disappear
+                  into the page canvas. Four layered radial stops, no hard edge. */}
               <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute -inset-px pointer-events-none"
                 style={{
-                  background:
-                    'radial-gradient(ellipse 80% 85% at 50% 46%, transparent 35%, rgba(251,249,243,0.18) 60%, rgba(251,249,243,0.55) 80%, rgba(251,249,243,0.9) 95%, #FBF9F3 100%)',
+                  background: [
+                    'radial-gradient(ellipse 65% 72% at 50% 44%, transparent 10%, rgba(251,249,243,0.08) 30%, rgba(251,249,243,0.32) 50%, rgba(251,249,243,0.68) 72%, rgba(251,249,243,0.92) 88%, #FBF9F3 100%)',
+                    'linear-gradient(to right, #FBF9F3 0%, rgba(251,249,243,0.5) 8%, transparent 22%, transparent 78%, rgba(251,249,243,0.5) 92%, #FBF9F3 100%)',
+                    'linear-gradient(to bottom, #FBF9F3 0%, rgba(251,249,243,0.5) 6%, transparent 18%, transparent 82%, rgba(251,249,243,0.5) 94%, #FBF9F3 100%)',
+                  ].join(', '),
                 }}
               />
             </div>
