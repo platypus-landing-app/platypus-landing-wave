@@ -182,7 +182,7 @@ const Hero = () => {
             <div className="relative aspect-[4/5] md:aspect-[5/6] w-full">
               <img
                 src="/images/hero/walk-thakurvillage-hero.jpg"
-                alt="A quiet labrador, watching morning light in a Thakur Village home."
+                alt="A Labrador mid-walk on a tree-lined Thakur Village street at golden hour, leash trailing to a guardian out of frame."
                 width={1024}
                 height={1536}
                 fetchPriority="high"
