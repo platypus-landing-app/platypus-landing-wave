@@ -28,22 +28,6 @@ import { post as boxerGuide } from './posts/boxer-exercise-walking-guide';
 import { post as huskyGuide } from './posts/husky-exercise-walking-guide';
 import { post as dalmatianGuide } from './posts/dalmatian-exercise-walking-guide';
 import { post as greatDaneGuide } from './posts/great-dane-exercise-walking-guide';
-import { post as guideBandra } from './posts/dog-walking-guide-bandra';
-import { post as guideAndheri } from './posts/dog-walking-guide-andheri';
-import { post as guidePowai } from './posts/dog-walking-guide-powai';
-import { post as guideWorli } from './posts/dog-walking-guide-worli';
-import { post as guideJuhu } from './posts/dog-walking-guide-juhu';
-import { post as guideThane } from './posts/dog-walking-guide-thane';
-import { post as guideLowerParel } from './posts/dog-walking-guide-lower-parel';
-import { post as guideColaba } from './posts/dog-walking-guide-colaba';
-import { post as guideVersova } from './posts/dog-walking-guide-versova';
-import { post as guideMalad } from './posts/dog-walking-guide-malad';
-import { post as guideBorivali } from './posts/dog-walking-guide-borivali';
-import { post as guideKandivali } from './posts/dog-walking-guide-kandivali';
-import { post as guideSantacruz } from './posts/dog-walking-guide-santacruz';
-import { post as guideKhar } from './posts/dog-walking-guide-khar';
-import { post as guideByculla } from './posts/dog-walking-guide-byculla';
-import { post as guideDadar } from './posts/dog-walking-guide-dadar';
 import { post as labradorGuide } from './posts/labrador-exercise-walking-guide';
 import { post as goldenRetrieverGuide } from './posts/golden-retriever-exercise-walking-guide';
 import { post as germanShepherdGuide } from './posts/german-shepherd-exercise-walking-guide';
@@ -52,14 +36,6 @@ import { post as pugGuide } from './posts/pug-exercise-walking-guide';
 import { post as shihTzuGuide } from './posts/shih-tzu-exercise-walking-guide';
 import { post as indieDogGuide } from './posts/indie-dog-exercise-walking-guide';
 import { post as rottweilerGuide } from './posts/rottweiler-exercise-walking-guide';
-import { post as guideMatunga } from './posts/dog-walking-guide-matunga';
-import { post as guideKurla } from './posts/dog-walking-guide-kurla';
-import { post as guideChembur } from './posts/dog-walking-guide-chembur';
-import { post as guideGhatkopar } from './posts/dog-walking-guide-ghatkopar';
-import { post as guideMulund } from './posts/dog-walking-guide-mulund';
-import { post as guideNaviMumbai } from './posts/dog-walking-guide-navi-mumbai';
-import { post as guideVileParle } from './posts/dog-walking-guide-vile-parle';
-import { post as guideGoregaon } from './posts/dog-walking-guide-goregaon';
 
 // Registry of all posts (sorted by date in getPublishedPosts)
 const allPosts: BlogPostFull[] = [
@@ -90,22 +66,6 @@ const allPosts: BlogPostFull[] = [
   huskyGuide,
   dalmatianGuide,
   greatDaneGuide,
-  guideBandra,
-  guideAndheri,
-  guidePowai,
-  guideWorli,
-  guideJuhu,
-  guideThane,
-  guideLowerParel,
-  guideColaba,
-  guideVersova,
-  guideMalad,
-  guideBorivali,
-  guideKandivali,
-  guideSantacruz,
-  guideKhar,
-  guideByculla,
-  guideDadar,
   labradorGuide,
   goldenRetrieverGuide,
   germanShepherdGuide,
@@ -114,14 +74,6 @@ const allPosts: BlogPostFull[] = [
   shihTzuGuide,
   indieDogGuide,
   rottweilerGuide,
-  guideMatunga,
-  guideKurla,
-  guideChembur,
-  guideGhatkopar,
-  guideMulund,
-  guideNaviMumbai,
-  guideVileParle,
-  guideGoregaon,
 ];
 
 /** Returns all published posts sorted by date (newest first) */
