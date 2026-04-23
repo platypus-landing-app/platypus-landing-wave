@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { X, ChevronLeft, ChevronRight, Loader2, Check, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -17,6 +18,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { useApplication } from '@/contexts/ApplicationContext';
 import { useToast } from '@/hooks/use-toast';
 import { trackGuardianApplication } from '@/lib/analytics';
+import { humanError } from '@/lib/humanError';
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
 
 const applicationSchema = z.object({
@@ -112,12 +114,15 @@ export default function ProfessionalApplicationDialog() {
       setOtpSent(true);
       toast({ title: 'OTP Sent', description: `OTP sent to +91${phone}` });
     } catch (error: unknown) {
-      const firebaseError = error as { code?: string; message?: string };
-      if (firebaseError.code === 'auth/too-many-requests') {
-        toast({ title: 'Too many attempts', description: 'Please try again later.', variant: 'destructive' });
-      } else {
-        toast({ title: 'OTP Error', description: firebaseError.message || 'Failed to send OTP', variant: 'destructive' });
-      }
+      console.error('OTP send error:', error);
+      toast({
+        title: "We couldn't send the OTP",
+        description: humanError(error, {
+          fallback:
+            "We couldn't send the code. Try again in a minute, or call us at +91 84518 80963.",
+        }),
+        variant: 'destructive',
+      });
     } finally {
       setOtpSending(false);
     }
@@ -222,9 +227,13 @@ export default function ProfessionalApplicationDialog() {
       setOtp('');
       closeApplication();
     } catch (err) {
+      console.error('Application submission error:', err);
       toast({
-        title: 'Submission Failed',
-        description: err instanceof Error ? err.message : 'Please try again.',
+        title: 'Submission failed',
+        description: humanError(err, {
+          fallback:
+            "We couldn't submit your application. Please try again, or call us at +91 84518 80963.",
+        }),
         variant: 'destructive',
       });
     } finally {
@@ -237,11 +246,16 @@ export default function ProfessionalApplicationDialog() {
   return (
     <Dialog open={isApplicationOpen} onOpenChange={(open) => !open && closeApplication()}>
       <DialogContent className="sm:max-w-[550px] p-0 gap-0 max-h-[90vh] flex flex-col">
+        <VisuallyHidden>
+          <DialogDescription>
+            Four-step application form to join Platypus as a Guardian, Groomer, Trainer, or Pet Sitter.
+          </DialogDescription>
+        </VisuallyHidden>
         {/* Header */}
         <div className="p-6 pb-4 border-b space-y-3 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Join Platypus</h2>
+              <DialogTitle className="text-xl font-bold text-gray-900">Join Platypus</DialogTitle>
               <p className="text-sm text-gray-500">
                 Step {step} of 4:{' '}
                 {step === 1 ? 'Personal Details' : step === 2 ? 'Professional Info' : step === 3 ? 'Availability' : 'About You'}

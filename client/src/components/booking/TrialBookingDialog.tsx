@@ -8,6 +8,7 @@ import { CalendarIcon, ChevronLeft, ChevronRight, Plus, Trash2, X, Check, Loader
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { trackTrialBooking } from "@/lib/analytics";
+import { humanError } from "@/lib/humanError";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -360,24 +361,22 @@ const TrialBookingDialog: React.FC = () => {
         title: "OTP Sent!",
         description: "Please check your phone for the 6-digit code",
       });
-    } catch (error: any) {
-      console.error('❌ OTP send error:', error);
+    } catch (error: unknown) {
+      // Keep full detail for ops, surface only human copy to the user.
+      console.error('OTP send error:', error);
 
-      // Check if it's a rate limit error
-      if (error.code === 'auth/too-many-requests') {
+      const code = (error as { code?: string })?.code;
+      if (code === 'auth/too-many-requests') {
         setRateLimitError(true);
-        toast({
-          title: "Too Many Requests",
-          description: "Please wait a few minutes before trying again. Firebase has temporarily blocked OTP requests from this device.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Failed to Send OTP",
-          description: error.message || "Please try again",
-          variant: "destructive",
-        });
       }
+      toast({
+        title: "We couldn't send the OTP",
+        description: humanError(error, {
+          fallback:
+            "We couldn't send the code. Try again in a minute, or call us at +91 84518 80963.",
+        }),
+        variant: "destructive",
+      });
 
       // Note: We don't reset the global reCAPTCHA on error
       // It remains available for retry attempts
@@ -431,13 +430,13 @@ const TrialBookingDialog: React.FC = () => {
       } else {
         throw new Error(data.message || "Verification failed");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('OTP verification error:', error);
       toast({
-        title: "Verification Failed",
-        description: error.code === 'auth/invalid-verification-code'
-          ? "Invalid OTP code. Please try again"
-          : error.message || "Please check your OTP and try again",
+        title: "Verification failed",
+        description: humanError(error, {
+          fallback: "Please check the 6-digit code and try again.",
+        }),
         variant: "destructive",
       });
     } finally {
