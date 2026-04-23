@@ -27,26 +27,20 @@ export default function ComingSoonServicePage({ service }: ComingSoonServicePage
       />
 
       <main className="pt-[70px] md:pt-[80px]">
-        {/* Hero */}
-        <section className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 text-white py-20 md:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-noise" />
-          <div className="absolute top-0 right-0 w-[250px] h-[250px] bg-dots opacity-10 pointer-events-none" />
-          <div className="absolute top-[-40px] right-[-40px] w-[180px] h-[180px] rounded-full border border-white/5 pointer-events-none" />
-          <div className="absolute bottom-[-30px] left-[-30px] w-[120px] h-[120px] rounded-full border border-white/5 pointer-events-none" />
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-300 rounded-full blur-3xl" />
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
-          </div>
+        {/* Hero — warm cream canvas, brand-blue accent. */}
+        <section className="relative bg-[#FFFBF0] py-20 md:py-28 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,225,53,0.10)_0%,_transparent_60%)]" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/20 backdrop-blur-sm rounded-full text-yellow-300 font-semibold text-sm mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-brand-blue/20 rounded-full text-brand-blue font-semibold text-sm mb-6 shadow-sm">
                 <Bell className="w-4 h-4" />
-                Coming Soon
+                Coming soon
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">our next service</span>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight font-domine text-gray-900">
                 {service.name}
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
                 {service.tagline}
               </p>
             </div>
@@ -86,7 +80,7 @@ export default function ComingSoonServicePage({ service }: ComingSoonServicePage
 
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
               {service.features.map((feature, index) => {
-                const colors = ['#247AFD', '#69D84F', '#C071FE', '#FF5B00'];
+                const colors = ['#247AFD', '#69D84F', '#C071FE', '#FFE135'];
                 const color = colors[index % colors.length];
                 return (
                   <motion.div

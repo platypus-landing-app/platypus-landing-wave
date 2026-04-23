@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // Common URL guesses that used to 404.
-      { source: '/about', destination: '/#about', permanent: false },
+      // /about has a real page now; /contact, /faq, /refund-policy redirect.
       { source: '/contact', destination: '/support', permanent: true },
       { source: '/faq', destination: '/#faq', permanent: false },
       { source: '/refund-policy', destination: '/refund', permanent: true },

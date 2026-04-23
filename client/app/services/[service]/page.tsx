@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     return { title: 'Service Not Found | Platypus' };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   return {
     title: `${svc.name} Service in Mumbai | Platypus`,
@@ -47,7 +47,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   const structuredData = {
     '@context': 'https://schema.org',

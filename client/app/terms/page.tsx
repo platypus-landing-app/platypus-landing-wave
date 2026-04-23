@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Terms of Service for Platypus dog walking platform. Read the terms governing your use of our services.',
   alternates: {
-    canonical: 'https://theplatypus.in/terms',
+    canonical: 'https://www.theplatypus.in/terms',
   },
 };
 

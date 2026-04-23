@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Refund and cancellation policy for Platypus dog walking services. Understand our refund timelines and processes.',
   alternates: {
-    canonical: 'https://theplatypus.in/refund',
+    canonical: 'https://www.theplatypus.in/refund',
   },
 };
 

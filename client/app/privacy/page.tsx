@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Privacy Policy for Platypus dog walking platform. Learn how we collect, use, and protect your personal data.',
   alternates: {
-    canonical: 'https://theplatypus.in/privacy',
+    canonical: 'https://www.theplatypus.in/privacy',
   },
 };
 

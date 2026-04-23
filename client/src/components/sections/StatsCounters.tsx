@@ -5,6 +5,7 @@ import AnimatedCounter from '@/components/ui/AnimatedCounter';
 import StaggerContainer, { staggerItem } from '@/components/ui/StaggerContainer';
 import WaveDivider from '@/components/ui/WaveDivider';
 import { motion } from 'framer-motion';
+import { marketingMetrics } from '@/data/metrics';
 
 interface StatItem {
   value: number;
@@ -14,10 +15,10 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { value: 5000, suffix: '+', label: 'Dogs Walked', icon: Dog },
-  { value: 500, suffix: '+', label: 'Happy Pet Parents', icon: Users },
-  { value: 16, suffix: '', label: 'Areas Served', icon: MapPin },
-  { value: 50, suffix: '+', label: 'Certified Guardians', icon: ShieldCheck },
+  { value: marketingMetrics.totalWalks, suffix: '+', label: 'Walks Completed', icon: Dog },
+  { value: marketingMetrics.happyParents, suffix: '+', label: 'Happy Pet Parents', icon: Users },
+  { value: marketingMetrics.areasServed, suffix: '', label: 'Areas Served', icon: MapPin },
+  { value: marketingMetrics.certifiedGuardians, suffix: '+', label: 'Certified Guardians', icon: ShieldCheck },
 ];
 
 const StatsCounters = () => {

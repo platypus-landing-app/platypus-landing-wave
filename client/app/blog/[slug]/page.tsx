@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   return {
     title: `${post.title} | Platypus Blog`,
@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     .split('\n\n')
     .filter((section) => section.trim() !== '');
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landing.theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   const wordCount = post.content.trim().split(/\s+/).length;
 

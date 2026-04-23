@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Get help with Platypus dog walking services. Contact our support team via email, phone, or in-app chat.',
   alternates: {
-    canonical: 'https://theplatypus.in/support',
+    canonical: 'https://www.theplatypus.in/support',
   },
 };
 

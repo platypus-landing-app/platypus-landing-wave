@@ -3,7 +3,7 @@ import { services } from '@/data/services';
 import { locations } from '@/data/locations';
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
   const posts = getPublishedPosts();
   const locationList = Object.values(locations);
   const serviceList = Object.values(services);

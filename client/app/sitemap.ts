@@ -3,7 +3,7 @@ import { getPublishedPosts } from '@/data/blog';
 import { getLocationSlugs } from '@/data/locations';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -11,6 +11,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
+    },
+    {
+      url: `${siteUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${siteUrl}/support`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
     {
       url: `${siteUrl}/blog`,

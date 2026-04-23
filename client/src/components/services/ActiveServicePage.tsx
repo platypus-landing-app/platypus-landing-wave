@@ -22,7 +22,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import StaggerContainer, { staggerItem } from '@/components/ui/StaggerContainer';
 import { motion } from 'framer-motion';
 import type { ServiceData } from '@/data/services';
-import { getLocationNames } from '@/data/locations';
+import { locations } from '@/data/locations';
 
 const featureIcons = [
   ShieldCheck,
@@ -38,11 +38,11 @@ const featureIcons = [
 const featureColors = [
   '#247AFD',
   '#69D84F',
-  '#FF5B00',
+  '#FFE135',
   '#C071FE',
   '#247AFD',
   '#69D84F',
-  '#FF5B00',
+  '#FFE135',
   '#C071FE',
 ];
 
@@ -52,7 +52,10 @@ interface ActiveServicePageProps {
 
 export default function ActiveServicePage({ service }: ActiveServicePageProps) {
   const { openTrialBooking } = useBooking();
-  const locationNames = getLocationNames();
+  const locationEntries = Object.values(locations).map((loc) => ({
+    name: loc.name,
+    slug: loc.slug,
+  }));
 
   return (
     <div className="min-h-screen bg-white">
@@ -140,7 +143,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                   Areas We Serve
                 </h2>
                 <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                  Available across {locationNames.length}+ areas in Mumbai
+                  Available across {locationEntries.length} areas in Mumbai
                 </p>
               </div>
             </ScrollReveal>
@@ -149,14 +152,14 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
               staggerDelay={0.03}
               className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto"
             >
-              {locationNames.map((name) => (
-                <motion.div key={name} variants={staggerItem}>
+              {locationEntries.map((entry) => (
+                <motion.div key={entry.slug} variants={staggerItem}>
                   <Link
-                    href={`/dog-walking/${name.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={`/dog-walking/${entry.slug}`}
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white rounded-full border border-brand-blue/15 text-gray-700 hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all duration-200 text-sm font-medium shadow-sm"
                   >
                     <MapPin className="w-3.5 h-3.5" />
-                    {name}
+                    {entry.name}
                   </Link>
                 </motion.div>
               ))}

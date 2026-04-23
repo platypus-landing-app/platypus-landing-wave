@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useBooking } from "@/contexts/BookingContext";
 import { trackCTAClick } from "@/lib/analytics";
 import { motion, Variants, easeOut } from "framer-motion";
+import { marketingMetrics } from "@/data/metrics";
 
 const Hero = () => {
   const { openTrialBooking } = useBooking();
@@ -78,9 +79,9 @@ const Hero = () => {
                   <Star key={i} className="w-3.5 h-3.5 text-brand-yellow fill-brand-yellow" />
                 ))}
               </div>
-              <span className="text-sm font-medium text-gray-700">4.9 rated</span>
+              <span className="text-sm font-medium text-gray-700">{marketingMetrics.googleRating} rated</span>
               <span className="text-gray-300">|</span>
-              <span className="text-sm font-medium text-gray-700">500+ happy families</span>
+              <span className="text-sm font-medium text-gray-700">{marketingMetrics.happyParents}+ happy families</span>
             </motion.div>
 
             {/* SEO H2 Subheading — supportive, not competing */}

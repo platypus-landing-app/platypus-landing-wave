@@ -16,18 +16,18 @@ export const metadata: Metadata = {
   keywords:
     'dog walker job mumbai, dog walking jobs mumbai, dog walker job near me, pet care jobs mumbai, dog groomer jobs mumbai, become a dog walker mumbai, Platypus careers, pet sitter jobs mumbai, dog walking vacancy mumbai',
   alternates: {
-    canonical: 'https://theplatypus.in/join',
+    canonical: 'https://www.theplatypus.in/join',
   },
   openGraph: {
     title: 'Join Platypus | Careers in Pet Care',
     description: 'Become a certified Guardian. Flexible hours, great pay, free training.',
-    url: 'https://theplatypus.in/join',
-    images: [{ url: 'https://theplatypus.in/og-image.png', width: 1200, height: 630 }],
+    url: 'https://www.theplatypus.in/join',
+    images: [{ url: 'https://www.theplatypus.in/og-image.png', width: 1200, height: 630 }],
   },
 };
 
 export default function JoinPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   const jobPostingData = {
     '@context': 'https://schema.org',

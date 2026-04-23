@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   return {
     title: `Professional Dog Walking Service in ${locationInfo.name} | Platypus Certified Guardians`,
@@ -80,7 +80,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
 
   // LocalBusiness with location-specific reviews and neighborhood areaServed
   const structuredData = {

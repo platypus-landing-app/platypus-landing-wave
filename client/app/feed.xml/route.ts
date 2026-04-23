@@ -1,7 +1,7 @@
 import { getPublishedPosts } from '@/data/blog';
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
   const posts = getPublishedPosts();
 
   const items = posts

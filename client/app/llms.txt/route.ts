@@ -3,14 +3,14 @@ import { services } from '@/data/services';
 import { locations } from '@/data/locations';
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theplatypus.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.theplatypus.in';
   const locationList = Object.values(locations);
 
   const content = `# Platypus
 
 > Professional dog walking and pet care services in Mumbai, India.
 
-Platypus is Mumbai's trusted pet care platform connecting pet parents with certified, trained dog walkers called "Guardians." Every walk includes live GPS tracking, real-time photo updates, and detailed walk reports. We serve ${locationList.length}+ areas across Mumbai.
+Platypus is Mumbai's trusted pet care platform connecting pet parents with certified, trained dog walkers called "Guardians." Every walk includes live GPS tracking, real-time photo updates, and detailed walk reports. We serve ${locationList.length} areas across Mumbai.
 
 ## Services
 
@@ -28,7 +28,7 @@ Platypus is Mumbai's trusted pet care platform connecting pet parents with certi
 
 ## Service Areas
 
-We operate across ${locationList.length}+ neighborhoods in Mumbai including ${locationList.slice(0, 12).map((l) => l.name).join(', ')}, and more.
+We operate across ${locationList.length} neighborhoods in Mumbai including ${locationList.slice(0, 12).map((l) => l.name).join(', ')}, and more.
 
 ## Frequently Asked Questions
 
@@ -36,7 +36,7 @@ Q: How much does dog walking cost in Mumbai with Platypus?
 A: Trial walk is ₹199, experience pack (2 walks) is ₹399, monthly once-daily plan is ₹4,680, and monthly twice-daily plan is ₹7,800. All plans include GPS tracking and certified Guardians.
 
 Q: What areas in Mumbai does Platypus serve?
-A: We serve ${locationList.length}+ areas including ${locationList.map((l) => l.name).join(', ')}.
+A: We serve ${locationList.length} areas including ${locationList.map((l) => l.name).join(', ')}.
 
 Q: Are Platypus dog walkers certified?
 A: Yes, all Guardians undergo rigorous training covering canine behavior, safety protocols, first aid, and GPS tracking systems. They are background-verified and insured.
