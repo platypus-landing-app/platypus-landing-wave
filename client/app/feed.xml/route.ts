@@ -14,7 +14,7 @@ export async function GET() {
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${post.category}</category>
-      <author>info@theplatypus.in (${post.author})</author>
+      <author>support@theplatypus.in (${post.author})</author>
       <enclosure url="${siteUrl}${post.image}" type="image/jpeg" length="0" />
     </item>`
     )

@@ -80,7 +80,7 @@ export default function Home() {
     "description": "Professional dog walking service in Mumbai with certified Guardians, live GPS tracking, and comprehensive safety protocols.",
     "url": "https://theplatypus.in",
     "telephone": "+918451880963",
-    "email": "info@theplatypus.in",
+    "email": "support@theplatypus.in",
     "parentOrganization": { "@id": "https://theplatypus.in/#organization" },
     "sameAs": [
       "https://www.instagram.com/platypus.pet",

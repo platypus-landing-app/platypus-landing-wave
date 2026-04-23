@@ -111,7 +111,7 @@ We're hiring dog walkers, groomers, and trainers across Mumbai.
 ## Contact
 
 - Website: ${siteUrl}
-- Email: info@theplatypus.in
+- Email: support@theplatypus.in
 - WhatsApp: +91 84518 80963
 - Location: Mumbai, Maharashtra, India
 - Founded: 2024 by Sagar Sutaria

@@ -186,7 +186,7 @@ export default function RootLayout({
                   },
                   "image": "https://theplatypus.in/og-image.png",
                   "description": "Professional pet care platform in India. Certified Guardians, GPS-tracked dog walking, grooming, training, and pet sitting services across Mumbai.",
-                  "email": "info@theplatypus.in",
+                  "email": "support@theplatypus.in",
                   "telephone": "+918451880963",
                   "address": {
                     "@type": "PostalAddress",

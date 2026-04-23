@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
 
   return {
     title: `Professional Dog Walking Service in ${locationInfo.name} | Platypus Certified Guardians`,
-    description: `Professional ${locationInfo.description}. Live GPS tracking, safety protocols. Book trial walk ₹199 in ${locationInfo.displayName}.`,
+    description: `${locationInfo.description.charAt(0).toUpperCase()}${locationInfo.description.slice(1)}. Live GPS tracking, safety protocols. Book trial walk ₹199 in ${locationInfo.displayName}.`,
     keywords: `dog walking ${location}, dog walker ${locationInfo.name}, pet care ${locationInfo.name}, certified dog walkers ${location}, professional dog walking ${locationInfo.name}, dog walker near me ${locationInfo.name}`,
     openGraph: {
       title: `Professional Dog Walking Service in ${locationInfo.name} | Platypus`,
@@ -87,11 +87,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': `${siteUrl}/dog-walking/${location}#business`,
-    name: `Platypus Dog Walking Service - ${locationInfo.name}`,
-    description: `Professional ${locationInfo.description}. Live GPS tracking, safety protocols, certified Guardians.`,
+    name: `Platypus Dog Walking Service in ${locationInfo.name}`,
+    description: `${locationInfo.description.charAt(0).toUpperCase()}${locationInfo.description.slice(1)}. Live GPS tracking, safety protocols, certified Guardians.`,
     url: `${siteUrl}/dog-walking/${location}`,
     telephone: '+918451880963',
-    email: 'info@theplatypus.in',
+    email: 'support@theplatypus.in',
     image: `${siteUrl}/hero-image.png`,
     address: {
       '@type': 'PostalAddress',

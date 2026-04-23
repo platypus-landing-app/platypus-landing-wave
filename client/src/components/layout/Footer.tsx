@@ -95,9 +95,9 @@ const Footer = () => {
             <div>
               <h4 className="text-xl font-bold text-white mb-4">Contact</h4>
               <div className="space-y-3 mb-6">
-                <a href="mailto:info@theplatypus.in" className="flex items-center space-x-3 text-gray-400 hover:text-gray-300 transition-colors">
+                <a href="mailto:support@theplatypus.in" className="flex items-center space-x-3 text-gray-400 hover:text-gray-300 transition-colors">
                   <Mail className="w-5 h-5 text-gray-500" />
-                  <span>info@theplatypus.in</span>
+                  <span>support@theplatypus.in</span>
                 </a>
                 <a href="tel:+918451880963" className="flex items-center space-x-3 text-gray-400 hover:text-gray-300 transition-colors">
                   <Phone className="w-5 h-5 text-gray-500" />
