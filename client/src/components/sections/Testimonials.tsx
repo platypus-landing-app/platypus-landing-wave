@@ -94,7 +94,7 @@ const Testimonials = () => {
           <div className="mb-16 text-left max-w-4xl">
             <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">trusted by pet parents</span>
             <h2 className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-black capitalize mb-6">
-              <span className="relative text-[#FF5B00]">
+              <span className="relative text-brand-blue">
                 Client
                 <span className="absolute bottom-[-5px] left-0 w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] h-0 border-b border-golden opacity-100"></span>
               </span>{" "}
@@ -176,7 +176,7 @@ const Testimonials = () => {
           <ScrollReveal variant="fadeUp">
             <div className="mb-12 text-left max-w-4xl">
               <h3 className="font-bold text-3xl sm:text-4xl leading-tight text-black capitalize mb-4">
-                <span className="relative text-[#FF5B00]">
+                <span className="relative text-brand-blue">
                   Google
                   <span className="absolute bottom-[-5px] left-0 w-full max-w-[100px] sm:max-w-[140px] h-0 border-b border-golden opacity-100"></span>
                 </span>{" "}

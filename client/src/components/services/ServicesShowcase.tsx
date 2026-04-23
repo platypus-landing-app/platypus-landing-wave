@@ -16,7 +16,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Home,
 };
 
-const accentColors = ['#69D84F', '#C071FE', '#FF5B00'];
+const accentColors = ['#69D84F', '#C071FE', '#FFE135'];
 
 interface ServicesShowcaseProps {
   services: ServiceData[];

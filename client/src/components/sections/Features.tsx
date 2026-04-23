@@ -62,10 +62,10 @@ const Features = () => {
           <div className="text-left mb-12 lg:mb-16">
             <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">India&apos;s first certified service</span>
             <h2 className="font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-snug md:leading-tight lg:leading-tight capitalize mb-4 sm:mb-6">
-              <span className="text-[#FF5B00] relative inline-block mr-2 align-middle">
+              <span className="text-brand-blue relative inline-block align-middle">
                 Why Choose
                 <span className="absolute left-0 w-full max-w-[140px] sm:max-w-[180px] h-0 border-b border-golden opacity-100 -bottom-1 sm:-bottom-2 lg:-bottom-4"></span>
-              </span>
+              </span>{' '}
               <span className="text-gray-900 align-middle break-words leading-tight sm:leading-tight md:leading-[2]">
                 Platypus?
               </span>

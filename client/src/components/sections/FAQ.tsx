@@ -51,7 +51,7 @@ const FAQ = () => {
                 <ScrollReveal variant="fadeUp">
                     <div className="text-center mb-16">
                         <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-                            Frequently Asked <span className="text-[#FF5B00]">Questions</span>
+                            Frequently Asked <span className="text-brand-blue">Questions</span>
                         </h2>
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                             Get answers to common questions about our professional dog walking services in Mumbai

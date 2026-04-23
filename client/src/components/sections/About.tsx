@@ -47,15 +47,15 @@ const About = () => {
               <div>
                 <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">smarter walks ahead</span>
                 <h2 className="text-[1.6rem] sm:text-[1.8rem] md:text-[2.5rem] lg:text-[2.82rem] font-bold mb-4 leading-tight">
-                  <span className="relative inline-block mr-2 align-middle">
-                    <span className="text-[#FF5B00] font-bold">Coming</span>
+                  <span className="relative inline-block align-middle">
+                    <span className="text-brand-blue font-bold">Coming</span>
                     <span className="text-gray-900 font-bold"> Soon</span>
                     {/* underline */}
                     <span
                       className="absolute left-0 w-full border-b border-golden
                       -bottom-2 sm:-bottom-3 lg:-bottom-4"
                     ></span>
-                  </span>
+                  </span>{' '}
                   <span className="text-gray-900 font-normal align-middle break-words leading-[1.6]">
                     Platypus App
                   </span>
