@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import ReactDOM from 'react-dom';
 import Navigation from '@/components/layout/Navigation';
 import Hero from '@/components/sections/Hero';
 import WaveDivider from '@/components/ui/WaveDivider';
@@ -44,6 +45,13 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  // Preload the hero LCP image on the home route only (was formerly global in layout).
+  ReactDOM.preload('/optimized/hero-image.avif', {
+    as: 'image',
+    type: 'image/avif',
+    fetchPriority: 'high',
+  });
+
   // Structured data for the home page
   const websiteStructuredData = {
     "@context": "https://schema.org",
@@ -231,12 +239,14 @@ export default function Home() {
           <Hero />
           <WaveDivider color="#ffffff" className="-mt-1 bg-[#FFFBF0]" />
           <HeroFeatures />
+          {/* "How it works" is a top-of-funnel explainer — bumped up from
+              section 6 so parents see it before scrolling past the fold. */}
+          <Process />
           <Features />
           <OurServices />
           <About />
           <StatsCounters />
           <AreasWeServe />
-          <Process />
           <Testimonials />
           <JoinTeamCTA />
           <FAQ />

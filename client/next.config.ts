@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'theplatypus.in',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.theplatypus.in',
+      },
     ],
   },
   // Enable compression
@@ -16,17 +20,37 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Output standalone for Docker deployment
   output: 'standalone',
+  // Strip console.* in production bundles.
+  // Keep console.error + console.warn for ops.
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === 'production'
+        ? { exclude: ['error', 'warn'] }
+        : false,
+  },
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-select'], // Tree-shake large packages
     cssChunking: true, // Improved CSS chunking for better caching
   },
-  // Redirect old URL format to new format
+  // Redirects: URL aliases + canonical non-www -> www redirect.
   async redirects() {
     return [
       {
         source: '/dog-walking-:location',
         destination: '/dog-walking/:location',
+        permanent: true,
+      },
+      // Common URL guesses that used to 404.
+      { source: '/about', destination: '/#about', permanent: false },
+      { source: '/contact', destination: '/support', permanent: true },
+      { source: '/faq', destination: '/#faq', permanent: false },
+      { source: '/refund-policy', destination: '/refund', permanent: true },
+      // Canonicalise on www.theplatypus.in.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'theplatypus.in' }],
+        destination: 'https://www.theplatypus.in/:path*',
         permanent: true,
       },
     ];

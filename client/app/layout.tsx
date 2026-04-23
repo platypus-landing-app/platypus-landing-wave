@@ -33,20 +33,20 @@ export const metadata: Metadata = {
   authors: [{ name: "Platypus Team" }],
   creator: "Platypus",
   publisher: "Platypus",
-  metadataBase: new URL("https://theplatypus.in"),
+  metadataBase: new URL("https://www.theplatypus.in"),
   alternates: {
-    canonical: "https://theplatypus.in",
+    canonical: "https://www.theplatypus.in",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://theplatypus.in/",
+    url: "https://www.theplatypus.in/",
     siteName: "Platypus",
     title: "Professional Dog Walking Service in Mumbai | Platypus Certified Guardians",
-    description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Powai & more areas.",
+    description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols across Bandra, Andheri, Juhu & more areas.",
     images: [
       {
-        url: "https://theplatypus.in/og-image.png",
+        url: "https://www.theplatypus.in/og-image.png",
         width: 1200,
         height: 630,
         alt: "Platypus - India's Dog Walking Expert",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     creator: "@platypus_bth",
     title: "Professional Dog Walking Service in Mumbai | Platypus",
     description: "Professional dog walking in Mumbai with certified Guardians. Live GPS tracking, safety protocols.",
-    images: ["https://theplatypus.in/og-image.png"],
+    images: ["https://www.theplatypus.in/og-image.png"],
   },
   robots: {
     index: true,
@@ -81,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${funnelSans.variable} ${domine.variable}`}>
+    <html lang="en-IN" suppressHydrationWarning className={`${funnelSans.variable} ${domine.variable}`}>
       <head>
         {/* Critical CSS - Inline to prevent render blocking */}
         <style dangerouslySetInnerHTML={{__html: `
@@ -114,9 +114,8 @@ export default function RootLayout({
           }
         `}} />
 
-        {/* Performance: Preload critical LCP image */}
-        <link rel="preload" href="/optimized/hero-image.avif" as="image" type="image/avif" fetchPriority="high" />
-        <link rel="preload" href="/optimized/hero-image.webp" as="image" type="image/webp" fetchPriority="high" />
+        {/* Note: hero-image preload moved from layout to app/page.tsx so only the
+            home route pays the preload cost (was firing warnings on every page). */}
 
         {/* Google Analytics - Deferred loading */}
         <script

@@ -13,6 +13,13 @@ const QuoteIcon = ({ className = '' }: { className?: string }) => (
   </svg>
 );
 
+// Elfsight free-tier renders a visible "Elfsight" branding badge that violates
+// our brand lock. Hide the embed behind a feature flag until we either acquire
+// Elfsight premium (badge removal) or ship a server-rendered reviews block from
+// data/google-reviews.ts. Set NEXT_PUBLIC_REVIEWS_ENABLED=true to re-enable.
+const REVIEWS_ENABLED =
+  process.env.NEXT_PUBLIC_REVIEWS_ENABLED === 'true';
+
 const Testimonials = () => {
   const { openTrialBooking } = useBooking();
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +57,7 @@ const Testimonials = () => {
   }, [loadElfsight]);
 
   useEffect(() => {
+    if (!REVIEWS_ENABLED) return;
     if (reviewsSectionRef.current) {
       observerRef.current = new IntersectionObserver(handleIntersection, {
         rootMargin: '100px',
@@ -65,6 +73,7 @@ const Testimonials = () => {
   }, [handleIntersection]);
 
   useEffect(() => {
+    if (!REVIEWS_ENABLED) return;
     if (!loadElfsight) return;
     const loadScript = () => {
       if (document.querySelector('script[src*="elfsightcdn.com"]')) {
@@ -171,39 +180,43 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Google Reviews Section */}
-        <div ref={reviewsSectionRef} className="mt-20">
-          <ScrollReveal variant="fadeUp">
-            <div className="mb-12 text-left max-w-4xl">
-              <h3 className="font-bold text-3xl sm:text-4xl leading-tight text-black capitalize mb-4">
-                <span className="relative text-brand-blue">
-                  Google
-                  <span className="absolute bottom-[-5px] left-0 w-full max-w-[100px] sm:max-w-[140px] h-0 border-b border-golden opacity-100"></span>
-                </span>{" "}
-                Reviews
-              </h3>
-              <p className="font-normal text-sm sm:text-base leading-relaxed text-black capitalize">
-                See what our community is saying about us.
-              </p>
-            </div>
-          </ScrollReveal>
+        {/* Google Reviews — hidden behind REVIEWS_ENABLED feature flag until
+            we drop the Elfsight free-tier badge (upgrade or replace with a
+            server-rendered block from data/google-reviews.ts). */}
+        {REVIEWS_ENABLED && (
+          <div ref={reviewsSectionRef} className="mt-20">
+            <ScrollReveal variant="fadeUp">
+              <div className="mb-12 text-left max-w-4xl">
+                <h3 className="font-bold text-3xl sm:text-4xl leading-tight text-black capitalize mb-4">
+                  <span className="relative text-brand-blue">
+                    Google
+                    <span className="absolute bottom-[-5px] left-0 w-full max-w-[100px] sm:max-w-[140px] h-0 border-b border-golden opacity-100"></span>
+                  </span>{" "}
+                  Reviews
+                </h3>
+                <p className="font-normal text-sm sm:text-base leading-relaxed text-black capitalize">
+                  See what our community is saying about us.
+                </p>
+              </div>
+            </ScrollReveal>
 
-          <div className="relative min-h-[400px]">
-            {loadElfsight && (
-              <div style={{ contentVisibility: isLoading ? 'hidden' : 'auto', transition: 'opacity 0.3s ease-in-out', opacity: isLoading ? 0 : 1 }}>
-                <div className="elfsight-app-cebab982-f1bd-4a47-a253-e6b2c69e7117" data-elfsight-app-lazy></div>
-              </div>
-            )}
-            {isLoading && loadElfsight && (
-              <div className="flex items-center justify-center py-16">
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="w-12 h-12 border-4 border-[#247AFD] border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-gray-600">Loading reviews...</p>
+            <div className="relative min-h-[400px]">
+              {loadElfsight && (
+                <div style={{ contentVisibility: isLoading ? 'hidden' : 'auto', transition: 'opacity 0.3s ease-in-out', opacity: isLoading ? 0 : 1 }}>
+                  <div className="elfsight-app-cebab982-f1bd-4a47-a253-e6b2c69e7117" data-elfsight-app-lazy></div>
                 </div>
-              </div>
-            )}
+              )}
+              {isLoading && loadElfsight && (
+                <div className="flex items-center justify-center py-16">
+                  <div className="flex flex-col items-center space-y-4">
+                    <div className="w-12 h-12 border-4 border-[#247AFD] border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-gray-600">Loading reviews...</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* CTA section */}
