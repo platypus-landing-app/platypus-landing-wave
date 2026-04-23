@@ -108,7 +108,7 @@ const About = () => {
                   bg-brand-blue hover:bg-brand-blue/90 hover:shadow-xl
                   transition-all duration-300 hover:-translate-y-0.5"
               >
-                Book Trial Walk
+                Book a trial walk · ₹199
               </Button>
 
             </div>

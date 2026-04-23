@@ -16,7 +16,7 @@ interface StatItem {
 const stats: StatItem[] = [
   { value: 5000, suffix: '+', label: 'Dogs Walked', icon: Dog },
   { value: 500, suffix: '+', label: 'Happy Pet Parents', icon: Users },
-  { value: 21, suffix: '', label: 'Areas Served', icon: MapPin },
+  { value: 16, suffix: '', label: 'Areas Served', icon: MapPin },
   { value: 50, suffix: '+', label: 'Certified Guardians', icon: ShieldCheck },
 ];
 

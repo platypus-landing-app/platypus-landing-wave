@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: 'What areas do you currently operate in?',
-    a: 'We operate across 21+ areas in Mumbai including Bandra, Andheri, Powai, Worli, Juhu, Thane, and more. We\'re always expanding to new neighborhoods.',
+    a: 'We operate across 16 areas in Mumbai including Bandra, Andheri, Juhu, Khar, Dadar, Lower Parel, Chembur, Malad, and more. We\'re always expanding to new neighborhoods.',
   },
   {
     q: 'What if I want to become a groomer or trainer instead?',

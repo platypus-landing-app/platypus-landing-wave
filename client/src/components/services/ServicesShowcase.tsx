@@ -58,7 +58,7 @@ export default function ServicesShowcase({ services }: ServicesShowcaseProps) {
                       size="lg"
                       className="bg-brand-yellow hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg rounded-full hover:shadow-warm hover:-translate-y-0.5 transition-all duration-300"
                     >
-                      Book Trial Walk: {activeService.price}
+                      Book a trial walk · {activeService.price}
                     </Button>
                     <Link
                       href={`/services/${activeService.slug}`}

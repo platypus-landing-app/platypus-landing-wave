@@ -108,7 +108,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                 className="text-[16px] sm:text-[17px] md:text-[18px] text-white px-8 md:px-10 h-[48px] md:h-[52px] w-full sm:w-auto py-3 font-medium rounded-full
                   bg-brand-blue hover:bg-brand-blue-dark hover:shadow-brand transition-all duration-300 hover:-translate-y-0.5"
               >
-                Book Trial Now
+                Book a trial walk · ₹199
               </Button>
 
               <Button

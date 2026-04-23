@@ -44,10 +44,10 @@ const AreasWeServe = () => {
             {/* Paragraph and Button in flex container */}
             <div className="flex flex-col md:flex-row md:justify-between gap-6 ">
               <p className="font-normal text-[18px] leading-[28px] text-black mt-4 max-w-4xl capitalize">
-                Our pet walking service in Mumbai covers major localities across
-                the city. Book trained dog walkers in Bandra, Andheri, Powai,
-                Colaba, Juhu, Worli, Chembur, Malad and more updates and manage
-                everything from one place.
+                Our pet walking service in Mumbai covers 16 localities across
+                the city. Book trained dog walkers in Bandra, Andheri, Juhu,
+                Khar, Dadar, Chembur, Malad and more, and manage everything
+                from one place.
               </p>
 
               <Button
