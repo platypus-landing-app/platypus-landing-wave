@@ -15,7 +15,7 @@ const JoinTeamCTA = () => {
               <div className="text-white text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2">Love Dogs? Join Our Team!</h2>
                 <p className="text-white/90 text-lg">
-                  Become a Platypus Guardian — flexible hours, great pay, and the best coworkers
+                  Become a Platypus Guardian: flexible hours, great pay, and the best coworkers
                   (they&apos;re all dogs).
                 </p>
               </div>

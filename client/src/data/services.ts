@@ -54,7 +54,7 @@ export const services: Record<string, ServiceData> = {
     shortName: 'Grooming',
     tagline: 'Professional grooming, coming to your doorstep',
     description:
-      'At-home dog grooming services by trained professionals. Bath, haircut, nail trimming, ear cleaning, and more — all in the comfort of your home.',
+      'At-home dog grooming services by trained professionals. Bath, haircut, nail trimming, ear cleaning, and more, all in the comfort of your home.',
     metaDescription:
       'Professional at-home dog grooming service in Mumbai. Bath, haircut, nail trimming & more. Join the waitlist for Platypus Grooming.',
     keywords: [

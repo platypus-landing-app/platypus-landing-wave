@@ -275,7 +275,7 @@ export const locations: Record<string, LocationData> = {
       {
         author: "Rohan Patel",
         rating: 5,
-        text: "Consistent and reliable — our Guardian has not missed a single walk in 3 months. Living in Juhu, we couldn't ask for a better dog walking service.",
+        text: "Consistent and reliable. Our Guardian has not missed a single walk in 3 months. Living in Juhu, we couldn't ask for a better dog walking service.",
         date: "2025-02-10",
       },
     ],
@@ -297,7 +297,7 @@ export const locations: Record<string, LocationData> = {
       },
       {
         question: "What time slots are available for dog walking in Bandra?",
-        answer: "We offer morning (6 AM–10 AM) and evening (4 PM–8 PM) slots in Bandra West. You can choose a fixed slot that works best for your dog's routine.",
+        answer: "We offer morning (6 AM to 10 AM) and evening (4 PM to 8 PM) slots in Bandra West. You can choose a fixed slot that works best for your dog's routine.",
       },
       {
         question: "Is Platypus available in Pali Hill and Bandra Reclamation?",
@@ -423,7 +423,7 @@ export const locations: Record<string, LocationData> = {
       {
         author: "Amit Kulkarni",
         rating: 5,
-        text: "Reliable and professional service in Wadala. The GPS tracking is excellent — we can see exactly where our dog walks. Highly recommend Platypus.",
+        text: "Reliable and professional service in Wadala. The GPS tracking is excellent. We can see exactly where our dog walks. Highly recommend Platypus.",
         date: "2025-02-18",
       },
     ],

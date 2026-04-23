@@ -31,15 +31,15 @@ A wagging tail does not always mean a happy dog. The position and speed of the w
 
 ## Reading the Ears
 
-Ears are another powerful communicator. Forward-facing ears suggest curiosity or focus—your dog has spotted something interesting ahead. Ears pinned flat against the head usually signal fear or anxiety. If one ear rotates to the side while the other stays forward, your dog is processing sounds from multiple directions, often a sign of mild uncertainty. Breeds with floppy ears can be harder to read, but you can still notice subtle shifts in ear base position.
+Ears are another powerful communicator. Forward-facing ears suggest curiosity or focus, your dog has spotted something interesting ahead. Ears pinned flat against the head usually signal fear or anxiety. If one ear rotates to the side while the other stays forward, your dog is processing sounds from multiple directions, often a sign of mild uncertainty. Breeds with floppy ears can be harder to read, but you can still notice subtle shifts in ear base position.
 
 ## Pulling vs. Lagging Behind
 
-A dog that pulls on the leash is not always misbehaving. Pulling can indicate excitement, a strong scent trail, or eagerness to reach a familiar spot. However, if the pulling is frantic and accompanied by panting or whining, it may signal overstimulation or anxiety. On the other hand, a dog that lags behind or refuses to move forward could be tired, in pain, or feeling fearful about something in the environment. Sudden stops deserve your attention—they are rarely random.
+A dog that pulls on the leash is not always misbehaving. Pulling can indicate excitement, a strong scent trail, or eagerness to reach a familiar spot. However, if the pulling is frantic and accompanied by panting or whining, it may signal overstimulation or anxiety. On the other hand, a dog that lags behind or refuses to move forward could be tired, in pain, or feeling fearful about something in the environment. Sudden stops deserve your attention, they are rarely random.
 
 ## Recognizing Stress Signals
 
-Stress manifests in ways that are easy to overlook. Lip licking when no food is present, yawning repeatedly, shaking off as if wet on a dry day, and avoiding eye contact are all signs of discomfort. Whale eye—when you can see the whites of your dog's eyes—often means they feel cornered or threatened. Excessive sniffing at the ground can also be a displacement behavior, where your dog is trying to self-soothe during a stressful moment.
+Stress manifests in ways that are easy to overlook. Lip licking when no food is present, yawning repeatedly, shaking off as if wet on a dry day, and avoiding eye contact are all signs of discomfort. Whale eye, when you can see the whites of your dog's eyes, often means they feel cornered or threatened. Excessive sniffing at the ground can also be a displacement behavior, where your dog is trying to self-soothe during a stressful moment.
 
 ## Signs of a Happy, Relaxed Walk
 

@@ -10,7 +10,7 @@ const benefits = [
   {
     icon: Clock,
     title: 'Flexible Schedule',
-    description: 'Choose your own hours. Morning person or evening warrior — you decide.',
+    description: 'Choose your own hours. Morning person or evening warrior, you decide.',
     color: 'bg-brand-blue/10 text-brand-blue',
   },
   {

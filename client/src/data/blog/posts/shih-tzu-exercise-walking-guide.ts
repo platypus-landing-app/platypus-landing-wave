@@ -3,7 +3,7 @@ import { BlogPostFull } from '../types';
 export const post: BlogPostFull = {
   slug: "shih-tzu-exercise-walking-guide",
   title: "Shih Tzu Exercise & Walking Guide: How Much Does Your Shih Tzu Need?",
-  excerpt: "Shih Tzus are companion dogs at heart, but they still need daily walks — with careful attention to heat, coat care, and their brachycephalic limitations. Here's a complete Mumbai walking guide.",
+  excerpt: "Shih Tzus are companion dogs at heart, but they still need daily walks, with careful attention to heat, coat care, and their brachycephalic limitations. Here's a complete Mumbai walking guide.",
   author: "Sagar Sutaria",
   date: "2025-12-07",
   readTime: "5 min read",
@@ -23,19 +23,19 @@ export const post: BlogPostFull = {
   status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "pug-exercise-walking-guide"],
   content: `
-The Shih Tzu was bred for one job: to be a companion. For over a thousand years, these dogs lived in Chinese imperial palaces, sitting on laps, warming beds, and charming royalty. They were never herders, hunters, or working dogs. Their purpose was — and remains — to be close to their people.
+The Shih Tzu was bred for one job: to be a companion. For over a thousand years, these dogs lived in Chinese imperial palaces, sitting on laps, warming beds, and charming royalty. They were never herders, hunters, or working dogs. Their purpose was, and remains, to be close to their people.
 
-But "companion breed" does not mean "no exercise needed." Shih Tzus still require daily physical activity to maintain healthy weight, muscle tone, joint mobility, and mental well-being. The challenge, particularly in Mumbai, is that they share the same brachycephalic anatomy as Pugs — a shortened skull, compressed airways, and reduced ability to cool down through panting. Add a long, dense coat that traps heat, and you have a breed that requires thoughtful, careful exercise management.
+But "companion breed" does not mean "no exercise needed." Shih Tzus still require daily physical activity to maintain healthy weight, muscle tone, joint mobility, and mental well-being. The challenge, particularly in Mumbai, is that they share the same brachycephalic anatomy as Pugs, a shortened skull, compressed airways, and reduced ability to cool down through panting. Add a long, dense coat that traps heat, and you have a breed that requires thoughtful, careful exercise management.
 
 ## How Much Walking Does a Shih Tzu Need?
 
 An adult Shih Tzu needs **20 to 30 minutes of walking per day**, split into two short sessions. A 10 to 15 minute morning session and a 10 to 15 minute evening session provides adequate physical activity without pushing their respiratory limits.
 
-**The pace should be relaxed and unhurried.** Shih Tzus have short legs and a compact frame. Their natural gait is a gentle trot, not a power walk. Match their pace rather than forcing yours. If your Shih Tzu stops to sniff or simply wants to stand and observe, let them — these moments of mental engagement are just as valuable as the walking itself.
+**The pace should be relaxed and unhurried.** Shih Tzus have short legs and a compact frame. Their natural gait is a gentle trot, not a power walk. Match their pace rather than forcing yours. If your Shih Tzu stops to sniff or simply wants to stand and observe, let them, these moments of mental engagement are just as valuable as the walking itself.
 
-**Puppies** are surprisingly energetic in short bursts. Two to three sessions of 5 to 10 minutes work well for Shih Tzu puppies under six months. They tire quickly but recover fast, so brief, frequent outings are better than one longer walk. Watch for the puppy plop — when a Shih Tzu puppy simply sits or lies down mid-walk, they are done. Do not coax them to continue.
+**Puppies** are surprisingly energetic in short bursts. Two to three sessions of 5 to 10 minutes work well for Shih Tzu puppies under six months. They tire quickly but recover fast, so brief, frequent outings are better than one longer walk. Watch for the puppy plop, when a Shih Tzu puppy simply sits or lies down mid-walk, they are done. Do not coax them to continue.
 
-**Senior Shih Tzus** (ten years and older — they are a long-lived breed, often reaching 14 to 16 years) may need only 10 to 15 minutes of total daily walking. Many seniors develop patella luxation or spinal issues, so keep walks flat, slow, and on soft surfaces when possible.
+**Senior Shih Tzus** (ten years and older, they are a long-lived breed, often reaching 14 to 16 years) may need only 10 to 15 minutes of total daily walking. Many seniors develop patella luxation or spinal issues, so keep walks flat, slow, and on soft surfaces when possible.
 
 **Indoor activities complement outdoor walks well.** Shih Tzus enjoy short games of fetch (adapted to their size), hide-and-seek with treats, and training exercises. These provide mental stimulation on days when outdoor conditions are unsuitable.
 
@@ -43,9 +43,9 @@ An adult Shih Tzu needs **20 to 30 minutes of walking per day**, split into two 
 
 Shih Tzus face a double challenge in Mumbai's climate: brachycephalic breathing limitations and a long coat that traps heat. This combination makes temperature management critical.
 
-**From March through October**, limit walks to before 6:30 AM and after 7:30 PM. On particularly hot and humid days, even these windows may be too warm — monitor your dog's breathing and be prepared to cut the walk short. During the November to February cooler months, you have more flexibility, but avoid direct sun exposure at all times of year.
+**From March through October**, limit walks to before 6:30 AM and after 7:30 PM. On particularly hot and humid days, even these windows may be too warm, monitor your dog's breathing and be prepared to cut the walk short. During the November to February cooler months, you have more flexibility, but avoid direct sun exposure at all times of year.
 
-**Ideal Shih Tzu routes are flat, shaded, and on smooth surfaces.** Their small stature means they walk very close to the ground, absorbing radiated heat from pavement. Grass paths, shaded garden walkways, and covered promenades are significantly safer than open concrete. Avoid stairs and inclines — Shih Tzus have long backs relative to their leg length, and steep grades put strain on their spine.
+**Ideal Shih Tzu routes are flat, shaded, and on smooth surfaces.** Their small stature means they walk very close to the ground, absorbing radiated heat from pavement. Grass paths, shaded garden walkways, and covered promenades are significantly safer than open concrete. Avoid stairs and inclines. Shih Tzus have long backs relative to their leg length, and steep grades put strain on their spine.
 
 **Keep a short-trimmed coat for Mumbai walks.** While show Shih Tzus sport floor-length coats, this is impractical and potentially dangerous in Mumbai's climate. A "puppy cut" that keeps the coat 2 to 3 centimetres long dramatically improves heat dissipation while still protecting the skin from sun. Discuss grooming schedules with a professional groomer familiar with Mumbai conditions.
 
@@ -55,11 +55,11 @@ Shih Tzus face a double challenge in Mumbai's climate: brachycephalic breathing 
 
 Shih Tzus are adaptable dogs, and an under-exercised Shih Tzu may not show the dramatic behavioural problems of a bored Labrador. The signs are more subtle but equally important:
 
-- **Weight gain** — Shih Tzus are prone to obesity, and their small frame means even half a kilogram of excess weight is significant. A healthy adult Shih Tzu typically weighs 4 to 7 kilograms. Extra weight worsens their breathing difficulties and stresses their joints.
-- **Lethargy and disinterest** — a Shih Tzu that seems perpetually tired and uninterested in play or interaction may actually be under-exercised, not naturally "lazy." Regular walks provide the stimulation that keeps them alert and engaged.
-- **Increased clinginess** — Shih Tzus are already attached to their people, but an under-exercised one becomes excessively needy, showing separation anxiety and refusing to be alone even briefly.
-- **House training lapses** — particularly in older, settled dogs. Walks provide regular bathroom opportunities, and removing them disrupts established routines.
-- **Irritability** — snapping when handled, growling during grooming, or general grumpiness that was not previously present.
+- **Weight gain**. Shih Tzus are prone to obesity, and their small frame means even half a kilogram of excess weight is significant. A healthy adult Shih Tzu typically weighs 4 to 7 kilograms. Extra weight worsens their breathing difficulties and stresses their joints.
+- **Lethargy and disinterest**, a Shih Tzu that seems perpetually tired and uninterested in play or interaction may actually be under-exercised, not naturally "lazy." Regular walks provide the stimulation that keeps them alert and engaged.
+- **Increased clinginess**. Shih Tzus are already attached to their people, but an under-exercised one becomes excessively needy, showing separation anxiety and refusing to be alone even briefly.
+- **House training lapses**, particularly in older, settled dogs. Walks provide regular bathroom opportunities, and removing them disrupts established routines.
+- **Irritability**, snapping when handled, growling during grooming, or general grumpiness that was not previously present.
 
 For a broader look at these symptoms, see our guide on [signs your dog needs more exercise](/blog/signs-dog-needs-more-exercise).
 

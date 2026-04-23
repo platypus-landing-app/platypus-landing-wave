@@ -36,7 +36,7 @@ const Contact = () => {
             Get in Touch
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to dive in? Let's start your journey with Platypus today.
+            Ready to get started? Book your first walk with Platypus today.
           </p>
         </div>
 

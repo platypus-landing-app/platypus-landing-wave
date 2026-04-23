@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'How much can I earn?',
-    a: 'Guardians typically earn ₹15,000–₹30,000 per month depending on the number of walks and hours committed. Payouts are processed weekly.',
+    a: 'Guardians typically earn ₹15,000 to ₹30,000 per month depending on the number of walks and hours committed. Payouts are processed weekly.',
   },
   {
     q: 'What does the training involve?',

@@ -3,7 +3,7 @@ import { BlogPostFull } from '../types';
 export const post: BlogPostFull = {
   slug: "top-dog-walking-routes-mumbai",
   title: "Top 10 Dog-Friendly Walking Routes in Mumbai",
-  excerpt: "Mumbai offers some fantastic spots for dog walks—from Juhu Beach at sunrise to the green trails of Aarey Colony. Here are the top 10 dog-friendly walking routes every pet parent should explore.",
+  excerpt: "Mumbai offers some fantastic spots for dog walks, from Juhu Beach at sunrise to the green trails of Aarey Colony. Here are the top 10 dog-friendly walking routes every pet parent should explore.",
   author: "Sagar Sutaria",
   date: "2025-08-20",
   updatedDate: "2025-02-15",
@@ -35,7 +35,7 @@ Juhu Beach is a favourite among pet parents in western Mumbai. The expansive str
 
 ## 3. Powai Lake
 
-The walking path around Powai Lake offers a calm, green environment that feels worlds away from the chaos of the city. The tree-lined trail provides natural shade, making it a good option even on warmer days. Powai Lake is particularly well-suited for medium-energy breeds and dogs that enjoy a steady, relaxed pace. Mornings are best—the area gets busier with joggers by mid-morning.
+The walking path around Powai Lake offers a calm, green environment that feels worlds away from the chaos of the city. The tree-lined trail provides natural shade, making it a good option even on warmer days. Powai Lake is particularly well-suited for medium-energy breeds and dogs that enjoy a steady, relaxed pace. Mornings are best, the area gets busier with joggers by mid-morning.
 
 ## 4. Worli Sea Face
 
@@ -51,7 +51,7 @@ The park's walking trails at the periphery offer a unique experience for adventu
 
 ## 7. Shivaji Park, Dadar
 
-Shivaji Park is one of central Mumbai's largest open spaces and a reliable option for pet parents in the Dadar area. The area surrounding the main ground offers enough room for a satisfying walk, and the flat terrain is gentle on older dogs' joints. The best times are early morning and late evening. It is a social spot too—you will often find other pet parents and their dogs here.
+Shivaji Park is one of central Mumbai's largest open spaces and a reliable option for pet parents in the Dadar area. The area surrounding the main ground offers enough room for a satisfying walk, and the flat terrain is gentle on older dogs' joints. The best times are early morning and late evening. It is a social spot too, you will often find other pet parents and their dogs here.
 
 ## 8. Palm Beach Road, Navi Mumbai
 
@@ -67,6 +67,6 @@ Versova Beach, after its well-publicized cleanup efforts, has become a viable op
 
 ## Let Platypus Guardians Show You the Best Routes
 
-Knowing the best routes is one thing—walking them safely and consistently is another. At **Platypus**, our Guardians are local experts who know the best walking spots in every neighbourhood across Mumbai. They understand which routes suit which breeds, the safest times to visit, and how to navigate each area's unique conditions. Whether your dog loves the seafront breeze of Carter Road or the forest trails of Aarey Colony, a Platypus Guardian will ensure every walk is safe, stimulating, and perfectly suited to your pet.
+Knowing the best routes is one thing, walking them safely and consistently is another. At **Platypus**, our Guardians are local experts who know the best walking spots in every neighbourhood across Mumbai. They understand which routes suit which breeds, the safest times to visit, and how to navigate each area's unique conditions. Whether your dog loves the seafront breeze of Carter Road or the forest trails of Aarey Colony, a Platypus Guardian will ensure every walk is safe, stimulating, and perfectly suited to your pet.
   `
 };

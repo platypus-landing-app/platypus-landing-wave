@@ -28,7 +28,7 @@ Dog walking may look like a simple daily routine, but science shows it's one of 
 
 ## Stronger Body, Healthier Heart
 
-Regular walks keep your dog's muscles and bones strong. Movement helps lubricate joints, reducing stiffness and lowering the risk of arthritis, especially as dogs age. Walking also supports cardiovascular health—keeping your dog's heart and lungs functioning efficiently, just like cardio workouts do for humans. Over time, consistent walks can extend your dog's lifespan and improve their overall quality of life.
+Regular walks keep your dog's muscles and bones strong. Movement helps lubricate joints, reducing stiffness and lowering the risk of arthritis, especially as dogs age. Walking also supports cardiovascular health, keeping your dog's heart and lungs functioning efficiently, just like cardio workouts do for humans. Over time, consistent walks can extend your dog's lifespan and improve their overall quality of life.
 
 ## Weight Control and Digestion
 
@@ -40,11 +40,11 @@ Dogs see the world through their noses. Every new scent during a walk activates 
 
 ## Mood and Emotional Balance
 
-Exercise triggers endorphin release—the "happy hormones" that lower stress and improve mood. A well-exercised dog is calmer, sleeps better, and is less likely to develop behavioral issues such as barking, chewing, or hyperactivity.
+Exercise triggers endorphin release, the "happy hormones" that lower stress and improve mood. A well-exercised dog is calmer, sleeps better, and is less likely to develop behavioral issues such as barking, chewing, or hyperactivity.
 
 ## The Platypus Approach
 
-At **Platypus**, our Guardians (trained walkers) don't just stroll—they provide guided, safe and breed-appropriate walks that maximize health benefits. Every outing is tailored to balance exercise, exploration, and rest, ensuring your dog thrives inside and out.
+At **Platypus**, our Guardians (trained walkers) don't just stroll, they provide guided, safe and breed-appropriate walks that maximize health benefits. Every outing is tailored to balance exercise, exploration, and rest, ensuring your dog thrives inside and out.
 
 Dog walking isn't just a chore; it's science-backed care that keeps your pup healthier and happier every single day.
   `

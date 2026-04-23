@@ -35,7 +35,7 @@ Shivaji Park is the headline act. The park's perimeter road offers a walking cir
 
 The western side of the park, facing the sea, catches the best breeze and has the most consistent shade from mature trees along the boundary. This is where most dog walkers gravitate. The eastern side, closer to the residential buildings, is slightly quieter and works well for dogs that prefer less social stimulation. A full perimeter walk takes about 25 to 30 minutes at a moderate pace. Two loops push it to an hour, which is sufficient for most medium and large breeds.
 
-The critical timing note: arrive before 6:30 AM. By 7:00, joggers, cricket players, and exercise groups start claiming space, and the dynamic shifts. The 5:30 to 6:30 AM window is when the park truly belongs to the dogs and their parents. Evening walks between 6:00 and 7:30 PM are also popular, though the park is more crowded at this time.
+The critical timing note: arrive before 6:30 AM. By 7:00, joggers, cricket players, and exercise groups start claiming space, and the dynamic shifts. The 5:30 to 6:30 AM window is when the park belongs to the dogs and their parents. Evening walks between 6:00 and 7:30 PM are also popular, though the park is more crowded at this time.
 
 On-leash walking is expected along the perimeter road. Some pet parents allow off-leash play on the grassy sections during the quietest hours, but this is informal and depends on the specific morning. Always have your leash ready to clip on if the area gets busy.
 

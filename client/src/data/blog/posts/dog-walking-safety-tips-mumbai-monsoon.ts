@@ -3,7 +3,7 @@ import { BlogPostFull } from '../types';
 export const post: BlogPostFull = {
   slug: "dog-walking-safety-tips-mumbai-monsoon",
   title: "Dog Walking Safety Tips for Mumbai's Monsoon Season",
-  excerpt: "Mumbai's monsoon brings unique challenges for dog walks—from waterlogged streets to tick infestations. Here are essential safety tips every pet parent should know to keep their dog healthy and happy through the rainy season.",
+  excerpt: "Mumbai's monsoon brings unique challenges for dog walks, from waterlogged streets to tick infestations. Here are essential safety tips every pet parent should know to keep their dog healthy and happy through the rainy season.",
   author: "Sagar Sutaria",
   date: "2025-11-05",
   updatedDate: "2025-02-15",
@@ -23,11 +23,11 @@ export const post: BlogPostFull = {
   status: "published",
   relatedSlugs: ["dog-walking-guide-bandra", "the-science-of-dog-walking", "how-to-choose-right-dog-walker-mumbai"],
   content: `
-Mumbai's monsoon season transforms the city—and with it, the daily dog walk. Between June and September, heavy rainfall, waterlogged streets, and increased parasite activity create real hazards for our four-legged companions. But skipping walks entirely isn't the answer. Dogs still need exercise and stimulation, even when the skies open up. Here's how to keep your dog safe and healthy through the rainy season.
+Mumbai's monsoon season transforms the city, and with it, the daily dog walk. Between June and September, heavy rainfall, waterlogged streets, and increased parasite activity create real hazards for our four-legged companions. But skipping walks entirely isn't the answer. Dogs still need exercise and stimulation, even when the skies open up. Here's how to keep your dog safe and healthy through the rainy season.
 
 ## Tick and Flea Prevention Is Non-Negotiable
 
-Monsoon humidity creates the perfect breeding ground for ticks and fleas. These parasites thrive in damp grass, puddles, and overgrown vegetation—exactly the places dogs love to explore. A single walk through a wet park can lead to a serious tick infestation.
+Monsoon humidity creates the perfect breeding ground for ticks and fleas. These parasites thrive in damp grass, puddles, and overgrown vegetation, exactly the places dogs love to explore. A single walk through a wet park can lead to a serious tick infestation.
 
 Before monsoon arrives, consult your veterinarian about preventive treatments such as spot-on solutions, oral medications, or tick-repellent collars. After every walk, thoroughly inspect your dog's coat, paying special attention to the ears, neck, belly, and between the toes. Early detection prevents tick-borne diseases like ehrlichiosis and babesiosis, which can be life-threatening if left untreated.
 
@@ -45,19 +45,19 @@ Plan your walking routes in advance, sticking to elevated paths, well-drained si
 
 ## Post-Walk Cleaning Routine
 
-A consistent post-walk cleaning routine is your best defense against monsoon-related health issues. Beyond paw washing, towel-dry your dog's entire body to prevent fungal skin infections. Pay close attention to skin folds and ear canals—trapped moisture in these areas can lead to painful infections.
+A consistent post-walk cleaning routine is your best defense against monsoon-related health issues. Beyond paw washing, towel-dry your dog's entire body to prevent fungal skin infections. Pay close attention to skin folds and ear canals, trapped moisture in these areas can lead to painful infections.
 
 Keep a dedicated monsoon kit near your door: clean towels, a paw wash station, ear-cleaning solution, and a dry mat. Making it part of your routine ensures nothing gets overlooked.
 
 ## Timing Your Walks Wisely
 
-Mumbai's monsoon rain doesn't fall continuously. Most days feature intermittent showers with dry spells in between. Learn to read the patterns—early mornings often provide a window of lighter rain or dry conditions before the heavier afternoon downpours begin.
+Mumbai's monsoon rain doesn't fall continuously. Most days feature intermittent showers with dry spells in between. Learn to read the patterns, early mornings often provide a window of lighter rain or dry conditions before the heavier afternoon downpours begin.
 
 Short, focused walks during dry windows are better than skipping exercise altogether. Even a fifteen-minute outing can give your dog the physical and mental stimulation they need without prolonged exposure to hazardous conditions.
 
 ## How Platypus Guardians Handle Monsoon Walks
 
-At **Platypus**, our Guardians are trained specifically for Mumbai's monsoon challenges. They scout safe, well-drained routes in advance and adjust walk timing based on real-time weather conditions. Every monsoon walk includes a thorough post-walk cleaning and paw inspection, and our Guardians carry emergency supplies for unexpected downpours. Through the Platypus app, you receive live GPS tracking and detailed reports so you always know your dog is in safe hands—even when the weather isn't cooperating.
+At **Platypus**, our Guardians are trained specifically for Mumbai's monsoon challenges. They scout safe, well-drained routes in advance and adjust walk timing based on real-time weather conditions. Every monsoon walk includes a thorough post-walk cleaning and paw inspection, and our Guardians carry emergency supplies for unexpected downpours. Through the Platypus app, you receive live GPS tracking and detailed reports so you always know your dog is in safe hands, even when the weather isn't cooperating.
 
 Monsoon season demands extra care, but it doesn't have to mean your dog misses out. With the right precautions, rainy-day walks can be just as safe and enjoyable as any other time of year.
   `

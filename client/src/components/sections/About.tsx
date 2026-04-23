@@ -57,7 +57,7 @@ const About = () => {
                     ></span>
                   </span>
                   <span className="text-gray-900 font-normal align-middle break-words leading-[1.6]">
-                    – Platypus App
+                    Platypus App
                   </span>
                 </h2>
 

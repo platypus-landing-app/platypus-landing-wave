@@ -3,7 +3,7 @@ import { BlogPostFull } from '../types';
 export const post: BlogPostFull = {
   slug: "why-every-pet-parent-should-consider-dog-walking-service",
   title: "Why Every Pet Parent Should Consider a Dog Walking Service",
-  excerpt: "Being a pet parent is one of life's greatest joys, but it also comes with responsibilities. In fast-paced metro cities, long commutes and demanding work schedules make it difficult to give your dogs the regular walks they truly need.",
+  excerpt: "Being a pet parent is one of life's greatest joys, but it also comes with responsibilities. In metro cities, long commutes and demanding work schedules make it hard to give your dog the regular walks they need.",
   author: "Sagar Sutaria",
   date: "2025-10-12",
   updatedDate: "2025-02-15",
@@ -24,7 +24,7 @@ export const post: BlogPostFull = {
   status: "published",
   relatedSlugs: ["the-science-of-dog-walking", "how-much-exercise-does-my-dog-need"],
   content: `
-Being a pet parent is one of life's greatest joys, but it also comes with responsibilities. In fast-paced metro cities, long commutes, demanding work schedules, and packed daily routines make it difficult for many pet parents to give their dogs the regular walks they truly need. Between family commitments, errands, and household chores, finding time for consistent exercise for your dog can feel impossible. That is where a professional dog walking service steps in to make life easier for both you and your pup.
+Being a pet parent is one of life's greatest joys, but it also comes with responsibilities. In Mumbai, long commutes, demanding work schedules, and packed daily routines make it hard for many pet parents to give their dogs the regular walks they need. Between family commitments, errands, and household chores, finding time for consistent exercise for your dog can feel impossible. That is where a professional dog walking service steps in to make life easier for both you and your pup.
 
 ## Consistent Exercise for Better Health
 

@@ -27,7 +27,7 @@ When you hand your dog's leash to someone else, you are trusting them with a fam
 
 ## What Does Certification Actually Mean?
 
-A certified dog walker has completed structured training that covers animal behavior, leash handling, emergency response, and safe walking protocols. It is not just a badge—it represents hours of learning and practical assessment. Certified walkers understand how different breeds respond to stimuli, how to de-escalate tense situations between dogs, and how to navigate urban environments safely. They have been tested on these skills before ever walking a client's dog.
+A certified dog walker has completed structured training that covers animal behavior, leash handling, emergency response, and safe walking protocols. It is not just a badge, it represents hours of learning and practical assessment. Certified walkers understand how different breeds respond to stimuli, how to de-escalate tense situations between dogs, and how to navigate urban environments safely. They have been tested on these skills before ever walking a client's dog.
 
 ## First Aid and Emergency Preparedness
 
@@ -39,14 +39,14 @@ Reading a dog's body language is a skill that takes time and training to develop
 
 ## The Risks of Unverified Walkers
 
-An unverified walker may genuinely love dogs, but good intentions do not replace knowledge. Without training, a well-meaning person might misread a fearful dog as stubborn and force them forward, or fail to notice heatstroke symptoms until it is too late. They may not know how to break up a dog fight safely, or how to secure a dog that slips its harness. The consequences of these gaps in knowledge can be severe—and entirely preventable with proper certification.
+An unverified walker may genuinely love dogs, but good intentions do not replace knowledge. Without training, a well-meaning person might misread a fearful dog as stubborn and force them forward, or fail to notice heatstroke symptoms until it is too late. They may not know how to break up a dog fight safely, or how to secure a dog that slips its harness. The consequences of these gaps in knowledge can be severe, and entirely preventable with proper certification.
 
 ## Trust Through Accountability
 
-Certification also creates accountability. Certified walkers operate within a professional framework that includes background checks, ongoing training, and performance reviews. They are not anonymous strangers from a social media post—they are verified professionals whose credentials you can confirm. This accountability gives pet parents peace of mind that goes far beyond a friendly smile and a love for animals.
+Certification also creates accountability. Certified walkers operate within a professional framework that includes background checks, ongoing training, and performance reviews. They are not anonymous strangers from a social media post, they are verified professionals whose credentials you can confirm. This accountability gives pet parents peace of mind that goes far beyond a friendly smile and a love for animals.
 
 ## The Platypus Guardian Certification Program
 
-At **Platypus**, every walker—called a Guardian—goes through our rigorous certification program before they walk a single dog. This includes canine behavior training, first aid certification, route safety assessment, and supervised trial walks. Guardians receive ongoing education and are regularly evaluated. When you book a Platypus walk, you are not hoping your dog is in good hands—you know they are, because every Guardian has earned that trust through training and verified expertise.
+At **Platypus**, every walker, called a Guardian, goes through our rigorous certification program before they walk a single dog. This includes canine behavior training, first aid certification, route safety assessment, and supervised trial walks. Guardians receive ongoing education and are regularly evaluated. When you book a Platypus walk, you are not hoping your dog is in good hands, you know they are, because every Guardian has earned that trust through training and verified expertise.
   `
 };

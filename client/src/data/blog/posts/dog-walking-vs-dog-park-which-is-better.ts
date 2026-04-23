@@ -27,13 +27,13 @@ As a pet parent, you want to give your dog the best possible exercise and social
 
 ## The Case for Dog Parks
 
-Dog parks offer something that leashed walks simply cannot: unrestrained, off-leash freedom. For social, well-adjusted dogs, a good dog park provides an opportunity to run at full speed, play with other dogs, and burn off energy in a way that even the longest walk might not achieve. The social interaction at a dog park can help dogs develop and maintain important communication skills—learning to read body language, take turns, and navigate group dynamics.
+Dog parks offer something that leashed walks simply cannot: unrestrained, off-leash freedom. For social, well-adjusted dogs, a good dog park provides an opportunity to run at full speed, play with other dogs, and burn off energy in a way that even the longest walk might not achieve. The social interaction at a dog park can help dogs develop and maintain important communication skills, learning to read body language, take turns, and navigate group dynamics.
 
 Dog parks are particularly beneficial for high-energy breeds that need to sprint and play fetch over open ground. They also give pet parents a chance to connect with a community of fellow dog lovers, share advice, and build friendships.
 
 ## The Risks of Dog Parks
 
-However, dog parks are not without significant drawbacks. The biggest concern is safety. In most Indian cities, dog parks—where they exist—are not always well-maintained or supervised. You have little control over which dogs are present, and not every dog at the park will be well-socialized or vaccinated. Aggressive encounters, even minor ones, can traumatize a sensitive dog and create lasting behavioral issues. Smaller dogs are at particular risk when sharing space with much larger breeds.
+However, dog parks are not without significant drawbacks. The biggest concern is safety. In most Indian cities, dog parks, where they exist, are not always well-maintained or supervised. You have little control over which dogs are present, and not every dog at the park will be well-socialized or vaccinated. Aggressive encounters, even minor ones, can traumatize a sensitive dog and create lasting behavioral issues. Smaller dogs are at particular risk when sharing space with much larger breeds.
 
 Disease transmission is another real concern. Shared water bowls, close contact, and the inability to verify vaccination status of every dog present means that parks can become hotspots for infections like kennel cough, parvovirus, and intestinal parasites. Dogs that are not fully vaccinated, puppies under four months, and immunocompromised dogs should avoid dog parks entirely.
 
@@ -45,16 +45,16 @@ Walks provide consistent cardiovascular exercise and rich mental stimulation thr
 
 ## When Each Option Is Appropriate
 
-The best approach for most dogs is not choosing one over the other—it is combining both in a balanced routine. Use structured walks as the foundation of your dog's daily exercise. They are consistent, safe, and adaptable to your dog's specific needs. Reserve dog park visits for well-socialized dogs during off-peak hours when the park is less crowded and you can better manage interactions.
+The best approach for most dogs is not choosing one over the other, it is combining both in a balanced routine. Use structured walks as the foundation of your dog's daily exercise. They are consistent, safe, and adaptable to your dog's specific needs. Reserve dog park visits for well-socialized dogs during off-peak hours when the park is less crowded and you can better manage interactions.
 
-Avoid dog parks if your dog is fearful, aggressive, unvaccinated, or under four months old. If your dog has had a negative experience at a park, do not force them to return—the stress can outweigh any potential benefits.
+Avoid dog parks if your dog is fearful, aggressive, unvaccinated, or under four months old. If your dog has had a negative experience at a park, do not force them to return, the stress can outweigh any potential benefits.
 
 ## Why Structured Walks Are Safer for Most Dogs
 
-The reality is that structured walks, guided by a knowledgeable handler, are the safer and more reliable option for the majority of dogs. They eliminate the unpredictability of off-leash environments, reduce the risk of injury or illness, and provide exercise that is tailored to your dog's individual profile. For reactive or anxious dogs, controlled walks are not just preferable—they are essential.
+The reality is that structured walks, guided by a knowledgeable handler, are the safer and more reliable option for the majority of dogs. They eliminate the unpredictability of off-leash environments, reduce the risk of injury or illness, and provide exercise that is tailored to your dog's individual profile. For reactive or anxious dogs, controlled walks are not just preferable, they are essential.
 
 ## How Platypus Keeps Every Walk Safe and Structured
 
-At **Platypus**, our Guardians are trained to provide exactly this kind of thoughtful, structured exercise. Every walk is planned around your dog's breed, age, energy level, and temperament. Our Guardians know how to manage encounters with other dogs on the street, avoid high-risk situations, and keep your pet calm and focused throughout the walk. With GPS tracking and post-walk reports, you always have full visibility into how your dog's outing went. Because the best exercise for your dog is not just about letting them run—it is about keeping them safe while they do.
+At **Platypus**, our Guardians are trained to provide exactly this kind of thoughtful, structured exercise. Every walk is planned around your dog's breed, age, energy level, and temperament. Our Guardians know how to manage encounters with other dogs on the street, avoid high-risk situations, and keep your pet calm and focused throughout the walk. With GPS tracking and post-walk reports, you always have full visibility into how your dog's outing went. Because the best exercise for your dog is not just about letting them run, it is about keeping them safe while they do.
   `
 };

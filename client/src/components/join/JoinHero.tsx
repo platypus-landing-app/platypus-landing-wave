@@ -14,11 +14,11 @@ export default function JoinHero() {
         <div className="max-w-3xl">
           <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">join our team</span>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight font-domine text-gray-900">
-            Dog Walker Job in Mumbai — Become a Platypus Guardian
+            Dog Walker Job in Mumbai: Become a Platypus Guardian
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8">
             Love dogs? Turn your passion into a rewarding career. Join Mumbai&apos;s most trusted pet
-            care team as a Walker, Groomer, Trainer, or Sitter. Earn ₹15,000–30,000/month with flexible hours.
+            care team as a Walker, Groomer, Trainer, or Sitter. Earn ₹15,000 to ₹30,000 per month with flexible hours.
           </p>
           <Button
             onClick={() => { trackCTAClick('join_hero_apply'); openApplication(); }}

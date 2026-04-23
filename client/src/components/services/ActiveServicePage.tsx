@@ -84,7 +84,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                   size="lg"
                   className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold px-8 py-6 text-lg rounded-full hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  Book Trial Walk — {service.price}
+                  Book Trial Walk: {service.price}
                 </Button>
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                   What&apos;s Included
                 </h2>
                 <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                  Every walk is more than just a stroll — it&apos;s a complete care experience.
+                  Every walk is more than a stroll. It&apos;s a complete care experience.
                 </p>
               </div>
             </ScrollReveal>
@@ -189,7 +189,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                     size="lg"
                     className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg rounded-full hover:-translate-y-0.5 hover:shadow-warm transition-all duration-300"
                   >
-                    Book Trial Walk — {service.price}
+                    Book Trial Walk: {service.price}
                   </Button>
                 </div>
               </div>

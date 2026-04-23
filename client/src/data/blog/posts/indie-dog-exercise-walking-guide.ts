@@ -3,7 +3,7 @@ import { BlogPostFull } from '../types';
 export const post: BlogPostFull = {
   slug: "indie-dog-exercise-walking-guide",
   title: "Indie Dog Exercise & Walking Guide: How Much Does Your Indian Pariah Need?",
-  excerpt: "The Indian Pariah is one of the healthiest, most intelligent, and most climate-adapted dogs in the world — yet they are consistently under-walked and under-stimulated. Here's what your Indie actually needs.",
+  excerpt: "The Indian Pariah is one of the healthiest, most intelligent, and most climate-adapted dogs in the world, yet they are consistently under-walked and under-stimulated. Here's what your Indie actually needs.",
   author: "Sagar Sutaria",
   date: "2025-12-14",
   readTime: "6 min read",
@@ -23,7 +23,7 @@ export const post: BlogPostFull = {
   status: "draft",
   relatedSlugs: ["dog-walking-schedule-by-breed", "how-much-exercise-does-my-dog-need", "beagle-exercise-walking-guide"],
   content: `
-The Indian Pariah Dog — commonly called the Indie — is not a breed that was designed by humans. They are a landrace, shaped by thousands of years of natural selection across the Indian subcontinent. No human breeder decided what they should look like, how big they should be, or what job they should do. Evolution did that work, and the result is one of the healthiest, most genetically sound, and most climate-adapted dogs on the planet.
+The Indian Pariah Dog, commonly called the Indie, is not a breed that was designed by humans. They are a landrace, shaped by thousands of years of natural selection across the Indian subcontinent. No human breeder decided what they should look like, how big they should be, or what job they should do. Evolution did that work, and the result is one of the healthiest, most genetically sound, and most climate-adapted dogs on the planet.
 
 Indies are increasingly being adopted in Mumbai, and that is a genuinely positive trend. But adoption often comes with a misconception: that because Indies lived on streets, they are "easy" dogs who need minimal exercise and enrichment. The opposite is true. A street dog survives by being alert, active, resourceful, and constantly engaged with their environment. Take that dog into an apartment and give them nothing to do, and you will see the same frustration and behavioural problems that appear in any under-exercised working breed.
 
@@ -31,9 +31,9 @@ Indies are increasingly being adopted in Mumbai, and that is a genuinely positiv
 
 An adult Indie needs **45 to 75 minutes of walking per day**, depending on their individual energy level and age. Unlike standardised breeds where exercise needs are fairly predictable, Indies show significant individual variation because they are not bred to a single template. Some are calm and moderate; others are high-energy athletes. Observe your specific dog and adjust accordingly.
 
-A good starting structure is a 20 to 30 minute morning walk and a 30 to 45 minute evening walk. Indies are crepuscular by nature — most active during dawn and dusk — so scheduling walks at these times aligns with their biological rhythms.
+A good starting structure is a 20 to 30 minute morning walk and a 30 to 45 minute evening walk. Indies are crepuscular by nature, most active during dawn and dusk, so scheduling walks at these times aligns with their biological rhythms.
 
-**Mental stimulation is where Indies truly shine.** They are exceptionally intelligent and observant dogs, often compared to Border Collies in their problem-solving ability. Walks should include environmental enrichment: varied routes, exposure to new stimuli, opportunities to investigate and make decisions. An Indie walked on the same route every day at the same pace will become bored far faster than you might expect.
+**Mental stimulation is where Indies shine.** They are exceptionally intelligent and observant dogs, often compared to Border Collies in their problem-solving ability. Walks should include environmental enrichment: varied routes, exposure to new stimuli, opportunities to investigate and make decisions. An Indie walked on the same route every day at the same pace will become bored far faster than you might expect.
 
 Incorporate scent work, training cues during walks, and controlled socialisation with other dogs. Indies are naturally social animals (they evolved in loosely structured packs), and positive interactions with other dogs during walks contribute significantly to their well-being.
 
@@ -55,19 +55,19 @@ This is where the Indie has an unmatched advantage over every imported breed on 
 
 Indies are adaptable, but adaptability has limits. An under-exercised Indie will show it:
 
-- **Escape attempts** — Indies are agile, resourceful, and excellent at finding ways out of enclosures. A bored Indie will try to get out because they are seeking the stimulation they are not getting inside. If your Indie is constantly trying to slip through doors or gates, they need more exercise.
-- **Territorial behaviour** — guarding windows, barking at passers-by, marking inside the house. These behaviours intensify when an Indie does not get enough physical outlet.
-- **Anxiety and hypervigilance** — pacing, startling at sounds, inability to relax. This is particularly common in recently adopted Indies who are not getting enough structured activity to channel their energy.
-- **Destructive chewing and digging** — Indies are intelligent dogs solving the problem of boredom with the tools available to them.
-- **Social regression** — an Indie who was friendly with other dogs but starts showing reactivity or avoidance may be under-stimulated and redirecting frustration.
+- **Escape attempts**. Indies are agile, resourceful, and excellent at finding ways out of enclosures. A bored Indie will try to get out because they are seeking the stimulation they are not getting inside. If your Indie is constantly trying to slip through doors or gates, they need more exercise.
+- **Territorial behaviour**, guarding windows, barking at passers-by, marking inside the house. These behaviours intensify when an Indie does not get enough physical outlet.
+- **Anxiety and hypervigilance**, pacing, startling at sounds, inability to relax. This is particularly common in recently adopted Indies who are not getting enough structured activity to channel their energy.
+- **Destructive chewing and digging**. Indies are intelligent dogs solving the problem of boredom with the tools available to them.
+- **Social regression**, an Indie who was friendly with other dogs but starts showing reactivity or avoidance may be under-stimulated and redirecting frustration.
 
 These signs mirror many post-adoption behavioural challenges that are incorrectly attributed to the dog's "street background" when they are actually under-exercise symptoms. For more, read our guide on [signs your dog needs more exercise](/blog/signs-dog-needs-more-exercise).
 
 ## Walking Safety Tips for Indie Dog Owners
 
-**Leash training may take time for adopted Indies.** Many adopted Indies have never worn a leash before. Start with a well-fitted harness (not a collar — many rescue Indies have sensitive necks from past experiences) and short, positive sessions in a familiar environment before graduating to street walks. Patience here pays enormous dividends.
+**Leash training may take time for adopted Indies.** Many adopted Indies have never worn a leash before. Start with a well-fitted harness (not a collar, many rescue Indies have sensitive necks from past experiences) and short, positive sessions in a familiar environment before graduating to street walks. Patience here pays enormous dividends.
 
-**Reactivity management.** Some adopted Indies carry triggers from street life — fear of sticks, certain sounds, uniformed people, or specific locations. If your Indie shows reactivity during walks, do not force exposure. Increase distance from the trigger, reward calm behaviour, and work with a positive-reinforcement trainer if needed.
+**Reactivity management.** Some adopted Indies carry triggers from street life, fear of sticks, certain sounds, uniformed people, or specific locations. If your Indie shows reactivity during walks, do not force exposure. Increase distance from the trigger, reward calm behaviour, and work with a positive-reinforcement trainer if needed.
 
 **Vaccination and deworming status must be current.** This applies to all dogs, but adopted Indies may have gaps in their medical history. Ensure your dog is fully vaccinated (including leptospirosis, particularly relevant during Mumbai's monsoon) before regular walks in public spaces.
 
@@ -77,7 +77,7 @@ For more on Mumbai-specific heat precautions, see our [summer walking safety gui
 
 ## Walking Your Indie with Platypus
 
-At **Platypus**, we walk Indies with the same professionalism and attention that we give to any breed — because that is exactly what they deserve. Our Guardians are experienced with adopted dogs and understand the specific behavioural considerations that come with rescue backgrounds.
+At **Platypus**, we walk Indies with the same professionalism and attention that we give to any breed, because that is exactly what they deserve. Our Guardians are experienced with adopted dogs and understand the specific behavioural considerations that come with rescue backgrounds.
 
 Every Indie on our roster gets a walk plan that respects their intelligence, energy level, and individual temperament. We incorporate route variety, appropriate socialisation opportunities, and the mental enrichment that keeps Indies engaged and balanced. Live GPS tracking and post-walk reports keep you informed about every session.
 

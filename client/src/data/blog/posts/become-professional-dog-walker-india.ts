@@ -38,11 +38,11 @@ Professional dog walking goes well beyond putting a leash on a dog and going for
 
 ## Skills and Qualities You Need
 
-You do not need a formal degree to become a dog walker, but certain skills are essential. A genuine love for animals is the foundation, but you also need physical fitness, punctuality, patience, and strong communication skills. Understanding canine behavior—knowing the difference between a playful bark and a stressed one, for example—is critical. Basic knowledge of pet first aid, leash handling techniques, and breed-specific exercise requirements will set you apart from the crowd.
+You do not need a formal degree to become a dog walker, but certain skills are essential. A genuine love for animals is the foundation, but you also need physical fitness, punctuality, patience, and strong communication skills. Understanding canine behavior, knowing the difference between a playful bark and a stressed one, for example, is critical. Basic knowledge of pet first aid, leash handling techniques, and breed-specific exercise requirements will set you apart from the crowd.
 
 ## How Much Can You Earn?
 
-Earning potential varies based on your city, the number of dogs you walk, and the service you work with. In metro cities, professional dog walkers typically earn between ₹15,000 and ₹30,000 per month. Experienced walkers who build a strong reputation and handle premium clients can earn even more. Unlike many entry-level jobs, dog walking offers flexible hours—you can choose morning or evening slots, or both, depending on your schedule.
+Earning potential varies based on your city, the number of dogs you walk, and the service you work with. In metro cities, professional dog walkers typically earn between ₹15,000 and ₹30,000 per month. Experienced walkers who build a strong reputation and handle premium clients can earn even more. Unlike many entry-level jobs, dog walking offers flexible hours, you can choose morning or evening slots, or both, depending on your schedule.
 
 ## Getting Certified and Trained
 
@@ -50,10 +50,10 @@ While certification is not legally mandatory in India, it makes a significant di
 
 ## A Day in the Life of a Platypus Guardian
 
-At **Platypus**, our dog walkers are called Guardians—because that is exactly what they are. A typical day begins with reviewing your walk schedule on the Platypus app. You arrive at the pet parent's home, greet the dog, and begin a structured walk tailored to the dog's breed, age, and energy level. Throughout the walk, the app tracks your route via GPS so the pet parent can follow along in real time. After the walk, you submit a report with photos, distance covered, and any observations about the dog's mood or health. Every Guardian undergoes rigorous training in canine behavior, safety protocols, and emergency handling before they ever take their first walk.
+At **Platypus**, our dog walkers are called Guardians, because that is exactly what they are. A typical day begins with reviewing your walk schedule on the Platypus app. You arrive at the pet parent's home, greet the dog, and begin a structured walk tailored to the dog's breed, age, and energy level. Throughout the walk, the app tracks your route via GPS so the pet parent can follow along in real time. After the walk, you submit a report with photos, distance covered, and any observations about the dog's mood or health. Every Guardian undergoes rigorous training in canine behavior, safety protocols, and emergency handling before they ever take their first walk.
 
 ## Ready to Start Your Dog Walking Career?
 
-If you are passionate about dogs and looking for a career that combines flexibility, purpose, and good earning potential, becoming a professional dog walker is a path worth exploring. **Platypus** is actively looking for dedicated Guardians across India's top cities. We provide the training, the technology, and the client base—you bring the passion. [Apply today at /join](/join) and take the first step toward a career where every day is spent making tails wag.
+If you are passionate about dogs and looking for a career that combines flexibility, purpose, and good earning potential, becoming a professional dog walker is a path worth exploring. **Platypus** is actively looking for dedicated Guardians across India's top cities. We provide the training, the technology, and the client base, you bring the passion. [Apply today at /join](/join) and take the first step toward a career where every day is spent making tails wag.
   `
 };

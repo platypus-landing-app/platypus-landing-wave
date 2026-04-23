@@ -23,7 +23,7 @@ const testimonials = [
     name: 'Arjun K.',
     role: 'Dog Walker, Powai',
     quote:
-      'The community at Platypus is incredible. Every Guardian genuinely cares about the dogs. It doesn\'t feel like work — it feels like a calling.',
+      'The community at Platypus is incredible. Every Guardian genuinely cares about the dogs. It doesn\'t feel like work. It feels like a calling.',
   },
 ];
 

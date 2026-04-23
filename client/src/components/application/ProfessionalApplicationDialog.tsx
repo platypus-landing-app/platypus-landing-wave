@@ -243,7 +243,7 @@ export default function ProfessionalApplicationDialog() {
             <div>
               <h2 className="text-xl font-bold text-gray-900">Join Platypus</h2>
               <p className="text-sm text-gray-500">
-                Step {step} of 4 —{' '}
+                Step {step} of 4:{' '}
                 {step === 1 ? 'Personal Details' : step === 2 ? 'Professional Info' : step === 3 ? 'Availability' : 'About You'}
               </p>
             </div>

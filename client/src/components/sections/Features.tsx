@@ -20,7 +20,7 @@ const Features = () => {
     },
     {
       title: "Back-Up Walkers",
-      description: "No cancellations — your dog's walks are always on schedule.",
+      description: "No cancellations. Your dog's walks are always on schedule.",
       image: "/Back-Up Walkers.png",
     },
     {
@@ -71,7 +71,7 @@ const Features = () => {
               </span>
             </h2>
             <p className="mt-4 sm:mt-6 font-normal text-[14px] sm:text-[16px] md:text-[16px] leading-[20px] sm:leading-[23px] md:leading-[23px] tracking-[0px] capitalize text-black max-w-full sm:max-w-3xl">
-              We&apos;re Not Just Another Walking Service — We&apos;re India&apos;s First
+              We&apos;re Not Just Another Walking Service. We&apos;re India&apos;s First
               Certified And Tech-Enabled Dog Walking Experts.
             </p>
           </div>
