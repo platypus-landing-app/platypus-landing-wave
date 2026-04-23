@@ -222,7 +222,7 @@ const Testimonials = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div className="mx-auto max-w-sm text-left">
                 <h3 className="font-semibold text-[20px] leading-[28px] text-gray-900 mb-2">Ready To Book?</h3>
-                <p className="text-[16px] leading-[24px] text-[#686868] mb-3">Available 7 days a week, 6 AM - 10 PM</p>
+                <p className="text-[16px] leading-[24px] text-[#686868] mb-3">Mon to Sat, 9 AM to 9 PM</p>
                 <a href="tel:+918451880963" className="flex items-center space-x-2 text-gray-600 hover:text-gray-800">
                   <img src="/phone icon2.png" alt="Phone icon" loading="lazy" decoding="async" className="w-5 h-5" />
                   <span className="text-[16px] leading-[24px] text-[#686868]">Call us: +91 84518 80963</span>
