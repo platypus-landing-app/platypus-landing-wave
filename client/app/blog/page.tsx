@@ -1,13 +1,16 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
+import Link from 'next/link';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import FeaturedBlogPost from '@/components/blog/FeaturedBlogPost';
 import BlogGrid from '@/components/blog/BlogGrid';
-import { getPublishedPosts } from '@/data/blog';
+import { getPublishedPosts, getAllCategories } from '@/data/blog';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 export const dynamic = 'force-dynamic';
+
+const POSTS_PER_PAGE = 9;
 
 export const metadata: Metadata = {
   title: 'Dog Care & Pet Health Blog | Platypus Expert Tips',
@@ -17,12 +20,12 @@ export const metadata: Metadata = {
     'dog care tips, pet health blog, dog walking advice, dog behavior, pet wellness, Mumbai dog care',
   openGraph: {
     type: 'website',
-    url: 'https://theplatypus.in/blog',
+    url: 'https://www.theplatypus.in/blog',
     title: 'Dog Care & Pet Health Blog | Platypus Expert Tips',
     description: 'Expert dog care tips and pet health advice from Platypus certified Guardians.',
     images: [
       {
-        url: 'https://theplatypus.in/og-image.png',
+        url: 'https://www.theplatypus.in/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Platypus Dog Care Blog',
@@ -33,18 +36,45 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Dog Care & Pet Health Blog | Platypus',
     description: 'Expert dog care tips from Platypus certified Guardians.',
-    images: ['https://theplatypus.in/og-image.png'],
+    images: ['https://www.theplatypus.in/og-image.png'],
   },
   alternates: {
-    canonical: 'https://theplatypus.in/blog',
+    canonical: 'https://www.theplatypus.in/blog',
   },
 };
 
-export default function BlogPage() {
-  const blogPosts = getPublishedPosts();
-  const siteUrl = 'https://theplatypus.in';
+interface BlogPageProps {
+  searchParams: Promise<{ page?: string; category?: string }>;
+}
 
-  const [featuredPost, ...remainingPosts] = blogPosts;
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const { page: pageStr, category } = await searchParams;
+  const page = Math.max(1, parseInt(pageStr ?? '1', 10) || 1);
+
+  const allPosts = getPublishedPosts();
+  const categories = getAllCategories();
+
+  // Category filter
+  const filteredPosts = category
+    ? allPosts.filter((p) => p.category === category)
+    : allPosts;
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const currentPage = Math.min(page, totalPages);
+  const pageStart = (currentPage - 1) * POSTS_PER_PAGE;
+  const pagePosts = filteredPosts.slice(pageStart, pageStart + POSTS_PER_PAGE);
+
+  const siteUrl = 'https://www.theplatypus.in';
+  const blogPosts = allPosts;
+  const [featuredPost] = blogPosts;
+  // On page 1 with no filter, the featured post is already rendered
+  // separately, so remove it from the paginated grid to avoid duplication.
+  const showFeaturedStandalone =
+    currentPage === 1 && !category && filteredPosts.length > 0;
+  const remainingPosts = showFeaturedStandalone
+    ? filteredPosts.slice(1, 1 + POSTS_PER_PAGE)
+    : pagePosts;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -119,8 +149,41 @@ export default function BlogPage() {
             </div>
           </section>
 
-          {/* Featured Post */}
-          {featuredPost && (
+          {/* Category tabs */}
+          {categories.length > 0 && (
+            <section className="bg-white border-b border-gray-100">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                  <Link
+                    href="/blog"
+                    className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                      !category
+                        ? 'bg-brand-blue text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    All
+                  </Link>
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat}
+                      href={`/blog?category=${encodeURIComponent(cat)}`}
+                      className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                        category === cat
+                          ? 'bg-brand-blue text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {cat}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Featured Post — only on page 1, no filter */}
+          {showFeaturedStandalone && featuredPost && (
             <section className="py-12 md:py-16 bg-white">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <FeaturedBlogPost post={featuredPost} />
@@ -129,15 +192,54 @@ export default function BlogPage() {
           )}
 
           {/* All Posts Grid */}
-          {remainingPosts.length > 0 && (
+          {remainingPosts.length > 0 ? (
             <section className="py-12 md:py-20 bg-gradient-to-b from-white via-[#FFFCF0] to-white relative overflow-hidden">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
-                  <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">keep reading</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">More Articles</h2>
+                  <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">
+                    {category ? 'in this category' : 'keep reading'}
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    {category ? category : 'More Articles'}
+                  </h2>
                 </div>
                 <BlogGrid posts={remainingPosts} />
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <nav className="mt-16 flex items-center justify-center gap-2" aria-label="Pagination">
+                    {currentPage > 1 && (
+                      <Link
+                        href={`/blog?${category ? `category=${encodeURIComponent(category)}&` : ''}page=${currentPage - 1}`}
+                        className="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      >
+                        ← Previous
+                      </Link>
+                    )}
+                    <span className="px-4 py-2 text-sm text-gray-600">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    {currentPage < totalPages && (
+                      <Link
+                        href={`/blog?${category ? `category=${encodeURIComponent(category)}&` : ''}page=${currentPage + 1}`}
+                        className="px-4 py-2 rounded-full text-sm font-medium bg-brand-blue text-white hover:bg-brand-blue-dark"
+                      >
+                        Next →
+                      </Link>
+                    )}
+                  </nav>
+                )}
               </div>
+            </section>
+          ) : (
+            <section className="py-24 bg-white text-center">
+              <p className="text-gray-600">No posts found in this category yet.</p>
+              <Link
+                href="/blog"
+                className="inline-block mt-4 text-brand-blue hover:text-brand-blue-dark underline"
+              >
+                See all posts
+              </Link>
             </section>
           )}
         </main>

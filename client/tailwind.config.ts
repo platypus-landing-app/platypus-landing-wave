@@ -74,6 +74,12 @@ export default {
 					'cream-light': '#FFFBF0',
 					'warm-bg': '#FFF8E7',
 				},
+				// Semantic surface tokens — always use these over inline hex.
+				// scaffold = page background, card = primary surface, cream = secondary elevated.
+				scaffold: '#FFFBF0',
+				surface: '#FFFFFF',
+				'surface-cream': '#FFFCF0',
+				'surface-warm': '#FFF8E7',
 				golden: 'hsl(var(--golden))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

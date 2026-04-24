@@ -215,3 +215,11 @@ body > div[style*="z-index"] {
   z-index: 2147483647 !important;
   pointer-events: auto !important;
 }
+/* Hide scrollbar on horizontal category tabs etc. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

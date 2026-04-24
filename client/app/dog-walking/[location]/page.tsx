@@ -215,26 +215,55 @@ export default async function LocationPage({ params }: LocationPageProps) {
           {/* Location-Specific Hero Section */}
           <LocationHero locationInfo={locationInfo} location={location} />
 
-          {/* Location FAQ - visible in DOM for crawlers */}
-          {locationInfo.faq.length > 0 && (
-            <section className="sr-only" aria-label={`Frequently asked questions about dog walking in ${locationInfo.name}`}>
-              <h2>Dog Walking FAQ - {locationInfo.name}</h2>
-              {locationInfo.faq.map((f, i) => (
-                <div key={i}>
-                  <h3>{f.question}</h3>
-                  <p>{f.answer}</p>
-                </div>
-              ))}
-            </section>
-          )}
-
           {/* Standard Sections */}
           <HeroFeatures />
-          <Features />
-          <AreasWeServe />
           <Process />
+          <Features />
+
+          {/* Location FAQ — visible to both crawlers AND readers.
+              We intentionally do NOT render the generic home FAQ on location
+              pages; local questions are more useful for parents researching
+              their neighbourhood. */}
+          {locationInfo.faq.length > 0 ? (
+            <section
+              id="faq"
+              className="py-16 lg:py-24 bg-white"
+              aria-label={`Frequently asked questions about dog walking in ${locationInfo.name}`}
+            >
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-12">
+                  <span className="font-guttery text-brand-blue text-lg sm:text-xl mb-2 block">
+                    local questions
+                  </span>
+                  <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
+                    Dog walking in <span className="text-brand-blue">{locationInfo.name}</span>
+                  </h2>
+                  <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    The specifics of walking your dog in {locationInfo.displayName}.
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  {locationInfo.faq.map((f, i) => (
+                    <details
+                      key={i}
+                      className="group bg-[#FFFCF0] rounded-lg border border-brand-blue/10 px-6 py-4 open:border-brand-blue/30 open:border-l-4 open:border-l-brand-blue transition-colors"
+                    >
+                      <summary className="cursor-pointer text-left font-semibold text-gray-900 list-none flex justify-between items-center">
+                        {f.question}
+                        <span className="ml-4 text-brand-blue transition-transform group-open:rotate-180">▾</span>
+                      </summary>
+                      <p className="mt-3 text-gray-600 leading-relaxed">{f.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : (
+            <FAQ />
+          )}
+
+          <AreasWeServe />
           <Testimonials />
-          <FAQ />
 
           {/* Nearby Areas Section - Internal Linking for SEO */}
           {locationInfo.nearbyAreas && locationInfo.nearbyAreas.length > 0 && (
