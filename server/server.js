@@ -35,6 +35,11 @@ async function connectDB() {
         await db.collection("partial_leads").createIndex({ status: 1 });
         await db.collection("partial_leads").createIndex({ created_at: 1 });
         console.log("✅ Indexes created for partial_leads collection");
+
+        // Indexes for dog_bookings collection (cluster + funnel queries)
+        await db.collection("dog_bookings").createIndex({ "address.pincode": 1 });
+        await db.collection("dog_bookings").createIndex({ leadTemperature: 1 });
+        console.log("✅ Indexes ensured for dog_bookings (pincode + leadTemperature)");
     } catch (err) {
         console.error("❌ MongoDB connection error:", err);
         process.exit(1);
