@@ -226,12 +226,16 @@ const TrialBookingDialog: React.FC = () => {
 
   const addDog = () => {
     appendDog({
-      name: "", breed: "", breedOther: "", age: undefined as any,
-      gender: undefined as any, weightKg: undefined,
-      friendlyWithStrangers: undefined as any, aggressive: undefined as any,
-      leashTrained: undefined as any, vaccinated: undefined as any,
+      name: "", breed: "", breedOther: "",
+      age: undefined,
+      gender: undefined,
+      weightKg: undefined,
+      friendlyWithStrangers: undefined,
+      aggressive: undefined,
+      leashTrained: undefined,
+      vaccinated: undefined,
       medicalConditions: "", specialNotes: "",
-    });
+    } as unknown as Parameters<typeof appendDog>[0]);
   };
 
   // Watch phone number for reCAPTCHA initialization

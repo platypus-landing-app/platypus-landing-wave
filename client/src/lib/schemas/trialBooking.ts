@@ -130,13 +130,20 @@ export function makeDefaultTrialBookingValues(): TrialBookingFormValues {
       lat: undefined,
       lng: undefined,
     },
+    // RHF defaults intentionally start as empty/undefined so validation only
+    // fires after user input. Cast through unknown to bypass Zod's strict
+    // required-field types for the default state.
     dogs: [{
-      name: "", breed: "", breedOther: "", age: undefined as any,
-      gender: undefined as any, weightKg: undefined,
-      friendlyWithStrangers: undefined as any, aggressive: undefined as any,
-      leashTrained: undefined as any, vaccinated: undefined as any,
+      name: "", breed: "", breedOther: "",
+      age: undefined,
+      gender: undefined,
+      weightKg: undefined,
+      friendlyWithStrangers: undefined,
+      aggressive: undefined,
+      leashTrained: undefined,
+      vaccinated: undefined,
       medicalConditions: "",
-    }],
+    } as unknown as Dog],
     // Computed at call-time so the suggested date is always tomorrow,
     // even after long tab-restores.
     preferredDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
