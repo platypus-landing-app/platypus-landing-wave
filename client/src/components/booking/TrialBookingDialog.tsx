@@ -48,6 +48,11 @@ import {
 import { useKeyboardHeight } from "@/hooks/use-keyboard-height";
 import AddressAutocomplete, { SelectedAddress } from "@/components/AddressAutocomplete";
 import { useBooking } from "@/contexts/BookingContext";
+import {
+  TrialBookingSchema,
+  type TrialBookingFormValues,
+  defaultTrialBookingValues,
+} from "@/lib/schemas/trialBooking";
 // Removed react-google-recaptcha-v3 to prevent conflicts with Firebase Enterprise reCAPTCHA
 import { auth } from "@/lib/firebase";
 import {
@@ -94,70 +99,12 @@ const DOG_BREEDS = [
   "Other"
 ];
 
-const TIME_SLOTS = [
-  { value: "morning", label: "Morning (6 AM - 10 AM)" },
-  { value: "evening", label: "Evening (6 PM - 10 PM)" }
+const LEGACY_TIME_SLOTS = [
+  { value: "morning", label: "Morning (6 AM to 10 AM)" },
+  { value: "evening", label: "Evening (6 PM to 10 PM)" }
 ];
 
-const DogSchema = z.object({
-  name: z.string().min(1, "Dog name is required"),
-  breed: z.string().min(1, "Breed is required"),
-  breedOther: z.string().optional(),
-  age: z.preprocess(
-    (v) => (v === "" || v === undefined ? undefined : Number(v)), 
-    z.number({ invalid_type_error: "Enter a valid age" })
-      .min(0, "Age can't be negative")
-      .max(30, "Please enter a valid age")
-  ),
-  specialNotes: z.string().optional(),
-}).refine((data) => {
-  if (data.breed === "Other") {
-    return data.breedOther && data.breedOther.trim().length > 0;
-  }
-  return true;
-}, {
-  message: "Please specify the breed",
-  path: ["breedOther"],
-});
-
-const TrialBookingSchema = z.object({
-  // Step 1: Pet Parent Details
-  fullName: z.string().min(2, "Name is too short"),
-  mobile: z.string().regex(/^\d{10}$/g, "Enter 10-digit mobile number"),
-  whatsappEnabled: z.boolean().default(true),
-  email: z.string().optional(),
-  
-  // Step 2: Dog Details
-  dogs: z.array(DogSchema).min(1, "Please add at least one dog"),
-  
-  // Step 3: Walk Preferences & Safety
-  preferredDate: z.date({ required_error: "Please select a date" }),
-  timeSlot: z.string().min(1, "Please select a time slot"),
-  location: z.string().min(1, "Please enter your location"),
-  vaccinationsUpToDate: z.boolean().refine((v) => v === true, {
-    message: "Vaccination confirmation is required",
-  }),
-  superviseHandover: z.boolean().refine((v) => v === true, {
-    message: "Please agree to supervise the first handover",
-  }),
-});
-
-export type TrialBookingFormValues = z.infer<typeof TrialBookingSchema>;
-
 const STORAGE_KEY = "trialBookingDraft";
-
-const defaultValues: TrialBookingFormValues = {
-  fullName: "",
-  mobile: "",
-  whatsappEnabled: true,
-  email: "",
-  dogs: [{ name: "", breed: "", breedOther: "", age: undefined as any, specialNotes: "" }],
-  preferredDate: new Date(Date.now() + 24 * 60 * 60 * 1000), // Tomorrow
-  timeSlot: "",
-  location: "Mumbai", // Smart default
-  vaccinationsUpToDate: false,
-  superviseHandover: false,
-};
 
 const TrialBookingDialog: React.FC = () => {
   const { isTrialBookingOpen, closeTrialBooking } = useBooking();
@@ -179,7 +126,7 @@ const TrialBookingDialog: React.FC = () => {
 
   const form = useForm<TrialBookingFormValues>({
     resolver: zodResolver(TrialBookingSchema),
-    defaultValues,
+    defaultValues: defaultTrialBookingValues,
     mode: "onChange",
   });
 
@@ -270,7 +217,13 @@ const TrialBookingDialog: React.FC = () => {
   };
 
   const addDog = () => {
-    appendDog({ name: "", breed: "", breedOther: "", age: undefined as any, specialNotes: "" });
+    appendDog({
+      name: "", breed: "", breedOther: "", age: undefined as any,
+      gender: undefined as any, weightKg: undefined,
+      friendlyWithStrangers: undefined as any, aggressive: undefined as any,
+      leashTrained: undefined as any, vaccinated: undefined as any,
+      medicalConditions: "", specialNotes: "",
+    });
   };
 
   // Watch phone number for reCAPTCHA initialization
@@ -491,7 +444,7 @@ async function onSubmit(values: TrialBookingFormValues) {
     }
 
     // Track conversion
-    trackTrialBooking(values.address || 'website');
+    trackTrialBooking(values.location || 'website');
 
     // Success toast
     toast({
@@ -500,7 +453,7 @@ async function onSubmit(values: TrialBookingFormValues) {
     });
 
     // Reset form and localStorage
-    form.reset(defaultValues);
+    form.reset(defaultTrialBookingValues);
     localStorage.removeItem(STORAGE_KEY);
 
     // Reset OTP states
@@ -935,7 +888,7 @@ async function onSubmit(values: TrialBookingFormValues) {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              {TIME_SLOTS.map((slot) => (
+                              {LEGACY_TIME_SLOTS.map((slot) => (
                                 <SelectItem key={slot.value} value={slot.value}>
                                   {slot.label}
                                 </SelectItem>
@@ -955,7 +908,7 @@ async function onSubmit(values: TrialBookingFormValues) {
                           <FormLabel>Location / Area *</FormLabel>
                           <FormControl>
                             <AddressAutocomplete
-                              value={field.value}
+                              value={field.value || ""}
                               onSelect={(address: SelectedAddress) => {
                                 field.onChange(address.addressLine || `${address.area}, ${address.city}`.replace(/^, |, $/, ''));
                               }}
