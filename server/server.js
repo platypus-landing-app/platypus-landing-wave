@@ -42,6 +42,12 @@ async function connectDB() {
         await db.collection("dog_bookings").createIndex({ "address.pincode": 1 });
         await db.collection("dog_bookings").createIndex({ leadTemperature: 1 });
         console.log("✅ Indexes ensured for dog_bookings (mobile + pincode + leadTemperature)");
+
+        // Indexes for ios_waitlist collection
+        await db.collection("ios_waitlist").createIndex({ email: 1 }, { unique: true });
+        await db.collection("ios_waitlist").createIndex({ created_at: 1 });
+        await db.collection("ios_waitlist").createIndex({ status: 1 });
+        console.log("✅ Indexes ensured for ios_waitlist (unique email + created_at + status)");
     } catch (err) {
         console.error("❌ MongoDB connection error:", err);
         process.exit(1);
