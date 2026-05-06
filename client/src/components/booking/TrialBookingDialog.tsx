@@ -54,6 +54,7 @@ import {
   defaultTrialBookingValues,
 } from "@/lib/schemas/trialBooking";
 import AddressFields from "@/components/booking/AddressFields";
+import DogCard from "@/components/booking/DogCard";
 // Removed react-google-recaptcha-v3 to prevent conflicts with Firebase Enterprise reCAPTCHA
 import { auth } from "@/lib/firebase";
 import {
@@ -711,121 +712,13 @@ async function onSubmit(values: TrialBookingFormValues) {
                     </div>
 
                     {dogFields.map((field, index) => (
-                      <div key={field.id} className="space-y-4 p-4 border rounded-lg bg-muted/20">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-medium text-foreground">
-                            Dog {index + 1}
-                          </h4>
-                          {dogFields.length > 1 && (
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => removeDog(index)}
-                              className="text-destructive hover:text-destructive"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          )}
-                        </div>
-
-                        <FormField
-                          control={form.control}
-                          name={`dogs.${index}.name`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Dog's Name *</FormLabel>
-                              <FormControl>
-                                <Input placeholder="e.g., Simba" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name={`dogs.${index}.breed`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Dog's Breed *</FormLabel>
-                              <Select onValueChange={field.onChange} value={field.value}>
-                                <FormControl>
-                                  <SelectTrigger>
-                                    <SelectValue placeholder="Select breed" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent className="max-h-64">
-                                  {DOG_BREEDS.map((breed) => (
-                                    <SelectItem key={breed} value={breed}>
-                                      {breed}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        {watch(`dogs.${index}.breed`) === "Other" && (
-                          <FormField
-                            control={form.control}
-                            name={`dogs.${index}.breedOther`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Please specify breed *</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Enter breed name" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        )}
-
-                        <FormField
-                          control={form.control}
-                          name={`dogs.${index}.age`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Dog's Age (in years) *</FormLabel>
-                              <FormControl>
-                                <Input 
-                                  type="number" 
-                                  min="0" 
-                                  max="30" 
-                                  placeholder="e.g., 3" 
-                                  {...field}
-                                  onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name={`dogs.${index}.specialNotes`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Special Needs or Health Notes</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="e.g., Paralysis, anxiety, senior dog, leash pulling"
-                                  rows={3}
-                                  {...field} 
-                                />
-                              </FormControl>
-                              <FormDescription>
-                                Any important information about your dog's health or behavior
-                              </FormDescription>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
+                      <DogCard
+                        key={field.id}
+                        index={index}
+                        totalDogs={dogFields.length}
+                        breeds={DOG_BREEDS}
+                        onRemove={() => removeDog(index)}
+                      />
                     ))}
 
                     <Button
