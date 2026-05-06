@@ -614,6 +614,12 @@ app.post("/api/leads/ios-waitlist", bookingLimiter, async (req, res) => {
 
         return res.status(200).json({ success: true, alreadySubscribed: false });
     } catch (err) {
+        // Concurrent same-email signup race: findOne missed it, insertOne hit
+        // the unique-email index. Treat as a duplicate, not a failure.
+        if (err && err.code === 11000) {
+            console.log(`ℹ️ iOS waitlist duplicate (race): ${(req.body.email || "").trim().toLowerCase()}`);
+            return res.status(200).json({ success: true, alreadySubscribed: true });
+        }
         console.error("❌ POST /api/leads/ios-waitlist error:", err);
         return res.status(500).json({ success: false, message: "Something went wrong. Please try again." });
     }
