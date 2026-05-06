@@ -69,6 +69,9 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
         setInputValue(newValue);
+        // Propagate typed value to parent so RHF state stays in sync
+        // even if the user never picks a suggestion (slow network, short input, etc.)
+        onSelect({ addressLine: newValue });
 
         if (newValue.length > 2 && autocompleteService.current) {
             setIsLoading(true);

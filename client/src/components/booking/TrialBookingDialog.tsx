@@ -50,7 +50,7 @@ import { useBooking } from "@/contexts/BookingContext";
 import {
   TrialBookingSchema,
   type TrialBookingFormValues,
-  defaultTrialBookingValues,
+  makeDefaultTrialBookingValues,
   TIME_SLOTS,
 } from "@/lib/schemas/trialBooking";
 import AddressFields from "@/components/booking/AddressFields";
@@ -127,7 +127,7 @@ const TrialBookingDialog: React.FC = () => {
 
   const form = useForm<TrialBookingFormValues>({
     resolver: zodResolver(TrialBookingSchema),
-    defaultValues: defaultTrialBookingValues,
+    defaultValues: makeDefaultTrialBookingValues(),
     mode: "onChange",
   });
 
@@ -280,7 +280,7 @@ const TrialBookingDialog: React.FC = () => {
       setStage("capture");
       setLeadId("");
       setStep(1);
-      form.reset(defaultTrialBookingValues);
+      form.reset(makeDefaultTrialBookingValues());
       // Note: We don't clear window.recaptchaVerifier as it's global and reused
     }
   }, [isTrialBookingOpen, form]);
@@ -463,7 +463,7 @@ async function onSubmit(values: TrialBookingFormValues) {
 
     toast({
       title: "Booking received",
-      description: "Almost done — a few optional questions.",
+      description: "Almost done. A few optional questions.",
     });
 
     // Clear localStorage so future visits start fresh; keep form values intact

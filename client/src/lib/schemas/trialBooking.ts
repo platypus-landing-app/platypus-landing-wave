@@ -114,38 +114,45 @@ export const EnrichmentSchema = z.object({
 });
 export type EnrichmentFormValues = z.infer<typeof EnrichmentSchema>;
 
-export const defaultTrialBookingValues: TrialBookingFormValues = {
-  fullName: "",
-  mobile: "",
-  whatsappEnabled: true,
-  email: "",
-  address: {
-    houseFlat: "",
-    addressLine: "",
-    landmark: "",
-    area: "",
-    city: "Mumbai",
-    pincode: "",
-    lat: undefined,
-    lng: undefined,
-  },
-  dogs: [{
-    name: "", breed: "", breedOther: "", age: undefined as any,
-    gender: undefined as any, weightKg: undefined,
-    friendlyWithStrangers: undefined as any, aggressive: undefined as any,
-    leashTrained: undefined as any, vaccinated: undefined as any,
-    medicalConditions: "",
-  }],
-  preferredDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
-  walksPerDay: "1",
-  walksPerDayCustom: undefined,
-  timeSlots: [],
-  durationMinutes: "30",
-  currentSituation: "no_walker",
-  superviseHandover: false,
-  contactConsent: false,
-  accuracyConfirmed: false,
-  location: "Mumbai",
-  vaccinationsUpToDate: false,
-  timeSlot: "",
-};
+export function makeDefaultTrialBookingValues(): TrialBookingFormValues {
+  return {
+    fullName: "",
+    mobile: "",
+    whatsappEnabled: true,
+    email: "",
+    address: {
+      houseFlat: "",
+      addressLine: "",
+      landmark: "",
+      area: "",
+      city: "Mumbai",
+      pincode: "",
+      lat: undefined,
+      lng: undefined,
+    },
+    dogs: [{
+      name: "", breed: "", breedOther: "", age: undefined as any,
+      gender: undefined as any, weightKg: undefined,
+      friendlyWithStrangers: undefined as any, aggressive: undefined as any,
+      leashTrained: undefined as any, vaccinated: undefined as any,
+      medicalConditions: "",
+    }],
+    // Computed at call-time so the suggested date is always tomorrow,
+    // even after long tab-restores.
+    preferredDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    walksPerDay: "1",
+    walksPerDayCustom: undefined,
+    timeSlots: [],
+    durationMinutes: "30",
+    currentSituation: "no_walker",
+    superviseHandover: false,
+    contactConsent: false,
+    accuracyConfirmed: false,
+    location: "Mumbai",
+    vaccinationsUpToDate: false,
+    timeSlot: "",
+  };
+}
+
+/** @deprecated Use makeDefaultTrialBookingValues() instead — frozen module-load date causes stale defaults. */
+export const defaultTrialBookingValues: TrialBookingFormValues = makeDefaultTrialBookingValues();
