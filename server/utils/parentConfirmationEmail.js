@@ -19,7 +19,6 @@ import SibApiV3Sdk from "sib-api-v3-sdk";
 import {
     PARENT_APP_IOS_URL,
     PARENT_APP_ANDROID_URL,
-    PARENT_APP_UNIVERSAL_URL,
     APP_STORE_BADGE_IMG,
     PLAY_STORE_BADGE_IMG,
 } from "./appLinks.js";
@@ -38,23 +37,28 @@ function escapeHtml(s) {
 }
 
 function renderAppCTA() {
-    if (APP_STORE_BADGE_IMG && PLAY_STORE_BADGE_IMG) {
+    const hasIos = !!PARENT_APP_IOS_URL;
+    const hasBadges = APP_STORE_BADGE_IMG && PLAY_STORE_BADGE_IMG;
+
+    if (hasBadges) {
         return `
-      <a href="${PARENT_APP_IOS_URL}" style="display:inline-block; margin-right:8px; text-decoration:none;">
+      ${hasIos ? `<a href="${PARENT_APP_IOS_URL}" style="display:inline-block; margin-right:8px; text-decoration:none;">
         <img src="${APP_STORE_BADGE_IMG}" alt="Download on the App Store" style="height:44px; width:auto; border:0;" />
-      </a>
+      </a>` : ""}
       <a href="${PARENT_APP_ANDROID_URL}" style="display:inline-block; text-decoration:none;">
         <img src="${PLAY_STORE_BADGE_IMG}" alt="Get it on Google Play" style="height:44px; width:auto; border:0;" />
       </a>
     `;
     }
     return `
-      <a href="${PARENT_APP_IOS_URL}" style="display:inline-block; margin-right:10px; padding:10px 16px; background:#000; color:#fff; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600;">
-        Download for iPhone
-      </a>
       <a href="${PARENT_APP_ANDROID_URL}" style="display:inline-block; padding:10px 16px; background:#247AFD; color:#fff; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600;">
         Download for Android
       </a>
+      ${hasIos ? `<a href="${PARENT_APP_IOS_URL}" style="display:inline-block; margin-left:10px; padding:10px 16px; background:#000; color:#fff; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600;">
+        Download for iPhone
+      </a>` : `<span style="display:inline-block; margin-left:10px; padding:10px 16px; background:#f3f4f6; color:#6b7280; border-radius:6px; font-size:14px; font-weight:600;">
+        iPhone app coming soon
+      </span>`}
     `;
 }
 
@@ -108,9 +112,6 @@ function buildHtml({ booking }) {
           Once your walks start, follow them live on our parent app. Booking through the app rolls out shortly; for now we&apos;ll continue handling new bookings on call or WhatsApp.
         </p>
         ${renderAppCTA()}
-        <p style="margin:10px 0 0; font-size:12px; color:#6b7280;">
-          One link for both stores: <a href="${PARENT_APP_UNIVERSAL_URL}" style="color:#247AFD;">${PARENT_APP_UNIVERSAL_URL}</a>
-        </p>
       </div>
 
       <div style="margin:20px 0 4px; padding-top:18px; border-top:1px solid #e5e7eb;">
@@ -154,9 +155,8 @@ function buildPlainText({ booking }) {
         `  Mobile: ${booking.mobile || ""}`,
         ``,
         `Track your walks on the Platypus parent app:`,
-        `  iOS: ${PARENT_APP_IOS_URL}`,
         `  Android: ${PARENT_APP_ANDROID_URL}`,
-        `  Or: ${PARENT_APP_UNIVERSAL_URL}`,
+        ...(PARENT_APP_IOS_URL ? [`  iOS: ${PARENT_APP_IOS_URL}`] : [`  iPhone app coming soon`]),
         ``,
         `Need us sooner? Call ${SUPPORT_PHONE} (Mon to Sat, 9 AM to 9 PM) or reply to this email.`,
         ``,
