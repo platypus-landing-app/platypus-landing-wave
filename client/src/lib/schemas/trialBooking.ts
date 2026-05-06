@@ -65,7 +65,7 @@ export const TrialBookingSchema = z.object({
   fullName: z.string().min(2, "Name is too short"),
   mobile: z.string().regex(/^\d{10}$/g, "Enter a 10-digit mobile number"),
   whatsappEnabled: z.boolean().default(true),
-  email: z.string().email("Enter a valid email").optional().or(z.literal("")),
+  email: z.string().min(1, "Email is required").email("Enter a valid email"),
   address: AddressSchema,
 
   // Section 2

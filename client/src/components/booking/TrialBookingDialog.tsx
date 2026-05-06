@@ -194,6 +194,7 @@ const TrialBookingDialog: React.FC = () => {
       const isValid = await trigger([
         "fullName",
         "mobile",
+        "email",
         "address.houseFlat",
         "address.addressLine",
         "address.city",
@@ -683,12 +684,12 @@ async function onSubmit(values: TrialBookingFormValues) {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address <span className="text-muted-foreground">(Optional)</span></FormLabel>
+                          <FormLabel>Email Address *</FormLabel>
                           <FormControl>
                             <Input type="email" placeholder="you@example.com" {...field} />
                           </FormControl>
                           <FormDescription>
-                            For confirmations and updates
+                            We&apos;ll send your booking confirmation here.
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
