@@ -46,15 +46,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useKeyboardHeight } from "@/hooks/use-keyboard-height";
-import AddressAutocomplete, { SelectedAddress } from "@/components/AddressAutocomplete";
 import { useBooking } from "@/contexts/BookingContext";
 import {
   TrialBookingSchema,
   type TrialBookingFormValues,
   defaultTrialBookingValues,
+  TIME_SLOTS,
 } from "@/lib/schemas/trialBooking";
 import AddressFields from "@/components/booking/AddressFields";
 import DogCard from "@/components/booking/DogCard";
+import BehaviorChip from "@/components/booking/BehaviorChip";
 // Removed react-google-recaptcha-v3 to prevent conflicts with Firebase Enterprise reCAPTCHA
 import { auth } from "@/lib/firebase";
 import {
@@ -99,11 +100,6 @@ const DOG_BREEDS = [
   "Rampur Greyhound",
   "Gull Terrier",
   "Other"
-];
-
-const LEGACY_TIME_SLOTS = [
-  { value: "morning", label: "Morning (6 AM to 10 AM)" },
-  { value: "evening", label: "Evening (6 PM to 10 PM)" }
 ];
 
 const STORAGE_KEY = "trialBookingDraft";
@@ -733,11 +729,12 @@ async function onSubmit(values: TrialBookingFormValues) {
                   </div>
                 )}
 
-                {/* Step 3: Walk Preferences & Safety */}
+                {/* Step 3: Walking Requirements + Consent */}
                 {step === 3 && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-4">Walk Preferences & Safety</h3>
+                      <h3 className="text-lg font-semibold text-foreground mb-1">Walking Requirements</h3>
+                      <p className="text-xs text-muted-foreground">Tell us how you&apos;d like the walks to work.</p>
                     </div>
 
                     <FormField
@@ -745,7 +742,7 @@ async function onSubmit(values: TrialBookingFormValues) {
                       name="preferredDate"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel>Preferred Walk Date *</FormLabel>
+                          <FormLabel>When do you want to start? *</FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
@@ -756,11 +753,7 @@ async function onSubmit(values: TrialBookingFormValues) {
                                     !field.value && "text-muted-foreground"
                                   )}
                                 >
-                                  {field.value ? (
-                                    format(field.value, "PPP")
-                                  ) : (
-                                    <span>Pick a date</span>
-                                  )}
+                                  {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                 </Button>
                               </FormControl>
@@ -776,9 +769,6 @@ async function onSubmit(values: TrialBookingFormValues) {
                               />
                             </PopoverContent>
                           </Popover>
-                          <FormDescription>
-                            Defaults to next available slot
-                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -786,22 +776,131 @@ async function onSubmit(values: TrialBookingFormValues) {
 
                     <FormField
                       control={form.control}
-                      name="timeSlot"
+                      name="walksPerDay"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Preferred Time Slot *</FormLabel>
+                          <FormLabel>Number of walks per day *</FormLabel>
+                          <BehaviorChip
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={[
+                              { value: "1", label: "1" },
+                              { value: "2", label: "2" },
+                              { value: "3", label: "3" },
+                              { value: "custom", label: "Custom" },
+                            ]}
+                            ariaLabel="Walks per day"
+                            className="mt-1"
+                          />
+                          {watch("walksPerDay") === "custom" && (
+                            <FormField
+                              control={form.control}
+                              name="walksPerDayCustom"
+                              render={({ field: cf }) => (
+                                <FormItem className="mt-2">
+                                  <FormControl>
+                                    <Input
+                                      type="number"
+                                      min="4"
+                                      max="10"
+                                      placeholder="4 to 10"
+                                      onChange={(e) =>
+                                        cf.onChange(e.target.value ? Number(e.target.value) : undefined)
+                                      }
+                                      value={cf.value ?? ""}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          )}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="timeSlots"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Preferred time slots *{" "}
+                            <span className="text-muted-foreground">(pick all that work)</span>
+                          </FormLabel>
+                          <div className="grid grid-cols-2 gap-2 mt-1">
+                            {TIME_SLOTS.map((slot) => {
+                              const checked = (field.value || []).includes(slot.value);
+                              return (
+                                <button
+                                  key={slot.value}
+                                  type="button"
+                                  aria-pressed={checked}
+                                  onClick={() => {
+                                    const cur = new Set(field.value || []);
+                                    if (cur.has(slot.value)) {
+                                      cur.delete(slot.value);
+                                    } else {
+                                      cur.add(slot.value);
+                                    }
+                                    field.onChange(Array.from(cur));
+                                  }}
+                                  className={cn(
+                                    "min-h-11 px-3 py-2 text-sm rounded-md border transition-colors text-left",
+                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                    checked
+                                      ? "bg-primary text-primary-foreground border-primary"
+                                      : "bg-background text-foreground border-input hover:bg-muted"
+                                  )}
+                                >
+                                  {slot.label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="durationMinutes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Duration per walk *</FormLabel>
+                          <BehaviorChip
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={[
+                              { value: "30", label: "30 min" },
+                              { value: "60", label: "60 min" },
+                            ]}
+                            ariaLabel="Duration per walk"
+                            className="mt-1"
+                          />
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="currentSituation"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>What&apos;s your current situation?</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select time slot" />
+                              <SelectTrigger className="mt-1">
+                                <SelectValue />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              {LEGACY_TIME_SLOTS.map((slot) => (
-                                <SelectItem key={slot.value} value={slot.value}>
-                                  {slot.label}
-                                </SelectItem>
-                              ))}
+                              <SelectItem value="no_walker">I don&apos;t have a walker</SelectItem>
+                              <SelectItem value="unsatisfied">I have one but I&apos;m not satisfied</SelectItem>
+                              <SelectItem value="exploring">Just exploring</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -809,29 +908,8 @@ async function onSubmit(values: TrialBookingFormValues) {
                       )}
                     />
 
-                    <div className="space-y-4 border-t pt-4">
-                      <h4 className="font-medium text-foreground">Safety Confirmation</h4>
-                      
-                      <FormField
-                        control={form.control}
-                        name="vaccinationsUpToDate"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel>
-                                I confirm my dog's vaccinations are up-to-date *
-                              </FormLabel>
-                            </div>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                    <div className="space-y-3 border-t pt-4">
+                      <h4 className="font-medium text-foreground">Consent</h4>
 
                       <FormField
                         control={form.control}
@@ -839,23 +917,52 @@ async function onSubmit(values: TrialBookingFormValues) {
                         render={({ field }) => (
                           <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                             <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel>I&apos;ll supervise the first trial walk handover *</FormLabel>
+                              <FormMessage />
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="contactConsent"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                             </FormControl>
                             <div className="space-y-1 leading-none">
                               <FormLabel>
-                                I agree to supervise the first trial walk handover *
+                                I agree to be contacted by Platypus via call and WhatsApp *
                               </FormLabel>
+                              <FormMessage />
                             </div>
-                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="accuracyConfirmed"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel>I confirm the details I&apos;ve shared are accurate *</FormLabel>
+                              <FormMessage />
+                            </div>
                           </FormItem>
                         )}
                       />
 
                       <div className="text-xs text-muted-foreground bg-muted p-3 rounded-md">
-                        <strong>Trust & Safety:</strong> Platypus Guardians follow strict hygiene, safety, and backup protocols to ensure uninterrupted service.
+                        <strong>Trust and safety:</strong> Platypus Guardians follow strict hygiene, safety, and backup protocols.
                       </div>
                     </div>
                   </div>
