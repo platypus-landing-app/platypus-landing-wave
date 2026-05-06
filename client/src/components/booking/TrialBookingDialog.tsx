@@ -56,6 +56,7 @@ import {
 import AddressFields from "@/components/booking/AddressFields";
 import DogCard from "@/components/booking/DogCard";
 import BehaviorChip from "@/components/booking/BehaviorChip";
+import EnrichmentScreen from "@/components/booking/EnrichmentScreen";
 // Removed react-google-recaptcha-v3 to prevent conflicts with Firebase Enterprise reCAPTCHA
 import { auth } from "@/lib/firebase";
 import {
@@ -108,6 +109,8 @@ const TrialBookingDialog: React.FC = () => {
   const { isTrialBookingOpen, closeTrialBooking } = useBooking();
   const [step, setStep] = React.useState(1);
   const [countdown, setCountdown] = React.useState(0);
+  const [stage, setStage] = React.useState<"capture" | "enrichment" | "done">("capture");
+  const [leadId, setLeadId] = React.useState<string>("");
   const { keyboardHeight, isKeyboardVisible } = useKeyboardHeight();
 
   // Firebase Phone Auth states
@@ -274,9 +277,13 @@ const TrialBookingDialog: React.FC = () => {
       setPhoneVerified(false);
       setConfirmationResult(null);
       setLastPhoneNumber('');
+      setStage("capture");
+      setLeadId("");
+      setStep(1);
+      form.reset(defaultTrialBookingValues);
       // Note: We don't clear window.recaptchaVerifier as it's global and reused
     }
-  }, [isTrialBookingOpen]);
+  }, [isTrialBookingOpen, form]);
 
   // Firebase Phone Auth Functions
   const handleSendOTP = async () => {
@@ -448,27 +455,22 @@ async function onSubmit(values: TrialBookingFormValues) {
       throw new Error(errorData.message || "Booking failed");
     }
 
-    // Track conversion
-    trackTrialBooking(values.location || 'website');
+    const data = await response.json();
+    setLeadId(data?.leadId || "");
 
-    // Success toast
+    // Track conversion
+    trackTrialBooking(values.address?.city || values.location || "website");
+
     toast({
-      title: "✅ Booking Successful",
-      description: "Your trial booking has been submitted successfully!",
+      title: "Booking received",
+      description: "Almost done — a few optional questions.",
     });
 
-    // Reset form and localStorage
-    form.reset(defaultTrialBookingValues);
+    // Clear localStorage so future visits start fresh; keep form values intact
+    // until the modal closes so the enrichment screen can read pincode/city.
     localStorage.removeItem(STORAGE_KEY);
 
-    // Reset OTP states
-    setPhoneVerified(false);
-    setOtpSent(false);
-    setOtpSending(false);
-    setOtpVerifying(false);
-    setStep(1);
-
-    closeTrialBooking();
+    setStage("enrichment");
   } catch (err: any) {
     // Error already shown to user via toast
     toast({
@@ -522,21 +524,25 @@ async function onSubmit(values: TrialBookingFormValues) {
               </DialogDescription>
             </DialogHeader>
             
-            {/* Progress Bar */}
-            <div className="mt-4 space-y-2">
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Step {step} of 3</span>
-                <span>{Math.round(progressValue)}% complete</span>
+            {/* Progress Bar — capture stage only */}
+            {stage === "capture" && (
+              <div className="mt-4 space-y-2">
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Step {step} of 3</span>
+                  <span>{Math.round(progressValue)}% complete</span>
+                </div>
+                <Progress value={progressValue} className="h-2" />
               </div>
-              <Progress value={progressValue} className="h-2" />
-            </div>
+            )}
           </div>
 
-          {/* Form Content */}
+          {/* Form Content + Footer — capture stage */}
+          {stage === "capture" && (
+          <>
           <div className="flex-1 overflow-y-auto px-6 py-4">
             <Form {...form}>
               <div className="space-y-6">
-                
+
                 {/* Step 1: Pet Parent Details */}
                 {step === 1 && (
                   <div className="space-y-6">
@@ -1019,6 +1025,37 @@ async function onSubmit(values: TrialBookingFormValues) {
               </div>
             )}
           </div>
+          </>
+          )}
+
+          {/* Enrichment stage */}
+          {stage === "enrichment" && (
+            <div className="flex-1 overflow-y-auto">
+              <EnrichmentScreen
+                leadId={leadId}
+                pincode={form.getValues("address.pincode") || ""}
+                isInArea={["Mumbai", "Navi Mumbai", "Thane"].includes(
+                  form.getValues("address.city") || "",
+                )}
+                onComplete={() => {
+                  setStage("done");
+                  setTimeout(() => closeTrialBooking(), 1800);
+                }}
+                onSkip={closeTrialBooking}
+              />
+            </div>
+          )}
+
+          {/* Done stage */}
+          {stage === "done" && (
+            <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 text-center space-y-3">
+              <Check className="h-12 w-12 text-green-600" />
+              <p className="text-lg font-semibold">You&apos;re set</p>
+              <p className="text-sm text-muted-foreground max-w-sm">
+                We&apos;ll WhatsApp you within 30 minutes with Guardian options for your area.
+              </p>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
