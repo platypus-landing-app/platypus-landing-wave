@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 import cors from "cors";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { createHash } from "crypto";
 import rateLimit from "express-rate-limit";
 import axios from "axios";
@@ -490,6 +490,39 @@ async function sendBookingEmail(values) {
         throw error;
     }
 }
+
+// --- Lead Enrichment (stage 2 of inquiry form) ---
+app.patch("/api/leads/:id/enrichment", async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json({ success: false, message: "Invalid lead id" });
+        }
+        const allowed = ["serviceInterests", "triggers", "walkerNotes", "commitmentType", "notifyOnLaunch"];
+        const enrichment = {};
+        for (const k of allowed) {
+            if (req.body[k] !== undefined) enrichment[k] = req.body[k];
+        }
+        const result = await db.collection("dog_bookings").updateOne(
+            { _id: new ObjectId(id) },
+            {
+                $set: {
+                    enrichment,
+                    enrichment_completed_at: new Date(),
+                    updatedAt: new Date(),
+                },
+            },
+        );
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ success: false, message: "Lead not found" });
+        }
+        console.log(`✅ Enrichment saved for lead: ${id}`);
+        return res.json({ success: true });
+    } catch (err) {
+        console.error("❌ PATCH /leads/:id/enrichment error:", err);
+        return res.status(500).json({ success: false, message: err.message });
+    }
+});
 
 // --- Service Launch Notification Subscription ---
 app.post("/api/notifications/subscribe", async (req, res) => {
