@@ -110,6 +110,20 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Override Next 15's default 1-year s-maxage on prerendered HTML.
+      // Hashed chunks rotate on every build; if CF caches HTML for a year,
+      // a new deploy 404s every cached visitor until manual CF purge.
+      // 10-min edge cache + 24h stale-while-revalidate keeps CDN benefit
+      // without pinning visitors to stale chunk hashes.
+      {
+        source: '/:path((?!_next|optimized|api|sitemap\\.xml|robots\\.txt|feed\\.xml|llms.*\\.txt).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=86400',
+          },
+        ],
+      },
     ];
   },
 };

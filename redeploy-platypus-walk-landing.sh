@@ -829,6 +829,7 @@ rollback_deployment() {
     build_containers
     start_containers
     wait_for_services
+    purge_cloudflare_cache
 
     if test_deployment; then
         success "Rollback completed successfully!"
@@ -942,6 +943,28 @@ check_conflicts() {
     success "No critical conflicts detected"
 }
 
+# Purge Cloudflare cache after deploy so visitors see fresh chunk hashes.
+# Reads CF_API_TOKEN + CF_ZONE_ID from .env (already loaded via 'set -a' above).
+# Non-fatal: if creds missing or API call fails, log and continue.
+purge_cloudflare_cache() {
+    step "☁️  Purging Cloudflare cache..."
+    if [ -z "${CF_API_TOKEN:-}" ] || [ -z "${CF_ZONE_ID:-}" ]; then
+        warning "CF_API_TOKEN or CF_ZONE_ID not set, skipping cache purge"
+        return 0
+    fi
+    local resp
+    resp=$(curl -s -m 15 -X POST \
+        -H "Authorization: Bearer ${CF_API_TOKEN}" \
+        -H "Content-Type: application/json" \
+        -d '{"purge_everything":true}' \
+        "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" 2>&1)
+    if echo "$resp" | grep -q '"success":true'; then
+        success "Cloudflare cache purged"
+    else
+        warning "Cloudflare purge failed (deploy continues): $resp"
+    fi
+}
+
 # Enhanced main deployment function
 main() {
     step "🚀 Starting Platypus Walk Landing Page Deployment"
@@ -964,6 +987,7 @@ main() {
     build_containers
     start_containers
     wait_for_services
+    purge_cloudflare_cache
 
     if test_deployment; then
         success "🎉 Deployment completed successfully!"
