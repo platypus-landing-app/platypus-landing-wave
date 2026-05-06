@@ -13,6 +13,8 @@ dotenv.config();
 
 // Import Telegram utilities AFTER dotenv.config() so env vars are available
 import { sendBookingNotification, sendPartialLeadNotification, sendTestNotification, sendApplicationNotification } from "./utils/telegram.js";
+import { deriveLeadTemperature } from "./utils/leadTemperature.js";
+import { sendWhatsAppLikeNotification } from "./utils/whatsappStub.js";
 
 // --- MongoDB Connection ---
 let db;
@@ -742,14 +744,20 @@ app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, re
             }
         }
 
-        // 4. Add metadata
+        // 4. Add metadata + derive lead temperature
         booking.createdAt = new Date();
         booking.ipAddress = req.ip || req.headers['x-forwarded-for'] || 'unknown';
         booking.userAgent = req.headers['user-agent'] || 'unknown';
+        booking.leadTemperature = deriveLeadTemperature({
+            preferredDate: booking.preferredDate,
+            currentSituation: booking.currentSituation,
+        });
+        booking.enrichment = null;
+        booking.enrichment_completed_at = null;
 
         // 5. Insert into MongoDB
         const result = await db.collection("dog_bookings").insertOne(booking);
-        console.log("✅ Booking saved to database with ID:", result.insertedId);
+        console.log(`✅ Booking saved (${booking.leadTemperature}) ID:`, result.insertedId);
 
         // 6. Send email
         await sendBookingEmail(booking);
@@ -759,10 +767,22 @@ app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, re
             console.error('⚠️  Telegram notification failed (non-critical):', err.message);
         });
 
+        // 8. Send WA-template-shaped notification (stub via Telegram for now)
+        sendWhatsAppLikeNotification({
+            fullName: booking.fullName,
+            phone: booking.mobile,
+            leadTemperature: booking.leadTemperature,
+            address: booking.address,
+        }).catch(err => {
+            console.error('⚠️  WhatsApp stub failed (non-critical):', err.message);
+        });
+
         res.status(201).json({
             success: true,
             message: "Booking submitted successfully! We'll contact you soon.",
             bookingId: result.insertedId,
+            leadId: result.insertedId,
+            leadTemperature: booking.leadTemperature,
         });
     } catch (err) {
         console.error("❌ Booking/Email error:", err);
