@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 import cors from "cors";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { createHash } from "crypto";
 import rateLimit from "express-rate-limit";
 import axios from "axios";
@@ -13,6 +13,9 @@ dotenv.config();
 
 // Import Telegram utilities AFTER dotenv.config() so env vars are available
 import { sendBookingNotification, sendPartialLeadNotification, sendTestNotification, sendApplicationNotification } from "./utils/telegram.js";
+import { deriveLeadTemperature } from "./utils/leadTemperature.js";
+import { sendWhatsAppLikeNotification } from "./utils/whatsappStub.js";
+import { sendLeadConfirmationToParent } from "./utils/parentConfirmationEmail.js";
 
 // --- MongoDB Connection ---
 let db;
@@ -33,6 +36,12 @@ async function connectDB() {
         await db.collection("partial_leads").createIndex({ status: 1 });
         await db.collection("partial_leads").createIndex({ created_at: 1 });
         console.log("✅ Indexes created for partial_leads collection");
+
+        // Indexes for dog_bookings collection (dedup + cluster + funnel queries)
+        await db.collection("dog_bookings").createIndex({ mobile: 1 });
+        await db.collection("dog_bookings").createIndex({ "address.pincode": 1 });
+        await db.collection("dog_bookings").createIndex({ leadTemperature: 1 });
+        console.log("✅ Indexes ensured for dog_bookings (mobile + pincode + leadTemperature)");
     } catch (err) {
         console.error("❌ MongoDB connection error:", err);
         process.exit(1);
@@ -410,8 +419,13 @@ function generateBookingHash(booking) {
         email: booking.email,
         dogs: booking.dogs,
         preferredDate: booking.preferredDate,
+        timeSlots: booking.timeSlots,
+        walksPerDay: booking.walksPerDay,
+        durationMinutes: booking.durationMinutes,
+        address: booking.address,
+        // legacy keys retained for back-compat with pre-redesign payloads
         timeSlot: booking.timeSlot,
-        location: booking.location
+        location: booking.location,
     };
     const dataString = JSON.stringify(relevantData);
     return createHash('sha256').update(dataString).digest('hex');
@@ -433,51 +447,82 @@ async function sendBookingEmail(values) {
             },
             to: [{ email: process.env.RECEIVER_EMAIL}],
             subject: `🐶 New Trial Walk Booking - ${values.fullName}`,
-            htmlContent: `
+            htmlContent: (() => {
+                const addr = values.address || {};
+                const addressBlock = [addr.houseFlat, addr.addressLine, addr.landmark]
+                    .filter(Boolean)
+                    .join(", ") || values.location || "—";
+                const cityPin = [addr.city, addr.pincode].filter(Boolean).join(" - ") || "—";
+                const tempColor = {
+                    hot: "#c0392b",
+                    warm: "#e67e22",
+                    cold: "#7f8c8d",
+                }[values.leadTemperature] || "#7f8c8d";
+                const slots = Array.isArray(values.timeSlots) && values.timeSlots.length
+                    ? values.timeSlots.join(", ")
+                    : (values.timeSlot || "—");
+                const walks = values.walksPerDay === "custom"
+                    ? `${values.walksPerDayCustom || "?"} (custom)`
+                    : (values.walksPerDay || "—");
+                const situationLabel = {
+                    no_walker: "No walker yet",
+                    unsatisfied: "Has walker, not satisfied",
+                    exploring: "Just exploring",
+                }[values.currentSituation] || values.currentSituation || "—";
+                return `
   <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 8px; padding: 20px; background: #fafafa;">
     <h2 style="color: #2c3e50; text-align: center; border-bottom: 2px solid #f0c14b; padding-bottom: 10px;">
       🐶 New Trial Walk Booking
+      ${values.leadTemperature ? `<span style="display:inline-block; margin-left:8px; padding:2px 10px; font-size:13px; border-radius:999px; background:${tempColor}; color:#fff; vertical-align:middle;">${values.leadTemperature.toUpperCase()}</span>` : ""}
     </h2>
 
     <h3 style="color: #e67e22; margin-top: 20px;">👤 Owner Details</h3>
     <p><strong>Full Name:</strong> ${values.fullName}</p>
-    <p><strong>Mobile:</strong> ${values.mobile} ${
-                values.whatsappEnabled ? "(WhatsApp ✅)" : ""
-            }</p>
+    <p><strong>Mobile:</strong> ${values.mobile} ${values.whatsappEnabled ? "(WhatsApp ✅)" : ""}</p>
     <p><strong>Email:</strong> ${values.email || "N/A"}</p>
+    <p><strong>Address:</strong> ${addressBlock}</p>
+    <p><strong>City / Pincode:</strong> ${cityPin}</p>
+    ${addr.lat && addr.lng ? `<p><strong>Lat / Lng:</strong> ${addr.lat}, ${addr.lng}</p>` : ""}
 
     <h3 style="color: #27ae60; margin-top: 20px;">🐕 Dog(s) Details</h3>
-    ${values.dogs
-                .map(
-                    (dog, i) => `
+    ${values.dogs.map((dog, i) => {
+        const breed = dog.breed === "Other" ? dog.breedOther : dog.breed;
+        const behavior = [
+            dog.gender ? `Gender: ${dog.gender}` : null,
+            dog.weightKg ? `Weight: ${dog.weightKg} kg` : null,
+            dog.friendlyWithStrangers ? `Friendly: ${dog.friendlyWithStrangers}` : null,
+            dog.aggressive ? `Aggressive: ${dog.aggressive}` : null,
+            dog.leashTrained ? `Leash trained: ${dog.leashTrained}` : null,
+            dog.vaccinated ? `Vaccinated: ${dog.vaccinated}` : null,
+        ].filter(Boolean).join(" · ");
+        const medical = dog.medicalConditions || dog.specialNotes || "None";
+        return `
           <div style="margin-bottom: 10px; padding: 10px; border-left: 4px solid #3498db; background: #fff;">
-            <p><strong>Dog ${i + 1}:</strong> ${dog.name}, ${
-                        dog.breed === "Other" ? dog.breedOther : dog.breed
-                    }, Age: ${dog.age || "?"}</p>
-            <p><strong>Special Notes:</strong> ${dog.specialNotes || "None"}</p>
+            <p><strong>Dog ${i + 1}:</strong> ${dog.name}, ${breed}, Age: ${dog.age || "?"}</p>
+            ${behavior ? `<p style="font-size:13px; color:#555;">${behavior}</p>` : ""}
+            <p><strong>Medical / notes:</strong> ${medical}</p>
           </div>
-        `
-                )
-                .join("")}
+        `;
+    }).join("")}
 
     <h3 style="color: #8e44ad; margin-top: 20px;">🕐 Walk Preferences</h3>
-    <p><strong>Date:</strong> ${new Date(
-                values.preferredDate
-            ).toDateString()}</p>
-    <p><strong>Time Slot:</strong> ${values.timeSlot}</p>
-    <p><strong>Location:</strong> ${values.location}</p>
+    <p><strong>Start Date:</strong> ${new Date(values.preferredDate).toDateString()}</p>
+    <p><strong>Walks / day:</strong> ${walks}</p>
+    <p><strong>Time Slots:</strong> ${slots}</p>
+    <p><strong>Duration:</strong> ${values.durationMinutes ? `${values.durationMinutes} min` : "—"}</p>
+    <p><strong>Current Situation:</strong> ${situationLabel}</p>
 
-    <h3 style="color: #c0392b; margin-top: 20px;">🛡️ Safety</h3>
-    <p>Vaccinations up to date: ${
-                values.vaccinationsUpToDate ? "✅ Yes" : "❌ No"
-            }</p>
-    <p>Supervise handover: ${values.superviseHandover ? "✅ Yes" : "❌ No"}</p>
+    <h3 style="color: #c0392b; margin-top: 20px;">🛡️ Consent</h3>
+    <p>Contact consent (call/WhatsApp): ${values.contactConsent ? "✅ Yes" : "❌ No"}</p>
+    <p>Accuracy confirmed: ${values.accuracyConfirmed ? "✅ Yes" : "❌ No"}</p>
+    <p>Will supervise first handover: ${values.superviseHandover ? "✅ Yes" : "❌ No"}</p>
 
     <div style="margin-top: 30px; padding: 15px; text-align: center; background: #f0f0f0; border-radius: 6px;">
       <p style="margin: 0; font-size: 14px; color: #555;">📩 This booking request was submitted via <strong>Platypus</strong>.</p>
     </div>
   </div>
-`,
+`;
+            })(),
         };
 
         await apiInstance.sendTransacEmail(sendSmtpEmail);
@@ -488,6 +533,39 @@ async function sendBookingEmail(values) {
         throw error;
     }
 }
+
+// --- Lead Enrichment (stage 2 of inquiry form) ---
+app.patch("/api/leads/:id/enrichment", async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).json({ success: false, message: "Invalid lead id" });
+        }
+        const allowed = ["serviceInterests", "triggers", "walkerNotes", "commitmentType", "notifyOnLaunch"];
+        const enrichment = {};
+        for (const k of allowed) {
+            if (req.body[k] !== undefined) enrichment[k] = req.body[k];
+        }
+        const result = await db.collection("dog_bookings").updateOne(
+            { _id: new ObjectId(id) },
+            {
+                $set: {
+                    enrichment,
+                    enrichment_completed_at: new Date(),
+                    updatedAt: new Date(),
+                },
+            },
+        );
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ success: false, message: "Lead not found" });
+        }
+        console.log(`✅ Enrichment saved for lead: ${id}`);
+        return res.json({ success: true });
+    } catch (err) {
+        console.error("❌ PATCH /leads/:id/enrichment error:", err);
+        return res.status(500).json({ success: false, message: err.message });
+    }
+});
 
 // --- Service Launch Notification Subscription ---
 app.post("/api/notifications/subscribe", async (req, res) => {
@@ -742,14 +820,20 @@ app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, re
             }
         }
 
-        // 4. Add metadata
+        // 4. Add metadata + derive lead temperature
         booking.createdAt = new Date();
         booking.ipAddress = req.ip || req.headers['x-forwarded-for'] || 'unknown';
         booking.userAgent = req.headers['user-agent'] || 'unknown';
+        booking.leadTemperature = deriveLeadTemperature({
+            preferredDate: booking.preferredDate,
+            currentSituation: booking.currentSituation,
+        });
+        booking.enrichment = null;
+        booking.enrichment_completed_at = null;
 
         // 5. Insert into MongoDB
         const result = await db.collection("dog_bookings").insertOne(booking);
-        console.log("✅ Booking saved to database with ID:", result.insertedId);
+        console.log(`✅ Booking saved (${booking.leadTemperature}) ID:`, result.insertedId);
 
         // 6. Send email
         await sendBookingEmail(booking);
@@ -759,10 +843,28 @@ app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, re
             console.error('⚠️  Telegram notification failed (non-critical):', err.message);
         });
 
+        // 8. Send WA-template-shaped notification (stub via Telegram for now)
+        sendWhatsAppLikeNotification({
+            fullName: booking.fullName,
+            phone: booking.mobile,
+            leadTemperature: booking.leadTemperature,
+            address: booking.address,
+        }).catch(err => {
+            console.error('⚠️  WhatsApp stub failed (non-critical):', err.message);
+        });
+
+        // 9. Send confirmation email to the parent (fire-and-forget; takes the
+        //    place of WhatsApp/SMS auto-reply until those channels are wired)
+        sendLeadConfirmationToParent({ ...booking, _id: result.insertedId }).catch(err => {
+            console.error('⚠️  Parent confirmation email failed (non-critical):', err.message);
+        });
+
         res.status(201).json({
             success: true,
             message: "Booking submitted successfully! We'll contact you soon.",
             bookingId: result.insertedId,
+            leadId: result.insertedId,
+            leadTemperature: booking.leadTemperature,
         });
     } catch (err) {
         console.error("❌ Booking/Email error:", err);

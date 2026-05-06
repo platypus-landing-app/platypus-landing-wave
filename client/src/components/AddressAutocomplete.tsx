@@ -14,6 +14,8 @@ export interface SelectedAddress {
     city?: string;
     state?: string;
     pincode?: string;
+    lat?: number;
+    lng?: number;
 }
 
 interface AddressAutocompleteProps {
@@ -67,6 +69,9 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
         setInputValue(newValue);
+        // Propagate typed value to parent so RHF state stays in sync
+        // even if the user never picks a suggestion (slow network, short input, etc.)
+        onSelect({ addressLine: newValue });
 
         if (newValue.length > 2 && autocompleteService.current) {
             setIsLoading(true);
@@ -101,13 +106,19 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     const handleSuggestionClick = (placeId: string, description: string) => {
         if (placesService.current) {
             placesService.current.getDetails(
-                { placeId, fields: ['address_components', 'formatted_address'] },
+                { placeId, fields: ['address_components', 'formatted_address', 'geometry'] },
                 (place: any, status: any) => {
                     if (status === window.google?.maps?.places?.PlacesServiceStatus?.OK && place) {
                         const components = place.address_components || [];
                         const parsedAddress: SelectedAddress = {
                             addressLine: place.formatted_address || description
                         };
+
+                        const loc = place.geometry?.location;
+                        if (loc) {
+                            parsedAddress.lat = typeof loc.lat === 'function' ? loc.lat() : loc.lat;
+                            parsedAddress.lng = typeof loc.lng === 'function' ? loc.lng() : loc.lng;
+                        }
 
                         components.forEach((component: any) => {
                             const types = component.types;
