@@ -60,7 +60,7 @@ services:
       - "3000"
     networks:
       - platypus_landing_network
-      - nginx-proxy
+      - nginx-proxy_default
     depends_on:
       - mongodb
     read_only: true
@@ -107,7 +107,7 @@ services:
       - "3000"
     networks:
       - platypus_landing_network
-      - nginx-proxy
+      - nginx-proxy_default
     depends_on:
       - backend
     healthcheck:
@@ -134,7 +134,7 @@ networks:
   platypus_landing_network:
     driver: bridge
     name: platypus_landing_network
-  nginx-proxy:
+  nginx-proxy_default:
     external: true
 
 volumes:
