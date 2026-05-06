@@ -35,34 +35,84 @@ export async function sendBookingNotification(booking) {
     const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
     try {
+        const tempBadge = booking.leadTemperature
+            ? ` [${booking.leadTemperature.toUpperCase()}]`
+            : '';
+
+        const addr = booking.address || {};
+        const addressLines = [
+            addr.houseFlat,
+            addr.addressLine,
+            addr.landmark ? `Landmark: ${addr.landmark}` : null,
+            [addr.area, addr.city, addr.pincode].filter(Boolean).join(' - '),
+        ].filter(Boolean);
+        const addressBlock = addressLines.length
+            ? addressLines.map((l) => `   • ${l}`).join('\n')
+            : `   • ${booking.location || '(no address)'}`;
+        const geo = (addr.lat && addr.lng) ? `   • Geo: ${addr.lat}, ${addr.lng}` : '';
+
         const dogsInfo = booking.dogs
             .map((dog, i) => {
                 const breed = dog.breed === 'Other' ? dog.breedOther : dog.breed;
-                return `🐕 *Dog ${i + 1}:* ${dog.name}\n   • Breed: ${breed}\n   • Age: ${dog.age || '?'}\n   • Notes: ${dog.specialNotes || 'None'}`;
+                const behavior = [
+                    dog.gender ? `Gender: ${dog.gender}` : null,
+                    dog.weightKg ? `Weight: ${dog.weightKg} kg` : null,
+                    dog.friendlyWithStrangers ? `Friendly: ${dog.friendlyWithStrangers}` : null,
+                    dog.aggressive ? `Aggressive: ${dog.aggressive}` : null,
+                    dog.leashTrained ? `Leash trained: ${dog.leashTrained}` : null,
+                    dog.vaccinated ? `Vaccinated: ${dog.vaccinated}` : null,
+                ].filter(Boolean).join(' · ');
+                const medical = dog.medicalConditions || dog.specialNotes || 'None';
+                return [
+                    `🐕 *Dog ${i + 1}:* ${dog.name}`,
+                    `   • Breed: ${breed}`,
+                    `   • Age: ${dog.age || '?'}`,
+                    behavior ? `   • ${behavior}` : null,
+                    `   • Medical / notes: ${medical}`,
+                ].filter(Boolean).join('\n');
             })
             .join('\n\n');
 
+        const slots = Array.isArray(booking.timeSlots) && booking.timeSlots.length
+            ? booking.timeSlots.join(', ')
+            : (booking.timeSlot || '(none)');
+        const walks = booking.walksPerDay === 'custom'
+            ? `${booking.walksPerDayCustom || '?'} (custom)`
+            : (booking.walksPerDay || '?');
+        const situationLabel = {
+            no_walker: 'No walker yet',
+            unsatisfied: 'Has walker, not satisfied',
+            exploring: 'Just exploring',
+        }[booking.currentSituation] || booking.currentSituation || '(not provided)';
+
         const message = `
-🎉 *NEW TRIAL WALK BOOKING!*
+🎉 *NEW TRIAL WALK BOOKING!*${tempBadge}
 
 👤 *Pet Parent Details*
 • Name: ${booking.fullName}
 • Mobile: ${booking.mobile}${booking.whatsappEnabled ? ' ✅ WhatsApp' : ''}
 • Email: ${booking.email || 'N/A'}
 
+📍 *Address*
+${addressBlock}${geo ? '\n' + geo : ''}
+
 ${dogsInfo}
 
 🕐 *Walk Preferences*
-• Date: ${new Date(booking.preferredDate).toDateString()}
-• Time: ${booking.timeSlot}
-• Location: ${booking.location}
+• Start: ${new Date(booking.preferredDate).toDateString()}
+• Walks per day: ${walks}
+• Time slots: ${slots}
+• Duration: ${booking.durationMinutes ? booking.durationMinutes + ' min' : '?'}
+• Current situation: ${situationLabel}
 
-🛡️ *Safety*
-• Vaccinations: ${booking.vaccinationsUpToDate ? '✅ Yes' : '❌ No'}
-• Supervise Handover: ${booking.superviseHandover ? '✅ Yes' : '❌ No'}
+🛡️ *Consent*
+• Contact (call/WhatsApp): ${booking.contactConsent ? '✅' : '❌'}
+• Accuracy confirmed: ${booking.accuracyConfirmed ? '✅' : '❌'}
+• Will supervise first handover: ${booking.superviseHandover ? '✅' : '❌'}
 
 📊 *Metadata*
 • Booking ID: \`${booking._id || 'pending'}\`
+• Lead temp: ${booking.leadTemperature || 'unknown'}
 • Submitted: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
 • reCAPTCHA Score: ${booking.recaptchaScore || 'N/A'}
 `;
