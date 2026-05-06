@@ -15,6 +15,7 @@ dotenv.config();
 import { sendBookingNotification, sendPartialLeadNotification, sendTestNotification, sendApplicationNotification } from "./utils/telegram.js";
 import { deriveLeadTemperature } from "./utils/leadTemperature.js";
 import { sendWhatsAppLikeNotification } from "./utils/whatsappStub.js";
+import { sendLeadConfirmationToParent } from "./utils/parentConfirmationEmail.js";
 
 // --- MongoDB Connection ---
 let db;
@@ -850,6 +851,12 @@ app.post("/api/bookings/save-send-booking-email", bookingLimiter, async (req, re
             address: booking.address,
         }).catch(err => {
             console.error('⚠️  WhatsApp stub failed (non-critical):', err.message);
+        });
+
+        // 9. Send confirmation email to the parent (fire-and-forget; takes the
+        //    place of WhatsApp/SMS auto-reply until those channels are wired)
+        sendLeadConfirmationToParent({ ...booking, _id: result.insertedId }).catch(err => {
+            console.error('⚠️  Parent confirmation email failed (non-critical):', err.message);
         });
 
         res.status(201).json({
