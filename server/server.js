@@ -16,6 +16,8 @@ import { sendBookingNotification, sendPartialLeadNotification, sendTestNotificat
 import { deriveLeadTemperature } from "./utils/leadTemperature.js";
 import { sendWhatsAppLikeNotification } from "./utils/whatsappStub.js";
 import { sendLeadConfirmationToParent } from "./utils/parentConfirmationEmail.js";
+import { sendIosWaitlistConfirmation } from "./utils/iosWaitlistEmail.js";
+import TelegramBot from "node-telegram-bot-api";
 
 // --- MongoDB Connection ---
 let db;
@@ -539,6 +541,83 @@ async function sendBookingEmail(values) {
         throw error;
     }
 }
+
+// --- iOS Waitlist Telegram helper (lazy-init local bot, mirrors whatsappStub pattern) ---
+let _iosTgBot;
+function getIosTgBot() {
+    if (_iosTgBot !== undefined) return _iosTgBot;
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    _iosTgBot = token ? new TelegramBot(token, { polling: false }) : null;
+    return _iosTgBot;
+}
+async function pingIosWaitlistTelegram({ name, email }) {
+    const bot = getIosTgBot();
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    if (!bot || !chatId) {
+        console.log("ℹ️  iOS waitlist Telegram skipped (not configured)");
+        return;
+    }
+    const msg = `🍎 *New iOS waitlist signup*\nName: ${name}\nEmail: ${email}\nTime: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}`;
+    try {
+        await bot.sendMessage(chatId, msg, { parse_mode: "Markdown" });
+    } catch (err) {
+        console.error("iOS waitlist telegram error:", err.message);
+    }
+}
+
+// --- iOS Waitlist Signup ---
+app.post("/api/leads/ios-waitlist", bookingLimiter, async (req, res) => {
+    try {
+        const name = (req.body.name || "").trim();
+        const email = (req.body.email || "").trim().toLowerCase();
+
+        if (!name || name.length < 2) {
+            return res.status(400).json({ success: false, message: "Name is required." });
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            return res.status(400).json({ success: false, message: "Enter a valid email." });
+        }
+
+        const now = new Date();
+        const ip = req.ip || req.headers["x-forwarded-for"] || "unknown";
+        const userAgent = req.headers["user-agent"] || "unknown";
+
+        const existing = await db.collection("ios_waitlist").findOne({ email });
+
+        if (existing) {
+            await db.collection("ios_waitlist").updateOne(
+                { email },
+                { $set: { name, updated_at: now, ip_address: ip, user_agent: userAgent } }
+            );
+            console.log(`ℹ️ iOS waitlist duplicate signup: ${email}`);
+            return res.status(200).json({ success: true, alreadySubscribed: true });
+        }
+
+        await db.collection("ios_waitlist").insertOne({
+            name,
+            email,
+            status: "waiting",
+            created_at: now,
+            updated_at: now,
+            ip_address: ip,
+            user_agent: userAgent,
+        });
+        console.log(`✅ iOS waitlist signup: ${email}`);
+
+        pingIosWaitlistTelegram({ name, email }).catch((err) => {
+            console.error("⚠️  Telegram ping failed (non-critical):", err.message);
+        });
+        sendIosWaitlistConfirmation({ name, email }).catch((err) => {
+            console.error("⚠️  iOS waitlist confirmation email failed (non-critical):", err.message);
+        });
+
+        return res.status(200).json({ success: true, alreadySubscribed: false });
+    } catch (err) {
+        console.error("❌ POST /api/leads/ios-waitlist error:", err);
+        return res.status(500).json({ success: false, message: "Something went wrong. Please try again." });
+    }
+});
 
 // --- Lead Enrichment (stage 2 of inquiry form) ---
 app.patch("/api/leads/:id/enrichment", async (req, res) => {
