@@ -53,6 +53,7 @@ import {
   type TrialBookingFormValues,
   defaultTrialBookingValues,
 } from "@/lib/schemas/trialBooking";
+import AddressFields from "@/components/booking/AddressFields";
 // Removed react-google-recaptcha-v3 to prevent conflicts with Firebase Enterprise reCAPTCHA
 import { auth } from "@/lib/firebase";
 import {
@@ -190,7 +191,14 @@ const TrialBookingDialog: React.FC = () => {
 
   const nextStep = async () => {
     if (step === 1) {
-      const isValid = await trigger(["fullName", "mobile"]);
+      const isValid = await trigger([
+        "fullName",
+        "mobile",
+        "address.houseFlat",
+        "address.addressLine",
+        "address.city",
+        "address.pincode",
+      ]);
       if (!isValid) return;
 
       // Check phone verification
@@ -679,6 +687,14 @@ async function onSubmit(values: TrialBookingFormValues) {
                         </FormItem>
                       )}
                     />
+
+                    <div className="pt-4 border-t space-y-2">
+                      <h3 className="text-base font-semibold text-foreground">Where are you based?</h3>
+                      <p className="text-xs text-muted-foreground">
+                        We use this to match you with the nearest Guardian.
+                      </p>
+                      <AddressFields />
+                    </div>
                   </div>
                 )}
 
@@ -895,27 +911,6 @@ async function onSubmit(values: TrialBookingFormValues) {
                               ))}
                             </SelectContent>
                           </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="location"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Location / Area *</FormLabel>
-                          <FormControl>
-                            <AddressAutocomplete
-                              value={field.value || ""}
-                              onSelect={(address: SelectedAddress) => {
-                                field.onChange(address.addressLine || `${address.area}, ${address.city}`.replace(/^, |, $/, ''));
-                              }}
-                              placeholder="Search your address"
-                              className="w-full"
-                            />
-                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
