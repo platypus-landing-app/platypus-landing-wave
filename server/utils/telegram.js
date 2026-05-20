@@ -1,8 +1,60 @@
 // utils/telegram.js
 import TelegramBot from 'node-telegram-bot-api';
+import { UAParser } from 'ua-parser-js';
+import axios from 'axios';
 
 let bot;
 let botInitialized = false;
+
+// Cache IP → city lookups for the lifetime of the process so repeat
+// signups from the same NAT'd network don't re-hit ip-api.com.
+const ipGeoCache = new Map();
+
+/**
+ * Parse a UA string into `device · OS version` (signup-telemetry C4).
+ * Returns null when parsing fails or input is empty.
+ */
+function formatDeviceFromUA(ua) {
+    if (!ua) return null;
+    try {
+        const parsed = new UAParser(ua).getResult();
+        const device = [parsed.device.vendor, parsed.device.model]
+            .filter(Boolean).join(' ').trim();
+        const os = [parsed.os.name, parsed.os.version].filter(Boolean).join(' ');
+        const browser = [parsed.browser.name, parsed.browser.version?.split('.')[0]]
+            .filter(Boolean).join(' ');
+        const head = device || browser || 'Web';
+        return os ? `${head} · ${os}` : head;
+    } catch (_) {
+        return null;
+    }
+}
+
+/**
+ * Resolve IP → 'City, Region, Country' via ip-api.com free tier (45
+ * req/min, no key, no IP leak beyond ip-api). Returns null on miss
+ * (private range, lookup error, timeout). Caches by IP.
+ */
+async function resolveIpGeo(ip) {
+    if (!ip || ip === 'unknown') return null;
+    const clean = ip.split(',')[0].trim().replace(/^::ffff:/, '');
+    if (!clean || clean === '::1' || clean.startsWith('127.') || clean.startsWith('10.')) return null;
+    if (ipGeoCache.has(clean)) return ipGeoCache.get(clean);
+    try {
+        const r = await axios.get(`http://ip-api.com/json/${clean}`, {
+            params: { fields: 'status,city,regionName,country' },
+            timeout: 1500,
+        });
+        if (r.data?.status === 'success') {
+            const out = [r.data.city, r.data.regionName, r.data.country]
+                .filter(Boolean).join(', ');
+            ipGeoCache.set(clean, out || null);
+            return out || null;
+        }
+    } catch (_) {}
+    ipGeoCache.set(clean, null);
+    return null;
+}
 
 // Lazy initialization - only create bot when first needed
 function initializeBot() {
@@ -154,6 +206,14 @@ export async function sendPartialLeadNotification(lead) {
             .map(([key, value]) => `   • ${key}: ${JSON.stringify(value)}`)
             .join('\n') : 'No data captured';
 
+        // Signup-telemetry C4 enrichment — device + geo derived from
+        // the metadata we already store on the partial-lead document.
+        const device = formatDeviceFromUA(lead?.metadata?.user_agent);
+        const geo = await resolveIpGeo(lead?.metadata?.ip_address);
+        const telemetryBlock = (device || geo)
+            ? `\n\n📡 *Telemetry*\n${device ? `• Device: ${device}\n` : ''}${geo ? `• Location: ${geo}\n` : ''}`.replace(/\n$/, '')
+            : '';
+
         const message = `
 ⚠️ *PARTIAL LEAD - ABANDONED BOOKING*
 
@@ -172,7 +232,7 @@ ${formDataInfo}
 
 🕐 *Timing*
 • Started: ${new Date(lead.created_at).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
-• Last Updated: ${new Date(lead.last_updated).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+• Last Updated: ${new Date(lead.last_updated).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}${telemetryBlock}
 
 💡 *Action Required*
 Consider reaching out to complete the booking!
