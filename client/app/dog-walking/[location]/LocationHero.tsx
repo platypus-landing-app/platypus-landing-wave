@@ -108,7 +108,7 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                 className="text-[16px] sm:text-[17px] md:text-[18px] text-white px-8 md:px-10 h-[48px] md:h-[52px] w-full sm:w-auto py-3 font-medium rounded-full
                   bg-brand-blue hover:bg-brand-blue-dark hover:shadow-brand transition-all duration-300 hover:-translate-y-0.5"
               >
-                Book a trial walk · ₹199
+                Register your interest
               </Button>
 
               <Button
@@ -167,10 +167,10 @@ export default function LocationHero({ locationInfo, location }: LocationHeroPro
                   </p>
                 </div>
 
-                {/* Trial price badge */}
+                {/* Onboarding badge (bookings paused) */}
                 <div className="mt-6 bg-[#FFE135] rounded-xl p-4 text-center">
-                  <p className="text-black text-sm font-medium mb-1">Trial Walk Starting At</p>
-                  <p className="text-black text-3xl font-bold">₹199</p>
+                  <p className="text-black text-sm font-medium mb-1">Now onboarding in your area</p>
+                  <p className="text-black text-lg font-bold">Register your interest</p>
                 </div>
               </div>
 

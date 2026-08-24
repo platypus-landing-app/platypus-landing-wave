@@ -87,7 +87,7 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                   size="lg"
                   className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold px-8 py-6 text-lg rounded-full hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  Book a trial walk · {service.price}
+                  Register your interest
                 </Button>
               </div>
             </div>
@@ -182,17 +182,17 @@ export default function ActiveServicePage({ service }: ActiveServicePageProps) {
                 <div className="relative z-10">
                   <span className="font-guttery text-brand-yellow text-lg sm:text-xl mb-3 block">let&apos;s go</span>
                   <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                    Ready to Get Started?
+                    Interested in walks for your dog?
                   </h3>
                   <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-                    Book a trial walk with one of our certified Guardians and see the difference.
+                    We&apos;re onboarding pet parents in Mumbai. Register your interest and we&apos;ll match you with a certified Guardian in your area.
                   </p>
                   <Button
                     onClick={openTrialBooking}
                     size="lg"
                     className="bg-[#FFE135] hover:bg-[#E6CA2F] text-gray-900 font-bold px-8 py-6 text-lg rounded-full hover:-translate-y-0.5 hover:shadow-warm transition-all duration-300"
                   >
-                    Book a trial walk · {service.price}
+                    Register your interest
                   </Button>
                 </div>
               </div>

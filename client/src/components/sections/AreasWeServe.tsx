@@ -54,9 +54,7 @@ const AreasWeServe = () => {
                 onClick={openTrialBooking}
                 size="lg"
                 className="bg-brand-blue hover:bg-brand-blue/90 text-white px-10 py-4 text-lg font-medium hidden md:flex rounded-full hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 items-center justify-center"
-              >
-                Book Now
-              </Button>
+              >Register your interest</Button>
             </div>
           </div>
         </ScrollReveal>
@@ -86,9 +84,7 @@ const AreasWeServe = () => {
             onClick={openTrialBooking}
             size="lg"
             className="w-full max-w-md bg-brand-blue hover:bg-brand-blue/90 text-white py-4 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
-          >
-            Book Now
-          </Button>
+          >Register your interest</Button>
         </div>
       </div>
     </section>

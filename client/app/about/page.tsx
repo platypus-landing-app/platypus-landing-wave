@@ -177,18 +177,20 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-noise" />
                 <div className="relative z-10">
                   <h3 className="font-domine font-bold text-white text-3xl md:text-4xl mb-4">
-                    Try us on a trial walk
+                    Interested in walks for your dog?
                   </h3>
                   <p className="text-white/90 text-lg mb-8 max-w-xl mx-auto">
-                    See the Guardian, see the walk, see the report. Commit only if it
-                    works for your dog.
+                    We&apos;re onboarding pet parents in Mumbai. Register your interest
+                    and we&apos;ll reach out when we have a Guardian for your area.
                   </p>
-                  <Link
-                    href="/services/dog-walking"
+                  <a
+                    href="https://wa.me/918451880963?text=Hi%20Platypus!%20I'd%20like%20to%20register%20my%20interest%20in%20dog%20walking%20for%20my%20dog."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center h-[52px] px-8 rounded-full bg-brand-yellow text-gray-900 font-bold text-[16px] hover:bg-[#E6CA2F] transition-colors"
                   >
-                    Book a trial walk · ₹199
-                  </Link>
+                    Register your interest
+                  </a>
                 </div>
               </div>
             </div>

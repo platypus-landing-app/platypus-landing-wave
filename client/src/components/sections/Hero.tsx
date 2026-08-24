@@ -2,13 +2,11 @@
 
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useBooking } from "@/contexts/BookingContext";
 import { trackCTAClick } from "@/lib/analytics";
 import { motion, Variants, easeOut } from "framer-motion";
 import { marketingMetrics } from "@/data/metrics";
 
 const Hero = () => {
-  const { openTrialBooking } = useBooking();
 
   const heroVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -111,12 +109,20 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 md:gap-5 mt-8 md:mt-10"
             >
               <Button
-                onClick={() => { trackCTAClick('hero_book_trial'); openTrialBooking(); }}
+                onClick={() => {
+                  trackCTAClick('hero_register_interest');
+                  window.open(
+                    `https://wa.me/918451880963?text=${encodeURIComponent(
+                      "Hi Platypus! I'd like to register my interest in dog walking for my dog."
+                    )}`,
+                    '_blank'
+                  );
+                }}
                 size="lg"
                 className="text-[16px] sm:text-[17px] md:text-[18px] text-white px-8 md:px-10 h-[48px] md:h-[52px] w-full sm:w-auto py-3 font-medium rounded-full
                 bg-brand-blue hover:bg-brand-blue-dark hover:shadow-brand transition-all duration-300 hover:-translate-y-0.5"
               >
-                Book a trial walk · ₹199
+                Register your interest
               </Button>
 
               <Button

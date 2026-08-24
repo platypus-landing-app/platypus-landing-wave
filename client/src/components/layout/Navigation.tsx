@@ -178,7 +178,7 @@ const Navigation = () => {
                                 className="text-white px-6 py-3 rounded font-medium
         bg-[#247AFD] hover:bg-[#1A5BC4] hover:shadow-xl transition-all duration-300 hover:scale-105 animate-subtle-pulse"
                             >
-                                Book a trial · ₹199
+                                Register your interest
                             </Button>
                         </div>
 
@@ -263,7 +263,7 @@ const Navigation = () => {
                                     onClick={() => { setIsOpen(false); openTrialBooking(); }}
                                     className="w-full bg-[#247AFD] hover:bg-[#1A5BC4] text-white py-3 rounded-lg font-medium shadow-brand transition-all duration-300"
                                 >
-                                    Book a trial · ₹199
+                                    Register your interest
                                 </Button>
                             </motion.div>
                         </div>
