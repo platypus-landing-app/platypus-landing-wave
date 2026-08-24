@@ -108,7 +108,7 @@ const OurServices = () => {
                       <div className={`mt-4 flex items-center text-sm font-semibold
                         ${isActive ? 'text-brand-yellow' : 'text-[#247AFD]'}`}
                       >
-                        {isActive ? 'Book Now' : 'Get Notified'}
+                        {isActive ? 'View details' : 'Get Notified'}
                         <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
